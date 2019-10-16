@@ -25,11 +25,11 @@ The x user will use this screen to do A – B – C - after completion of this t
 ***Build a full UI in Visual Studio .*** 
 - Create a Boostrap master page. 
 - For each in screen the mockup:
-    - Create a branch in git
+    - Create a branch in git.
     - Implement a boostrap content page.  
-    - Create a GitHub Pull Request from this branch, in the pull request description include:  
+    - Create a GitHub pull request from this branch, the the pull request description should include:  
         - The mockup UI image from part 1 of this CD. 
-        - Most relevant user strories for this UI. 
+        - Most relevant user strories for this screen. 
     - Two reviewers have to review  the code before it is merged to master. 
      
 ***Deploy and report***   
