@@ -32,3 +32,33 @@ body {
 .panel-footer {
     background-color: #8C2132;
 }
+
+table {
+    margin-top: 2%;
+}
+
+thead {
+    background-color: #8C2132;
+    color: white;
+}
+
+#btnDownload {
+    margin-left: 80%;
+    margin-top: 1%;
+    background-color: #8C2132;
+    color: white;
+}
+
+.viewRequest {
+    text-align:center;
+}
+
+#searchBar{
+    margin-top: 3%;
+    margin-left:25%;
+}
+
+#requestHistory {
+    margin-top: 3%; 
+    text-align: center;
+}
