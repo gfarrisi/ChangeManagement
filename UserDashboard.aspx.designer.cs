@@ -10,24 +10,15 @@
 namespace Empty_Project_Template {
     
     
-    public partial class Master {
+    public partial class UserDashboard {
         
         /// <summary>
-        /// Header control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder Header;
-        
-        /// <summary>
-        /// CPH1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder CPH1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
     }
 }
