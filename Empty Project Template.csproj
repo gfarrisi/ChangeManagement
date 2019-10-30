@@ -65,7 +65,9 @@
     <Content Include="blog-home-1.html" />
     <Content Include="blog-home-2.html" />
     <Content Include="blog-post.html" />
+    <Content Include="CM.aspx" />
     <Content Include="contact.html" />
+    <Content Include="css\cm-request.css" />
     <Content Include="css\modern-business.css" />
     <Content Include="faq.html" />
     <Content Include="full-width.html" />
@@ -105,6 +107,13 @@
     </Compile>
     <Compile Include="AdminDashboard.aspx.designer.cs">
       <DependentUpon>AdminDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CM.aspx.cs">
+      <DependentUpon>CM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CM.aspx.designer.cs">
+      <DependentUpon>CM.aspx</DependentUpon>
     </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
