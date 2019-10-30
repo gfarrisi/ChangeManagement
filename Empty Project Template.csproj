@@ -96,6 +96,7 @@
     <Content Include="vendor\jquery\jquery.min.js" />
     <Content Include="vendor\jquery\jquery.slim.js" />
     <Content Include="vendor\jquery\jquery.slim.min.js" />
+    <Content Include="ViewAllRequests.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +115,13 @@
       <DependentUpon>Master.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewAllRequests.aspx.cs">
+      <DependentUpon>ViewAllRequests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewAllRequests.aspx.designer.cs">
+      <DependentUpon>ViewAllRequests.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
