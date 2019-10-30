@@ -98,6 +98,7 @@
     <Content Include="vendor\jquery\jquery.slim.min.js" />
     <Content Include="ViewAllRequests.aspx" />
     <Content Include="Web.config" />
+    <Content Include="ViewAllUsers.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDashboard.aspx.cs">
@@ -121,6 +122,13 @@
     </Compile>
     <Compile Include="ViewAllRequests.aspx.designer.cs">
       <DependentUpon>ViewAllRequests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewAllUsers.aspx.cs">
+      <DependentUpon>ViewAllUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewAllUsers.aspx.designer.cs">
+      <DependentUpon>ViewAllUsers.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -37,16 +37,20 @@ table {
     margin-top: 2%;
 }
 
-thead {
-    background-color: #8C2132;
-    color: white;
-}
-
-#btnDownload {
-    margin-left: 80%;
+.btnDownload {
+    margin-left: 65%;
     margin-top: 1%;
     background-color: #8C2132;
     color: white;
+    margin-bottom: 6%;
+}
+
+.btnAdd {
+    margin-left: 2%;
+    margin-top: 1%;
+    background-color: #8C2132;
+    color: white;
+    margin-bottom: 6%;
 }
 
 .viewRequest {

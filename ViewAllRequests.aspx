@@ -10,8 +10,8 @@
             </span>
         </div>
     </div>
-    <table class="table table-bordered table-hover">
-        <thead class="thead">
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
             <tr>
                 <th scope="col">CM ID  <i class="fas fa-sort"></i></th>
                 <th scope="col">User  <i class="fas fa-sort"></i></th>
@@ -86,5 +86,5 @@
             </tr>
         </tbody>
     </table>
-    <button type="button" class="btn" id="btnDownload">Download All</button>
+    <button type="button" class="btn btnDownload">Download All</button>
 </asp:Content>
