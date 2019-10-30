@@ -1,8 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AdminDashboard.aspx.cs" Inherits="Empty_Project_Template.AdminDashboard" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="UserDashboard.aspx.cs" Inherits="Empty_Project_Template.UserDashboard" %>
+<asp:Content ID="Header" ContentPlaceHolderID="Header" runat="server">
 
-<asp:Content ContentPlaceHolderID="Header" runat="server">
-     
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
         <div class="container">
             <a class="navbar-brand" href="index.html">CRM Recruit: Change Management</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,31 +13,24 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Dashboard</a>
                     </li>
+
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="AdminTools" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Tools
-                        </a>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User One
+            </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                             <a class="dropdown-item" href="full-width.html">View All</a>
                             <a class="dropdown-item" href="sidebar.html">Add New Request Type</a>
                             <a class="dropdown-item" href="faq.html">User Settings</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dima Dabbas
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-
-                        </div>
-                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-
 </asp:Content>
-<asp:Content ContentPlaceHolderID="CPH1" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="CPH1" runat="server">
     <div class="container">
-    <form id="form1" runat="server">
+       <form id="form1" runat="server">
 
         <div class="pull-right">
             <div class="btn-group">
@@ -63,7 +55,7 @@
                     </div>
                 </div>
             </div>
-
+            
 
 
             <!-- /.col-md-4 -->
@@ -82,7 +74,7 @@
             </div>
 
             <!-- /.col-md-4 -->
-
+           
             <div class="col-lg-3 mb-5">
                 <div>
                     <h2 class="card-title" align="center" runat="server">Pre-Production</h2>
@@ -107,7 +99,7 @@
 
                 </div>
             </div>
-
+            
             <!-- /.col-md-4 -->
 
             <!-- /.col-md-4 -->
@@ -148,8 +140,6 @@
 
 
     </form>
+        </div>
 
-
-
-    </div>
 </asp:Content>

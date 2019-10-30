@@ -32,3 +32,14 @@ body {
 .panel-footer {
     background-color: #8C2132;
 }
+.button-dash {
+    border-radius:12px;
+}
+
+.viewall {
+    text-align: center;
+}
+.scroll-custom{
+    height: 600px;
+
+}
