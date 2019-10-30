@@ -20,21 +20,23 @@
 
     <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
+      <link href="css/cm-request.css" rel="stylesheet">
 </head>
 <body>
 
+
             <asp:ContentPlaceHolder 
             ID="Header" runat="server"></asp:ContentPlaceHolder>
-    <div class="container">
+ 
         <asp:ContentPlaceHolder
             ID="CPH1"
             runat="server">
         </asp:ContentPlaceHolder>
 
-    </div>
+
 
     <!-- Footer -->
-    <footer class="py-2 custom-footer fixed-bottom ">
+    <footer class="py-2 custom-footer">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; Temple University 2019</p>
         </div>
