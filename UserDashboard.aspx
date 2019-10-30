@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="UserDashboard.aspx.cs" Inherits="Empty_Project_Template.UserDashboard" %>
+
 <asp:Content ID="Header" ContentPlaceHolderID="Header" runat="server">
 
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
@@ -30,11 +31,12 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPH1" runat="server">
     <div class="container">
+        <br />
        <form id="form1" runat="server">
 
         <div class="pull-right">
             <div class="btn-group">
-                <button class="btn btn-info" onclick="btnNewRequest_click">
+                <button class="btn btn-dark" onclick="btnNewRequest_click">
                     New Request 
                 </button>
             </div>
@@ -47,11 +49,11 @@
                     <h2 class="card-title" align="center">Not Assigned</h2>
 
                     <div class="card-footer">
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 101</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 102</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 103</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 104</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 105</a>
+                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 301</a>
+                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 302</a>
+                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 303</a>
+                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 304</a>
+                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 305</a>
                     </div>
                 </div>
             </div>
@@ -62,13 +64,12 @@
             <div class="col-lg-3 mb-5">
                 <div>
                     <h2 class="card-title" align="center">Assigned</h2>
-
                     <div class="card-footer">
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 301</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 302</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 303</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 304</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 305</a>
+                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 201</a>
+                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 202</a>
+                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 203</a>
+                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 204</a>
+                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 205</a>
                     </div>
                 </div>
             </div>
@@ -79,22 +80,12 @@
                 <div>
                     <h2 class="card-title" align="center" runat="server">Pre-Production</h2>
 
-                    <div class="card-body">
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 201</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 202</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 203</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 204</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 205</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 205</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 205</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 205</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 205</a>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 207</a>
+                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 208</a>
 
                     </div>
                     <br />
-                    <div class="viewall">
-                        <a href="url" runat="server">View All</a>
-                    </div>
 
 
                 </div>
@@ -107,16 +98,17 @@
                 <div>
                     <h2 class="card-title" align="center" runat="server">Completed</h2>
 
+
                     <div class="card-footer">
                         <a href="#" class="btn btn-secondary btn-block btn-lg">CM 101</a>
                         <a href="#" class="btn btn-secondary btn-block btn-lg">CM 102</a>
                         <a href="#" class="btn btn-secondary btn-block btn-lg">CM 103</a>
                         <a href="#" class="btn btn-secondary btn-block btn-lg">CM 104</a>
                         <a href="#" class="btn btn-secondary btn-block btn-lg">CM 105</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 105</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 105</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 105</a>
-                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 105</a>
+                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 106</a>
+                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 107</a>
+                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 108</a>
+                        <a href="#" class="btn btn-secondary btn-block btn-lg">CM 109</a>
 
                     </div>
                     <br />
