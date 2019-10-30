@@ -30,17 +30,19 @@
     </nav>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPH1" runat="server">
-    <div class="container">
-        <br />
-       <form id="form1" runat="server">
-
-        <div class="pull-right">
+     <br />
+            <div class="pull-right">
             <div class="btn-group">
                 <button class="btn btn-dark" onclick="btnNewRequest_click">
                     New Request 
                 </button>
             </div>
         </div>
+    <div class="container">
+       
+       <form id="form1" runat="server">
+
+
         <br />
 
         <div class="row">
