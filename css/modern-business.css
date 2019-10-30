@@ -33,6 +33,18 @@ body {
     background-color: #8C2132;
 }
 
+.button-dash {
+    border-radius:12px;
+}
+
+.viewall {
+    text-align: center;
+}
+.scroll-custom{
+    height: 600px;
+
+}
+
 table {
     margin-top: 2%;
 }
