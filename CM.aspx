@@ -10,14 +10,14 @@
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Dashboard</a>
+                        <a class="nav-link" href="UserDashboard.aspx">Dashboard</a>
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jane Doe
             </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                            <a class="dropdown-item" href="full-width.html">Log Out</a>
+                            <a class="dropdown-item" href="Login.aspx">Log Out</a>
                         </div>
                     </li>
                 </ul>

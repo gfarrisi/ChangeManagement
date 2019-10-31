@@ -59,34 +59,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="404.html" />
-    <Content Include="about.html" />
     <Content Include="AdminDashboard.aspx" />
-    <Content Include="blog-home-1.html" />
-    <Content Include="blog-home-2.html" />
-    <Content Include="blog-post.html" />
     <Content Include="CM.aspx" />
-    <Content Include="contact.html" />
     <Content Include="css\modern-business.css" />
-    <Content Include="faq.html" />
-    <Content Include="full-width.html" />
     <Content Include="gulpfile.js" />
-    <Content Include="index.html" />
     <Content Include="js\contact_me.js" />
     <Content Include="js\jqBootstrapValidation.js" />
     <Content Include="Login.aspx" />
     <Content Include="mail\contact_me.php" />
     <Content Include="NewCM.aspx" />
-    <Content Include="NewRequestType.aspx" />
     <Content Include="NewUser.aspx" />
-    <Content Include="portfolio-1-col.html" />
-    <Content Include="portfolio-2-col.html" />
-    <Content Include="portfolio-3-col.html" />
-    <Content Include="portfolio-4-col.html" />
-    <Content Include="portfolio-item.html" />
-    <Content Include="pricing.html" />
-    <Content Include="services.html" />
-    <Content Include="sidebar.html" />
     <Content Include="UserDashboard.aspx" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.min.css" />
@@ -142,13 +124,6 @@
     <Compile Include="NewCM.aspx.designer.cs">
       <DependentUpon>NewCM.aspx</DependentUpon>
     </Compile>
-    <Compile Include="NewRequestType.aspx.cs">
-      <DependentUpon>NewRequestType.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="NewRequestType.aspx.designer.cs">
-      <DependentUpon>NewRequestType.aspx</DependentUpon>
-    </Compile>
     <Compile Include="NewUser.aspx.cs">
       <DependentUpon>NewUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -193,7 +168,6 @@
     <Content Include="vendor\bootstrap\js\bootstrap.min.js.map" />
     <Content Include="vendor\jquery\jquery.min.map" />
     <Content Include="vendor\jquery\jquery.slim.min.map" />
-    <Content Include=".travis.yml" />
     <Content Include="LICENSE" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
