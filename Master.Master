@@ -21,6 +21,7 @@
     <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
       <link href="css/cm-request.css" rel="stylesheet">
+    
 </head>
 <body>
 
@@ -46,6 +47,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script> 
 
 </body>
 
