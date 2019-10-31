@@ -7,15 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace Empty_Project_Template
 {
-    public partial class AdminDashboard : System.Web.UI.Page
+    public partial class CM : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-        protected void btnNewRequest_click(object sender, EventArgs e)
-        {
-            Response.Redirect("CM.aspx");
         }
     }
 }

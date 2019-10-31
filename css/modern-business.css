@@ -33,6 +33,31 @@ body {
     background-color: #8C2132;
 }
 
+
+.comment-time{
+    font-size: 12px;
+    font-style: italic;
+}
+
+.comment-text {
+    font-size: 13px;
+}
+.status-check{
+    text-align: center;
+   
+=======
+.button-dash {
+    border-radius:12px;
+}
+
+.viewall {
+    text-align: center;
+}
+.scroll-custom{
+    height: 600px;
+
+}
+
 table {
     margin-top: 2%;
 }
@@ -65,4 +90,5 @@ table {
 #requestHistory {
     margin-top: 3%; 
     text-align: center;
+
 }
