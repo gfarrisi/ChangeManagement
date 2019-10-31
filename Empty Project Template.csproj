@@ -65,6 +65,7 @@
     <Content Include="blog-home-1.html" />
     <Content Include="blog-home-2.html" />
     <Content Include="blog-post.html" />
+    <Content Include="CM.aspx" />
     <Content Include="contact.html" />
     <Content Include="css\modern-business.css" />
     <Content Include="faq.html" />
@@ -73,6 +74,7 @@
     <Content Include="index.html" />
     <Content Include="js\contact_me.js" />
     <Content Include="js\jqBootstrapValidation.js" />
+    <Content Include="Login.aspx" />
     <Content Include="mail\contact_me.php" />
     <Content Include="NewCM.aspx" />
     <Content Include="NewRequestType.aspx" />
@@ -86,6 +88,8 @@
     <Content Include="services.html" />
     <Content Include="sidebar.html" />
     <Content Include="UserDashboard.aspx" />
+    <Content Include="ViewAllUsers.aspx" />
+    <Content Include="CM.aspx" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="vendor\bootstrap\css\bootstrap-reboot.css" />
@@ -117,6 +121,13 @@
     </Compile>
     <Compile Include="CM.aspx.designer.cs">
       <DependentUpon>CM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
@@ -160,6 +171,13 @@
     </Compile>
     <Compile Include="ViewAllRequests.aspx.designer.cs">
       <DependentUpon>ViewAllRequests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewAllUsers.aspx.cs">
+      <DependentUpon>ViewAllUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewAllUsers.aspx.designer.cs">
+      <DependentUpon>ViewAllUsers.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -220,4 +238,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+
 </Project>
