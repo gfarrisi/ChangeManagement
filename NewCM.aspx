@@ -37,7 +37,7 @@
             </span>
         </div>
         <br />
-        <asp:Button CssClass="rounded-pill" Width="90px" BorderStyle="None" ID="btnSubmit" Text="New Request" BackColor="#9D2235" ForeColor="#ffffff" OnClick="btnSubmit_Click" runat="server" />
+        <asp:Button CssClass="rounded-pill" Width="120px" BorderStyle="None" ID="btnSubmit" Text="New Request" BackColor="#9D2235" ForeColor="#ffffff" OnClick="btnSubmit_Click" runat="server" />
         
     </div>
     </form>
