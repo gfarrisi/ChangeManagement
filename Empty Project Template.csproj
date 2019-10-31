@@ -76,6 +76,9 @@
     <Content Include="js\jqBootstrapValidation.js" />
     <Content Include="Login.aspx" />
     <Content Include="mail\contact_me.php" />
+    <Content Include="NewCM.aspx" />
+    <Content Include="NewRequestType.aspx" />
+    <Content Include="NewUser.aspx" />
     <Content Include="portfolio-1-col.html" />
     <Content Include="portfolio-2-col.html" />
     <Content Include="portfolio-3-col.html" />
@@ -132,6 +135,27 @@
     </Compile>
     <Compile Include="Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="NewCM.aspx.cs">
+      <DependentUpon>NewCM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewCM.aspx.designer.cs">
+      <DependentUpon>NewCM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewRequestType.aspx.cs">
+      <DependentUpon>NewRequestType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewRequestType.aspx.designer.cs">
+      <DependentUpon>NewRequestType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewUser.aspx.cs">
+      <DependentUpon>NewUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewUser.aspx.designer.cs">
+      <DependentUpon>NewUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserDashboard.aspx.cs">
