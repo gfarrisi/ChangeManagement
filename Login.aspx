@@ -10,7 +10,16 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="UserDashboard.aspx">User Dashboard</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="AdminDashboard.aspx">Admin Dashboard</a>
+                    </li>
+                   
+                </ul>
             </div>
         </div>
     </nav>
