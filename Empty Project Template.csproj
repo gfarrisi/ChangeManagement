@@ -85,6 +85,8 @@
     <Content Include="services.html" />
     <Content Include="sidebar.html" />
     <Content Include="UserDashboard.aspx" />
+    <Content Include="ViewAllUsers.aspx" />
+    <Content Include="CM.aspx" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="vendor\bootstrap\css\bootstrap-reboot.css" />
@@ -146,6 +148,13 @@
     <Compile Include="ViewAllRequests.aspx.designer.cs">
       <DependentUpon>ViewAllRequests.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ViewAllUsers.aspx.cs">
+      <DependentUpon>ViewAllUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewAllUsers.aspx.designer.cs">
+      <DependentUpon>ViewAllUsers.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
@@ -205,4 +214,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+
 </Project>
