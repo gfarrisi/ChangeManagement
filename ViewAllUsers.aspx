@@ -1,7 +1,42 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="ViewAllUsers.aspx.cs" Inherits="Empty_Project_Template.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="ViewAllUsers.aspx.cs" Inherits="Empty_Project_Template.ViewAllUsers" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">CRM Recruit: Change Management</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
 
-<asp:Content ID="Content1" ContentPlaceHolderID="CPH1" runat="server">
-    <h2 id="requestHistory">User Settings</h2>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="AdminTools" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Tools
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                            <a class="dropdown-item" href="full-width.html">View All</a>
+                            <a class="dropdown-item" href="sidebar.html">Add New Request Type</a>
+                            <a class="dropdown-item" href="faq.html">User Settings</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dima Dabbas
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
+    <br />
+    <div class="container">
+     <h2 id="requestHistory">User Settings</h2>
     <div class="card mb-4 w-50" id="searchBar">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search for...">
@@ -200,5 +235,5 @@
         <button type="button" class="btn btnDownload">Download All</button>
         <button type="button" class="btn btnAdd">Add New User</button>
     </div>
-
+        </div>
 </asp:Content>

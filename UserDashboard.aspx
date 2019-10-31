@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="UserDashboard.aspx.cs" Inherits="Empty_Project_Template.UserDashboard" %>
 
-<asp:Content ID="Header" ContentPlaceHolderID="Header" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="Header" runat="server">
 
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
         <div class="container">
@@ -29,6 +29,7 @@
         </div>
     </nav>
 </asp:Content>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="CPH1" runat="server">
      <br />
             <div class="pull-right">

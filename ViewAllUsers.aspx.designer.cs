@@ -7,11 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Empty_Project_Template
-{
-
-
-    public partial class WebForm1
-    {
+namespace Empty_Project_Template {
+    
+    
+    public partial class ViewAllUsers {
     }
 }
