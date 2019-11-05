@@ -35,43 +35,97 @@
     </nav>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
-    <form id="form1" runat="server">
+    <form id="form1" runat="server">  
         <h1 class="text-center">CRM Change Management</h1>
-        <div style="margin: 0 auto; max-width: 300px; padding: 30px;">
+        <div style="margin: 0 auto; max-width: 400px; padding: 30px;">
+            
+            <br />
+            <asp:DropDownList OnSelectedIndexChanged="ddlRequestType_SelectedIndexChanged" AutoPostBack="true" BackColor="#9D2235" ForeColor="#ffffff" ID="ddlRequestType" runat="server">
+                <asp:ListItem>Workflow</asp:ListItem>
+                <asp:ListItem>Entity</asp:ListItem>
+                <asp:ListItem>Business Rules</asp:ListItem>
+            </asp:DropDownList>
+            <br />
+            <br />
+            <div class="form-group">
+                <asp:label id="lbl1" runat="server"></asp:label>
+                <input class="form-text" id="txtField1" type="text" runat="server" />
+                <br />
+                <asp:label id="lbl2" runat="server"></asp:label>
+                <input class="form-text" id="txtField2" type="text" runat="server"/>
+                <br />
+                <asp:label id="lbl3" runat="server"></asp:label>
+                <input class="form-text" id="txtField3" type="text" runat="server"/>
+                <br />
+                <div id="rd1" runat="server">
+                    <asp:label id="lbl4" runat="server">Is this New or Revised?</asp:label>
+                    <br />
+                    <span id="rd1opt1" style= "display: flex; flex-flow: row wrap; align-items: center;" runat="server">
+                        <input style="margin-right: 10px;" class="form-check" name="rdField1" id="inputrd1opt1" type="radio" value="New"/>
+                        <label id="lblrd1opt1" class="form-check-label">New</label>
+                    </span>
+                    <span id="rd1opt2" style= "display: flex; flex-flow: row wrap; align-items: center;" runat="server">
+                        <input style="margin-right: 10px;" class="form-check" name="rdField1" id="inputrd1opt2" type="radio" value="Revised" />
+                        <label id="lblrd1opt2" class="form-check-label">Revised</label>
+                    </span>
+                    <br />
+                </div>
+                <div id="rd2" runat="server">
+                    <asp:label id="lbl5" runat="server">Does this workflow fire an email?</asp:label>
+                    <br />
+                    <span id="rd2opt1" style= "display: flex; flex-flow: row wrap; align-items: center;" runat="server">
+                        <input style="margin-right: 10px;" class="form-check" name="rdField2" id="inputrd2opt1" type="radio" value="YES - Email Template"/>
+                        <label id="lblrd2opt1" class="form-check-label">YES - Email Template</label>
+                    </span>
+                    <span id="rd2opt2" style= "display: flex; flex-flow: row wrap; align-items: center;" runat="server">
+                        <input style="margin-right: 10px;" class="form-check" name="rdField2" id="inputrd2opt2" type="radio" value="YES - Email within the workflow" />
+                        <label id="lblrd2opt2" class="form-check-label">YES - Email within the workflow</label>
+                    </span>
+                    <span id="rd2opt3" style= "display: flex; flex-flow: row wrap; align-items: center;" runat="server">
+                        <input style="margin-right: 10px;" class="form-check" name="rdField2" id="inputrd2opt3" type="radio" value="NO" />
+                        <label id="lblrd2opt3" class="form-check-label">NO</label>
+                    </span>
+                    <br />
+                </div>
+                <div id="rd3" runat="server">
+                    <asp:label id="lbl6" runat="server">If YES to the previous question, does the email include environment-specific links?</asp:label>
+                    <br />
+                    <span id="rd3opt1" style= "display: flex; flex-flow: row wrap; align-items: center;" runat="server">
+                        <input style="margin-right: 10px;" class="form-check" name="rdField3" id="inputrd3opt1" type="radio" value="YES"/>
+                        <label id="lblrd3opt1" class="form-check-label">YES</label>
+                    </span>
+                    <span id="rd3opt2" style= "display: flex; flex-flow: row wrap; align-items: center;" runat="server">
+                        <input style="margin-right: 10px;" class="form-check" name="rdField3" id="inputrd3opt2" type="radio" value="NO" />
+                        <label id="lblrd3opt2" class="form-check-label">NO</label>
+                    </span>
+                    <br />
+                </div>
+                <div id="rd4" runat="server">
+                    <asp:label id="lbl7" runat="server">Is there a corresponding Workflow?</asp:label>
+                    <br />
+                    <span id="rd4opt1" style= "display: flex; flex-flow: row wrap; align-items: center;" runat="server">
+                        <input style="margin-right: 10px;" class="form-check" name="rdField4" id="inputrd4opt1" type="radio" value="YES - NO CHANGES to Workflow Schedule"/>
+                        <label id="lblrd4opt1" class="form-check-label">YES - NO CHANGES to Workflow Schedule</label>
+                    </span>
+                    <span id="rd4opt2" style= "display: flex; flex-flow: row wrap; align-items: center;" runat="server">
+                        <input style="margin-right: 10px;" class="form-check" name="rdField4" id="inputrd4opt2" type="radio" value="YES - NEW Workflow Schedule" />
+                        <label id="lblrd4opt2" class="form-check-label">YES - NEW Workflow Schedule</label>
+                    </span>
+                    <span id="rd4opt3" style= "display: flex; flex-flow: row wrap; align-items: center;" runat="server">
+                        <input style="margin-right: 10px;" class="form-check" name="rdField4" id="inputrd4opt3" type="radio" value="YES - REVISED Workflow Schedule"/>
+                        <label id="lblrd4opt3" class="form-check-label">YES - REVISED Workflow Schedule</label>
+                    </span>
+                    <span id="rd4opt4" style= "display: flex; flex-flow: row wrap; align-items: center;" runat="server">
+                        <input style="margin-right: 10px;" class="form-check" name="rdField4" id="inputrd4opt4" type="radio" value="NO - Workflow is triggered" />
+                        <label id="lblrd4opt4" class="form-check-label">NO - Workflow is triggered</label>
+                    </span>
+                </div>
+            
+            </div>
+            <br />
+            <asp:Button CssClass="rounded-pill" Width="120px" BorderStyle="None" ID="btnSubmit" Text="New Request" BackColor="#9D2235" ForeColor="#ffffff" OnClick="btnSubmit_Click" runat="server" />
         
-        <br />
-        <asp:DropDownList OnSelectedIndexChanged="ddlRequestType_SelectedIndexChanged" AutoPostBack="true" BackColor="#9D2235" ForeColor="#ffffff" ID="ddlRequestType" runat="server">
-            <asp:ListItem>Workflow</asp:ListItem>
-            <asp:ListItem>Entity</asp:ListItem>
-            <asp:ListItem>Business Rules</asp:ListItem>
-        </asp:DropDownList>
-        <br />
-        <br />
-        <div class="form-group">
-            <asp:label id="lbl1" runat="server"></asp:label>
-            <input class="form-text" id="txtField1" type="text" runat="server" />
-            <br />
-            <asp:label id="lbl2" runat="server"></asp:label>
-            <input class="form-text" id="txtField2" type="text" runat="server"/>
-            <br />
-            <asp:label id="lbl3" runat="server"></asp:label>
-            <input class="form-text" id="txtField3" type="text" runat="server"/>
-            <br />
-            <asp:label id="lbl4" runat="server"></asp:label>
-            <br />
-            <span id="rd1" style= "display: flex; flex-flow: row wrap; align-items: center;" runat="server">
-                <input style="margin-right: 10px;" class="form-check" name="rdField1" id="rdNew" type="radio" value="New"/>
-                <label id="lblNew" class="form-check-label">New</label>
-            </span>
-            <span id="rd2" style= "display: flex; flex-flow: row wrap; align-items: center;" runat="server">
-                <input style="margin-right: 10px;" class="form-check" name="rdField1" id="rdRevised" type="radio" value="Revised" />
-                <label id="lblRevised" class="form-check-label">Revised</label>
-            </span>
         </div>
-        <br />
-        <asp:Button CssClass="rounded-pill" Width="120px" BorderStyle="None" ID="btnSubmit" Text="New Request" BackColor="#9D2235" ForeColor="#ffffff" OnClick="btnSubmit_Click" runat="server" />
-        
-    </div>
     </form>
     
     

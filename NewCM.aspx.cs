@@ -11,10 +11,17 @@ namespace Empty_Project_Template
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lbl1.Text = "Workflow/Process";
-            lbl2.Text = "Entity";
-            lbl3.Text = "Description";
-            lbl4.Text = "Is this New or Revised?";
+            if (!IsPostBack)
+            {
+                lbl1.Text = "Workflow/Process";
+                lbl2.Text = "Entity";
+                lbl3.Text = "Description";
+                rd1.Visible = true;
+                rd2.Visible = true;
+                rd3.Visible = true;
+                rd4.Visible = true;
+            }
+            
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -31,18 +38,20 @@ namespace Empty_Project_Template
             {
                 rd1.Visible = true;
                 rd2.Visible = true;
-                lbl4.Visible = true;
+                rd3.Visible = true;
+                rd4.Visible = true;
 
                 lbl1.Text = "Workflow/Process";
                 lbl2.Text = "Entity";
                 lbl3.Text = "Description";
-                lbl4.Text = "Is this New or Revised?";
+           
             }
             else if (ddlRequestType.SelectedValue == "Entity")
             {
                 rd1.Visible = false;
                 rd2.Visible = false;
-                lbl4.Visible = false;
+                rd3.Visible = false;
+                rd4.Visible = false;
 
                 lbl1.Text = "Display";
                 lbl2.Text = "Plural";
@@ -53,7 +62,8 @@ namespace Empty_Project_Template
             {
                 rd1.Visible = false;
                 rd2.Visible = false;
-                lbl4.Visible = false;
+                rd3.Visible = false;
+                rd4.Visible = false;
 
                 lbl1.Text = "Entity";
                 lbl2.Text = "Business Role";

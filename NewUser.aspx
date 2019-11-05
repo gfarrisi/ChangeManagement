@@ -40,18 +40,30 @@
         <h1 class="text-center">User Settings</h1>
         <div style="margin: 0 auto; max-width: 300px; padding: 30px;">
         <br />
-        <div class="form-group">
-            <asp:label id="lbl1" runat="server">Name</asp:label>
-            <input class="form-text" id="txtField1" type="text" runat="server" />
-            <br />
-            <asp:label id="lbl2" runat="server">Email</asp:label>
-            <input class="form-text" id="txtField2" type="text" runat="server"/>
-            <br />
-            <asp:label id="lbl3" runat="server">TUID</asp:label>
-            <input class="form-text" id="txtField3" type="text" runat="server"/>
-            <br />
-            <asp:label id="lbl4" runat="server">College</asp:label>
-            <input class="form-text" id="txtField4" type="text" runat="server" />
+        <div class="form-group form-row">
+            <div class="col-sm">
+                <label id="lblName" style="line-height: 50px;" runat="server">Name</label>
+                <br />
+                <label id="lblEmail" style="line-height: 50px;" runat="server">Email</label>
+                <br />
+                <label id="lblTUID" style="line-height: 50px;" runat="server">TUID</label>
+                <br />
+                <label id="lblCollege" style="line-height: 50px;" runat="server">College</label>
+            </div>
+            <div class="col-sm">
+                <input class="form-text" id="txtName" type="text" runat="server" />
+                <br />
+            
+                <input class="form-text" id="txtEmail" type="text" runat="server"/>
+                <br />
+            
+                <input class="form-text" id="txtTUID" type="text" runat="server"/>
+                <br />
+            
+                <input class="form-text" id="txtCollege" type="text" runat="server" />
+            </div>
+            
+            
             
         </div>
         <br />
