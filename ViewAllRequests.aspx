@@ -34,12 +34,10 @@
     </nav>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPH1" runat="server">
+ <br />
     <br />
     <br />
-      <br />
-      <br />
-      <br />
-    <div class="container">
+    <div class="container" style="height:100%;">
     <h2 id="requestHistory">Request History</h2>
     <div class="card mb-4 w-50" id="searchBar">
         <div class="input-group">
@@ -127,7 +125,7 @@
     </table>
     <button type="button" class="btn btnDownload">Download All</button>
         </div>
-      <br />
-      <br />
-      <br />  <br />  <br />
+    <br />
+    <br />
+    <br />
 </asp:Content>

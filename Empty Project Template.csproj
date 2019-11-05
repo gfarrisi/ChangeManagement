@@ -61,6 +61,7 @@
   <ItemGroup>
     <Content Include="AdminDashboard.aspx" />
     <Content Include="CM.aspx" />
+    <Content Include="css\cm-request.css" />
     <Content Include="css\modern-business.css" />
     <Content Include="gulpfile.js" />
     <Content Include="js\contact_me.js" />
@@ -68,6 +69,7 @@
     <Content Include="Login.aspx" />
     <Content Include="mail\contact_me.php" />
     <Content Include="NewCM.aspx" />
+    <Content Include="NewRequestType.aspx" />
     <Content Include="NewUser.aspx" />
     <Content Include="UserDashboard.aspx" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.css" />
@@ -123,6 +125,13 @@
     </Compile>
     <Compile Include="NewCM.aspx.designer.cs">
       <DependentUpon>NewCM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewRequestType.aspx.cs">
+      <DependentUpon>NewRequestType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewRequestType.aspx.designer.cs">
+      <DependentUpon>NewRequestType.aspx</DependentUpon>
     </Compile>
     <Compile Include="NewUser.aspx.cs">
       <DependentUpon>NewUser.aspx</DependentUpon>

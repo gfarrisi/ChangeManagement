@@ -37,7 +37,7 @@
 
 </asp:Content>
 <asp:Content ContentPlaceHolderID="CPH1" runat="server">
-    <div class="container">
+    <div class="container" style="height:100%;">
         <br />
     <form id="form1" runat="server">
 
@@ -133,12 +133,7 @@
         </div>
         <!-- /.row -->
 
-        <br />
-        <br />
-        <br />
-        <br />
-
-
+       
 
     </form>
 
