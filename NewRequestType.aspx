@@ -47,14 +47,14 @@
                 <asp:Label runat="server"><b>Request Type Name</b></asp:Label>
                 <br />
                 <br />
-                <asp:DropDownList ID="ddlControlTypes" runat="server">
+                <asp:DropDownList ID="ddlControlTypes" runat="server"  CssClass="dropdown-toggle">
                     <asp:ListItem>Short Answer</asp:ListItem>
                     <asp:ListItem>Checklist</asp:ListItem>
                 </asp:DropDownList>
             </div>
             <div class="col-md">
                 <p class="form-text" id="txtTypeName"><b>Constraint</b></p>
-                <asp:Button CssClass="rounded-pill" Width="140px" BorderStyle="None" ID="btnAddQuestion" Text="Add Question" BackColor="#9D2235" ForeColor="#ffffff" onclick="btnAddQuestion_Click" runat="server" />
+                <asp:Button CssClass="btn btn-secondary" Width="140px" BorderStyle="None" ID="btnAddQuestion" Text="Add Question" BackColor="#9D2235" ForeColor="#ffffff" onclick="btnAddQuestion_Click" runat="server" />
                 
             </div>
         </div>
@@ -77,18 +77,25 @@
                 <br />
                 <input class="form-text" id="txtQ2" type="text" runat="server"/>
                 <br />
-                <asp:CheckBoxList ID="chkQ3" runat="server">
+                <asp:CheckBoxList ID="chkQ3" runat="server" CssClass="">
                     <asp:ListItem>Column Constraint</asp:ListItem>
                     <asp:ListItem>Table Constraint</asp:ListItem>
                 </asp:CheckBoxList>
             </div>                                                                
         </div>
         <br />
-        <asp:Button BackColor="#9D2235" ForeColor="#ffffff" CssClass="rounded-pill" Width="90px" BorderStyle="None" ID="btnSubmit" runat="server" Text="Submit" onclick="btnSubmit_Click" /> 
-    </div>
-            <br />
+        <asp:Button BackColor="#9D2235" ForeColor="#ffffff" CssClass="btn btn-secondary" Width="90px" BorderStyle="None" ID="btnSubmit" runat="server" Text="Submit" onclick="btnSubmit_Click" /> 
+      <br />
         <br />
         <br />
-            </div>
+              <br />
+        <br />
+        <br />
+              <br />
+        <br />
+        <br />
+        </div>
+          
+         
     </form>
 </asp:Content>
