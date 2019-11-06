@@ -70,14 +70,31 @@
           <br />
           
         <div class="row">
-            <h4>Request Type: Workflow</h4>
+            <h4>Request Type: Workflow</h4><br />
         </div>
+          <br />
           <div class="row">
             <div class="col-lg-6">
-                <p><b>Email address </b></p>
+                <p><b>Name:</b></p>
+            </div>
+            <div class="col-lg-6">
+                <p>Jane Doe</p>
+            </div>
+         </div>
+          <div class="row">
+            <div class="col-lg-6">
+                <p><b>Email address: </b></p>
             </div>
             <div class="col-lg-6">
                 <p>tuf13663@temple.edu</p>
+            </div>
+         </div>
+          <div class="row">
+            <div class="col-lg-6">
+                <p><b>College:</b></p>
+            </div>
+            <div class="col-lg-6">
+                <p>College of Liberal Arts</p>
             </div>
          </div>
         <div class="row">
@@ -85,7 +102,7 @@
                 <p><b>Admin Name:</b></p>
             </div>
             <div class="col-lg-6">
-                <p> CRM - Dima Dabbas</p>
+                <p>Dima Dabbas</p>
             </div>
         </div>
           <div class="row">
@@ -138,8 +155,9 @@
         </div>
           <br />
           <div class="row">
-            <h4>Screenshots & Submission</h4>
+            <h4>Screenshots & Submission</h4><br />
         </div>
+          <br />
         <div class="row">
             <div class="col-lg-6">
                 <p><b>Detailed Description of Change</b></p>
