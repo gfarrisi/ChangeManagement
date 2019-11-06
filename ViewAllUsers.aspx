@@ -34,6 +34,7 @@
     </nav>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
+    <form runat="server">
     <br />
     <div class="container">
      <h2 id="requestHistory">User Settings</h2>
@@ -233,7 +234,9 @@
     </table>
     <div class="container">
         <button type="button" class="btn btnDownload">Download All</button>
-        <button type="button" class="btn btnAdd">Add New User</button>
+        
+        <asp:Button ID="btnNewUser" runat="server" Text="Add New User" OnClick="btnNewUser_Click" class="btn btnAdd" />
     </div>
         </div>
+        </form>
 </asp:Content>

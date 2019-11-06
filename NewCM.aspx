@@ -11,21 +11,22 @@
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Dashboard</a>
+                        <a class="nav-link" href="AdminDashboard.aspx">Dashboard</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="AdminTools" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Tools
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                            <a class="dropdown-item" href="full-width.html">View All</a>
-                            <a class="dropdown-item" href="sidebar.html">Add New Request Type</a>
-                            <a class="dropdown-item" href="faq.html">User Settings</a>
+                       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                            <a class="dropdown-item" href="ViewAllRequests.aspx">View All</a>
+                            <a class="dropdown-item" href="NewRequestType.aspx">Add New Request Type</a>
+                            <a class="dropdown-item" href="ViewAllUsers.aspx">User Settings</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dima Dabbas
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                            <a class="dropdown-item" href="Login.aspx">Log Out</a>
 
                         </div>
                     </li>
@@ -36,26 +37,33 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
     <form id="form1" runat="server">  
+         <br />
+            <br />
+ <br />
+
         <h1 class="text-center">CRM Change Management</h1>
         <div style="margin: 0 auto; max-width: 400px; padding: 30px;">
-            
+           
             <br />
-            <asp:DropDownList OnSelectedIndexChanged="ddlRequestType_SelectedIndexChanged" AutoPostBack="true" BackColor="#9D2235" ForeColor="#ffffff" ID="ddlRequestType" runat="server">
+            <div align="center">
+                  <asp:DropDownList OnSelectedIndexChanged="ddlRequestType_SelectedIndexChanged" AutoPostBack="true" BackColor="#9D2235" ForeColor="#ffffff" ID="ddlRequestType" runat="server" CssClass="btn btn-secondary dropdown-toggle">
                 <asp:ListItem>Workflow</asp:ListItem>
                 <asp:ListItem>Entity</asp:ListItem>
                 <asp:ListItem>Business Rules</asp:ListItem>
             </asp:DropDownList>
-            <br />
+            </div>
+          
+          
             <br />
             <div class="form-group">
                 <asp:label id="lbl1" runat="server"></asp:label>
-                <input class="form-text" id="txtField1" type="text" runat="server" />
+                <input class="form-control" id="txtField1" type="text" runat="server" />
                 <br />
                 <asp:label id="lbl2" runat="server"></asp:label>
-                <input class="form-text" id="txtField2" type="text" runat="server"/>
+                <input class="form-control" id="txtField2" type="text" runat="server"/>
                 <br />
                 <asp:label id="lbl3" runat="server"></asp:label>
-                <input class="form-text" id="txtField3" type="text" runat="server"/>
+                <input class="form-control" id="txtField3" type="text" runat="server"/>
                 <br />
                 <div id="rd1" runat="server">
                     <asp:label id="lbl4" runat="server">Is this New or Revised?</asp:label>
@@ -123,8 +131,12 @@
             
             </div>
             <br />
-            <asp:Button CssClass="rounded-pill" Width="120px" BorderStyle="None" ID="btnSubmit" Text="New Request" BackColor="#9D2235" ForeColor="#ffffff" OnClick="btnSubmit_Click" runat="server" />
-        
+             <div align="center">
+                <asp:Button CssClass="btn btn-primary" Width="140px" BorderStyle="None" ID="btnSubmit" Text="Submit Request" BackColor="#9D2235" ForeColor="#ffffff" OnClick="btnSubmit_Click" runat="server" />
+            </div>
+            <br />
+            <br />
+            <br />
         </div>
     </form>
     

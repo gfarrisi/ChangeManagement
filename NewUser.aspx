@@ -37,11 +37,15 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
     <form id="form1" runat="server">
-        <h1 class="text-center">User Settings</h1>
+        <br />
+        <br />
+        <br />
+        <br />
+        <h1 class="text-center">New User</h1>
         <div style="margin: 0 auto; max-width: 300px; padding: 30px;">
         <br />
         <div class="form-group form-row">
-            <div class="col-sm">
+            <div class="col-lg-3">
                 <label id="lblName" style="line-height: 50px;" runat="server">Name</label>
                 <br />
                 <label id="lblEmail" style="line-height: 50px;" runat="server">Email</label>
@@ -50,25 +54,37 @@
                 <br />
                 <label id="lblCollege" style="line-height: 50px;" runat="server">College</label>
             </div>
-            <div class="col-sm">
-                <input class="form-text" id="txtName" type="text" runat="server" />
+            <div class="col-lg-9">
+                <input class="form-control" id="txtName" type="text" runat="server" />
                 <br />
             
-                <input class="form-text" id="txtEmail" type="text" runat="server"/>
+                <input class="form-control" id="txtEmail" type="text" runat="server"/>
                 <br />
             
-                <input class="form-text" id="txtTUID" type="text" runat="server"/>
+                <input class="form-control" id="txtTUID" type="text" runat="server"/>
                 <br />
             
-                <input class="form-text" id="txtCollege" type="text" runat="server" />
+                <input class="form-control" id="txtCollege" type="text" runat="server" />
             </div>
             
             
             
         </div>
         <br />
-        <asp:Button CssClass="rounded-pill" Width="90px" BorderStyle="None" ID="btnSubmit" Text="Add User" BackColor="#9D2235" ForeColor="#ffffff" OnClick="btnSubmit_Click" runat="server" />
-        
+            <div align="center">
+        <asp:Button CssClass="btn btn-primary" Width="90px" BorderStyle="None" ID="btnSubmit" Text="Add User" BackColor="#9D2235" ForeColor="#ffffff" OnClick="btnSubmit_Click" runat="server" />
+
+            </div>
+         <br />
+        <br />
+        <br />
+        <br />
+        <br />
+             <br />
+        <br />
+        <br />
+        <br />
+        <br />
     </div>
     </form>
 </asp:Content>

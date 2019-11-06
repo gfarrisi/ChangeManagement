@@ -3,22 +3,58 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
     <form id="form1" runat="server">
+        <br />
+        <br />
+        <br />
+         <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">CRM Recruit: Change Management</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                       <a class="nav-link" href="AdminDashboard.aspx">Dashboard</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="AdminTools" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Tools
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                            <a class="dropdown-item" href="ViewAllRequests.aspx">View All</a>
+                            <a class="dropdown-item" href="NewRequestType.aspx">Add New Request Type</a>
+                            <a class="dropdown-item" href="ViewAllUsers.aspx">User Settings</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dima Dabbas
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                            <a class="dropdown-item" href="Login.aspx">Log Out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+        <div style="height:100%;">
         <div style="margin: 0 auto; max-width: 500px; padding: 30px;">
         <h1>New Request Type</h1>
         <br /> 
-        <div class="form-row">
+        <div class="form-row" >
             <div class="col-md">
                 <asp:Label runat="server"><b>Request Type Name</b></asp:Label>
                 <br />
                 <br />
-                <asp:DropDownList ID="ddlControlTypes" runat="server">
+                <asp:DropDownList ID="ddlControlTypes" runat="server"  CssClass="dropdown-toggle">
                     <asp:ListItem>Short Answer</asp:ListItem>
                     <asp:ListItem>Checklist</asp:ListItem>
                 </asp:DropDownList>
             </div>
             <div class="col-md">
                 <p class="form-text" id="txtTypeName"><b>Constraint</b></p>
-                <asp:Button CssClass="rounded-pill" Width="140px" BorderStyle="None" ID="btnAddQuestion" Text="Add Question" BackColor="#9D2235" ForeColor="#ffffff" onclick="btnAddQuestion_Click" runat="server" />
+                <asp:Button CssClass="btn btn-secondary" Width="140px" BorderStyle="None" ID="btnAddQuestion" Text="Add Question" BackColor="#9D2235" ForeColor="#ffffff" onclick="btnAddQuestion_Click" runat="server" />
                 
             </div>
         </div>
@@ -41,14 +77,25 @@
                 <br />
                 <input class="form-text" id="txtQ2" type="text" runat="server"/>
                 <br />
-                <asp:CheckBoxList ID="chkQ3" runat="server">
+                <asp:CheckBoxList ID="chkQ3" runat="server" CssClass="">
                     <asp:ListItem>Column Constraint</asp:ListItem>
                     <asp:ListItem>Table Constraint</asp:ListItem>
                 </asp:CheckBoxList>
             </div>                                                                
         </div>
         <br />
-        <asp:Button BackColor="#9D2235" ForeColor="#ffffff" CssClass="rounded-pill" Width="90px" BorderStyle="None" ID="btnSubmit" runat="server" Text="Submit" onclick="btnSubmit_Click" /> 
-    </div>
+        <asp:Button BackColor="#9D2235" ForeColor="#ffffff" CssClass="btn btn-secondary" Width="90px" BorderStyle="None" ID="btnSubmit" runat="server" Text="Submit" onclick="btnSubmit_Click" /> 
+      <br />
+        <br />
+        <br />
+              <br />
+        <br />
+        <br />
+              <br />
+        <br />
+        <br />
+        </div>
+          
+         
     </form>
 </asp:Content>

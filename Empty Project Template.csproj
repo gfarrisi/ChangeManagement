@@ -61,6 +61,7 @@
   <ItemGroup>
     <Content Include="AdminDashboard.aspx" />
     <Content Include="CM.aspx" />
+    <Content Include="css\cm-request.css" />
     <Content Include="css\modern-business.css" />
     <Content Include="gulpfile.js" />
     <Content Include="js\contact_me.js" />

@@ -37,15 +37,15 @@
 
 </asp:Content>
 <asp:Content ContentPlaceHolderID="CPH1" runat="server">
-    <div class="container">
+    <div class="container" style="height:100%;">
         <br />
     <form id="form1" runat="server">
 
         <div class="pull-right">
             <div class="btn-group">
-                <button class="btn btn-dark" onclick="btnNewRequest_click">
+                <a href="NewCM.aspx" class="btn btn-dark" onclick="btnNewRequest_click">
                     New Request 
-                </button>
+                </a>
             </div>
         </div>
         <br />
@@ -56,7 +56,7 @@
                     <h2 class="card-title" align="center">Not Assigned</h2>
 
                     <div class="card-footer">
-                        <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 301</a>
+                        <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 301<br /><span style="font-size: 14px;">Workflow for CLA</span><br /><span style="font-size: 14px;">Submitted: 11/5/2019</span> </a>
                         <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 302</a>
                         <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 303</a>
                         <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 304</a>
@@ -133,12 +133,7 @@
         </div>
         <!-- /.row -->
 
-        <br />
-        <br />
-        <br />
-        <br />
-
-
+       
 
     </form>
 

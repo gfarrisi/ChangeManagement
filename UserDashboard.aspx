@@ -47,7 +47,7 @@
                     <h2 class="card-title" align="center">Not Assigned</h2>
 
                     <div class="card-footer">
-                        <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 301</a>
+                        <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 301<br /><span style="font-size: 14px;">Workflow for CLA</span><br /><span style="font-size: 14px;">Submitted: 11/5/2019</span> </a>
                         <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 302</a>
                         <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 303</a>
                         <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 304</a>

@@ -13,5 +13,10 @@ namespace Empty_Project_Template
 		{
 
 		}
-	}
+
+        protected void btnNewUser_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("NewUser.aspx");
+        }
+    }
 }
