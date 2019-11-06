@@ -55,7 +55,7 @@
                 <div>
                     <h2 class="card-title" align="center">Not Assigned</h2>
 
-                    <div class="card-footer">
+                    <div class="card-footer" style="overflow-y:scroll;">
                         <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 301<br /><span style="font-size: 14px;">Workflow for CLA</span><br /><span style="font-size: 14px;">Submitted: 11/5/2019</span> </a>
                         <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 302</a>
                         <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 303</a>
@@ -72,7 +72,7 @@
                 <div>
                     <h2 class="card-title" align="center">Assigned</h2>
 
-                    <div class="card-footer">
+                    <div class="card-footer" style="overflow-y:scroll;">
                         <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 201</a>
                         <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 202</a>
                         <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 203</a>
@@ -88,7 +88,7 @@
                 <div>
                     <h2 class="card-title" align="center" runat="server">Pre-Production</h2>
 
-                    <div class="card-footer">
+                    <div class="card-footer" style="overflow-y:scroll;">
                         <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 207</a>
                         <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 208</a>
 
@@ -108,7 +108,7 @@
                 <div>
                     <h2 class="card-title" align="center" runat="server">Completed</h2>
 
-                    <div class="card-footer">
+                    <div class="card-footer" style="overflow-y:scroll;">
                         <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 101</a>
                         <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 102</a>
                         <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 103</a>
