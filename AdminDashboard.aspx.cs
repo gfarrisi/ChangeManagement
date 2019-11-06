@@ -13,7 +13,8 @@ namespace Empty_Project_Template
         {
 
         }
-        protected void btnNewRequest_click(object sender, EventArgs e)
+
+        protected void btnNewRequest_Click(object sender, EventArgs e)
         {
             Response.Redirect("CM.aspx");
         }
