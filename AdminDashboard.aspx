@@ -47,30 +47,31 @@
                 
             </div>
         </div>
-             <div class="container" style="height:100%;">
-    <div class="container">
-       
-        <br />
+        <div class="container-cm" style="height:100%;">  <br />      
+      
 
         <div class="row">
-            <div class="col-lg-3 mb-5">
-                <div style="height: 100%;">
-                    <h2 class="card-title" align="center">Not Assigned</h2>
+             <div class="col-lg-3 mb-5">                 
+                    <div class="col-lg-11 mb-5">
+                        <div style="height: 100%;">
+                            <h2 class="card-title" align="center">Not Assigned</h2>
 
-                    <div class="" style="overflow-y:scroll; height:40%; width:100%">
-                        <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 301<br /><span style="font-size: 14px;">Workflow for CLA</span><br /><span style="font-size: 14px;">Submitted: 11/5/2019</span> </a>
-                        <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 302<br /><span style="font-size: 14px;">Workflow for CLA</span><br /><span style="font-size: 14px;">Submitted: 11/5/2019</span> </a>
-                        <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 301<br /><span style="font-size: 14px;">Workflow for CLA</span><br /><span style="font-size: 14px;">Submitted: 11/5/2019</span> </a>
-                        <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 309<br /><span style="font-size: 14px;">Workflow for CLA</span><br /><span style="font-size: 14px;">Submitted: 11/5/2019</span> </a>
+                            <div class="" style="overflow-y:scroll; height:40%; width:100%">
+                                <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 301<br /><span style="font-size: 14px;">Workflow for CLA</span><br /><span style="font-size: 14px;">Desired date of completion: 11/5/2019</span> </a>
+                                <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 302<br /><span style="font-size: 14px;">Workflow for CLA</span><br /><span style="font-size: 14px;">Submitted: 11/5/2019</span> </a>
+                                <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 301<br /><span style="font-size: 14px;">Workflow for CLA</span><br /><span style="font-size: 14px;">Submitted: 11/5/2019</span> </a>
+                                <a href="CM.aspx" class="btn btn-secondary btn-block btn-lg">CM 309<br /><span style="font-size: 14px;">Workflow for CLA</span><br /><span style="font-size: 14px;">Submitted: 11/5/2019</span> </a>
 
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                 </div>
             
 
 
             <!-- /.col-md-4 -->
             <div class="col-lg-3 mb-5">
+            <div class="col-lg-11 mb-5">
                 <div style="height: 100%;">
                     <h2 class="card-title" align="center">Assigned</h2>
                     <div class=""  style="/*overflow-y:scroll;*/ height:40%; width:100%">
@@ -79,10 +80,11 @@
                     </div>
                 </div>
             </div>
+                </div>
 
             <!-- /.col-md-4 -->
-           
-            <div class="col-lg-3 mb-5">
+             <div class="col-lg-3 mb-5">
+            <div class="col-lg-11 mb-5">
                 <div  style="height: 100%;">
                     <h2 class="card-title" align="center" runat="server">Pre-Production</h2>
 
@@ -97,11 +99,13 @@
 
                 </div>
             </div>
+                 </div>
             
             <!-- /.col-md-4 -->
 
             <!-- /.col-md-4 -->
-            <div class="col-lg-3 mb-5" >
+             <div class="col-lg-3 mb-5">
+            <div class="col-lg-11 mb-5" >
                 <div style="height: 100%;">
                     <h2 class="card-title" align="center" runat="server">Completed</h2>
 
@@ -126,6 +130,7 @@
 
                 </div>
             </div>
+                 </div>
             <!-- /.col-md-4 -->
 
         </div>
@@ -136,11 +141,11 @@
         <br />
         <br />
 
-
+   </div>
 
     </form>
 
 
 
-    </div>
+ 
 </asp:Content>
