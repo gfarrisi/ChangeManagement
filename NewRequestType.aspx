@@ -1,13 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="NewRequestType.aspx.cs" Inherits="Empty_Project_Template.NewRequestType" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
-    <form id="form1" runat="server">
-        <br />
-        <br />
-        <br />
-         <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
-        <div class="container">
+     
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
+                    <a class="navbar-brand " href="#Home">
+            <img src="T.png" alt="" width="40">
+        </a>
             <a class="navbar-brand" href="index.html">CRM Recruit: Change Management</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -16,7 +13,7 @@
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item">
-                       <a class="nav-link" href="AdminDashboard.aspx">Dashboard</a>
+                        <a class="nav-link" href="AdminDashboard.aspx">Dashboard</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="AdminTools" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Tools
@@ -36,8 +33,16 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        
     </nav>
+
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
+    <form id="form1" runat="server">
+        <br />
+        <br />
+        <br />
+       
         <div style="height:100%;">
         <div style="margin: 0 auto; max-width: 500px; padding: 30px;">
         <h1>New Request Type</h1>

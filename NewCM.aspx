@@ -1,8 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="NewCM.aspx.cs" Inherits="Empty_Project_Template.NewCM" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
-        <div class="container">
+     
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
+                    <a class="navbar-brand " href="#Home">
+            <img src="T.png" alt="" width="40">
+        </a>
             <a class="navbar-brand" href="index.html">CRM Recruit: Change Management</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -16,7 +18,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="AdminTools" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Tools
                         </a>
-                       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                             <a class="dropdown-item" href="ViewAllRequests.aspx">View All</a>
                             <a class="dropdown-item" href="NewRequestType.aspx">Add New Request Type</a>
                             <a class="dropdown-item" href="ViewAllUsers.aspx">User Settings</a>
@@ -27,13 +29,13 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                             <a class="dropdown-item" href="Login.aspx">Log Out</a>
-
                         </div>
                     </li>
                 </ul>
             </div>
-        </div>
+        
     </nav>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
     <form id="form1" runat="server">  
