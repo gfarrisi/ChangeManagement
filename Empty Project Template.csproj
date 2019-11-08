@@ -89,6 +89,7 @@
     <Content Include="ViewAllRequests.aspx" />
     <Content Include="ViewAllUsers.aspx" />
     <Content Include="Web.config" />
+    <Content Include="UserRequests.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDashboard.aspx.cs">
@@ -161,6 +162,13 @@
     </Compile>
     <Compile Include="ViewAllUsers.aspx.designer.cs">
       <DependentUpon>ViewAllUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserRequests.aspx.cs">
+      <DependentUpon>UserRequests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserRequests.aspx.designer.cs">
+      <DependentUpon>UserRequests.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

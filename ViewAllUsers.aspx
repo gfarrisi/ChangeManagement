@@ -52,7 +52,7 @@
                 <th scope="col">User  <i class="fas fa-sort"></i></th>
                 <th scope="col">College  <i class="fas fa-sort"></i></th>
                 <th scope="col">Created Date  <i class="fa fa-sort"></i></th>
-                <th scope="col">Remove User</th>
+                <th scope="col">Deactivate User</th>
             </tr>
         </thead>
         <tbody>
