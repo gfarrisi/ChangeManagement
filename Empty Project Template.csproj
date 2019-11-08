@@ -62,10 +62,12 @@
     <Content Include="AdminDashboard.aspx" />
     <Content Include="CM.aspx" />
     <Content Include="css\cm-request.css" />
+    <Content Include="css\dashboard.css" />
     <Content Include="css\modern-business.css" />
     <Content Include="css\footer-distributed-with-address-and-phones.css" />
     <Content Include="gulpfile.js" />
     <Content Include="js\contact_me.js" />
+    <Content Include="js\dashboard.js" />
     <Content Include="js\jqBootstrapValidation.js" />
     <Content Include="Login.aspx" />
     <Content Include="mail\contact_me.php" />

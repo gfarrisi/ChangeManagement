@@ -1,0 +1,10 @@
+﻿body {
+    /*font-family: Verdana, sans-serif;*/
+}
+
+.cm-tiles {
+    box-shadow: 1px 1px 4px 2px #9da5aa;
+    background-color: #899197;
+    text-align: left;
+    padding-left: 10px
+}
