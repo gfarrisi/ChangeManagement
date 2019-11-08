@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="NewUser.aspx.cs" Inherits="Empty_Project_Template.NewUser" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="NewRequest2.aspx.cs" Inherits="Empty_Project_Template.NewRequest2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
      
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
@@ -39,55 +38,4 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
-    <form id="form1" runat="server">
-        <br />
-        <br />
-        <br />
-        <br />
-        <h1 class="text-center">New User</h1>
-        <div style="margin: 0 auto; max-width: 300px; padding: 30px;">
-        <br />
-        <div class="form-group form-row">
-            <div class="col-lg-3">
-                <label id="lblName" style="line-height: 50px;" runat="server">Name</label>
-                <br />
-                <label id="lblEmail" style="line-height: 50px;" runat="server">Email</label>
-                <br />
-                <label id="lblTUID" style="line-height: 50px;" runat="server">TUID</label>
-                <br />
-                <label id="lblCollege" style="line-height: 50px;" runat="server">College</label>
-            </div>
-            <div class="col-lg-9">
-                <input class="form-control" id="txtName" type="text" runat="server" />
-                <br />
-            
-                <input class="form-control" id="txtEmail" type="text" runat="server"/>
-                <br />
-            
-                <input class="form-control" id="txtTUID" type="text" runat="server"/>
-                <br />
-            
-                <input class="form-control" id="txtCollege" type="text" runat="server" />
-            </div>
-            
-            
-            
-        </div>
-        <br />
-            <div align="center">
-        <asp:Button CssClass="btn btn-primary" Width="90px" BorderStyle="None" ID="btnSubmit" Text="Add User" BackColor="#9D2235" ForeColor="#ffffff" OnClick="btnSubmit_Click" runat="server" />
-
-            </div>
-         <br />
-        <br />
-        <br />
-        <br />
-        <br />
-             <br />
-        <br />
-        <br />
-        <br />
-        <br />
-    </div>
-    </form>
 </asp:Content>

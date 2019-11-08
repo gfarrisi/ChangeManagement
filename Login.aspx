@@ -4,7 +4,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
-        <div class="container">
+                                   <a class="navbar-brand " href="#Home">
+            <img src="T.png" alt="" width="40">
+        </a>
             <a class="navbar-brand" href="index.html">CRM Recruit: Change Management</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -21,7 +23,7 @@
                    
                 </ul>
             </div>
-        </div>
+        <
     </nav>
 <br />
 <br />

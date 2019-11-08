@@ -1,9 +1,12 @@
+
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AdminDashboard.aspx.cs" Inherits="Empty_Project_Template.AdminDashboard" %>
-
+                           
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
-
+     
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
-        <div class="container">
+                    <a class="navbar-brand " href="#Home">
+            <img src="T.png" alt="" width="40">
+        </a>
             <a class="navbar-brand" href="index.html">CRM Recruit: Change Management</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -32,8 +35,7 @@
                     </li>
                 </ul>
             </div>
-        </div>
-
+        
     </nav>
 
 </asp:Content>
@@ -397,7 +399,8 @@
                                             File 3https://drive.google.com/open?id=1L--
                                             Dnd6dLVQGhCP3hbkZ5Rs-z0iwJUwm
                                             File 4https://drive.google.com/open?
-                                            id=16nZJaBWjqmG5642crodKkUYnHYhfJE2U                                            </a>
+                                            id=16nZJaBWjqmG5642crodKkUYnHYhfJE2U
+                                            </a>
                                         </p>
                                     </div>
                                 </div>
@@ -519,3 +522,4 @@
 
 
 </asp:Content>
+
