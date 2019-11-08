@@ -1,8 +1,5 @@
-
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AdminDashboard.aspx.cs" Inherits="Empty_Project_Template.AdminDashboard" %>
-                           
-<asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
-     
+<asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">   
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
                     <a class="navbar-brand " href="#Home">
             <img src="T.png" alt="" width="40">
@@ -39,7 +36,8 @@
     </nav>
 
 </asp:Content>
-<asp:Content ContentPlaceHolderID="CPH1" runat="server">
+
+<asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
 
 
     <form runat="server">
