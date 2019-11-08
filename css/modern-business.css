@@ -20,17 +20,19 @@ body {
 .portfolio-item {
   margin-bottom: 30px;
 }
-.navbar-custom{
-    background-color:#A41E35;
+.navbar-custom {
+    background-color: #222222;
 }
 
 .custom-footer {
-    background-color:#8C2132;
-   
+    background-color: #222222;
 }
 
 .panel-footer {
     background-color: #8C2132;
+}
+.btn-secondary {
+    background-color: #899197;
 }
 
 

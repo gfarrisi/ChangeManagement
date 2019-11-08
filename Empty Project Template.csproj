@@ -63,14 +63,17 @@
     <Content Include="CM.aspx" />
     <Content Include="css\cm-request.css" />
     <Content Include="css\modern-business.css" />
+    <Content Include="css\footer-distributed-with-address-and-phones.css" />
     <Content Include="gulpfile.js" />
     <Content Include="js\contact_me.js" />
     <Content Include="js\jqBootstrapValidation.js" />
     <Content Include="Login.aspx" />
     <Content Include="mail\contact_me.php" />
     <Content Include="NewCM.aspx" />
+    <Content Include="NewRequest2.aspx" />
     <Content Include="NewRequestType.aspx" />
     <Content Include="NewUser.aspx" />
+    <Content Include="T.png" />
     <Content Include="UserDashboard.aspx" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.min.css" />
@@ -125,6 +128,13 @@
     </Compile>
     <Compile Include="NewCM.aspx.designer.cs">
       <DependentUpon>NewCM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewRequest2.aspx.cs">
+      <DependentUpon>NewRequest2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewRequest2.aspx.designer.cs">
+      <DependentUpon>NewRequest2.aspx</DependentUpon>
     </Compile>
     <Compile Include="NewRequestType.aspx.cs">
       <DependentUpon>NewRequestType.aspx</DependentUpon>
