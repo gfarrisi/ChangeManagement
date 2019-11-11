@@ -5,6 +5,7 @@
  */
 body {
   padding-top: 56px;
+  height:100%
 }
 
 .carousel-item {
@@ -34,6 +35,10 @@ body {
 .btn-secondary {
     background-color: #899197;
 }
+.body-100 {
+    padding-top: 56px;
+    height: 100%
+}
 
 
 .comment-time{
@@ -57,6 +62,9 @@ body {
 .scroll-custom{
     height: 600px;
 
+}
+.cardCM {
+    background-color: #222222;
 }
 
 table {
