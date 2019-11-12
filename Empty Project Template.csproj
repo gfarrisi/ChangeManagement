@@ -72,7 +72,7 @@
     <Content Include="Login.aspx" />
     <Content Include="mail\contact_me.php" />
     <Content Include="NewCM.aspx" />
-    <Content Include="NewRequest2.aspx" />
+    <Content Include="SelectRequestType.aspx" />
     <Content Include="NewRequestType.aspx" />
     <Content Include="NewUser.aspx" />
     <Content Include="T.png" />
@@ -132,12 +132,12 @@
     <Compile Include="NewCM.aspx.designer.cs">
       <DependentUpon>NewCM.aspx</DependentUpon>
     </Compile>
-    <Compile Include="NewRequest2.aspx.cs">
-      <DependentUpon>NewRequest2.aspx</DependentUpon>
+    <Compile Include="SelectRequestType.aspx.cs">
+      <DependentUpon>SelectRequestType.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="NewRequest2.aspx.designer.cs">
-      <DependentUpon>NewRequest2.aspx</DependentUpon>
+    <Compile Include="SelectRequestType.aspx.designer.cs">
+      <DependentUpon>SelectRequestType.aspx</DependentUpon>
     </Compile>
     <Compile Include="NewRequestType.aspx.cs">
       <DependentUpon>NewRequestType.aspx</DependentUpon>

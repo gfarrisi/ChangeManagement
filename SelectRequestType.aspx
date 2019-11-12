@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="NewRequest2.aspx.cs" Inherits="Empty_Project_Template.NewRequest2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="SelectRequestType.aspx.cs" Inherits="Empty_Project_Template.NewRequest2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
 
@@ -53,136 +53,121 @@
             <div class="row">
 
                 <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn btn-primary cardCM">
+                    <div class="card btn-primary">
+                        <button id="btnActivityCodes" class="btn btn-dark p-4">Activity Codes</button>
+                    </div>
 
-                        <h5>
-                            <a href="#" style="color: white">Activity Codes</a>
-                        </h5>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <div class="card btn-primary">
+
+                        <button id="btnBusinessRules" class="btn btn-dark p-4">Business Rules</button>
+
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn btn-primary cardCM">
+                    <div class="card btn-primary">
 
-                        <h5>
-                            <a href="#" style="color: white">Business Rules</a>
-                        </h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn btn-primary cardCM">
+                        <button id="btnEmailTemplates" class="btn btn-dark p-4">Email Templates</button>
 
-                        <h5>
-                            <a href="#" style="color: white">Email Templates</a>
-                        </h5>
+
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn btn-primary cardCM">
+                    <div class="card btn-primary">
 
-                        <h5>
-                            <a href="#" style="color: white">Entity</a>
-                        </h5>
+                        <button id="btnEntity" class="btn btn-dark p-4">Entity</button>
+
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn btn-primary cardCM">
+                    <div class="card btn-primary">
+                        <button id="btnField" class="btn btn-dark p-4">Field</button>
 
-                        <h5>
-                            <a href="#" style="color: white">Field</a>
-                        </h5>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn btn-primary cardCM">
+                    <div class="card btn-primary">
 
-                        <h5>
-                            <a href="#" style="color: white">Forms</a>
-                        </h5>
+
+                        <button id="btnForms" class="btn btn-dark p-4">Forms</button>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn btn-primary cardCM">
+                    <div class="card btn-primary">
+                        <button id="btnJavaScript" class="btn btn-dark p-4">JavaScript on WFE</button>
 
-                        <h5>
-                            <a href="#" style="color: white">JavaScript on WFE</a>
-                        </h5>
                     </div>
                 </div>
 
 
                 <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn btn-primary cardCM">
+                    <div class="card btn-primary">
 
-                        <h5>
-                            <a href="#" style="color: white">Option Sets</a>
-                        </h5>
+                        <button id="btnOptionSets" class="btn btn-dark p-4">Option Sets</button>
+
+
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn btn-primary cardCM">
-
-                        <h5>
-                            <a href="#" style="color: white">Relationships</a>
-                        </h5>
-                    </div>
-                </div>
+                    <div class="card btn-primary">
 
 
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn btn-primary cardCM">
+                        <button id="btnRelationships" class="btn btn-dark p-4">Relationships</button>
 
-                        <h5>
-                            <a href="#" style="color: white">Security Roles</a>
-                        </h5>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn btn-primary cardCM">
-
-                        <h5>
-                            <a href="#" style="color: white">System Views</a>
-                        </h5>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn btn-primary cardCM">
-
-                        <h5>
-                            <a href="#" style="color: white">New User/Modify User</a>
-                        </h5>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn btn-primary cardCM">
-
-                        <h5>
-                            <a href="#" style="color: white">Web Resources</a>
-                        </h5>
                     </div>
                 </div>
 
 
                 <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn btn-primary cardCM">
+                    <div class="card btn-primary">
 
-                        <h5>
-                            <a href="#" style="color: white">Workflow</a>
-                        </h5>
+                        <button id="btnSecurityRoles" class="btn btn-dark p-4">Security Roles</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <div class="card btn-primary">
+
+                        <button id="btnSystemViews" class="btn btn-dark p-4">System Views</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <div class="card btn-primary">
+
+                        <button id="btnNewUser" class="btn btn-dark p-4">New User/Modify User</button>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <div class="card btn-primary">
+
+                        <button id="btnWebResources" class="btn btn-dark p-4">Web Resources</button>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <div class="card btn-primary">
+
+                        <button id="btnWorkflow" class="btn btn-dark p-4">Workflow</button>
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn btn-primary cardCM">
+                    <div class="card btn-primary">
 
-                        <h5>
-                            <a href="#" style="color: white">Workflow Schedule</a>
-                        </h5>
+                        <button id="btnWorkflowSchedule" class="btn btn-dark p-4">Workflow Schedule</button>
+
                     </div>
                 </div>
 
@@ -190,11 +175,10 @@
 
 
                 <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn btn-primary cardCM">
+                    <div class="card btn-primary">
 
-                        <h5>
-                            <a href="#" style="color: white">Other</a>
-                        </h5>
+                      <button id="btnOther" class="btn btn-dark p-4">Other</button>
+
                     </div>
                 </div>
 

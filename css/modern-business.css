@@ -39,6 +39,10 @@ body {
     padding-top: 56px;
     height: 100%
 }
+.btn-white {
+    background-color: #222222;
+    color: white;
+}
 
 
 .comment-time{
