@@ -4,15 +4,39 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Request_Library;
 
 namespace Empty_Project_Template
 {
     public partial class NewCM : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {            
+
             if (!IsPostBack)
             {
+                int RequestID = 1001;
+                RequestTypes types = new RequestTypes();
+                foreach(Request requestType in types.requestTypes)
+                {
+                    if (requestType.RequestID == RequestID)
+                    {
+                        foreach (Question question in requestType.requestQuestions)
+                        {
+                            string question_text = question.Question_Text;
+                            string question_control = question.Question_Control;
+                            string question_order = question.Question_Order;
+                            List<string> question_options = question.Question_Options;
+
+                            Response.Write("<script>alert('" + question.Question_Text + "," + question_control + "," + question_order + "');</script>");
+                        }
+                    }
+                    
+                   
+                }
+
+                
+
                 lbl1.Text = "Workflow/Process";
                 lbl2.Text = "Entity";
                 lbl3.Text = "Description";
