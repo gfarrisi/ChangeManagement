@@ -19,5 +19,10 @@ namespace Empty_Project_Template
 
             Response.Redirect("NewCM.aspx");
         }
+
+        protected void btnViewAll_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ViewAllRequests.aspx");
+        }
     }
 }
