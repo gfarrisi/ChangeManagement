@@ -17,7 +17,7 @@ namespace Empty_Project_Template
         protected void btnNewRequest_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("NewCM.aspx");
+            Response.Redirect("SelectRequestType.aspx");
         }
 
         protected void btnViewAll_Click(object sender, EventArgs e)

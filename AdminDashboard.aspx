@@ -51,7 +51,7 @@
                     </div>          
                     
                     <div class="col-lg-3 mb-1">
-                          <a href="NewCM.aspx" class="btn btn-dark">New Requests</a>
+                          <a href="SelectRequestType.aspx" class="btn btn-dark">New Requests</a>
                     </div>
                 </div>
             </div>

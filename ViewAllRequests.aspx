@@ -39,10 +39,8 @@
 
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPH1" runat="server">
-    <br />
-    <br />
-    <br />
-    <div class="container" style="height: 100%;">
+   
+    <div class="container mt-5" style="height: 100%;">
         <h2 id="requestHistory">Request History</h2>
         <div class="card mb-4 w-50" id="searchBar">
             <div class="input-group">
@@ -52,221 +50,223 @@
                 </span>
             </div>
         </div>
-        <table class="table table-bordered table-striped table-hover">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">CM ID  <i class="fas fa-sort"></i></th>
-                    <th scope="col">User  <i class="fas fa-sort"></i></th>
-                    <th scope="col">Admin  <i class="fas fa-sort"></i></th>
-                    <th scope="col">College  <i class="fas fa-sort"></i></th>
-                    <th scope="col">Type  <i class="fas fa-sort"></i></th>
-                    <th scope="col">Status  <i class="fas fa-sort"></i></th>
-                    <th scope="col">Last Updated Date  <i class="fa fa-sort"></i></th>
-                    <th scope="col">View Request</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">CM1900</th>
-                    <td>Jane Doe</td>
-                    <td>Kristi Morgridge</td>
-                    <td>CLA</td>
-                    <td>Systems View</td>
-                    <td>Complete</td>
-                    <td>8/18/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-                </tr>
-                <tr>
-                    <th scope="row">CM1901</th>
-                    <td>Sandy James</td>
-                    <td>Kristi Morgridge</td>
-                    <td>Boyer</td>
-                    <td>Entity</td>
-                    <td>Not Assigned</td>
-                    <td>10/08/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+        <div style="overflow-y: scroll; height: 500px;">
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">CM ID  <i class="fas fa-sort"></i></th>
+                        <th scope="col">User  <i class="fas fa-sort"></i></th>
+                        <th scope="col">Admin  <i class="fas fa-sort"></i></th>
+                        <th scope="col">College  <i class="fas fa-sort"></i></th>
+                        <th scope="col">Type  <i class="fas fa-sort"></i></th>
+                        <th scope="col">Status  <i class="fas fa-sort"></i></th>
+                        <th scope="col">Last Updated Date  <i class="fa fa-sort"></i></th>
+                        <th scope="col">View Request</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">CM1900</th>
+                        <td>Jane Doe</td>
+                        <td>Kristi Morgridge</td>
+                        <td>CLA</td>
+                        <td>Systems View</td>
+                        <td>Complete</td>
+                        <td>8/18/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CM1901</th>
+                        <td>Sandy James</td>
+                        <td>Kristi Morgridge</td>
+                        <td>Boyer</td>
+                        <td>Entity</td>
+                        <td>Not Assigned</td>
+                        <td>10/08/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
 
-                </tr>
-                <tr>
-                    <th scope="row">CM1902</th>
-                    <td>Sam Kelly</td>
-                    <td>Dima Dabbas</td>
-                    <td>Global</td>
-                    <td>Forms</td>
-                    <td>Preprod</td>
-                    <td>10/24/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CM1902</th>
+                        <td>Sam Kelly</td>
+                        <td>Dima Dabbas</td>
+                        <td>Global</td>
+                        <td>Forms</td>
+                        <td>Preprod</td>
+                        <td>10/24/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
 
-                </tr>
-                <tr>
-                    <th scope="row">CM1903</th>
-                    <td>Lauren O'Neil</td>
-                    <td>Dima Dabbas</td>
-                    <td>Tyler</td>
-                    <td>Field</td>
-                    <td>Complete</td>
-                    <td>9/28/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CM1903</th>
+                        <td>Lauren O'Neil</td>
+                        <td>Dima Dabbas</td>
+                        <td>Tyler</td>
+                        <td>Field</td>
+                        <td>Complete</td>
+                        <td>9/28/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
 
-                </tr>
-                <tr>
-                    <th scope="row">CM1904</th>
-                    <td>Jaime Martino</td>
-                    <td>Kristi Morgridge</td>
-                    <td>UG</td>
-                    <td>Activity Codes</td>
-                    <td>Assigned</td>
-                    <td>9/22/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CM1904</th>
+                        <td>Jaime Martino</td>
+                        <td>Kristi Morgridge</td>
+                        <td>UG</td>
+                        <td>Activity Codes</td>
+                        <td>Assigned</td>
+                        <td>9/22/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
 
-                </tr>
-                <tr>
-                    <th scope="row">CM1905</th>
-                    <td>Jane Doe</td>
-                    <td>Dima Dabbas</td>
-                    <td>CLA</td>
-                    <td>Work Flow</td>
-                    <td>Preprod</td>
-                    <td>9/4/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CM1905</th>
+                        <td>Jane Doe</td>
+                        <td>Dima Dabbas</td>
+                        <td>CLA</td>
+                        <td>Work Flow</td>
+                        <td>Preprod</td>
+                        <td>9/4/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
 
-                </tr>
-                <tr>
-                    <th scope="row">CM1906</th>
-                    <td>Jane Doe</td>
-                    <td>Kristi Morgridge</td>
-                    <td>CLA</td>
-                    <td>Activity Codes</td>
-                    <td>Assigned</td>
-                    <td>9/22/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CM1906</th>
+                        <td>Jane Doe</td>
+                        <td>Kristi Morgridge</td>
+                        <td>CLA</td>
+                        <td>Activity Codes</td>
+                        <td>Assigned</td>
+                        <td>9/22/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
 
-                </tr>
-                <tr>
-                    <th scope="row">CM1907</th>
-                    <td>Helene Houser</td>
-                    <td>Kristi Morgridge</td>
-                    <td>CRM</td>
-                    <td>Workflow</td>
-                    <td>Complete</td>
-                    <td>8/18/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CM1907</th>
+                        <td>Helene Houser</td>
+                        <td>Kristi Morgridge</td>
+                        <td>CRM</td>
+                        <td>Workflow</td>
+                        <td>Complete</td>
+                        <td>8/18/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
 
-                </tr>
+                    </tr>
 
-                <tr>
-                    <th scope="row">CM1908</th>
-                    <td>Megan Nyquist</td>
-                    <td>Dima Dabbas</td>
-                    <td>CST</td>
-                    <td>System Views</td>
-                    <td>Failed</td>
-                    <td>8/8/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+                    <tr>
+                        <th scope="row">CM1908</th>
+                        <td>Megan Nyquist</td>
+                        <td>Dima Dabbas</td>
+                        <td>CST</td>
+                        <td>System Views</td>
+                        <td>Failed</td>
+                        <td>8/8/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
 
-                </tr>
-                <tr>
-                    <th scope="row">CM1909</th>
-                    <td>Jane Doe</td>
-                    <td>Dima Dabbas</td>
-                    <td>CLA</td>
-                    <td>Field</td>
-                    <td>Complete</td>
-                    <td>9/28/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CM1909</th>
+                        <td>Jane Doe</td>
+                        <td>Dima Dabbas</td>
+                        <td>CLA</td>
+                        <td>Field</td>
+                        <td>Complete</td>
+                        <td>9/28/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
 
-                </tr>
-                <tr>
-                    <th scope="row">CM1910</th>
-                    <td>Sam Kelly</td>
-                    <td>Dima Dabbas</td>
-                    <td>Global</td>
-                    <td>Forms</td>
-                    <td>Preprod</td>
-                    <td>10/24/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CM1910</th>
+                        <td>Sam Kelly</td>
+                        <td>Dima Dabbas</td>
+                        <td>Global</td>
+                        <td>Forms</td>
+                        <td>Preprod</td>
+                        <td>10/24/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
 
-                </tr>
-                <tr>
-                    <th scope="row">CM1911</th>
-                    <td>Megan Nyquist</td>
-                    <td>Dima Dabbas</td>
-                    <td>CST</td>
-                    <td>System Views</td>
-                    <td>Failed</td>
-                    <td>8/8/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CM1911</th>
+                        <td>Megan Nyquist</td>
+                        <td>Dima Dabbas</td>
+                        <td>CST</td>
+                        <td>System Views</td>
+                        <td>Failed</td>
+                        <td>8/8/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
 
-                </tr>
-                <tr>
-                    <th scope="row">CM1912</th>
-                    <td>Sam Kelly</td>
-                    <td>Dima Dabbas</td>
-                    <td>Global</td>
-                    <td>Forms</td>
-                    <td>Preprod</td>
-                    <td>10/24/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CM1912</th>
+                        <td>Sam Kelly</td>
+                        <td>Dima Dabbas</td>
+                        <td>Global</td>
+                        <td>Forms</td>
+                        <td>Preprod</td>
+                        <td>10/24/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
 
-                </tr>
-                <tr>
-                    <th scope="row">CM1913</th>
-                    <td>Jane Doe</td>
-                    <td>Dima Dabbas</td>
-                    <td>CLA</td>
-                    <td>Forms</td>
-                    <td>Preprod</td>
-                    <td>10/24/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CM1913</th>
+                        <td>Jane Doe</td>
+                        <td>Dima Dabbas</td>
+                        <td>CLA</td>
+                        <td>Forms</td>
+                        <td>Preprod</td>
+                        <td>10/24/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
 
-                </tr>
-                <tr>
-                    <th scope="row">CM1914</th>
-                    <td>Sandy James</td>
-                    <td>Kristi Morgridge</td>
-                    <td>Boyer</td>
-                    <td>Entity</td>
-                    <td>Not Assigned</td>
-                    <td>10/08/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CM1914</th>
+                        <td>Sandy James</td>
+                        <td>Kristi Morgridge</td>
+                        <td>Boyer</td>
+                        <td>Entity</td>
+                        <td>Not Assigned</td>
+                        <td>10/08/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
 
-                </tr>
-                <tr>
-                    <th scope="row">CM1915</th>
-                    <td>Lauren O'Neil</td>
-                    <td>Dima Dabbas</td>
-                    <td>Tyler</td>
-                    <td>Field</td>
-                    <td>Complete</td>
-                    <td>9/28/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CM1915</th>
+                        <td>Lauren O'Neil</td>
+                        <td>Dima Dabbas</td>
+                        <td>Tyler</td>
+                        <td>Field</td>
+                        <td>Complete</td>
+                        <td>9/28/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
 
-                </tr>
-                <tr>
-                    <th scope="row">CM1916</th>
-                    <td>Jane Doe</td>
-                    <td>Kristi Morgridge</td>
-                    <td>CLA</td>
-                    <td>Entity</td>
-                    <td>Not Assigned</td>
-                    <td>10/08/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CM1916</th>
+                        <td>Jane Doe</td>
+                        <td>Kristi Morgridge</td>
+                        <td>CLA</td>
+                        <td>Entity</td>
+                        <td>Not Assigned</td>
+                        <td>10/08/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
 
-                </tr>
-                <tr>
-                    <th scope="row">CM1917</th>
-                    <td>Sam Kelly</td>
-                    <td>Dima Dabbas</td>
-                    <td>Global</td>
-                    <td>Forms</td>
-                    <td>Preprod</td>
-                    <td>10/24/19</td>
-                    <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">CM1917</th>
+                        <td>Sam Kelly</td>
+                        <td>Dima Dabbas</td>
+                        <td>Global</td>
+                        <td>Forms</td>
+                        <td>Preprod</td>
+                        <td>10/24/19</td>
+                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
 
-                </tr>
-            </tbody>
-        </table>
-        <button onclick="exportTableToCSV('Requests.csv')" class="btn btnDownload">Export Table to CSV File</button>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button onclick="exportTableToCSV('Requests.csv')" class="btn btnDownload mt-4">Export Table to CSV File</button>
     </div>
     <br />
     <br />
@@ -560,48 +560,48 @@
 
 
     <script>
-function exportTableToCSV(filename) {
-    var csv = [];
-    var rows = document.querySelectorAll("table tr");
-    
-    for (var i = 0; i < rows.length; i++) {
-        var row = [], cols = rows[i].querySelectorAll("td, th");
-        
-        for (var j = 0; j < cols.length; j++) 
-            row.push(cols[j].innerText);
-        
-        csv.push(row.join(","));        
-    }
+        function exportTableToCSV(filename) {
+            var csv = [];
+            var rows = document.querySelectorAll("table tr");
 
-    // Download CSV file
-    downloadCSV(csv.join("\n"), filename);
+            for (var i = 0; i < rows.length; i++) {
+                var row = [], cols = rows[i].querySelectorAll("td, th");
+
+                for (var j = 0; j < cols.length; j++)
+                    row.push(cols[j].innerText);
+
+                csv.push(row.join(","));
+            }
+
+            // Download CSV file
+            downloadCSV(csv.join("\n"), filename);
         }
         function downloadCSV(csv, filename) {
-    var csvFile;
-    var downloadLink;
+            var csvFile;
+            var downloadLink;
 
-    // CSV file
-    csvFile = new Blob([csv], {type: "text/csv"});
+            // CSV file
+            csvFile = new Blob([csv], { type: "text/csv" });
 
-    // Download link
-    downloadLink = document.createElement("a");
+            // Download link
+            downloadLink = document.createElement("a");
 
-    // File name
-    downloadLink.download = filename;
+            // File name
+            downloadLink.download = filename;
 
-    // Create a link to the file
-    downloadLink.href = window.URL.createObjectURL(csvFile);
+            // Create a link to the file
+            downloadLink.href = window.URL.createObjectURL(csvFile);
 
-    // Hide download link
-    downloadLink.style.display = "none";
+            // Hide download link
+            downloadLink.style.display = "none";
 
-    // Add the link to DOM
-    document.body.appendChild(downloadLink);
+            // Add the link to DOM
+            document.body.appendChild(downloadLink);
 
-    // Click download link
-    downloadLink.click();
-}
-</script>
+            // Click download link
+            downloadLink.click();
+        }
+    </script>
 
 
 </asp:Content>

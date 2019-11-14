@@ -37,11 +37,11 @@
             <div class="pl-5 ml-5">
                 <div class="row">
                     <div class="col-lg-1 mb-1">
-                        <a href="ViewAllRequestsUsers.aspx" class="btn btn-dark">View All</a>
+                        <a href="UserRequests.aspx" class="btn btn-dark">View All</a>
                     </div>          
                     
                     <div class="col-lg-3 mb-1">
-                          <a href="NewCM.aspx" class="btn btn-dark">New Requests</a>
+                          <a href="SelectRequestType.aspx" class="btn btn-dark">New Requests</a>
                     </div>
                 </div>
             </div>
