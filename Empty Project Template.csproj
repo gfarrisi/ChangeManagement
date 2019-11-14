@@ -73,7 +73,7 @@
     <Content Include="Login.aspx" />
     <Content Include="mail\contact_me.php" />
     <Content Include="NewCM.aspx" />
-    <Content Include="NewRequest2.aspx" />
+    <Content Include="SelectRequestType.aspx" />
     <Content Include="NewRequestType.aspx" />
     <Content Include="NewUser.aspx" />
     <Content Include="T.png" />
@@ -133,12 +133,12 @@
     <Compile Include="NewCM.aspx.designer.cs">
       <DependentUpon>NewCM.aspx</DependentUpon>
     </Compile>
-    <Compile Include="NewRequest2.aspx.cs">
-      <DependentUpon>NewRequest2.aspx</DependentUpon>
+    <Compile Include="SelectRequestType.aspx.cs">
+      <DependentUpon>SelectRequestType.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="NewRequest2.aspx.designer.cs">
-      <DependentUpon>NewRequest2.aspx</DependentUpon>
+    <Compile Include="SelectRequestType.aspx.designer.cs">
+      <DependentUpon>SelectRequestType.aspx</DependentUpon>
     </Compile>
     <Compile Include="NewRequestType.aspx.cs">
       <DependentUpon>NewRequestType.aspx</DependentUpon>
@@ -208,6 +208,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Request Library\RequestLibrary.csproj">
+      <Project>{459922b6-15f3-46d4-9ab4-d5ee178d5886}</Project>
+      <Name>RequestLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

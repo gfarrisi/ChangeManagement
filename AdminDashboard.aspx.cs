@@ -13,10 +13,14 @@ namespace Empty_Project_Template
         {
            
         }
-
+        
+        protected void btnViewAll_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ViewAllRequests.aspx");
+        }
         protected void btnNewRequest_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CM.aspx");
+            Response.Redirect("SelectRequestType.aspx");
         }
     }
 }

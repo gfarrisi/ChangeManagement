@@ -13,12 +13,30 @@ namespace Empty_Project_Template {
     public partial class ViewAllUsers {
         
         /// <summary>
-        /// btnNewUser control.
+        /// lblAccessNet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNewUser;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblAccessNet;
+        
+        /// <summary>
+        /// lblAccountType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblAccountType;
+        
+        /// <summary>
+        /// txtTUID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtTUID;
     }
 }

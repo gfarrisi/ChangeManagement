@@ -1,38 +1,39 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AdminDashboard.aspx.cs" Inherits="Empty_Project_Template.AdminDashboard" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">   
+
+<asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
-                    <a class="navbar-brand " href="#Home">
+        <a class="navbar-brand " href="#Home">
             <img src="T.png" alt="" width="40">
         </a>
-            <a class="navbar-brand" href="index.html">CRM Recruit: Change Management</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
+        <a class="navbar-brand" href="index.html">CRM Recruit: Change Management</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="AdminDashboard.aspx">Dashboard</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="AdminTools" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Tools
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                            <a class="dropdown-item" href="ViewAllRequests.aspx">View All</a>
-                            <a class="dropdown-item" href="NewRequestType.aspx">Add New Request Type</a>
-                            <a class="dropdown-item" href="ViewAllUsers.aspx">User Settings</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dima Dabbas
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                            <a class="dropdown-item" href="Login.aspx">Log Out</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        
+                <li class="nav-item">
+                    <a class="nav-link" href="AdminDashboard.aspx">Dashboard</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="AdminTools" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Tools
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                        <a class="dropdown-item" href="ViewAllRequests.aspx">View All</a>
+                        <a class="dropdown-item" href="NewRequestType.aspx">Add New Request Type</a>
+                        <a class="dropdown-item" href="ViewAllUsers.aspx">User Settings</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dima Dabbas
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                        <a class="dropdown-item" href="Login.aspx">Log Out</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
     </nav>
 
 </asp:Content>
@@ -42,43 +43,41 @@
 
     <form runat="server">
 
-        <div class="pull-right" style="background-color: rgba(0,0,0,.03); padding: 5px;">
-            <div class="btn-group" style="padding-left: 5%;">
+        <div class="pull-right pt-5 pb-4" style="background-color: rgba(0,0,0,.03);">
+            <div class="pl-5 ml-5">
                 <div class="row">
-                    <div class="col-lg-3 mb-1"></div>
+                    <div class="col-lg-1 mb-1">
+                        <a href="ViewAllRequests.aspx" class="btn btn-dark">View All</a>
+                    </div>          
+                    
                     <div class="col-lg-3 mb-1">
-                        <asp:Button ID="btnNewRequest" runat="server" Text="New Request" CssClass="btn btn-dark" OnClick="btnNewRequest_Click" />
+                          <a href="SelectRequestType.aspx" class="btn btn-dark">New Requests</a>
                     </div>
-                    <div class="col-lg-3 mb-1"></div>
-                    <div class="col-lg-3 mb-1">
-                        <asp:Button ID="Button1" runat="server" Text="View All" CssClass="btn btn-dark" OnClick="btnNewRequest_Click" />
-                    </div>
-
                 </div>
             </div>
         </div>
         <div class="container-cm" style="height: 100%;">
             <div class="row ">
                 <div class="col-lg-3 mb-1">
-                    <h2 class="card-title" align="center">Not Assigned</h2>
+                    <h3 class="card-title" align="center">Not Assigned</h3>
                 </div>
                 <div class="col-lg-3 mb-1">
-                    <h2 class="card-title" align="center">Assigned</h2>
+                    <h3 class="card-title" align="center">Assigned</h3>
                 </div>
                 <div class="col-lg-3 mb-1">
-                    <h2 class="card-title" align="center" runat="server">Pre-Production </h2>
+                    <h3 class="card-title" align="center" runat="server">Pre-Production </h3>
                 </div>
                 <div class="col-lg-3 mb-1">
-                    <h2 class="card-title" align="center" runat="server">Completed</h2>
+                    <h3 class="card-title" align="center" runat="server">Completed/<span style="font-size: 15px;">Last 30 days</span></h3>
 
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row  card-footer" style="height: 40rem; overflow-y: scroll;">
                 <div class="col-lg-3 mb-5">
                     <div class="col-lg-12 mb-5">
-                        <div style="height: 100%;">
-                            <div class="card-footer" style="overflow-y: scroll; height: 40%; width: 100%;">
+                        <div>
+                            <div class="" style="height: 40%; width: 100%;">
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 301<br />
                                     <span style="font-size: 14px;">Workflow for CLA</span><br />
@@ -128,18 +127,18 @@
                     <div class="col-lg-12 mb-5">
                         <div style="height: 100%;">
 
-                            <div class="card-footer" style="/*overflow-y: scroll; */ height: 40%; width: 100%">
-                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                            <div class="" style="/*overflow-y: scroll; */ height: 40%; width: 100%">
+                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 201<br />
                                     <span style="font-size: 14px;">Project: Update Create Person Workflows for UG Transfer</span><br />
                                     <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
                                 </button>
-                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 219<br />
-                                   <span style="font-size: 14px;">Project: Update Create Person Workflows for UG Transfer</span><br />
-                                   <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
+                                    <span style="font-size: 14px;">Project: Update Create Person Workflows for UG Transfer</span><br />
+                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
                                 </button>
-                              
+
 
                             </div>
                         </div>
@@ -150,13 +149,13 @@
                 <div class="col-lg-3 mb-5">
                     <div class="col-lg-12 mb-5">
                         <div style="height: 100%;">
-                            <div class="card-footer" style="/*overflow-y: scroll; */ height: 40%; width: 100%">
-                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                            <div class="" style="/*overflow-y: scroll; */ height: 40%; width: 100%">
+                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 214<br />
                                     <span style="font-size: 14px;">Workflow for CLA</span><br />
                                     <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
                                 </button>
-                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 215<br />
                                     <span style="font-size: 14px;">Workflow for CLA</span><br />
                                     <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
@@ -178,46 +177,43 @@
                         <div style="height: 100%;">
 
 
-                            <div class="card-footer" style="overflow-y: scroll; height: 40%; width: 100%">
+                            <div class="" style="height: 40%; width: 100%">
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 314<br />
                                     <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
+                                    <span style="font-size: 14px;">Completed: 11/5/2019</span>
                                 </button>
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 323<br />
                                     <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
+                                    <span style="font-size: 14px;">Completed: 11/5/2019</span>
                                 </button>
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 344<br />
                                     <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
+                                    <span style="font-size: 14px;">Completed: 11/5/2019</span>
                                 </button>
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 376<br />
                                     <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
+                                    <span style="font-size: 14px;">Completed: 11/5/2019</span>
                                 </button>
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 123<br />
                                     <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
+                                    <span style="font-size: 14px;">Completed: 11/5/2019</span>
                                 </button>
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 132<br />
                                     <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
+                                    <span style="font-size: 14px;">Completed: 11/5/2019</span>
                                 </button>
 
-                                
+
                             </div>
                             <br />
                             <br />
                             <br />
-                            <div class="viewall">
-                                <a href="url" runat="server">View All</a>
-                            </div>
 
 
                         </div>
@@ -228,8 +224,7 @@
             </div>
             <!-- /.row -->
 
-            <br />
-            <br />
+
             <br />
             <br />
 
@@ -239,7 +234,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header" align="center">
-                        <h5 class="modal-title"  id="exampleModalLongTitle">CM #1905 - Update Create Person Workflows for UG Transfer</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">CM #1905 - Update Create Person Workflows for UG Transfer</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -249,31 +244,35 @@
                             <div class="col-lg-1 mb-2"></div>
                             <div class="col-lg-10 mb-2 ">
                                 <div class=" h-100">
-                                   
+
                                     <div class="card-body">
-                                         <h4 class="" align="center">Status: Assigned</h4>
+                                        <h4 class="" align="center">Status: Assigned</h4>
                                         <div class="progress">
                                             <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
-                                        <br />                                     
-                                                            <%--<div class="status-check"> 
+                                        <br />
+                                        <%--<div class="status-check"> 
                                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                         <label class="form-check-label" for="exampleCheck1">Check me out</label>
                                     </div>--%>
+                                        <div class="row">
+                                            <div class="col-lg-3 mb-2"></div>
+                                            <div class="col-lg-6">
+                                                <div class="status-check">
+                                                    <select name="avatar" class="browser-default custom-select">
+                                                        <option value="avatars">- Update Status -</option>
+                                                        <%--<option value="avatars/avatar-4.jpg">Assign to me</option>--%>
+                                                        <option value="avatars/avatar-1.jpg">CM Failed</option>
+                                                        <option value="avatars/avatar-2.jpg">Change implented in preprod</option>
+                                                        <option value="avatars/avatar-3.jpg">Change implemented in prod</option>
 
-                                        <div class="status-check">
-                                            <select name="avatar" class="browser-default custom-select">
-                                                <option value="avatars">- Update Status -</option>
-                                                <%--<option value="avatars/avatar-4.jpg">Assign to me</option>--%>
-                                                <option value="avatars/avatar-1.jpg">CM Failed</option>
-                                                <option value="avatars/avatar-2.jpg">Change implented in preprod</option>
-                                                <option value="avatars/avatar-3.jpg">Change implemented in prod</option>
-
-                                            </select>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div align="center">
-                                           
-                                         <%--   <a href="#" class="btn btn-secondary" align="center">Submit</a>--%>
+
+                                            <%--   <a href="#" class="btn btn-secondary" align="center">Submit</a>--%>
                                         </div>
 
                                     </div>
@@ -423,7 +422,7 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <br />
-                                       
+
                                     </div>
                                 </div>
                                 <hr />
@@ -431,12 +430,12 @@
 
 
                         </div>
-                        
+
                         <div class="row mb-7">
 
                             <div class="col-lg-1 mb-7"></div>
                             <div class="col-lg-11 mb-7" style="height: 400px; padding-left: 0;">
-                               
+
                                 <h4 class="mb-3 ml-1 mt-3">Comments</h4>
                                 <div class="card h-100">
 
@@ -483,36 +482,36 @@
                                         <a href="#" class="btn btn-secondary" align="center">Comment</a>
                                     </div>
                                 </div>
-                           
+
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer mt-5">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
-                     <button type="button" class="btn btn-secondary" id="btnDownload">Download</button>
-                    <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal" data-toggle="modal" data-target="#mdlSavedChanges">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
+                        <button type="button" class="btn btn-secondary" id="btnDownload">Download</button>
+                        <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal" data-toggle="modal" data-target="#mdlSavedChanges">Save changes</button>
+                    </div>
                 </div>
-                </div>
-                
+
             </div>
         </div>
         <div class="modal fade" id="mdlSavedChanges" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Changes Saved</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                CM #302 has been marked as failed. User notified.
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>              
-              </div>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Changes Saved</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        CM #302 has been marked as failed. User notified.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
     </form>
 
