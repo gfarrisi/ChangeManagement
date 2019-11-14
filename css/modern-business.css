@@ -79,6 +79,13 @@ table {
     margin-bottom: 6%;
 }
 
+.gv{
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    text-align: center;
+}
+
 .viewRequest {
     text-align:center;
 }

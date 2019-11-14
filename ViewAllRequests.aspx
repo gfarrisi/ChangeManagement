@@ -1,42 +1,38 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="ViewAllRequests.aspx.cs" Inherits="Empty_Project_Template.ViewAllRequests" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Header" runat="server">
-     
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
-                    <a class="navbar-brand " href="#Home">
+        <a class="navbar-brand " href="#Home">
             <img src="T.png" alt="" width="40">
         </a>
-            <a class="navbar-brand" href="index.html">CRM Recruit: Change Management</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="AdminDashboard.aspx">Dashboard</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="AdminTools" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Tools
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                            <a class="dropdown-item" href="ViewAllRequests.aspx">View All</a>
-                            <a class="dropdown-item" href="NewRequestType.aspx">Add New Request Type</a>
-                            <a class="dropdown-item" href="ViewAllUsers.aspx">User Settings</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dima Dabbas
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                            <a class="dropdown-item" href="Login.aspx">Log Out</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        
+        <a class="navbar-brand" href="index.html">CRM Recruit: Change Management</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="AdminDashboard.aspx">Dashboard</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="AdminTools" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin Tools
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                        <a class="dropdown-item" href="ViewAllRequests.aspx">View All</a>
+                        <a class="dropdown-item" href="NewRequestType.aspx">Add New Request Type</a>
+                        <a class="dropdown-item" href="ViewAllUsers.aspx">User Settings</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dima Dabbas
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                        <a class="dropdown-item" href="Login.aspx">Log Out</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </nav>
-
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPH1" runat="server">
     <br />
@@ -146,7 +142,7 @@
                     <td>8/18/19</td>
                     <td class="viewRequest"><a href="CM.aspx"><i class='far fa-eye'></i></a></td>
                 </tr>
-                
+
                 <tr>
                     <th scope="row">CM1908</th>
                     <td>Megan Nyquist</td>
@@ -251,6 +247,40 @@
         </table>
         <button type="button" class="btn btnDownload">Download All</button>
     </div>
+    <form runat="server">
+        <div class="gv">
+            <asp:GridView ID="gvAllRequests" runat="server" CellPadding="4" ForeColor="#333333" AutoGenerateColumns="False" Width="1000px" AllowSorting="True">
+                <AlternatingRowStyle BackColor="White" />
+
+                <Columns>
+                    <asp:BoundField DataField="Cmid" HeaderText="CM ID" ReadOnly="true" />
+                    <asp:BoundField DataField="User" HeaderText="User" ReadOnly="true" />
+                    <asp:BoundField DataField="Admin" HeaderText="Admin" ReadOnly="true" />
+                    <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" />
+                    <asp:BoundField DataField="Type" HeaderText="Type" ReadOnly="true" />
+                    <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="true" />
+                    <asp:BoundField DataField="Date" HeaderText="Last Updated Date" ReadOnly="true" />
+                    <asp:TemplateField HeaderText="View Request" ItemStyle-HorizontalAlign="Center">
+                        <ItemTemplate>
+                            <asp:ImageButton ID="EyeButton" Width="20" Height="20" runat="server" ImageUrl="eye.png" OnClick="EyeButton_Click" />
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                    </asp:TemplateField>
+                </Columns>
+                <EditRowStyle BackColor="#7C6F57" />
+                <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+                <RowStyle BackColor="#E3EAEB" />
+                <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
+                <SortedAscendingCellStyle BackColor="#F8FAFA" />
+                <SortedAscendingHeaderStyle BackColor="#246B61" />
+                <SortedDescendingCellStyle BackColor="#D4DFE1" />
+                <SortedDescendingHeaderStyle BackColor="#15524A" />
+            </asp:GridView>
+        </div>
+    </form>
+
     <br />
     <br />
     <br />
