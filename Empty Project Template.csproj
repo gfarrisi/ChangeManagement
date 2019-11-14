@@ -133,6 +133,9 @@
     <Compile Include="NewCM.aspx.designer.cs">
       <DependentUpon>NewCM.aspx</DependentUpon>
     </Compile>
+    <Compile Include="RequestLibrary\Question.cs" />
+    <Compile Include="RequestLibrary\Request.cs" />
+    <Compile Include="RequestLibrary\RequestTypes.cs" />
     <Compile Include="SelectRequestType.aspx.cs">
       <DependentUpon>SelectRequestType.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -208,12 +211,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Request Library\RequestLibrary.csproj">
-      <Project>{459922b6-15f3-46d4-9ab4-d5ee178d5886}</Project>
-      <Name>RequestLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
