@@ -36,7 +36,6 @@
         </div>
 
     </nav>
-
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPH1" runat="server">
    
@@ -50,6 +49,7 @@
                 </span>
             </div>
         </div>
+
         <div style="overflow-y: scroll; height: 500px;">
             <table class="table table-bordered table-striped table-hover">
                 <thead class="thead-dark">
@@ -267,7 +267,42 @@
             </table>
         </div>
         <button onclick="exportTableToCSV('Requests.csv')" class="btn btnDownload mt-4">Export Table to CSV File</button>
+
     </div>
+    <form runat="server">
+        <div class="gv">
+            <asp:GridView ID="gvAllRequests" runat="server" CellPadding="4" ForeColor="#333333" AutoGenerateColumns="False" Width="1000px" AllowSorting="True">
+                <AlternatingRowStyle BackColor="White" />
+
+                <Columns>
+                    <asp:BoundField DataField="Cmid" HeaderText="CM ID" ReadOnly="true" />
+                    <asp:BoundField DataField="User" HeaderText="User" ReadOnly="true" />
+                    <asp:BoundField DataField="Admin" HeaderText="Admin" ReadOnly="true" />
+                    <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" />
+                    <asp:BoundField DataField="Type" HeaderText="Type" ReadOnly="true" />
+                    <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="true" />
+                    <asp:BoundField DataField="Date" HeaderText="Last Updated Date" ReadOnly="true" />
+                    <asp:TemplateField HeaderText="View Request" ItemStyle-HorizontalAlign="Center">
+                        <ItemTemplate>
+                            <asp:ImageButton ID="EyeButton" Width="20" Height="20" runat="server" ImageUrl="eye.png" OnClick="EyeButton_Click" />
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                    </asp:TemplateField>
+                </Columns>
+                <EditRowStyle BackColor="#7C6F57" />
+                <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+                <RowStyle BackColor="#E3EAEB" />
+                <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
+                <SortedAscendingCellStyle BackColor="#F8FAFA" />
+                <SortedAscendingHeaderStyle BackColor="#246B61" />
+                <SortedDescendingCellStyle BackColor="#D4DFE1" />
+                <SortedDescendingHeaderStyle BackColor="#15524A" />
+            </asp:GridView>
+        </div>
+    </form>
+
     <br />
     <br />
     <br />

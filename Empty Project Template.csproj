@@ -65,6 +65,7 @@
     <Content Include="css\dashboard.css" />
     <Content Include="css\modern-business.css" />
     <Content Include="css\footer-distributed-with-address-and-phones.css" />
+    <Content Include="eye.png" />
     <Content Include="gulpfile.js" />
     <Content Include="js\contact_me.js" />
     <Content Include="js\dashboard.js" />
