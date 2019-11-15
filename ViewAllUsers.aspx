@@ -51,193 +51,34 @@
                     </span>
                 </div>
             </div>
-            <div style="overflow-y: scroll; height: 500px; ">
-                <table class="table table-bordered table-striped table-hover" >
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">User  <i class="fas fa-sort"></i></th>
-                            <th scope="col">College  <i class="fas fa-sort"></i></th>
-                            <th scope="col">Created Date  <i class="fa fa-sort"></i></th>
-                            <th scope="col">Deactivate User</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Matthew Schillizzi</th>
-                            <td>Boyer</td>
-                            <td>10/28/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Sandy James</th>
-                            <td>Boyer</td>
-                            <td>10/28/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Trevor Hinkle</th>
-                            <td>Boyer</td>
-                            <td>10/28/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Jemin Patel</th>
-                            <td>CPH</td>
-                            <td>10/28/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Philip Riesch</th>
-                            <td>CST</td>
-                            <td>10/24/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Tristin Carmichael</th>
-                            <td>CST</td>
-                            <td>10/24/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Megan Nyquist</th>
-                            <td>CST</td>
-                            <td>10/24/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Lori Bailey</th>
-                            <td>EDUC</td>
-                            <td>10/24/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Rahel Teklegiorgis</th>
-                            <td>EDUC</td>
-                            <td>10/24/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">ENGR - Colleen Baillie</th>
-                            <td>CPH</td>
-                            <td>10/24/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Liz Windhaus</th>
-                            <td>ENGR</td>
-                            <td>10/21/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Erika Clemons</th>
-                            <td>Global</td>
-                            <td>10/21/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Owen Jones</th>
-                            <td>Global</td>
-                            <td>10/21/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Sam Kelley</th>
-                            <td>Global</td>
-                            <td>10/21/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Michael Toner</th>
-                            <td>GRAD</td>
-                            <td>10/21/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Sabriya McWilliams</th>
-                            <td>INTL</td>
-                            <td>10/21/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Elle Butler</th>
-                            <td>INTL</td>
-                            <td>10/21/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Kaitlin Pierce</th>
-                            <td>KLEIN</td>
-                            <td>10/21/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Stefan Schechs</th>
-                            <td>LKSOM</td>
-                            <td>10/21/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Neal Conley</th>
-                            <td>NDEG</td>
-                            <td>10/21/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Joan Hankins</th>
-                            <td>PHARM</td>
-                            <td>10/21/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Grace Ahn Klensin</th>
-                            <td>TYL</td>
-                            <td>10/18/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Lauren O'Neill</th>
-                            <td>TYL</td>
-                            <td>10/18/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Charles Musgrove</th>
-                            <td>UG</td>
-                            <td>10/18/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Jaime Martino</th>
-                            <td>UG</td>
-                            <td>10/18/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Dima Dabbas</th>
-                            <td>CRM</td>
-                            <td>10/18/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Ferria Amzovski</th>
-                            <td>CRM</td>
-                            <td>10/18/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Helene Houser</th>
-                            <td>CRM</td>
-                            <td>10/18/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Kristi Morgridge</th>
-                            <td>CRM</td>
-                            <td>10/18/19</td>
-                            <td class="viewRequest"><i class="fas fa-trash-alt"></i></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div style="overflow-y: scroll; height: 500px;">
+                <div class="gv">
+                    <asp:GridView ID="gvAllUsers" runat="server" CellPadding="4" ForeColor="#333333" AutoGenerateColumns="False" Width="1000px" AllowSorting="True">
+                        <AlternatingRowStyle BackColor="White" />
+
+                        <Columns>
+                            <asp:BoundField DataField="User" HeaderText="User" ReadOnly="true" />
+                            <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" />
+                            <asp:BoundField DataField="Date" HeaderText="Last Updated Date" ReadOnly="true" />
+                            <asp:TemplateField HeaderText="Deactivate User" ItemStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="EyeButton" Width="20" Height="20" runat="server" ImageUrl="cancel.jpg" OnClick="EyeButton_Click" />
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                            </asp:TemplateField>
+                        </Columns>
+                        <EditRowStyle BackColor="#7C6F57" />
+                        <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#E3EAEB" />
+                        <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#F8FAFA" />
+                        <SortedAscendingHeaderStyle BackColor="#246B61" />
+                        <SortedDescendingCellStyle BackColor="#D4DFE1" />
+                        <SortedDescendingHeaderStyle BackColor="#15524A" />
+                    </asp:GridView>
+                </div>
             </div>
             <div class="container mt-4">
                 <button type="button" onclick="exportTableToCSV('Users.csv')" class="btn btnDownload">Download All Users as CSV</button>
