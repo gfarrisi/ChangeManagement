@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminDashboard.aspx" />
+    <Content Include="cancel.jpg" />
     <Content Include="CM.aspx" />
     <Content Include="css\cm-request.css" />
     <Content Include="css\dashboard.css" />

@@ -38,7 +38,7 @@
     </nav>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPH1" runat="server">
-   
+
     <div class="container mt-5" style="height: 100%;">
         <h2 id="requestHistory">Request History</h2>
         <div class="card mb-4 w-50" id="searchBar">
@@ -51,257 +51,44 @@
         </div>
 
         <div style="overflow-y: scroll; height: 500px;">
-            <table class="table table-bordered table-striped table-hover">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">CM ID  <i class="fas fa-sort"></i></th>
-                        <th scope="col">User  <i class="fas fa-sort"></i></th>
-                        <th scope="col">Admin  <i class="fas fa-sort"></i></th>
-                        <th scope="col">College  <i class="fas fa-sort"></i></th>
-                        <th scope="col">Type  <i class="fas fa-sort"></i></th>
-                        <th scope="col">Status  <i class="fas fa-sort"></i></th>
-                        <th scope="col">Last Updated Date  <i class="fa fa-sort"></i></th>
-                        <th scope="col">View Request</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">CM1900</th>
-                        <td>Jane Doe</td>
-                        <td>Kristi Morgridge</td>
-                        <td>CLA</td>
-                        <td>Systems View</td>
-                        <td>Complete</td>
-                        <td>8/18/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">CM1901</th>
-                        <td>Sandy James</td>
-                        <td>Kristi Morgridge</td>
-                        <td>Boyer</td>
-                        <td>Entity</td>
-                        <td>Not Assigned</td>
-                        <td>10/08/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
+            <form runat="server">
+                <div class="gv">
+                    <asp:GridView ID="gvAllRequests" runat="server" CellPadding="4" ForeColor="#333333" AutoGenerateColumns="False" Width="1000px" AllowSorting="True">
+                        <AlternatingRowStyle BackColor="White" />
 
-                    </tr>
-                    <tr>
-                        <th scope="row">CM1902</th>
-                        <td>Sam Kelly</td>
-                        <td>Dima Dabbas</td>
-                        <td>Global</td>
-                        <td>Forms</td>
-                        <td>Preprod</td>
-                        <td>10/24/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">CM1903</th>
-                        <td>Lauren O'Neil</td>
-                        <td>Dima Dabbas</td>
-                        <td>Tyler</td>
-                        <td>Field</td>
-                        <td>Complete</td>
-                        <td>9/28/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">CM1904</th>
-                        <td>Jaime Martino</td>
-                        <td>Kristi Morgridge</td>
-                        <td>UG</td>
-                        <td>Activity Codes</td>
-                        <td>Assigned</td>
-                        <td>9/22/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">CM1905</th>
-                        <td>Jane Doe</td>
-                        <td>Dima Dabbas</td>
-                        <td>CLA</td>
-                        <td>Work Flow</td>
-                        <td>Preprod</td>
-                        <td>9/4/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">CM1906</th>
-                        <td>Jane Doe</td>
-                        <td>Kristi Morgridge</td>
-                        <td>CLA</td>
-                        <td>Activity Codes</td>
-                        <td>Assigned</td>
-                        <td>9/22/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">CM1907</th>
-                        <td>Helene Houser</td>
-                        <td>Kristi Morgridge</td>
-                        <td>CRM</td>
-                        <td>Workflow</td>
-                        <td>Complete</td>
-                        <td>8/18/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-
-                    </tr>
-
-                    <tr>
-                        <th scope="row">CM1908</th>
-                        <td>Megan Nyquist</td>
-                        <td>Dima Dabbas</td>
-                        <td>CST</td>
-                        <td>System Views</td>
-                        <td>Failed</td>
-                        <td>8/8/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">CM1909</th>
-                        <td>Jane Doe</td>
-                        <td>Dima Dabbas</td>
-                        <td>CLA</td>
-                        <td>Field</td>
-                        <td>Complete</td>
-                        <td>9/28/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">CM1910</th>
-                        <td>Sam Kelly</td>
-                        <td>Dima Dabbas</td>
-                        <td>Global</td>
-                        <td>Forms</td>
-                        <td>Preprod</td>
-                        <td>10/24/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">CM1911</th>
-                        <td>Megan Nyquist</td>
-                        <td>Dima Dabbas</td>
-                        <td>CST</td>
-                        <td>System Views</td>
-                        <td>Failed</td>
-                        <td>8/8/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">CM1912</th>
-                        <td>Sam Kelly</td>
-                        <td>Dima Dabbas</td>
-                        <td>Global</td>
-                        <td>Forms</td>
-                        <td>Preprod</td>
-                        <td>10/24/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">CM1913</th>
-                        <td>Jane Doe</td>
-                        <td>Dima Dabbas</td>
-                        <td>CLA</td>
-                        <td>Forms</td>
-                        <td>Preprod</td>
-                        <td>10/24/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">CM1914</th>
-                        <td>Sandy James</td>
-                        <td>Kristi Morgridge</td>
-                        <td>Boyer</td>
-                        <td>Entity</td>
-                        <td>Not Assigned</td>
-                        <td>10/08/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">CM1915</th>
-                        <td>Lauren O'Neil</td>
-                        <td>Dima Dabbas</td>
-                        <td>Tyler</td>
-                        <td>Field</td>
-                        <td>Complete</td>
-                        <td>9/28/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">CM1916</th>
-                        <td>Jane Doe</td>
-                        <td>Kristi Morgridge</td>
-                        <td>CLA</td>
-                        <td>Entity</td>
-                        <td>Not Assigned</td>
-                        <td>10/08/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">CM1917</th>
-                        <td>Sam Kelly</td>
-                        <td>Dima Dabbas</td>
-                        <td>Global</td>
-                        <td>Forms</td>
-                        <td>Preprod</td>
-                        <td>10/24/19</td>
-                        <td class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></td>
-
-                    </tr>
-                </tbody>
-            </table>
+                        <Columns>
+                            <asp:BoundField DataField="Cmid" HeaderText="CM ID" ReadOnly="true" />
+                            <asp:BoundField DataField="User" HeaderText="User" ReadOnly="true" />
+                            <asp:BoundField DataField="Admin" HeaderText="Admin" ReadOnly="true" />
+                            <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" />
+                            <asp:BoundField DataField="Type" HeaderText="Type" ReadOnly="true" />
+                            <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="true" />
+                            <asp:BoundField DataField="Date" HeaderText="Last Updated Date" ReadOnly="true" />
+                            <asp:TemplateField HeaderText="View Request" ItemStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="EyeButton" Width="20" Height="20" runat="server" ImageUrl="eye.png" OnClick="EyeButton_Click" />
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                            </asp:TemplateField>
+                        </Columns>
+                        <EditRowStyle BackColor="#7C6F57" />
+                        <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#E3EAEB" />
+                        <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#F8FAFA" />
+                        <SortedAscendingHeaderStyle BackColor="#246B61" />
+                        <SortedDescendingCellStyle BackColor="#D4DFE1" />
+                        <SortedDescendingHeaderStyle BackColor="#15524A" />
+                    </asp:GridView>
+                </div>
+            </form>
         </div>
         <button onclick="exportTableToCSV('Requests.csv')" class="btn btnDownload mt-4">Export Table to CSV File</button>
 
     </div>
-    <form runat="server">
-        <div class="gv">
-            <asp:GridView ID="gvAllRequests" runat="server" CellPadding="4" ForeColor="#333333" AutoGenerateColumns="False" Width="1000px" AllowSorting="True">
-                <AlternatingRowStyle BackColor="White" />
 
-                <Columns>
-                    <asp:BoundField DataField="Cmid" HeaderText="CM ID" ReadOnly="true" />
-                    <asp:BoundField DataField="User" HeaderText="User" ReadOnly="true" />
-                    <asp:BoundField DataField="Admin" HeaderText="Admin" ReadOnly="true" />
-                    <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" />
-                    <asp:BoundField DataField="Type" HeaderText="Type" ReadOnly="true" />
-                    <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="true" />
-                    <asp:BoundField DataField="Date" HeaderText="Last Updated Date" ReadOnly="true" />
-                    <asp:TemplateField HeaderText="View Request" ItemStyle-HorizontalAlign="Center">
-                        <ItemTemplate>
-                            <asp:ImageButton ID="EyeButton" Width="20" Height="20" runat="server" ImageUrl="eye.png" OnClick="EyeButton_Click" />
-                        </ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                    </asp:TemplateField>
-                </Columns>
-                <EditRowStyle BackColor="#7C6F57" />
-                <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-                <RowStyle BackColor="#E3EAEB" />
-                <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
-                <SortedAscendingCellStyle BackColor="#F8FAFA" />
-                <SortedAscendingHeaderStyle BackColor="#246B61" />
-                <SortedDescendingCellStyle BackColor="#D4DFE1" />
-                <SortedDescendingHeaderStyle BackColor="#15524A" />
-            </asp:GridView>
-        </div>
-    </form>
 
     <br />
     <br />
