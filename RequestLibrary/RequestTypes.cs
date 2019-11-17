@@ -15,6 +15,9 @@ namespace Empty_Project_Template.RequestLibrary
             createWorkflow();
             createEntity();
             createField();
+            createOptionSet();
+            createRelationships();
+            createSystemViews();
             createActivityCodes();
             ScreenshotsAndSubmission();
 
@@ -220,7 +223,85 @@ namespace Empty_Project_Template.RequestLibrary
             requestTypes.Add(requestBusinessRules);
 
         }
+        public void createOptionSet()
+        {
+            int fieldID = 1008;
+            List<Question> questionListField = new List<Question>();
+            List<string> options = new List<string>();
 
+            List<String> options1OptionSet = new List<string>();
+            options1OptionSet.Add("Simple");
+            options1OptionSet.Add("Calculated");
+            Question q1OptionSet = new Question("Field Type", "1", "DropDownList", options1OptionSet);
+
+            Question q2OptionSet = new Question("Default", "2", "TextBox", options);
+
+            List<String> options3OptionSet = new List<string>();
+            options3OptionSet.Add("YES");
+            options3OptionSet.Add("NO (New Option Set)");
+            Question q3OptionSet = new Question("Use Existing Option Set?", "3", "RadioButtonList", options3OptionSet);
+
+            questionListField.Add(q1OptionSet);
+            questionListField.Add(q2OptionSet);
+            questionListField.Add(q3OptionSet);
+
+            Request requestField = new Request(questionListField, fieldID);
+            requestTypes.Add(requestField);
+        }
+        public void createRelationships()
+        {
+            int fieldID = 1009;
+            List<Question> questionListField = new List<Question>();
+            List<string> options = new List<string>();
+
+            List<String> options1Relationships = new List<string>();
+            options1Relationships.Add("1:N Relationship");
+            options1Relationships.Add("N:1 Relationship");
+            options1Relationships.Add("N:N Relationship");
+            Question q1Relationships = new Question("Type of Relationship?", "1", "RadioButtonList", options1Relationships);
+
+            Question q2Relationships = new Question("Entity", "2", "TextBox", options);
+            Question q3Relationships = new Question("Related Entity", "3", "TextBox", options);
+            Question q4Relationships = new Question("Name", "4", "TextBox", options);
+            Question q5Relationships = new Question("Dispaly Name", "5", "TextBox", options);
+            Question q6Relationships = new Question("Description", "6", "TextBox", options);
+
+            List<String> options7Relationships = new List<string>();
+            options7Relationships.Add("Parental");
+            options7Relationships.Add("Referential");
+            options7Relationships.Add("Referential, Restrict Delete");
+            options7Relationships.Add("Configurable Cascading");
+            Question q7Relationships = new Question("Type of Behavior", "7", "DropDownList", options7Relationships);
+            
+            Question q8Relationships = new Question("Other", "8", "TextBox", options);
+            
+            questionListField.Add(q1Relationships);
+            questionListField.Add(q2Relationships);
+            questionListField.Add(q3Relationships);
+            questionListField.Add(q4Relationships);
+            questionListField.Add(q5Relationships);
+            questionListField.Add(q6Relationships);
+            questionListField.Add(q7Relationships);
+            questionListField.Add(q8Relationships);
+
+            Request requestField = new Request(questionListField, fieldID);
+            requestTypes.Add(requestField);
+        }
+        public void createSystemViews()
+        {
+            int fieldID = 1011;
+            List<Question> questionListField = new List<Question>();
+            List<string> options = new List<string>();
+
+            Question q1SystemViews = new Question("Entity", "1", "TextBox", options);
+            Question q2SystemViews = new Question("Entity", "1", "TextBox", options);
+
+            questionListField.Add(q1SystemViews);
+            questionListField.Add(q2SystemViews);
+
+            Request requestField = new Request(questionListField, fieldID);
+            requestTypes.Add(requestField);
+        }
         public void createActivityCodes()
         {
             List<string> options = new List<string>(); // Default for TextBox controls that don't require options
