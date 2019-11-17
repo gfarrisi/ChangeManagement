@@ -15,8 +15,8 @@ namespace Empty_Project_Template
 
             if (!IsPostBack)
             {
-                
-                int RequestID = 1001;
+
+                int RequestID = Convert.ToInt32(Session["SelectedRequestType"].ToString());
                 RequestTypes types = new RequestTypes();
                 foreach(Request requestType in types.requestTypes)
                 {
@@ -28,72 +28,57 @@ namespace Empty_Project_Template
                             string question_control = question.Question_Control;
                             string question_order = question.Question_Order;
                             List<string> question_options = question.Question_Options;
+                     
+                            Label lblText = new Label();
+                            lblText.Text = question_text;
+                            lblText.CssClass = "form-text";
+                            panelCM.Controls.Add(lblText);
 
-                            Response.Write("<script>alert('" + question.Question_Text + "," + question_control + "," + question_order + "');</script>");
+                            if (question_control == "RadioButtonList")
+                            {
+                                foreach (string option in question_options)
+                                {
+                                    RadioButton rbOption = new RadioButton();
+                                    rbOption.Text = option;
+                                    rbOption.CssClass = "form-check";
+                                    panelCM.Controls.Add(rbOption);
+                                }
+                            }
+                            else if (question_control == "TextBox")
+                            {
+                                TextBox txtAnswer = new TextBox();
+                                txtAnswer.CssClass = "form-control";
+                                panelCM.Controls.Add(txtAnswer);
+                            }
+                            else if (question_control == "DropDownList")
+                            {
+                                DropDownList ddlOptions = new DropDownList();
+                                ddlOptions.CssClass = "dropdown";
+
+                                foreach (string option in question_options)
+                                {
+                                    ddlOptions.Items.Add(option);                           
+                                    panelCM.Controls.Add(ddlOptions);
+                                }
+                                
+                            }
+                                                                                                     
                         }
                     }
-                    
-                   
+
+
+
                 }
-
-                
-
-                lbl1.Text = "Workflow/Process";
-                lbl2.Text = "Entity";
-                lbl3.Text = "Description";
-                rd1.Visible = true;
-                rd2.Visible = true;
-                rd3.Visible = true;
-                rd4.Visible = true;
+             
             }
             
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            txtField1.Value = string.Empty;
-            txtField2.Value = string.Empty;
-            txtField3.Value = string.Empty;
-            Response.Write("<script>alert('Your new CM has been submitted! You will receive an email confirmation when the request is assigned.');</script>");
+
         }
 
-        protected void ddlRequestType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlRequestType.SelectedValue == "Workflow")
-            {
-                rd1.Visible = true;
-                rd2.Visible = true;
-                rd3.Visible = true;
-                rd4.Visible = true;
-
-                lbl1.Text = "Workflow/Process";
-                lbl2.Text = "Entity";
-                lbl3.Text = "Description";
-           
-            }
-            else if (ddlRequestType.SelectedValue == "Entity")
-            {
-                rd1.Visible = false;
-                rd2.Visible = false;
-                rd3.Visible = false;
-                rd4.Visible = false;
-
-                lbl1.Text = "Display";
-                lbl2.Text = "Plural";
-                lbl3.Text = "Name";
-
-            }
-            else
-            {
-                rd1.Visible = false;
-                rd2.Visible = false;
-                rd3.Visible = false;
-                rd4.Visible = false;
-
-                lbl1.Text = "Entity";
-                lbl2.Text = "Business Role";
-                lbl3.Text = "Description";
-            }
-        }
+        
     }
 }
