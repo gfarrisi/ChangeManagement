@@ -16,14 +16,11 @@ namespace Empty_Project_Template.RequestLibrary
             createWorkflowSchedule();
             createEntity();
             createField();
-<<<<<<< HEAD
             createOptionSet();
             createRelationships();
             createSystemViews();
-=======
             createBusinessRules();
             createSecurityRoles();
->>>>>>> ced0b39e36f3954d70cf6cf9487584d585431eec
             createActivityCodes();
             ScreenshotsAndSubmission();
 
