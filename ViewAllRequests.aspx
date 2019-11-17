@@ -53,8 +53,8 @@
         <div style="overflow-y: scroll; height: 500px;">
             <form runat="server">
                 <div class="gv">
-                    <asp:GridView ID="gvAllRequests" runat="server" CellPadding="4" ForeColor="#333333" AutoGenerateColumns="False" Width="1000px" AllowSorting="True">
-                        <AlternatingRowStyle BackColor="White" />
+                    <asp:GridView ID="gvAllRequests" runat="server" CellPadding="3" ForeColor="Black" AutoGenerateColumns="False" Width="1000px" AllowSorting="True" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical">
+                        <AlternatingRowStyle BackColor="#CCCCCC" />
 
                         <Columns>
                             <asp:BoundField DataField="Cmid" HeaderText="CM ID" ReadOnly="true" />
@@ -66,21 +66,19 @@
                             <asp:BoundField DataField="Date" HeaderText="Last Updated Date" ReadOnly="true" />
                             <asp:TemplateField HeaderText="View Request" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
-                                    <asp:ImageButton ID="EyeButton" Width="20" Height="20" runat="server" ImageUrl="eye.png" OnClick="EyeButton_Click" />
+                                    <a class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></a>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
                             </asp:TemplateField>
                         </Columns>
-                        <EditRowStyle BackColor="#7C6F57" />
-                        <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                        <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                        <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-                        <RowStyle BackColor="#E3EAEB" />
-                        <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
-                        <SortedAscendingCellStyle BackColor="#F8FAFA" />
-                        <SortedAscendingHeaderStyle BackColor="#246B61" />
-                        <SortedDescendingCellStyle BackColor="#D4DFE1" />
-                        <SortedDescendingHeaderStyle BackColor="#15524A" />
+                        <FooterStyle BackColor="#CCCCCC" />
+                        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                        <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                        <SortedAscendingHeaderStyle BackColor="#808080" />
+                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                        <SortedDescendingHeaderStyle BackColor="#383838" />
                     </asp:GridView>
                 </div>
             </form>
@@ -380,8 +378,9 @@
         </div>
     </div>
 
-
-    <script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js" integrity="sha256-uC1JMW5e1U5D28+mXFxzTz4SSMCywqhxQIodqLECnfU=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
         function exportTableToCSV(filename) {
             var csv = [];
             var rows = document.querySelectorAll("table tr");
@@ -423,6 +422,10 @@
             // Click download link
             downloadLink.click();
         }
+
+        $(document).ready(function () {
+            $("#gvAllRequests").tablesorter();
+        });
     </script>
 
 

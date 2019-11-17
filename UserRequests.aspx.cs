@@ -90,7 +90,7 @@ namespace Empty_Project_Template
 
         protected void EyeButton_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Redirect("NewCM.aspx");
+            Response.Redirect("CM.aspx");
         }
     }
 }

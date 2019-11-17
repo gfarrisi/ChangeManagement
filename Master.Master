@@ -20,13 +20,12 @@
 
     <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
-      <link href="css/cm-request.css" rel="stylesheet">
-     <link href="css/dashboard.css" rel="stylesheet">
-    
+    <link href="css/cm-request.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
+
 
     <link href="css/cm-request.css" rel="stylesheet">
-   <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
-
+    <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
 </head>
 <body>
 
@@ -46,9 +45,9 @@
     <footer class="footer-distributed custom-footer">
 
         <div class="footer-left">
-                    <a class="navbar-brand " href="#Home">
-            <img src="T.png" alt="" width="40">
-        </a>
+            <a class="navbar-brand " href="#Home">
+                <img src="T.png" alt="" width="40">
+            </a>
 
 
 
@@ -59,10 +58,11 @@
 
             <div>
                 <i class="fa fa-map-marker"></i>
-                <p><span>Carnell Hall, 9H </span>
+                <p>
+                    <span>Carnell Hall, 9H </span>
                     <span>Student Competency Center</span>
                     <span>1803 N Broad Street</span>
-                    <span> Philadelphia, Pennsylvania</span>
+                    <span>Philadelphia, Pennsylvania</span>
 
                 </p>
             </div>
@@ -85,7 +85,6 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-
 </body>
 
 </html>
