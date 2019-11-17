@@ -7,12 +7,38 @@ namespace Empty_Project_Template.RequestLibrary
 {
     public class RequestTypes
     {
- 
+
         public List<Request> requestTypes = new List<Request>();
 
         public RequestTypes()
         {
             createWorkflow();
+            createEntity();
+            createField();
+            createActivityCodes();
+            ScreenshotsAndSubmission();
+
+        }
+
+        public void ScreenshotsAndSubmission()
+        {
+            List<string> options = new List<string>(); // Default for TextBox controls that don't require options
+
+            int ScreenshotAndSubmissionID = 9999;
+            List<Question> questionListScreenshotAndSubmission = new List<Question>();
+
+            Question q1Screenshot = new Question("Detailed Description of Change", "1", "TextBox", options);
+            Question q2Screenshot = new Question("Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots.", "2", "TextBox", options);
+            Question q3Screenshot = new Question("Desired Date for Move", "3", "TextBox", options);
+            Question q4Screenshot = new Question("Questions/Comments", "4", "TextBox", options);
+
+            questionListScreenshotAndSubmission.Add(q1Screenshot);
+            questionListScreenshotAndSubmission.Add(q2Screenshot);
+            questionListScreenshotAndSubmission.Add(q3Screenshot);
+            questionListScreenshotAndSubmission.Add(q4Screenshot);
+
+            Request screenshotAndSubmission = new Request(questionListScreenshotAndSubmission, ScreenshotAndSubmissionID);
+            requestTypes.Add(screenshotAndSubmission);
         }
         public void createWorkflow()
         {
@@ -21,7 +47,7 @@ namespace Empty_Project_Template.RequestLibrary
             int workflowID = 1014;
             List<Question> questionListWorkflow = new List<Question>();
 
-            Question q1Workflow = new Question("Workflow/Process","1","TextBox", options);
+            Question q1Workflow = new Question("Workflow/Process", "1", "TextBox", options);
             Question q2Workflow = new Question("Entity", "2", "TextBox", options);
             Question q3Workflow = new Question("Description", "3", "TextBox", options);
 
@@ -60,9 +86,14 @@ namespace Empty_Project_Template.RequestLibrary
             Request requestWorkflow = new Request(questionListWorkflow, workflowID);
             requestTypes.Add(requestWorkflow);
 
+           
+        }
+        public void createEntity()
+        {
 
             int entityID = 1004;
             List<Question> questionListEntity = new List<Question>();
+            List<string> options = new List<string>();
 
             Question q1Entity = new Question("Display Name", "1", "TextBox", options);
             Question q2Entity = new Question("Plural Name", "2", "TextBox", options);
@@ -105,7 +136,7 @@ namespace Empty_Project_Template.RequestLibrary
             options6WorkflowSchedule.Add("Every X hours?");
             options6WorkflowSchedule.Add("Every X days?");
             options6WorkflowSchedule.Add("Every X weeks?");
-            Question q6WorkflowSchedule = new Question("Frequency", "6", "RadioButtonList", options5Workflow);
+            Question q6WorkflowSchedule = new Question("Frequency", "6", "RadioButtonList", options6WorkflowSchedule);
 
             questionListWorkflowSchedule.Add(q1WorkflowSchedule);
             questionListWorkflowSchedule.Add(q2WorkflowSchedule);
@@ -117,9 +148,12 @@ namespace Empty_Project_Template.RequestLibrary
             Request requestWorkflowSchedule = new Request(questionListWorkflowSchedule, workflowScheduleID);
             requestTypes.Add(requestWorkflowSchedule);
 
-
+        }
+        public void createField()
+        {
             int fieldID = 1005;
             List<Question> questionListField = new List<Question>();
+            List<string> options = new List<string>();
 
             Question q1Field = new Question("Display Name", "1", "TextBox", options);
             Question q2Field = new Question("Scheme Name", "2", "TextBox", options);
@@ -184,7 +218,28 @@ namespace Empty_Project_Template.RequestLibrary
 
             Request requestBusinessRules = new Request(questionListBusinessRules, businessRulesID);
             requestTypes.Add(requestBusinessRules);
-            
+
+        }
+
+        public void createActivityCodes()
+        {
+            List<string> options = new List<string>(); // Default for TextBox controls that don't require options
+
+            int workflowID = 1001;
+            List<Question> questionListActivityCodes = new List<Question>();
+
+            Question q1Workflow = new Question("Name", "1", "TextBox", options);
+            Question q2Workflow = new Question("Abbreviation", "2", "TextBox", options);
+            Question q3Workflow = new Question("Banner ADMR Code (N/A if not needed)", "3", "TextBox", options);  
+            Question q4Workflow = new Question("Display Order", "4", "TextBox", options);
+
+            questionListActivityCodes.Add(q1Workflow);
+            questionListActivityCodes.Add(q2Workflow);
+            questionListActivityCodes.Add(q3Workflow);
+            questionListActivityCodes.Add(q4Workflow);
+
+            Request requestWorkflow = new Request(questionListActivityCodes, workflowID);
+            requestTypes.Add(requestWorkflow);
 
         }
 
