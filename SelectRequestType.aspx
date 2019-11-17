@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
 
-    <form id="form1" runat="server">
+   
 
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
 
@@ -40,10 +40,11 @@
 
         </nav>
 
-    </form>
+   
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server" class="body-100">
+    <form id="form1" runat="server">
     <br />
     <br />
     <br />
@@ -51,137 +52,18 @@
 
         <div class="row">
             <div class="row">
+                <asp:Repeater ID="Repeater1" runat="server">
+                    <ItemTemplate>
 
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn-primary">
-                        <button id="btnActivityCodes" class="btn btn-dark p-4">Activity Codes</button>
-                    </div>
+                        <div class="col-lg-3 col-md-6 mb-5">
+                            <div class="card btn-primary">
+                                 <asp:HiddenField runat="server" ID="hfSelectRequestType" Value='<%# DataBinder.Eval(Container.DataItem, "RequestID") %>' />
+                                <asp:Button ID="btnRequestType" OnClick="btnRequestType_Click" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Name") %>' CssClass="btn btn-dark p-5"/>
+                            </div>
+                        </div>
+                    </ItemTemplate>
 
-                </div>
-
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn-primary">
-
-                        <button id="btnBusinessRules" class="btn btn-dark p-4">Business Rules</button>
-
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn-primary">
-
-                        <button id="btnEmailTemplates" class="btn btn-dark p-4">Email Templates</button>
-
-
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn-primary">
-
-                        <button id="btnEntity" class="btn btn-dark p-4">Entity</button>
-
-
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn-primary">
-                        <button id="btnField" class="btn btn-dark p-4">Field</button>
-
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn-primary">
-
-
-                        <button id="btnForms" class="btn btn-dark p-4">Forms</button>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn-primary">
-                        <button id="btnJavaScript" class="btn btn-dark p-4">JavaScript on WFE</button>
-
-                    </div>
-                </div>
-
-
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn-primary">
-
-                        <button id="btnOptionSets" class="btn btn-dark p-4">Option Sets</button>
-
-
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn-primary">
-
-
-                        <button id="btnRelationships" class="btn btn-dark p-4">Relationships</button>
-
-                    </div>
-                </div>
-
-
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn-primary">
-
-                        <button id="btnSecurityRoles" class="btn btn-dark p-4">Security Roles</button>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn-primary">
-
-                        <button id="btnSystemViews" class="btn btn-dark p-4">System Views</button>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn-primary">
-
-                        <button id="btnNewUser" class="btn btn-dark p-4">New User/Modify User</button>
-
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn-primary">
-
-                        <button id="btnWebResources" class="btn btn-dark p-4">Web Resources</button>
-
-                    </div>
-                </div>
-
-
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn-primary">
-
-                        <button id="btnWorkflow" class="btn btn-dark p-4">Workflow</button>
-
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn-primary">
-
-                        <button id="btnWorkflowSchedule" class="btn btn-dark p-4">Workflow Schedule</button>
-
-                    </div>
-                </div>
-
-
-
-
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <div class="card btn-primary">
-
-                      <button id="btnOther" class="btn btn-dark p-4">Other</button>
-
-                    </div>
-                </div>
-
+                </asp:Repeater>
 
 
             </div>
@@ -192,5 +74,5 @@
 
     </div>
     <!-- /.container -->
-
+    </form>
 </asp:Content>
