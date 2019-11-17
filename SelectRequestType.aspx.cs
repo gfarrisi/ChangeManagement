@@ -32,6 +32,7 @@ namespace Empty_Project_Template
                 values.Add(new SelectRequestType("Workflow", 1014));
                 values.Add(new SelectRequestType("Workflow Schedule", 1015));
                 values.Add(new SelectRequestType("Other", 1016));
+                values.Add(new SelectRequestType("Email Templates", 1017));
 
                 Repeater1.DataSource = values;
                 Repeater1.DataBind();
