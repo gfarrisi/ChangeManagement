@@ -13,8 +13,11 @@ namespace Empty_Project_Template.RequestLibrary
         public RequestTypes()
         {
             createWorkflow();
+            createWorkflowSchedule();
             createEntity();
             createField();
+            createBusinessRules();
+            createSecurityRoles();
             createActivityCodes();
             ScreenshotsAndSubmission();
 
@@ -115,9 +118,11 @@ namespace Empty_Project_Template.RequestLibrary
             questionListEntity.Add(q6Entity);
 
             Request requestEntity = new Request(questionListEntity, entityID);
-            requestTypes.Add(requestEntity);
+            requestTypes.Add(requestEntity);        
+        }
 
-
+        public void createWorkflowSchedule()
+        {
             int workflowScheduleID = 1015;
             List<Question> questionListWorkflowSchedule = new List<Question>();
 
@@ -147,8 +152,8 @@ namespace Empty_Project_Template.RequestLibrary
 
             Request requestWorkflowSchedule = new Request(questionListWorkflowSchedule, workflowScheduleID);
             requestTypes.Add(requestWorkflowSchedule);
-
         }
+
         public void createField()
         {
             int fieldID = 1005;
@@ -188,6 +193,11 @@ namespace Empty_Project_Template.RequestLibrary
 
             Request requestField = new Request(questionListField, fieldID);
             requestTypes.Add(requestField);
+        }
+
+        public void createSecurityRoles()
+        {
+            List<string> options = new List<string>(); // Default for TextBox controls that don't require options
 
             int securityRolesID = 1010;
             List<Question> questionListSecurityRoles = new List<Question>();
@@ -204,6 +214,11 @@ namespace Empty_Project_Template.RequestLibrary
 
             Request requestSecurityRoles = new Request(questionListSecurityRoles, securityRolesID);
             requestTypes.Add(requestSecurityRoles);
+        }
+
+        public void createBusinessRules()
+        {
+            List<string> options = new List<string>(); // Default for TextBox controls that don't require options
 
             int businessRulesID = 1002;
             List<Question> questionListBusinessRules = new List<Question>();
@@ -241,6 +256,97 @@ namespace Empty_Project_Template.RequestLibrary
             Request requestWorkflow = new Request(questionListActivityCodes, workflowID);
             requestTypes.Add(requestWorkflow);
 
+        }
+
+        public void createEmailTemplates()
+        {
+            List<string> options = new List<string>(); // Default for TextBox controls that don't require options
+            int emailtemplatesID = 1017;
+
+            List<Question> questionListEmailTemplates = new List<Question>();
+
+            Question q1EmailTemplates = new Question("Template", "1", "TextBox", options);
+            Question q2EmailTemplates = new Question("Template", "2", "TextBox", options);
+            Question q3EmailTemplates = new Question("If used in a workflow, please list workflow name.", "3", "TextBox", options);
+            Question q4EmailTemplates = new Question("Description", "4", "TextBox", options);
+
+            List<String> options5EmailTemplates = new List<string>();
+            options5EmailTemplates.Add("Yes");
+            options5EmailTemplates.Add("No");
+            Question q5EmailTemplates = new Question("Do you need to add a new Activity Code related to this template?", "5", "RadioButtonList", options5EmailTemplates);
+
+            questionListEmailTemplates.Add(q1EmailTemplates);
+            questionListEmailTemplates.Add(q2EmailTemplates);
+            questionListEmailTemplates.Add(q3EmailTemplates);
+            questionListEmailTemplates.Add(q4EmailTemplates);
+            questionListEmailTemplates.Add(q5EmailTemplates);
+
+            Request requestEmailtemplates = new Request(questionListEmailTemplates, emailtemplatesID);
+            requestTypes.Add(requestEmailtemplates);
+
+        }
+
+        public void createNewUserModifyUser()
+        {
+            List<string> options = new List<string>(); // Default for TextBox controls that don't require options
+            int newUserModifyUserID = 1012;
+
+            List<Question> questionListNewUserModifyUser = new List<Question>();
+
+            Question q1NewUserModifyUser = new Question("To add a new user or modify an existing user, please submit a TU Remedy/TU Help Ticket at TUhelp.temple.edu", "1", "TextBox", options);
+
+            questionListNewUserModifyUser.Add(q1NewUserModifyUser);
+
+            Request requestNewUserModifyUser = new Request(questionListNewUserModifyUser, newUserModifyUserID);
+            requestTypes.Add(requestNewUserModifyUser);
+        }
+
+        public void createWebResources()
+        {
+            List<string> options = new List<string>(); // Default for TextBox controls that don't require options
+            int webResourcesID = 1013;
+
+            List<Question> questionListWebResources = new List<Question>();
+
+            Question q1WebResources = new Question("Key", "1", "TextBox", options);
+            Question q2WebResources = new Question("Value", "2", "TextBox", options);
+            Question q3WebResources = new Question("Description", "3", "TextBox", options);
+
+            List<String> options4WebResources = new List<string>();
+            options4WebResources.Add("1");
+            options4WebResources.Add("2");
+            options4WebResources.Add("3");
+            options4WebResources.Add("4");
+            options4WebResources.Add("5");
+            options4WebResources.Add("6");
+            options4WebResources.Add("7");
+            options4WebResources.Add("8");
+            options4WebResources.Add("9");
+            options4WebResources.Add("10");
+            Question q4WebResources = new Question("Site ID", "4", "DropDownList", options4WebResources);
+
+            questionListWebResources.Add(q1WebResources);
+            questionListWebResources.Add(q2WebResources);
+            questionListWebResources.Add(q3WebResources);
+            questionListWebResources.Add(q4WebResources);
+
+            Request requestWebResources = new Request(questionListWebResources, webResourcesID);
+            requestTypes.Add(requestWebResources);
+        }
+
+        public void createOther()
+        {
+            List<string> options = new List<string>(); // Default for TextBox controls that don't require options
+            int otherID = 1016;
+
+            List<Question> questionListOther = new List<Question>();
+
+            Question q1Other = new Question("Description", "1", "TextBox", options);
+
+            questionListOther.Add(q1Other);
+
+            Request requestOther = new Request(questionListOther, otherID);
+            requestTypes.Add(requestOther);
         }
 
     }
