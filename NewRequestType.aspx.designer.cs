@@ -85,13 +85,31 @@ namespace Empty_Project_Template {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtQ2;
         
         /// <summary>
-        /// chkQ3 control.
+        /// txtQ3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList chkQ3;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtQ3;
+        
+        /// <summary>
+        /// opt1Q3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText opt1Q3;
+        
+        /// <summary>
+        /// opt2Q3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText opt2Q3;
         
         /// <summary>
         /// btnSubmit control.

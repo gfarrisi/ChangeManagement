@@ -17,7 +17,9 @@ namespace Empty_Project_Template
                 lblQ3.Visible = false;
                 txtQ1.Visible = false;
                 txtQ2.Visible = false;
-                chkQ3.Visible = false;
+                txtQ3.Visible = false;
+                opt1Q3.Visible = false;
+                opt2Q3.Visible = false;
             }
             
         }
@@ -37,10 +39,12 @@ namespace Empty_Project_Template
                     txtQ2.Visible = true;
                 }
             }
-            if (ddlControlTypes.SelectedValue == "Checklist")
+            if (ddlControlTypes.SelectedValue == "Multiple Choice")
             {
                 lblQ3.Visible = true;
-                chkQ3.Visible = true;
+                txtQ3.Visible = true;
+                opt1Q3.Visible = true;
+                opt2Q3.Visible = true;
             }
         }
 
@@ -51,7 +55,9 @@ namespace Empty_Project_Template
             lblQ3.Visible = false;
             txtQ1.Visible = false;
             txtQ2.Visible = false;
-            chkQ3.Visible = false;
+            txtQ3.Visible = false;
+            opt1Q3.Visible = false;
+            opt2Q3.Visible = false;
 
             Response.Write("<script>alert('Request type Constraint is created and now available to users.');</script>");
 

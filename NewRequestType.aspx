@@ -54,7 +54,7 @@
                 <br />
                 <asp:DropDownList ID="ddlControlTypes" runat="server"  CssClass="dropdown-toggle">
                     <asp:ListItem>Short Answer</asp:ListItem>
-                    <asp:ListItem>Checklist</asp:ListItem>
+                    <asp:ListItem>Multiple Choice</asp:ListItem>
                 </asp:DropDownList>
             </div>
             <div class="col-md">
@@ -66,13 +66,13 @@
         <br />
         <div class="form-group form-row">
             <div class="col-md" >              
-                <p runat="server">Questions</p>
+                <p class="form-text" runat="server">Questions</p>
                 <br />
                 <p id="lblQ1" runat="server">Short Answer Question 1</p>
                 <br />
                 <p id="lblQ2" runat="server">Short Answer Question 2</p>
                 <br />
-                <p id="lblQ3" runat="server">Checklist Question 1</p>
+                <p id="lblQ3" runat="server">Multiple Choice Question 1</p>
                 
             </div>
             <div class="col-md" >              
@@ -82,11 +82,15 @@
                 <br />
                 <input class="form-text" id="txtQ2" type="text" runat="server"/>
                 <br />
-                <asp:CheckBoxList ID="chkQ3" runat="server" CssClass="">
-                    <asp:ListItem>Column Constraint</asp:ListItem>
-                    <asp:ListItem>Table Constraint</asp:ListItem>
-                </asp:CheckBoxList>
-            </div>                                                                
+                <input class="form-text" id="txtQ3" type="text" runat="server"/>
+            </div>    
+            <div class="col-md">
+                <p class="form-text">Response Options</p>
+                <br />
+                <input class="form-text" id="opt1Q3" type="text" runat="server" />
+                <br />
+                <input class="form-text" id="opt2Q3" type="text" runat="server" />
+            </div>
         </div>
         <br />
         <asp:Button BackColor="#9D2235" ForeColor="#ffffff" CssClass="btn btn-secondary" Width="90px" BorderStyle="None" ID="btnSubmit" runat="server" Text="Submit" onclick="btnSubmit_Click" /> 
