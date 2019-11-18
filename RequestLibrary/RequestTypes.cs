@@ -16,6 +16,8 @@ namespace Empty_Project_Template.RequestLibrary
             createEntity();
             createField();
             createActivityCodes();
+            createForms();
+            createJavaScriptOnWFE();
             ScreenshotsAndSubmission();
 
         }
@@ -230,7 +232,7 @@ namespace Empty_Project_Template.RequestLibrary
 
             Question q1Workflow = new Question("Name", "1", "TextBox", options);
             Question q2Workflow = new Question("Abbreviation", "2", "TextBox", options);
-            Question q3Workflow = new Question("Banner ADMR Code (N/A if not needed)", "3", "TextBox", options);  
+            Question q3Workflow = new Question("Banner ADMR Code (N/A if not needed)", "3", "TextBox", options);
             Question q4Workflow = new Question("Display Order", "4", "TextBox", options);
 
             questionListActivityCodes.Add(q1Workflow);
@@ -240,6 +242,59 @@ namespace Empty_Project_Template.RequestLibrary
 
             Request requestWorkflow = new Request(questionListActivityCodes, workflowID);
             requestTypes.Add(requestWorkflow);
+
+        }
+
+        public void createForms()
+        {
+            List<string> options = new List<string>(); // Default for TextBox controls that don't require options
+
+            int requestID = 1006;
+            List<Question> questionList = new List<Question>();
+
+            Question q1 = new Question("Entity", "1", "TextBox", options);
+            Question q2 = new Question("Form Name", "2", "TextBox", options);
+            Question q3 = new Question("Form Enable Security Roles (If applicable)", "3", "TextBox", options);
+            List<String> options4 = new List<string>();
+            options4.Add("Yes");
+            options4.Add("No");
+            Question q4 = new Question("Did you add new fields?", "4", "RadioList", options4);
+
+            questionList.Add(q1);
+            questionList.Add(q2);
+            questionList.Add(q3);
+            questionList.Add(q4);
+
+            //if you answered Yes to number 4
+            //createField();
+
+
+
+            Request request = new Request(questionList, requestID);
+            requestTypes.Add(request);
+           
+        }
+        public void createJavaScriptOnWFE()
+        {
+            List<string> options = new List<string>(); // Default for TextBox controls that don't require options
+
+            int requestID = 1007;
+            List<Question> questionList = new List<Question>();
+
+            Question q1 = new Question("Application", "1", "TextBox", options);
+            Question q2 = new Question("Page Name", "2", "TextBox", options);
+            Question q3 = new Question("Field Scheme Name", "3", "TextBox", options);
+            Question q4 = new Question("Field Label", "4", "TextBox", options);
+            Question q5 = new Question("FDetailed Change Description", "5", "TextBox", options);
+           
+            questionList.Add(q1);
+            questionList.Add(q2);
+            questionList.Add(q3);
+            questionList.Add(q4);
+            questionList.Add(q5);
+
+            Request request = new Request(questionList, requestID);
+            requestTypes.Add(request);
 
         }
 
