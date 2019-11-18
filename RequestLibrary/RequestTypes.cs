@@ -36,8 +36,8 @@ namespace Empty_Project_Template.RequestLibrary
             List<Question> questionListScreenshotAndSubmission = new List<Question>();
 
             Question q1Screenshot = new Question("Detailed Description of Change", "1", "TextBox", options);
-            Question q2Screenshot = new Question("Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots.", "2", "TextBox", options);
-            Question q3Screenshot = new Question("Desired Date for Move", "3", "TextBox", options);
+            Question q2Screenshot = new Question("Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots.", "2", "FileUpload", options);
+            Question q3Screenshot = new Question("Desired Date for Move", "3", "Calendar", options);
             Question q4Screenshot = new Question("Questions/Comments", "4", "TextBox", options);
 
             questionListScreenshotAndSubmission.Add(q1Screenshot);
@@ -45,7 +45,7 @@ namespace Empty_Project_Template.RequestLibrary
             questionListScreenshotAndSubmission.Add(q3Screenshot);
             questionListScreenshotAndSubmission.Add(q4Screenshot);
 
-            Request screenshotAndSubmission = new Request(questionListScreenshotAndSubmission, ScreenshotAndSubmissionID);
+            Request screenshotAndSubmission = new Request(questionListScreenshotAndSubmission, ScreenshotAndSubmissionID, "Screenshots");
             requestTypes.Add(screenshotAndSubmission);
         }
         public void createWorkflow()
@@ -91,7 +91,7 @@ namespace Empty_Project_Template.RequestLibrary
             questionListWorkflow.Add(q6Workflow);
             questionListWorkflow.Add(q7Workflow);
 
-            Request requestWorkflow = new Request(questionListWorkflow, workflowID);
+            Request requestWorkflow = new Request(questionListWorkflow, workflowID, "Workflow");
             requestTypes.Add(requestWorkflow);
 
            
@@ -122,7 +122,7 @@ namespace Empty_Project_Template.RequestLibrary
             questionListEntity.Add(q5Entity);
             questionListEntity.Add(q6Entity);
 
-            Request requestEntity = new Request(questionListEntity, entityID);
+            Request requestEntity = new Request(questionListEntity, entityID, "Entity");
             requestTypes.Add(requestEntity);        
         }
 
@@ -130,6 +130,7 @@ namespace Empty_Project_Template.RequestLibrary
         {
             int workflowScheduleID = 1015;
             List<Question> questionListWorkflowSchedule = new List<Question>();
+            List<string> options = new List<string>();
 
             Question q1WorkflowSchedule = new Question("Workflow Name", "1", "TextBox", options);
             Question q2WorkflowSchedule = new Question("Entity", "2", "TextBox", options);
@@ -155,7 +156,7 @@ namespace Empty_Project_Template.RequestLibrary
             questionListWorkflowSchedule.Add(q5WorkflowSchedule);
             questionListWorkflowSchedule.Add(q6WorkflowSchedule);
 
-            Request requestWorkflowSchedule = new Request(questionListWorkflowSchedule, workflowScheduleID);
+            Request requestWorkflowSchedule = new Request(questionListWorkflowSchedule, workflowScheduleID, "Workflow Schedule");
             requestTypes.Add(requestWorkflowSchedule);
         }
 
@@ -196,7 +197,7 @@ namespace Empty_Project_Template.RequestLibrary
             questionListField.Add(q5Field);
             questionListField.Add(q6Field);
 
-            Request requestField = new Request(questionListField, fieldID);
+            Request requestField = new Request(questionListField, fieldID, "Field");
             requestTypes.Add(requestField);
         }
 
@@ -217,7 +218,7 @@ namespace Empty_Project_Template.RequestLibrary
             questionListSecurityRoles.Add(q1SecurityRoles);
             questionListSecurityRoles.Add(q2SecurityRoles);
 
-            Request requestSecurityRoles = new Request(questionListSecurityRoles, securityRolesID);
+            Request requestSecurityRoles = new Request(questionListSecurityRoles, securityRolesID, "Security Roles");
             requestTypes.Add(requestSecurityRoles);
         }
 
@@ -236,7 +237,7 @@ namespace Empty_Project_Template.RequestLibrary
             questionListBusinessRules.Add(q2BusinessRules);
             questionListBusinessRules.Add(q3BusinessRules);
 
-            Request requestBusinessRules = new Request(questionListBusinessRules, businessRulesID);
+            Request requestBusinessRules = new Request(questionListBusinessRules, businessRulesID, "Business Roles");
             requestTypes.Add(requestBusinessRules);
 
         }
@@ -262,7 +263,7 @@ namespace Empty_Project_Template.RequestLibrary
             questionListField.Add(q2OptionSet);
             questionListField.Add(q3OptionSet);
 
-            Request requestField = new Request(questionListField, fieldID);
+            Request requestField = new Request(questionListField, fieldID, "Option Set");
             requestTypes.Add(requestField);
         }
         public void createRelationships()
@@ -301,7 +302,7 @@ namespace Empty_Project_Template.RequestLibrary
             questionListField.Add(q7Relationships);
             questionListField.Add(q8Relationships);
 
-            Request requestField = new Request(questionListField, fieldID);
+            Request requestField = new Request(questionListField, fieldID, "Relationships");
             requestTypes.Add(requestField);
         }
         public void createSystemViews()
@@ -316,7 +317,7 @@ namespace Empty_Project_Template.RequestLibrary
             questionListField.Add(q1SystemViews);
             questionListField.Add(q2SystemViews);
 
-            Request requestField = new Request(questionListField, fieldID);
+            Request requestField = new Request(questionListField, fieldID, "System Views");
             requestTypes.Add(requestField);
         }
         public void createActivityCodes()
@@ -336,7 +337,7 @@ namespace Empty_Project_Template.RequestLibrary
             questionListActivityCodes.Add(q3Workflow);
             questionListActivityCodes.Add(q4Workflow);
 
-            Request requestWorkflow = new Request(questionListActivityCodes, workflowID);
+            Request requestWorkflow = new Request(questionListActivityCodes, workflowID, "Activity Codes");
             requestTypes.Add(requestWorkflow);
 
         }
@@ -366,7 +367,7 @@ namespace Empty_Project_Template.RequestLibrary
 
 
 
-            Request request = new Request(questionList, requestID);
+            Request request = new Request(questionList, requestID, "Forms");
             requestTypes.Add(request);
            
         }
@@ -389,7 +390,7 @@ namespace Empty_Project_Template.RequestLibrary
             questionList.Add(q4);
             questionList.Add(q5);
 
-            Request request = new Request(questionList, requestID);
+            Request request = new Request(questionList, requestID, "Java Script on WFE");
             requestTypes.Add(request);
 
         }
@@ -416,7 +417,7 @@ namespace Empty_Project_Template.RequestLibrary
             questionListEmailTemplates.Add(q4EmailTemplates);
             questionListEmailTemplates.Add(q5EmailTemplates);
 
-            Request requestEmailtemplates = new Request(questionListEmailTemplates, emailtemplatesID);
+            Request requestEmailtemplates = new Request(questionListEmailTemplates, emailtemplatesID, "Email Templates");
             requestTypes.Add(requestEmailtemplates);
 
         }
@@ -432,7 +433,7 @@ namespace Empty_Project_Template.RequestLibrary
 
             questionListNewUserModifyUser.Add(q1NewUserModifyUser);
 
-            Request requestNewUserModifyUser = new Request(questionListNewUserModifyUser, newUserModifyUserID);
+            Request requestNewUserModifyUser = new Request(questionListNewUserModifyUser, newUserModifyUserID, "New User/Modify User");
             requestTypes.Add(requestNewUserModifyUser);
         }
 
@@ -465,7 +466,7 @@ namespace Empty_Project_Template.RequestLibrary
             questionListWebResources.Add(q3WebResources);
             questionListWebResources.Add(q4WebResources);
 
-            Request requestWebResources = new Request(questionListWebResources, webResourcesID);
+            Request requestWebResources = new Request(questionListWebResources, webResourcesID, "Web Resources");
             requestTypes.Add(requestWebResources);
         }
 
@@ -480,7 +481,7 @@ namespace Empty_Project_Template.RequestLibrary
 
             questionListOther.Add(q1Other);
 
-            Request requestOther = new Request(questionListOther, otherID);
+            Request requestOther = new Request(questionListOther, otherID, "Other");
             requestTypes.Add(requestOther);
         }
 
