@@ -24,10 +24,13 @@ namespace Empty_Project_Template.RequestLibrary
             createActivityCodes();
             createForms();
             createJavaScriptOnWFE();
+
             createNewUserModifyUser();
             createEmailTemplates();
             createWebResources();
             createOther();
+
+
             ScreenshotsAndSubmission();
 
         }
