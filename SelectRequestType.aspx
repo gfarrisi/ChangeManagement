@@ -6,10 +6,10 @@
 
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
 
-            <a class="navbar-brand " href="#Home">
+            <a class="navbar-brand " href="javascript:history.back()">
                 <img src="T.png" alt="" width="40">
             </a>
-            <a class="navbar-brand" href="index.html">CRM Recruit: Change Management</a>
+            <a class="navbar-brand" href="javascript:history.back()">CRM Recruit: Change Management</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
