@@ -128,7 +128,7 @@
                         <div style="height: 100%;">
 
                             <div class="" style="/*overflow-y: scroll; */ height: 40%; width: 100%">
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles"  style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 201<br />
                                     <span style="font-size: 14px;">Project: Update Create Person Workflows for UG Transfer</span><br />
                                     <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
@@ -155,7 +155,7 @@
                                     <span style="font-size: 14px;">Workflow for CLA</span><br />
                                     <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
                                 </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles"  style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 215<br />
                                     <span style="font-size: 14px;">Workflow for CLA</span><br />
                                     <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
@@ -188,7 +188,7 @@
                                     <span style="font-size: 14px;">Workflow for CLA</span><br />
                                     <span style="font-size: 14px;">Completed: 11/5/2019</span>
                                 </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles cm-shadow"  style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 344<br />
                                     <span style="font-size: 14px;">Workflow for CLA</span><br />
                                     <span style="font-size: 14px;">Completed: 11/5/2019</span>
@@ -203,7 +203,7 @@
                                     <span style="font-size: 14px;">Workflow for CLA</span><br />
                                     <span style="font-size: 14px;">Completed: 11/5/2019</span>
                                 </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 132<br />
                                     <span style="font-size: 14px;">Workflow for CLA</span><br />
                                     <span style="font-size: 14px;">Completed: 11/5/2019</span>

@@ -44,6 +44,10 @@ body {
     color: white;
 }
 
+.cm-shadow {
+    box-shadow: 0 0 10px 2.5px #8C2132;
+}
+
 
 .comment-time{
     font-size: 12px;
