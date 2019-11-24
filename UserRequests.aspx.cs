@@ -24,12 +24,12 @@ namespace Empty_Project_Template
         private ArrayList theList()
         {
             ArrayList list = new ArrayList();
-            list.Add(new allRequests("CM1900", "Jane Doe", "Kristi Morgridge", "CLA", "Systems View", "Complete", "8/18/19"));
-            list.Add(new allRequests("CM1905", "Jane Doe", "Kristi Morgridge", "CLA", "Work Flow", "Preprod", "9/28/19"));
-            list.Add(new allRequests("CM1906", "Jane Doe", "Dima Dabbas", "CLA", "Activity Codes", "Assigned", "10/24/19"));
-            list.Add(new allRequests("CM1909", "Jane Doe", "Dima Dabbas", "CLA", "Field", "Complete", "9/28/19"));
-            list.Add(new allRequests("CM1913", "Jane Doe", "Dima Dabbas", "CLA", "Forms", "Preprod", "10/24/19"));
-            list.Add(new allRequests("CM1916", "Jane Doe", "Kristi Morgridge", "CLA", "Entity", "Not Assigned", "10/08/19"));
+            list.Add(new allRequests("CM 1900", "Jane Doe", "Kristi Morgridge", "CLA", "Systems View", "Complete", "8/18/19"));
+            list.Add(new allRequests("CM 1905", "Jane Doe", "Kristi Morgridge", "CLA", "Work Flow", "Preprod", "9/28/19"));
+            list.Add(new allRequests("CM 1906", "Jane Doe", "Dima Dabbas", "CLA", "Activity Codes", "Assigned", "10/24/19"));
+            list.Add(new allRequests("CM 1909", "Jane Doe", "Dima Dabbas", "CLA", "Field", "Complete", "9/28/19"));
+            list.Add(new allRequests("CM 1913", "Jane Doe", "Dima Dabbas", "CLA", "Forms", "Preprod", "10/24/19"));
+            list.Add(new allRequests("CM 1916", "Jane Doe", "Kristi Morgridge", "CLA", "Entity", "Not Assigned", "10/08/19"));
             return list;
         }
         public class allRequests

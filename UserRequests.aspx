@@ -44,8 +44,8 @@
         <div style="overflow-y: scroll; height: 50%;">
             <form runat="server">
                 <div class="gv">
-                    <asp:GridView ID="gvUserRequests" runat="server" CellPadding="3" ForeColor="Black" AutoGenerateColumns="False" Width="1000px" AllowSorting="True" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical">
-                        <AlternatingRowStyle BackColor="#CCCCCC" />
+                    <asp:GridView ID="gvUserRequests" runat="server" CssClass="table" CellPadding="3" ForeColor="Black" AutoGenerateColumns="False"  AllowSorting="True" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical">
+                        <HeaderStyle BackColor="#333333" ForeColor="White" />
 
                         <Columns>
                             <asp:BoundField DataField="Cmid" HeaderText="CM ID" ReadOnly="true" />
@@ -59,7 +59,7 @@
                                 <ItemTemplate>
                                     <a class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></a>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                <ItemStyle HorizontalAlign="Center"></ItemStyle>    
                             </asp:TemplateField>
                         </Columns>
                         <FooterStyle BackColor="#CCCCCC" />

@@ -53,8 +53,8 @@
             </div>
             <div style="overflow-y: scroll; height: 500px;">
                 <div class="gv">
-                    <asp:GridView ID="gvAllUsers" runat="server" CellPadding="3" ForeColor="Black" AutoGenerateColumns="False" Width="1000px" AllowSorting="True" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical">
-                        <AlternatingRowStyle BackColor="#CCCCCC" />
+                    <asp:GridView ID="gvAllUsers" runat="server" CellPadding="3" CssClass="table" ForeColor="Black" AutoGenerateColumns="False" AllowSorting="True" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical">
+                        <HeaderStyle BackColor="#333333" ForeColor="White" />
 
                         <Columns>
                             <asp:BoundField DataField="User" HeaderText="User" ReadOnly="true" />
