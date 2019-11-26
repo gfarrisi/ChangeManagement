@@ -39,8 +39,8 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
-    <form id="form1" runat="server">        
-        <div class="pull-right pt-5 pb-1" ">
+    <form id="form1" runat="server">
+        <div class="pull-right pt-5 pb-1">
             <div class="pl-5 ml-5">
                 <div class="row">
                     <div class="col-lg-4 mb-1">
@@ -50,26 +50,26 @@
                 </div>
             </div>
         </div>
-        <h1 class="text-center mb-5">CRM Change Management</h1>
-        <div style="margin: 0 auto; max-width: 600px;">
-            <asp:Panel ID="panelCM" runat="server">
-            </asp:Panel>
-            <br />
-            <div class="row">
-                <div class="col-4">
 
-                </div>
-                 <div class="col-6">
-            <asp:Button CssClass="btn btn-primary" Width="140px" BorderStyle="None" ID="btnSubmit" Text="Submit Request" BackColor="#9D2235" ForeColor="#ffffff" OnClick="btnSubmit_Click" runat="server" />
-
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6 pt-5 pb-5" style="background-color: rgba(0,0,0,.03); box-shadow: 0 0 12px 1.5px #808080;">
+                <h1 class="text-center mb-5">CRM Change Management</h1>
+                <div style="margin: 0 auto; max-width: 600px;">
+                    <asp:Panel ID="panelCM" runat="server">
+                    </asp:Panel>
                 </div>
             </div>
-
         </div>
 
-        <br />
-        <br />
-        <br />
+        <div class="row">
+            <div class="col-5 ml-5"></div>
+            <div class="col-3 pt-5 pr-5">
+                <div>
+                    <asp:Button CssClass="btn btn-primary btn-lg" BorderStyle="None" ID="btnSubmit" Text="Submit Request" BackColor="#9D2235" ForeColor="#ffffff" OnClick="btnSubmit_Click" runat="server" />
+                </div>
+            </div>
+        </div>
     </form>
 
 

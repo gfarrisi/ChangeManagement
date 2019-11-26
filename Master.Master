@@ -15,9 +15,10 @@
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+   
     <!-- Font Awesome 5 Glyphicon Script -->
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
     <link href="css/cm-request.css" rel="stylesheet">
@@ -73,7 +74,7 @@
 
             <p class="footer-company-about">
                 <span>Authorized Access Only</span>
-                
+
             </p>
 
 
@@ -81,8 +82,11 @@
 
     </footer>
 
+    <!-- Javascript -->
+    <script src="js/NewRequestType.js"></script>
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </body>
