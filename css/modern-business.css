@@ -113,7 +113,7 @@ table {
 
 }
 
-th {
+.Sort {
     cursor: pointer;
     text-decoration: underline;
 }

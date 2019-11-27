@@ -97,6 +97,7 @@
     <Content Include="ViewAllUsers.aspx" />
     <Content Include="Web.config" />
     <Content Include="UserRequests.aspx" />
+    <Content Include="EditEmail.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDashboard.aspx.cs">
@@ -186,6 +187,13 @@
     </Compile>
     <Compile Include="UserRequests.aspx.designer.cs">
       <DependentUpon>UserRequests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditEmail.aspx.cs">
+      <DependentUpon>EditEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditEmail.aspx.designer.cs">
+      <DependentUpon>EditEmail.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
