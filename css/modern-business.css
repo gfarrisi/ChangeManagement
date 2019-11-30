@@ -121,3 +121,24 @@ th {
     cursor: pointer;
     text-decoration: underline;
 }
+
+.btn-secondary-fake {
+    color: #fff;
+    background-color: #899197;   
+}
+.btn-secondary-fake:hover {
+    color: #fff;
+    background-color: #899197;
+}
+
+.x-icon{   
+    color: #899197;
+    cursor: grab;
+    padding-left: 10px;
+}
+
+.input-option {
+    width: 95%;
+    display: inline;
+    /*border-right: none;*/
+}

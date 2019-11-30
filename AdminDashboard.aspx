@@ -33,7 +33,6 @@
                 </li>
             </ul>
         </div>
-
     </nav>
 
 </asp:Content>
@@ -46,12 +45,20 @@
         <div class="pull-right pt-5 pb-4" style="background-color: rgba(0,0,0,.03);">
             <div class="pl-5 ml-5">
                 <div class="row">
-                    <div class="col-lg-1 mb-1">
-                        <a href="ViewAllRequests.aspx" class="btn btn-dark">View All</a>
+                    <div class="col-lg-6 mb-1">
+                         <div class="col-lg-5">
+                              <a href="ViewAllRequests.aspx" class="btn btn-dark mr-4" style="float: left;">View All</a>
+                         </div>
+                          <div class="col-lg-7 ml-2">
+                                  <a href="SelectRequestType.aspx" class="btn btn-dark">New Requests</a>
+                          </div>                        
                     </div>          
                     
-                    <div class="col-lg-3 mb-1">
-                          <a href="SelectRequestType.aspx" class="btn btn-dark">New Requests</a>
+              
+                     <div class="col-lg-1 mb-1"></div>
+                      <div class="col-lg-3 mb-1"></div>
+                    <div class="col-lg-2 mb-1">
+                          <button class="btn btn-secondary-fake"  style="box-shadow: 0 0 10px 2.5px #8C2132; cursor: auto;">Assigned to me</button>
                     </div>
                 </div>
             </div>
@@ -68,7 +75,7 @@
                     <h3 class="card-title" align="center" runat="server">Pre-Production </h3>
                 </div>
                 <div class="col-lg-3 mb-1">
-                    <h3 class="card-title" align="center" runat="server">Completed/<span style="font-size: 15px;">Last 30 days</span></h3>
+                    <h3 class="card-title" align="center" runat="server">Completed<span style="font-size: 15px; vertical-align: middle; hover"> (Last 30 days)</span></h3>
 
                 </div>
             </div>
