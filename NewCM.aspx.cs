@@ -78,7 +78,7 @@ namespace Empty_Project_Template
                             else if (question_control == "DropDownList")
                             {
                                 DropDownList ddlOptions = new DropDownList();
-                                ddlOptions.CssClass = "dropdown";
+                                ddlOptions.CssClass = "dropdown form-control";
 
                                 foreach (string option in question_options)
                                 {

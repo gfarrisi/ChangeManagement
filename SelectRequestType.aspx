@@ -56,7 +56,7 @@
                     <ItemTemplate>
 
                         <div class="col-lg-3 col-md-6 mb-5">
-                            <div class="card btn-primary">
+                            <div class="card btn-secondary">
                                  <asp:HiddenField runat="server" ID="hfSelectRequestType" Value='<%# DataBinder.Eval(Container.DataItem, "RequestID") %>' />
                                 <asp:Button ID="btnRequestType" OnClick="btnRequestType_Click" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Name") %>' CssClass="btn btn-dark p-5"/>
                             </div>
