@@ -48,10 +48,10 @@
                 <div class="row">
                     <div class="col-lg-1 mb-1">
                         <a href="ViewAllRequests.aspx" class="btn btn-dark">View All</a>
-                    </div>          
-                    
+                    </div>
+
                     <div class="col-lg-3 mb-1">
-                          <a href="SelectRequestType.aspx" class="btn btn-dark">New Requests</a>
+                        <a href="SelectRequestType.aspx" class="btn btn-dark">New Requests</a>
                     </div>
                 </div>
             </div>
@@ -68,10 +68,12 @@
                     <h3 class="card-title" align="center" runat="server">Pre-Production </h3>
                 </div>
                 <div class="col-lg-3 mb-1">
-                    <h3 class="card-title" align="center" runat="server">Completed/<span style="font-size: 15px;">Last 30 days</span></h3>
+                    <h3 class="card-title" align="center" runat="server">Completed<span style="font-size: 15px;"> (In Last 30 days)</span></h3>
 
                 </div>
             </div>
+
+            <%-- not assigned --%>
 
             <div class="row  card-footer" style="height: 40rem; overflow-y: scroll;">
                 <div class="col-lg-3 mb-5">
@@ -79,40 +81,34 @@
                         <div>
                             <div class="" style="height: 40%; width: 100%;">
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 301<br />
-                                    <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
+                                    CM 1917<br />
+                                    <span style="font-size: 14px;">Forms for Tyler</span><br />
+                                    <span style="font-size: 14px;">Desired date of completion: 12/18/2019</span>
+                                </button>
+
+                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                                    CM 1916<br />
+                                    <span style="font-size: 14px;">Entity for CLA</span><br />
+                                    <span style="font-size: 14px;">Desired date of completion: 12/15/2019</span>
+                                </button>
+
+
+                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                                    CM 1914<br />
+                                    <span style="font-size: 14px;">Entity for Boyer</span><br />
+                                    <span style="font-size: 14px;">Desired date of completion: 12/10/2019</span>
                                 </button>
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 302<br />
-                                    <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
+                                    CM 1912<br />
+                                    <span style="font-size: 14px;">Forms for Global</span><br />
+                                    <span style="font-size: 14px;">Desired date of completion: 12/15/2019</span>
                                 </button>
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 303<br />
-                                    <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
+                                    CM 1901<br />
+                                    <span style="font-size: 14px;">Entity for Boyer</span><br />
+                                    <span style="font-size: 14px;">Desired date of completion: 12/09/2019</span>
                                 </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 304<br />
-                                    <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 305<br />
-                                    <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 306<br />
-                                    <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 309<br />
-                                    <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
-                                </button>
+
 
 
                             </div>
@@ -121,6 +117,8 @@
                 </div>
 
 
+                <%-- assigned --%>
+
 
                 <!-- /.col-md-4 -->
                 <div class="col-lg-3 mb-5">
@@ -128,15 +126,20 @@
                         <div style="height: 100%;">
 
                             <div class="" style="/*overflow-y: scroll; */ height: 40%; width: 100%">
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles"  style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 201<br />
-                                    <span style="font-size: 14px;">Project: Update Create Person Workflows for UG Transfer</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
+                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
+                                    CM 1904<br />
+                                    <span style="font-size: 14px;">Activity Codes for UG</span><br />
+                                    <span style="font-size: 14px;">Desired date of completion: 12/09/2019</span>
+                                </button>
+                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
+                                    CM 1905<br />
+                                    <span style="font-size: 14px;">Workflow for CLA</span><br />
+                                    <span style="font-size: 14px;">Desired date of completion: 12/07/2019</span>
                                 </button>
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 219<br />
-                                    <span style="font-size: 14px;">Project: Update Create Person Workflows for UG Transfer</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
+                                    CM 1906<br />
+                                    <span style="font-size: 14px;">Activity Codes for CLA</span><br />
+                                    <span style="font-size: 14px;">Desired date of completion: 12/09/2019</span>
                                 </button>
 
 
@@ -151,15 +154,22 @@
                         <div style="height: 100%;">
                             <div class="" style="/*overflow-y: scroll; */ height: 40%; width: 100%">
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 214<br />
-                                    <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
+                                    CM 1913<br />
+                                    <span style="font-size: 14px;">Forms for CLA</span><br />
+                                    <span style="font-size: 14px;">Desired date of completion: 12/15/2019</span>
                                 </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles"  style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 215<br />
-                                    <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 11/5/2019</span>
+                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                                    CM 1902<br />
+                                    <span style="font-size: 14px;">Forms for Global</span><br />
+                                    <span style="font-size: 14px;">Desired date of completion: 12/07/2019</span>
                                 </button>
+                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                                    CM 1910<br />
+                                    <span style="font-size: 14px;">System Views for Global</span><br />
+                                    <span style="font-size: 14px;">Desired date of completion: 12/07/2019</span>
+                                </button>
+
+
 
                             </div>
                             <br />
@@ -177,37 +187,35 @@
                         <div style="height: 100%;">
 
 
+
                             <div class="" style="height: 40%; width: 100%">
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 314<br />
-                                    <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Completed: 11/5/2019</span>
+                                    CM 1915<br />
+                                    <span style="font-size: 14px;">Field for Tyler</span><br />
+                                    <span style="font-size: 14px;">Completed: 11/28/2019</span>
+                                </button>
+                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles cm-shadow" style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
+                                    CM 1907<br />
+                                    <span style="font-size: 14px;">Workflow for CST</span><br />
+                                    <span style="font-size: 14px;">Completed: 11/18/2019</span>
+                                </button>
+                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles cm-shadow" style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
+                                    CM 1903<br />
+                                    <span style="font-size: 14px;">Field for Tyler</span><br />
+                                    <span style="font-size: 14px;">Completed: 11/20/2019</span>
+                                </button>
+                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles cm-shadow" style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
+                                    CM 1900<br />
+                                    <span style="font-size: 14px;">Systems View for CLA</span><br />
+                                    <span style="font-size: 14px;">Completed: 11/20/2019</span>
                                 </button>
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 323<br />
-                                    <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Completed: 11/5/2019</span>
+                                    CM 1909<br />
+                                    <span style="font-size: 14px;">Field for CLA</span><br />
+                                    <span style="font-size: 14px;">Completed: 11/10/2019</span>
                                 </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles cm-shadow"  style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 344<br />
-                                    <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Completed: 11/5/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 376<br />
-                                    <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Completed: 11/5/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 123<br />
-                                    <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Completed: 11/5/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 132<br />
-                                    <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Completed: 11/5/2019</span>
-                                </button>
+
+
 
 
                             </div>

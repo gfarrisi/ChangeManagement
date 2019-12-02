@@ -185,7 +185,7 @@
                 <p><b>Desired Date for Move</b></p>
             </div>
             <div class="col-lg-6">
-                <p>Sep 04, 2019</p>
+                <p>December 10, 2019</p>
             </div>
         </div>
           <div class="row">
