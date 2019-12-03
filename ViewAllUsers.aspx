@@ -23,6 +23,7 @@
                         <a class="dropdown-item" href="ViewAllRequests.aspx">View All</a>
                         <a class="dropdown-item" href="NewRequestType.aspx">Add New Request Type</a>
                         <a class="dropdown-item" href="ViewAllUsers.aspx">User Settings</a>
+                        <a class="dropdown-item" href="EditEmail.aspx">Edit Emails</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -53,11 +54,13 @@
             </div>
             <div style="overflow-y: scroll; height: 500px;">
                 <div class="gv">
-                    <asp:GridView ID="gvAllUsers" runat="server" CellPadding="3" CssClass="table" ForeColor="Black" AutoGenerateColumns="False" AllowSorting="True" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical">
+                    <asp:GridView ID="gvAllUsers" runat="server" CellPadding="3" CssClass="table" ForeColor="Black" AutoGenerateColumns="False" AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical">
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
 
                         <Columns>
-                            <asp:BoundField DataField="User" HeaderText="User" ReadOnly="true" />
+                            <asp:BoundField DataField="User" HeaderText="User" ReadOnly="true" >
+                                <ItemStyle CssClass="font-weight-bold" />
+                            </asp:BoundField>
                             <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" />
                             <asp:BoundField DataField="Date" HeaderText="Last Updated Date" ReadOnly="true" />
                             <asp:TemplateField HeaderText="Deactivate User" ItemStyle-HorizontalAlign="Center">

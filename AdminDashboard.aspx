@@ -11,7 +11,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-
                 <li class="nav-item">
                     <a class="nav-link" href="AdminDashboard.aspx">Dashboard</a>
                 </li>
@@ -22,6 +21,7 @@
                         <a class="dropdown-item" href="ViewAllRequests.aspx">View All</a>
                         <a class="dropdown-item" href="NewRequestType.aspx">Add New Request Type</a>
                         <a class="dropdown-item" href="ViewAllUsers.aspx">User Settings</a>
+                        <a class="dropdown-item" href="EditEmail.aspx">Edit Emails</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -34,33 +34,23 @@
             </ul>
         </div>
     </nav>
-
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
-
-
     <form runat="server">
-
         <div class="pull-right pt-5 pb-4" style="background-color: rgba(0,0,0,.03);">
             <div class="pl-5 ml-5">
-                <div class="row">
-
-                    <div class="col-lg-6 mb-1">
-                         <div class="col-lg-5">
-                              <a href="ViewAllRequests.aspx" class="btn btn-dark mr-4" style="float: left;">View All</a>
-                         </div>
-                          <div class="col-lg-7 ml-2">
-                                  <a href="SelectRequestType.aspx" class="btn btn-dark">New Request</a>
-                          </div>                        
-                    </div>          
-                    
-              
-                     <div class="col-lg-1 mb-1"></div>
-                      <div class="col-lg-3 mb-1"></div>
+                <div class="row1">
+                    <div class="col-lg-1 mb-1">
+                        <a href="ViewAllRequests.aspx" class="btn btn-dark">View All</a>
+                    </div>
+                    <div class="col-lg-3 mb-1">
+                        <a href="SelectRequestType.aspx" class="btn btn-dark">New Requests</a>
+                    </div>
+                    <div class="col-lg-1 mb-1"></div>
+                    <div class="col-lg-3 mb-1"></div>
                     <div class="col-lg-2 mb-1">
-                          <button class="btn btn-secondary-fake"  style="box-shadow: 0 0 10px 2.5px #8C2132; cursor: auto;">Assigned to me</button>
-
+                        <button class="btn btn-secondary-fake" style="box-shadow: 0 0 10px 2.5px #8C2132; cursor: auto;">Assigned to me</button>
                     </div>
                 </div>
             </div>
@@ -77,10 +67,7 @@
                     <h3 class="card-title" align="center" runat="server">Pre-Production </h3>
                 </div>
                 <div class="col-lg-3 mb-1">
-
                     <h3 class="card-title" align="center" runat="server">Completed<span style="font-size: 15px;"> (In Last 30 days)</span></h3>
-                    <h3 class="card-title" align="center" runat="server">Completed<span style="font-size: 15px; vertical-align: middle; hover"> (Last 30 days)</span></h3>
-
                 </div>
             </div>
 
@@ -96,14 +83,11 @@
                                     <span style="font-size: 14px;">Forms for Tyler</span><br />
                                     <span style="font-size: 14px;">Desired date of completion: 12/18/2019</span>
                                 </button>
-
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 1916<br />
                                     <span style="font-size: 14px;">Entity for CLA</span><br />
                                     <span style="font-size: 14px;">Desired date of completion: 12/15/2019</span>
                                 </button>
-
-
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 1914<br />
                                     <span style="font-size: 14px;">Entity for Boyer</span><br />
@@ -119,9 +103,6 @@
                                     <span style="font-size: 14px;">Entity for Boyer</span><br />
                                     <span style="font-size: 14px;">Desired date of completion: 12/09/2019</span>
                                 </button>
-
-
-
                             </div>
                         </div>
                     </div>
@@ -135,7 +116,6 @@
                 <div class="col-lg-3 mb-5">
                     <div class="col-lg-12 mb-5">
                         <div style="height: 100%;">
-
                             <div class="" style="/*overflow-y: scroll; */ height: 40%; width: 100%">
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 1904<br />
@@ -152,8 +132,6 @@
                                     <span style="font-size: 14px;">Activity Codes for CLA</span><br />
                                     <span style="font-size: 14px;">Desired date of completion: 12/09/2019</span>
                                 </button>
-
-
                             </div>
                         </div>
                     </div>
@@ -179,13 +157,8 @@
                                     <span style="font-size: 14px;">System Views for Global</span><br />
                                     <span style="font-size: 14px;">Desired date of completion: 12/07/2019</span>
                                 </button>
-
-
-
                             </div>
                             <br />
-
-
                         </div>
                     </div>
                 </div>
@@ -196,9 +169,6 @@
                 <div class="col-lg-3 mb-5">
                     <div class="col-lg-12 mb-5">
                         <div style="height: 100%;">
-
-
-
                             <div class="" style="height: 40%; width: 100%">
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 1915<br />
@@ -225,28 +195,18 @@
                                     <span style="font-size: 14px;">Field for CLA</span><br />
                                     <span style="font-size: 14px;">Completed: 11/10/2019</span>
                                 </button>
-
-
-
-
                             </div>
                             <br />
                             <br />
                             <br />
-
-
                         </div>
                     </div>
                 </div>
                 <!-- /.col-md-4 -->
-
             </div>
             <!-- /.row -->
-
-
             <br />
             <br />
-
         </div>
         <!-- Modal -->
         <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -263,7 +223,6 @@
                             <div class="col-lg-1 mb-2"></div>
                             <div class="col-lg-10 mb-2 ">
                                 <div class=" h-100">
-
                                     <div class="card-body">
                                         <h4 class="" align="center">Status: Assigned</h4>
                                         <div class="progress">
@@ -284,26 +243,20 @@
                                                         <option value="avatars/avatar-1.jpg">CM Failed</option>
                                                         <option value="avatars/avatar-2.jpg">Change implented in preprod</option>
                                                         <option value="avatars/avatar-3.jpg">Change implemented in prod</option>
-
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div align="center">
-
                                             <%--   <a href="#" class="btn btn-secondary" align="center">Submit</a>--%>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 form-data">
-
                                 <br />
-
                                 <div class="row">
                                     <h4>Request Type: Workflow</h4>
                                     <br />
@@ -441,23 +394,16 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <br />
-
                                     </div>
                                 </div>
                                 <hr />
                             </div>
-
-
                         </div>
-
                         <div class="row mb-7">
-
                             <div class="col-lg-1 mb-7"></div>
                             <div class="col-lg-11 mb-7" style="height: 400px; padding-left: 0;">
-
                                 <h4 class="mb-3 ml-1 mt-3">Comments</h4>
                                 <div class="card h-100">
-
                                     <div class="card-body overflow-auto">
                                         <p class="card-text">
                                             Admin  
@@ -533,9 +479,5 @@
             </div>
         </div>
     </form>
-
-
-
-
 </asp:Content>
 

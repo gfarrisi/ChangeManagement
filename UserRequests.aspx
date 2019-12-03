@@ -44,11 +44,12 @@
         <div style="overflow-y: scroll; height: 50%;">
             <form runat="server">
                 <div class="gv">
-                    <asp:GridView ID="gvUserRequests" runat="server" CssClass="table" CellPadding="3" ForeColor="Black" AutoGenerateColumns="False"  AllowSorting="True" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical">
+                    <asp:GridView ID="gvUserRequests" runat="server" CssClass="table" CellPadding="3" ForeColor="Black" AutoGenerateColumns="False"  AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical">
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
-
                         <Columns>
-                            <asp:BoundField DataField="Cmid" HeaderText="CM ID" ReadOnly="true" />
+                            <asp:BoundField DataField="Cmid" HeaderText="CM ID" ReadOnly="true" >
+                                <ItemStyle CssClass="font-weight-bold" />
+                            </asp:BoundField>
                             <asp:BoundField DataField="User" HeaderText="User" ReadOnly="true" />
                             <asp:BoundField DataField="Admin" HeaderText="Admin" ReadOnly="true" />
                             <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" />

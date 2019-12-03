@@ -23,6 +23,7 @@
                         <a class="dropdown-item" href="ViewAllRequests.aspx">View All</a>
                         <a class="dropdown-item" href="NewRequestType.aspx">Add New Request Type</a>
                         <a class="dropdown-item" href="ViewAllUsers.aspx">User Settings</a>
+                        <a class="dropdown-item" href="EditEmail.aspx">Edit Emails</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

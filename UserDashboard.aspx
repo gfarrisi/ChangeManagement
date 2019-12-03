@@ -35,11 +35,10 @@
 
         <div class="pull-right pt-5 pb-4" style="background-color: rgba(0,0,0,.03);">
             <div class="pl-5 ml-5">
-                <div class="row">
+                <div class="row1">
                     <div class="col-lg-1 mb-1">
                         <a href="UserRequests.aspx" class="btn btn-dark">View All</a>
                     </div>
-
                     <div class="col-lg-3 mb-1">
                         <a href="SelectRequestType.aspx" class="btn btn-dark">New Requests</a>
                     </div>
