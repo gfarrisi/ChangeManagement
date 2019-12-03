@@ -23,6 +23,7 @@
                         <a class="dropdown-item" href="ViewAllRequests.aspx">View All</a>
                         <a class="dropdown-item" href="NewRequestType.aspx">Add New Request Type</a>
                         <a class="dropdown-item" href="ViewAllUsers.aspx">User Settings</a>
+                        <a class="dropdown-item" href="EditEmail.aspx">Edit Emails</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -53,10 +54,12 @@
         <div style="overflow-y: scroll; height: 500px;">
             <form runat="server">
                 <div class="gv">
-                    <asp:GridView ID="gvAllRequests" runat="server" CssClass="table" AutoGenerateColumns="False"  AllowSorting="True">
+                    <asp:GridView ID="gvAllRequests" runat="server" CssClass="table" AutoGenerateColumns="False"  AllowSorting="True" BorderColor="#CCCCCC">
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="Cmid" ItemStyle-CssClass="thead-dark" HeaderText="CM ID" ReadOnly="true"/>
+                            <asp:BoundField DataField="Cmid" ItemStyle-CssClass="thead-dark" HeaderText="CM ID" ReadOnly="true">
+                                <ItemStyle CssClass="font-weight-bold" />
+                            </asp:BoundField>
                             <asp:BoundField DataField="User" ItemStyle-CssClass="thead-dark" HeaderText="User" ReadOnly="true" />
                             <asp:BoundField DataField="Admin" ItemStyle-CssClass="thead-dark" HeaderText="Admin" ReadOnly="true" />
                             <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" />

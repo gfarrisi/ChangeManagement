@@ -23,6 +23,7 @@
                         <a class="dropdown-item" href="ViewAllRequests.aspx">View All</a>
                         <a class="dropdown-item" href="NewRequestType.aspx">Add New Request Type</a>
                         <a class="dropdown-item" href="ViewAllUsers.aspx">User Settings</a>
+                        <a class="dropdown-item" href="EditEmail.aspx">Edit Emails</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -39,10 +40,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
     <div class="container mt-5" style="height: 100%;">
-        <h2 id="requestHistory">Automated Emails</h2>
+        <h2 id="automateEmails">Automated Emails</h2>
         <div>
             <form runat="server">
-                <div class="gv">
+                <div class="gvE">
                     <asp:GridView ID="gvEmails" runat="server" CssClass="table" AutoGenerateColumns="False" Width="1000px" BorderColor="#CCCCCC">
                         <Columns>
                             <asp:BoundField DataField="Type" HeaderText="Email" ReadOnly="true">
