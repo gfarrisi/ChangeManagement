@@ -8,18 +8,16 @@ using System.Web.UI.WebControls;
 
 namespace Empty_Project_Template
 {
-    public partial class NewCM : System.Web.UI.Page
+    public partial class WebForm5 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {            
-
+        {
             if (!IsPostBack)
             {
-
                 int RequestID = Convert.ToInt32(Session["SelectedRequestType"].ToString());
                 RequestTypes types = new RequestTypes();
 
-                foreach(Request requestType in types.requestTypes)
+                foreach (Request requestType in types.requestTypes)
                 {
                     if (requestType.RequestID == RequestID)
                     {
@@ -35,10 +33,10 @@ namespace Empty_Project_Template
                             string question_order = question.Question_Order;
                             List<string> question_options = question.Question_Options;
 
-                            
+
                             System.Web.UI.HtmlControls.HtmlGenericControl rowDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
                             rowDiv.ID = "rowDiv";
-                            rowDiv.Attributes.Add("class", "row mt-3 mb-3"); 
+                            rowDiv.Attributes.Add("class", "row mt-3 mb-3");
                             panelCM.Controls.Add(rowDiv);
 
 
@@ -85,20 +83,12 @@ namespace Empty_Project_Template
                                     ddlOptions.Items.Add(option);
                                     col6Div.Controls.Add(ddlOptions);
                                 }
-                                
                             }
-                                                                                                     
                         }
                     }
-
-
-
                 }
                 buildSubmission();
-
-
             }
-            
         }
         public void buildSubmission()
         {
@@ -184,22 +174,15 @@ namespace Empty_Project_Template
                                 ddlOptions.Items.Add(option);
                                 col6Div.Controls.Add(ddlOptions);
                             }
-
                         }
-
                     }
                 }
-
-
-
             }
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        protected void btnSubmitUser_Click(object sender, EventArgs e)
         {
 
         }
-
-        
     }
 }
