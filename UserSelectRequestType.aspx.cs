@@ -9,7 +9,7 @@ using Empty_Project_Template.RequestLibrary;
 
 namespace Empty_Project_Template
 {
-    public partial class NewRequest2 : System.Web.UI.Page
+    public partial class WebForm4 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,10 +34,8 @@ namespace Empty_Project_Template
                 values.Add(new SelectRequestType("Email Templates", 1017));
                 values.Add(new SelectRequestType("Other", 1016));
 
-                Repeater1.DataSource = values;
-                Repeater1.DataBind();
-
-                
+                rptUserRequest.DataSource = values;
+                rptUserRequest.DataBind();
             }
         }
 
@@ -48,38 +46,7 @@ namespace Empty_Project_Template
             var hf = (HiddenField)item.FindControl("hfSelectRequestType");
 
             Session["SelectedRequestType"] = hf.Value;
-            Response.Redirect("NewCM.aspx");
-        }
-    }
-
-
-    //test class until we can bind data from database
-    public class SelectRequestType
-    {
-
-        private string name;
-        private int requestID;
-
-        public SelectRequestType(string name, int requestID)
-        {
-            this.name = name;
-            this.requestID = requestID;
-        }
-
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-        }
-
-        public int RequestID
-        {
-            get
-            {
-                return requestID;
-            }
+            Response.Redirect("UserNewCM.aspx");
         }
     }
 }

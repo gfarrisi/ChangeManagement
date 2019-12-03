@@ -45,10 +45,10 @@
                         <a href="ViewAllRequests.aspx" class="btn btn-dark">View All</a>
                     </div>
                     <div class="col-lg-3 mb-1">
-                        <a href="SelectRequestType.aspx" class="btn btn-dark">New Requests</a>
+                        <a href="AdminSelectRequestType.aspx" class="btn btn-dark">New Request</a>
                     </div>
                     <div class="col-lg-1 mb-1"></div>
-                    <div class="col-lg-3 mb-1"></div>
+                    <div class="col-lg-5 mb-1"></div>
                     <div class="col-lg-2 mb-1">
                         <button class="btn btn-secondary-fake" style="box-shadow: 0 0 10px 2.5px #8C2132; cursor: auto;">Assigned to me</button>
                     </div>

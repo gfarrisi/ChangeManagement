@@ -12,11 +12,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-
                 <li class="nav-item">
                     <a class="nav-link" href="UserDashboard.aspx">Dashboard</a>
                 </li>
-
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="CM.aspx" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jane Doe
                     </a>
@@ -26,13 +24,11 @@
                 </li>
             </ul>
         </div>
-
     </nav>
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="CPH1" runat="server">
     <form runat="server">
-
         <div class="pull-right pt-5 pb-4" style="background-color: rgba(0,0,0,.03);">
             <div class="pl-5 ml-5">
                 <div class="row1">
@@ -40,7 +36,7 @@
                         <a href="UserRequests.aspx" class="btn btn-dark">View All</a>
                     </div>
                     <div class="col-lg-3 mb-1">
-                        <a href="SelectRequestType.aspx" class="btn btn-dark">New Requests</a>
+                        <a href="UserSelectRequestType.aspx" class="btn btn-dark">New Request</a>
                     </div>
                 </div>
             </div>
@@ -58,7 +54,6 @@
                 </div>
                 <div class="col-lg-3 mb-1">
                     <h3 class="card-title" align="center" runat="server">Completed<span style="font-size: 15px;"> (In Last 30 days)</span></h3>
-
                 </div>
             </div>
 
@@ -69,35 +64,23 @@
                     <div class="col-lg-12 mb-5">
                         <div>
                             <div class="" style="height: 40%; width: 100%;">
-
-
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 1916<br />
                                     <span style="font-size: 14px;">Entity for CLA</span><br />
                                     <span style="font-size: 14px;">Desired date of completion: 12/15/2019</span>
                                 </button>
-
-
-
-
-
-
                             </div>
                         </div>
                     </div>
                 </div>
 
-
                 <%-- assigned --%>
-
 
                 <!-- /.col-md-4 -->
                 <div class="col-lg-3 mb-5">
                     <div class="col-lg-12 mb-5">
                         <div style="height: 100%;">
-
                             <div class="" style="/*overflow-y: scroll; */ height: 40%; width: 100%">
-
                                 <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
                                     CM 1905<br />
                                     <span style="font-size: 14px;">Workflow for CLA</span><br />

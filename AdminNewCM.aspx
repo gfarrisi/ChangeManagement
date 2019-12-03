@@ -1,7 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="NewCM.aspx.cs" Inherits="Empty_Project_Template.NewCM" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AdminNewCM.aspx.cs" Inherits="Empty_Project_Template.NewCM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
-
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
         <a class="navbar-brand " href="#Home">
             <img src="T.png" alt="" width="40">
@@ -12,7 +11,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-
                 <li class="nav-item">
                     <a class="nav-link" href="AdminDashboard.aspx">Dashboard</a>
                 </li>
@@ -34,9 +32,7 @@
                 </li>
             </ul>
         </div>
-
     </nav>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
     <form id="form1" runat="server">
@@ -44,13 +40,12 @@
             <div class="pl-5 ml-5">
                 <div class="row">
                     <div class="col-lg-4 mb-1">
-                        <a href="SelectRequestType.aspx" class="btn btn-dark">Back to Request Types</a>
+                        <a href="AdminSelectRequestType.aspx" class="btn btn-dark">Back to Request Types</a>
                     </div>
 
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6 pt-5 pb-5" style="background-color: rgba(0,0,0,.03); box-shadow: 0 0 12px 1.5px #808080;">
@@ -61,7 +56,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-5 ml-5"></div>
             <div class="col-3 pt-5 pr-5">
@@ -71,7 +65,4 @@
             </div>
         </div>
     </form>
-
-
-
 </asp:Content>
