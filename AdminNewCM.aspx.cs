@@ -1,6 +1,9 @@
 ﻿using Empty_Project_Template.RequestLibrary;
+using Empty_Project_Template.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -8,13 +11,29 @@ using System.Web.UI.WebControls;
 
 namespace Empty_Project_Template
 {
+
     public partial class NewCM : System.Web.UI.Page
     {
+        DBConnect objDB = new DBConnect();
+        SqlCommand objCommand = new SqlCommand();
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
+
+
                 int RequestID = Convert.ToInt32(Session["SelectedRequestType"].ToString());
+
+                DBConnect db = new DBConnect();
+                string sqlurls = "SELECT * FROM [User]";
+                DataSet ds = db.GetDataSet(sqlurls);
+                Response.Write("<script>alert('" + ds.ToString() + "');</script>");
+
+
+
+
                 RequestTypes types = new RequestTypes();
 
                 foreach (Request requestType in types.requestTypes)
