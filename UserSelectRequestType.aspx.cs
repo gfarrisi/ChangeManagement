@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Empty_Project_Template.RequestLibrary;
+using Empty_Project_Template.Utilities;
 
 namespace Empty_Project_Template
 {
@@ -24,30 +25,30 @@ namespace Empty_Project_Template
                 ///add to values in a similar way
                 ///values.Add(new SelectRequestType(row.Request_Name, row.Request_TypeID));
 
-                //DBConnect objDB = new DBConnect();
-                //SqlCommand objCommand = new SqlCommand();
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
 
-                //objCommand.CommandType = CommandType.StoredProcedure;
-                //objCommand.CommandText = "GetAllRequestTypes";
-                //objCommand.Parameters.Clear();
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "GetAllRequestTypes";
+                objCommand.Parameters.Clear();
 
-                //DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
-                //DataTable myDT = myDS.Tables[0];
-                //if (myDT.Rows.Count > 0)
-                //{
+                DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
+                DataTable myDT = myDS.Tables[0];
+                if (myDT.Rows.Count > 0)
+                {
 
-                //    ArrayList values = new ArrayList();
-                   
-                //    foreach (DataRow row in myDT.Rows)
-                //    {
-                //        string typeName = row["RequestTypeName"].ToString();
-                //        int typeID = Convert.ToInt32(row["RequestTypeID"].ToString());
-                //        values.Add(new SelectRequestType(typeName, typeID));
-                //    }
+                    ArrayList values = new ArrayList();
 
-                //    rptUserRequest.DataSource = values;
-                //    rptUserRequest.DataBind();
-                //}
+                    foreach (DataRow row in myDT.Rows)
+                    {
+                        string typeName = row["RequestTypeName"].ToString();
+                        int typeID = Convert.ToInt32(row["RequestTypeID"].ToString());
+                        values.Add(new SelectRequestType(typeName, typeID));
+                    }
+
+                    rptUserRequest.DataSource = values;
+                    rptUserRequest.DataBind();
+                }
 
                 //values.Add(new SelectRequestType("Activity Codes", 1001));
                 //values.Add(new SelectRequestType("Business Rules", 1002));
@@ -65,7 +66,7 @@ namespace Empty_Project_Template
                 //values.Add(new SelectRequestType("Workflow Schedule", 1015));
                 //values.Add(new SelectRequestType("Email Templates", 1017));
                 //values.Add(new SelectRequestType("Other", 1016));
-                            
+
             }
         }
 

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Empty_Project_Template.RequestLibrary;
+using Empty_Project_Template.Utilities;
 
 namespace Empty_Project_Template
 {
@@ -17,30 +18,30 @@ namespace Empty_Project_Template
         {
             if (!IsPostBack)
             {
-                //DBConnect objDB = new DBConnect();
-                //SqlCommand objCommand = new SqlCommand();
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
 
-                //objCommand.CommandType = CommandType.StoredProcedure;
-                //objCommand.CommandText = "GetAllRequestTypes";
-                //objCommand.Parameters.Clear();
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "GetAllRequestTypes";
+                objCommand.Parameters.Clear();
 
-                //DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
-                //DataTable myDT = myDS.Tables[0];
-                //if (myDT.Rows.Count > 0)
-                //{
+                DataSet myDS = objDB.GetDataSetUsingCmdObj(objCommand);
+                DataTable myDT = myDS.Tables[0];
+                if (myDT.Rows.Count > 0)
+                {
 
-                //    ArrayList values = new ArrayList();
+                    ArrayList values = new ArrayList();
 
-                //    foreach (DataRow row in myDT.Rows)
-                //    {
-                //        string typeName = row["RequestTypeName"].ToString();
-                //        int typeID = Convert.ToInt32(row["RequestTypeID"].ToString());
-                //        values.Add(new SelectRequestType(typeName, typeID));
-                //    }
+                    foreach (DataRow row in myDT.Rows)
+                    {
+                        string typeName = row["RequestTypeName"].ToString();
+                        int typeID = Convert.ToInt32(row["RequestTypeID"].ToString());
+                        values.Add(new SelectRequestType(typeName, typeID));
+                    }
 
-                //    Repeater1.DataSource = values;
-                //    Repeater1.DataBind();
-                //}
+                    Repeater1.DataSource = values;
+                    Repeater1.DataBind();
+                }
                 //ArrayList values = new ArrayList();
 
                 //values.Add(new SelectRequestType("Activity Codes", 1001));
