@@ -60,8 +60,8 @@ namespace Empty_Project_Template
                         options = js.Deserialize<List<string>>(Server.UrlDecode(optionCookie.Value));
                     }
                 }
-
-                Question newQuestion = new Question(controlText, questionOrder.ToString(), controlType, options);
+                //NEEDS UPDATED
+                Question newQuestion = new Question(controlText, controlType, 4324,  options);
 
                 request.Add(newQuestion);              
                 Session["request"] = request;
@@ -92,7 +92,8 @@ namespace Empty_Project_Template
                     }
                 }
 
-                Question newQuestion = new Question(controlText, questionOrder.ToString(), controlType, options);
+                ///NEEDS TO UPDATED!!
+                Question newQuestion = new Question(controlText, controlType, 213213,  options);
 
                 requestFirst.Add(newQuestion);
                 Session["request"] = requestFirst;
@@ -114,7 +115,7 @@ namespace Empty_Project_Template
             {
                 string question_text = question.Question_Text;
                 string question_control = question.Question_Control;
-                string question_order = question.Question_Order;
+                int question_id = question.Question_ID;
                 List<string> question_options = question.Question_Options;
 
                 System.Web.UI.HtmlControls.HtmlGenericControl rowDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
