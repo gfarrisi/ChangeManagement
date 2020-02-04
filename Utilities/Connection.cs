@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace Empty_Project_Template.Utilities
+namespace ChangeManagementSystem.Utilities
 {
     public class DBConnect
     {

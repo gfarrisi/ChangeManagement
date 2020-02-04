@@ -1,4 +1,4 @@
-﻿using Empty_Project_Template.RequestLibrary;
+﻿using ChangeManagementSystem.RequestLibrary;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Empty_Project_Template
+namespace ChangeManagementSystem
 {
     public partial class NewRequestType : System.Web.UI.Page
     {
