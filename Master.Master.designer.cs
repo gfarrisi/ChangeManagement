@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Empty_Project_Template {
+namespace ChangeManagementSystem {
     
     
     public partial class Master {

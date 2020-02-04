@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Empty_Project_Template
+namespace ChangeManagementSystem
 {
     public partial class CM : System.Web.UI.Page
     {

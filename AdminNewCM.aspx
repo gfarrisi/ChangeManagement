@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AdminNewCM.aspx.cs" Inherits="Empty_Project_Template.NewCM" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="AdminNewCM.aspx.cs" Inherits="ChangeManagementSystem.NewCM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">

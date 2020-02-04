@@ -1,4 +1,4 @@
-﻿using Empty_Project_Template.Utilities;
+﻿using ChangeManagementSystem.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace Empty_Project_Template.RequestLibrary
+namespace ChangeManagementSystem.RequestLibrary
 {
     public class RequestTypeData
     {

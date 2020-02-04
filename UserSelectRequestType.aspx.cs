@@ -7,10 +7,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Empty_Project_Template.RequestLibrary;
-using Empty_Project_Template.Utilities;
+using ChangeManagementSystem;
+using ChangeManagementSystem.RequestLibrary;
+using ChangeManagementSystem.Utilities;
 
-namespace Empty_Project_Template
+namespace ChangeManagementSystem
 {
     public partial class WebForm4 : System.Web.UI.Page
     {

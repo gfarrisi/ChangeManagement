@@ -19,7 +19,7 @@
 //using System.Collections.Generic;
 //using System.Linq;
 //using System.Web;
-//namespace Empty_Project_Template.RequestLibrary
+//namespace ChangeManagementSystem.RequestLibrary
 //{
 //    public class RequestTypes
 //    {

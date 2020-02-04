@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="NewRequestType.aspx.cs" Inherits="Empty_Project_Template.NewRequestType" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="NewRequestType.aspx.cs" Inherits="ChangeManagementSystem.NewRequestType" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
 

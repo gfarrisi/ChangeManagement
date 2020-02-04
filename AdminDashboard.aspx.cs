@@ -4,8 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ChangeManagementSystem;
 
-namespace Empty_Project_Template
+namespace ChangeManagementSystem
 {
     public partial class AdminDashboard : System.Web.UI.Page
     {

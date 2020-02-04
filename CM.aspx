@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="CM.aspx.cs" Inherits="Empty_Project_Template.CM" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="CM.aspx.cs" Inherits="ChangeManagementSystem.CM" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="CPH1" runat="server">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
         <div class="container">
@@ -177,7 +177,8 @@
                     File 3https://drive.google.com/open?id=1L--
                     Dnd6dLVQGhCP3hbkZ5Rs-z0iwJUwm
                     File 4https://drive.google.com/open?
-                    id=16nZJaBWjqmG5642crodKkUYnHYhfJE2U                    </a></p>
+                    id=16nZJaBWjqmG5642crodKkUYnHYhfJE2U
+                    </a></p>
             </div>
         </div>
           <div class="row">

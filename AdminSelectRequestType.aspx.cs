@@ -7,10 +7,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Empty_Project_Template.RequestLibrary;
-using Empty_Project_Template.Utilities;
+using ChangeManagementSystem.RequestLibrary;
+using ChangeManagementSystem.Utilities;
 
-namespace Empty_Project_Template
+namespace ChangeManagementSystem
 {
     public partial class NewRequest2 : System.Web.UI.Page
     {

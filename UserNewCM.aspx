@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="UserNewCM.aspx.cs" Inherits="Empty_Project_Template.WebForm5" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="UserNewCM.aspx.cs" Inherits="ChangeManagementSystem.WebForm5" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
         <a class="navbar-brand " href="UserDashboard.aspx">

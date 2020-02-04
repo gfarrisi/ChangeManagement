@@ -1,5 +1,5 @@
-﻿using Empty_Project_Template.RequestLibrary;
-using Empty_Project_Template.Utilities;
+﻿using ChangeManagementSystem.RequestLibrary;
+using ChangeManagementSystem.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Empty_Project_Template
+namespace ChangeManagementSystem
 {
 
     public partial class NewCM : System.Web.UI.Page

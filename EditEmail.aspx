@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="EditEmail.aspx.cs" Inherits="Empty_Project_Template.WebForm3" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="EditEmail.aspx.cs" Inherits="ChangeManagementSystem.WebForm3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
 
