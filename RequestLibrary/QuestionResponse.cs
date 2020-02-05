@@ -10,10 +10,16 @@ namespace ChangeManagementSystem.RequestLibrary
         private int cmID;
         private int questionID;
         private string questionResponse;
-        
+
         public QuestionResponse(int cmid, int questionid, string response)
         {
             cmID = cmid;
+            questionID = questionid;
+            questionResponse = response;
+        }
+
+        public QuestionResponse(int questionid, string response)
+        {
             questionID = questionid;
             questionResponse = response;
         }
