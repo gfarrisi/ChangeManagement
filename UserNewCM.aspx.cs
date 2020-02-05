@@ -57,18 +57,24 @@ namespace ChangeManagementSystem
 
                     if (question_control == "RadioButton")
                     {
+
+                        RadioButtonList rbList = new RadioButtonList();
                         foreach (string option in question_options)
                         {
-                            RadioButton rbOption = new RadioButton();
+                            ListItem rbOption = new ListItem();
                             rbOption.Text = option;
-                            rbOption.CssClass = "form-check";
-                            col6Div.Controls.Add(rbOption);
+                            rbList.Items.Add(rbOption);
                         }
+                        rbList.CssClass = "form-check";
+                        rbList.ID = question_id.ToString();
+                        col6Div.Controls.Add(rbList);
+
                     }
                     else if (question_control == "TextBox")
                     {
                         TextBox txtAnswer = new TextBox();
                         txtAnswer.CssClass = "form-control";
+                        txtAnswer.ID = question_id.ToString();
                         col6Div.Controls.Add(txtAnswer);
                     }
                     else if (question_control == "DropDownList")
@@ -81,10 +87,14 @@ namespace ChangeManagementSystem
                             ddlOptions.Items.Add(option);
                             col6Div.Controls.Add(ddlOptions);
                         }
+                        ddlOptions.ID = question_id.ToString();
                     }
 
                     HiddenField hfQuestionID = new HiddenField();
                     hfQuestionID.Value = question_id.ToString();
+                    hfQuestionID.ID = "hfQuestionID";
+
+                    Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
                     col6Div.Controls.Add(hfQuestionID);
 
                 }
@@ -134,18 +144,22 @@ namespace ChangeManagementSystem
 
                 if (question_control == "RadioButton")
                 {
+                    RadioButtonList rbList = new RadioButtonList();
                     foreach (string option in question_options)
                     {
-                        RadioButton rbOption = new RadioButton();
+                        ListItem rbOption = new ListItem();
                         rbOption.Text = option;
-                        rbOption.CssClass = "form-check";
-                        col6Div.Controls.Add(rbOption);
+                        rbList.Items.Add(rbOption);
                     }
+                    rbList.CssClass = "form-check";
+                    rbList.ID = question_id.ToString();
+                    col6Div.Controls.Add(rbList);
                 }
                 else if (question_control == "TextBox")
                 {
                     TextBox txtAnswer = new TextBox();
                     txtAnswer.CssClass = "form-control";
+                    txtAnswer.ID = question_id.ToString();
                     col6Div.Controls.Add(txtAnswer);
                 }
                 else if (question_control == "FileUpload")
@@ -153,6 +167,7 @@ namespace ChangeManagementSystem
                     FileUpload fuScreenshots = new FileUpload();
                     fuScreenshots.CssClass = "form-control-file";
                     fuScreenshots.AllowMultiple = true;
+                    fuScreenshots.ID = question_id.ToString();
                     col6Div.Controls.Add(fuScreenshots);
                 }
                 else if (question_control == "Calendar")
@@ -162,6 +177,7 @@ namespace ChangeManagementSystem
                     TextBox calendar = new TextBox();
                     calendar.CssClass = "form-control";
                     calendar.TextMode = TextBoxMode.Date;
+                    calendar.ID = question_id.ToString();
                     col6Div.Controls.Add(calendar);
                 }
                 else if (question_control == "DropDownList")
@@ -172,12 +188,17 @@ namespace ChangeManagementSystem
                     foreach (string option in question_options)
                     {
                         ddlOptions.Items.Add(option);
-                        col6Div.Controls.Add(ddlOptions);
+
                     }
+                    ddlOptions.ID = question_id.ToString();
+                    col6Div.Controls.Add(ddlOptions);
+
                 }
 
                 HiddenField hfQuestionID = new HiddenField();
+                hfQuestionID.ID = "hfQuestionIDSubmission";
                 hfQuestionID.Value = question_id.ToString();
+
                 col6Div.Controls.Add(hfQuestionID);
             }
 
@@ -185,6 +206,32 @@ namespace ChangeManagementSystem
 
         protected void btnSubmitUser_Click(object sender, EventArgs e)
         {
+
+            System.Windows.Forms.HtmlElement tableElem = webBrowser1.Document.GetElementById(tableID);  GetElementById(string id);
+            Response.Write("<script>alert('this is working');</script>");
+            //take every question from page 
+
+            List<Question> questionList = new List<Question>();
+
+                //foreach (input control on the page){
+                    //get the id and response
+                    //Question question = new Question(id, response);
+                    //add to list of questions
+                    //questionList.add(question);
+                //}
+                   
+            //create question object w/o cmid
+            int questionID = 1;
+            string questionResponse = "";
+            //add to quiestion response list
+            //create cm-request object based on list and all other fields
+            //stored procedure - insert into CM_Request
+            //pass CMRequest object data as params into stored procedures
+            //in stored procedure return CMID
+            //for each question is question response
+            //stored procedure - insert into cm_response
+            //using CMID and question list objects as paramaters 
+
 
         }
     }
