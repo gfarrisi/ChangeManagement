@@ -81,7 +81,6 @@
                                 <asp:Repeater ID="rptNotAssigned" runat="server">
                                     <ItemTemplate>                                   
                                         <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                            <br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
@@ -102,10 +101,9 @@
                     <div class="col-lg-12 mb-5">
                         <div style="height: 100%;">
                             <div style="/*overflow-y: scroll; */ height: 40%; width: 100%">
-                                <asp:Repeater ID="rptAssigned" runat="server">
+                                <asp:Repeater ID="rptAssigned" runat="server" OnItemDataBound="rptAssigned_ItemDataBound">
                                     <ItemTemplate>
-                                        <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
-                                            <br />
+                                        <button runat="server" id="btnCMAssigned" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
@@ -129,7 +127,6 @@
                                 <asp:Repeater ID="rptPreProduction" runat="server">
                                     <ItemTemplate>
                                         <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                            <br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
@@ -154,7 +151,6 @@
                                  <asp:Repeater ID="rptCompleted" runat="server">
                                     <ItemTemplate>
                                         <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                            <br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
