@@ -77,32 +77,17 @@
                 <div class="col-lg-3 mb-5">
                     <div class="col-lg-12 mb-5">
                         <div>
-                            <div class="" style="height: 40%; width: 100%;">
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 1917<br />
-                                    <span style="font-size: 14px;">Forms for Tyler</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 12/18/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 1916<br />
-                                    <span style="font-size: 14px;">Entity for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 12/15/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 1914<br />
-                                    <span style="font-size: 14px;">Entity for Boyer</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 12/10/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 1912<br />
-                                    <span style="font-size: 14px;">Forms for Global</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 12/15/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 1901<br />
-                                    <span style="font-size: 14px;">Entity for Boyer</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 12/09/2019</span>
-                                </button>
+                            <div style="height: 40%; width: 100%;">
+                                <asp:Repeater ID="rptNotAssigned" runat="server">
+                                    <ItemTemplate>                                   
+                                        <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                                            <br />
+                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
+                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
+                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
+                                        </button>     
+                                    </ItemTemplate>
+                                </asp:Repeater>
                             </div>
                         </div>
                     </div>
@@ -116,85 +101,66 @@
                 <div class="col-lg-3 mb-5">
                     <div class="col-lg-12 mb-5">
                         <div style="height: 100%;">
-                            <div class="" style="/*overflow-y: scroll; */ height: 40%; width: 100%">
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 1904<br />
-                                    <span style="font-size: 14px;">Activity Codes for UG</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 12/09/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 1905<br />
-                                    <span style="font-size: 14px;">Workflow for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 12/07/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 1906<br />
-                                    <span style="font-size: 14px;">Activity Codes for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 12/09/2019</span>
-                                </button>
+                            <div style="/*overflow-y: scroll; */ height: 40%; width: 100%">
+                                <asp:Repeater ID="rptAssigned" runat="server">
+                                    <ItemTemplate>
+                                        <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
+                                            <br />
+                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
+                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
+                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
+                                        </button>
+                                    </ItemTemplate>
+                                </asp:Repeater>                                                 
                             </div>
                         </div>
                     </div>
                 </div>
 
+
+                <%-- pre-production --%>
+
+
                 <!-- /.col-md-4 -->
                 <div class="col-lg-3 mb-5">
                     <div class="col-lg-12 mb-5">
                         <div style="height: 100%;">
-                            <div class="" style="/*overflow-y: scroll; */ height: 40%; width: 100%">
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 1913<br />
-                                    <span style="font-size: 14px;">Forms for CLA</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 12/15/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 1902<br />
-                                    <span style="font-size: 14px;">Forms for Global</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 12/07/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 1910<br />
-                                    <span style="font-size: 14px;">System Views for Global</span><br />
-                                    <span style="font-size: 14px;">Desired date of completion: 12/07/2019</span>
-                                </button>
+                            <div style="/*overflow-y: scroll; */ height: 40%; width: 100%">
+                                <asp:Repeater ID="rptPreProduction" runat="server">
+                                    <ItemTemplate>
+                                        <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                                            <br />
+                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
+                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
+                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
+                                        </button>
+                                    </ItemTemplate>
+                                </asp:Repeater>                                       
                             </div>
                             <br />
                         </div>
                     </div>
                 </div>
 
-                <!-- /.col-md-4 -->
+                
+                <%-- completed --%>
+
 
                 <!-- /.col-md-4 -->
                 <div class="col-lg-3 mb-5">
                     <div class="col-lg-12 mb-5">
                         <div style="height: 100%;">
-                            <div class="" style="height: 40%; width: 100%">
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 1915<br />
-                                    <span style="font-size: 14px;">Field for Tyler</span><br />
-                                    <span style="font-size: 14px;">Completed: 11/28/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles cm-shadow" style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 1907<br />
-                                    <span style="font-size: 14px;">Workflow for CST</span><br />
-                                    <span style="font-size: 14px;">Completed: 11/18/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles cm-shadow" style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 1903<br />
-                                    <span style="font-size: 14px;">Field for Tyler</span><br />
-                                    <span style="font-size: 14px;">Completed: 11/20/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles cm-shadow" style="box-shadow: 0 0 10px 2.5px #8C2132;" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 1900<br />
-                                    <span style="font-size: 14px;">Systems View for CLA</span><br />
-                                    <span style="font-size: 14px;">Completed: 11/20/2019</span>
-                                </button>
-                                <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
-                                    CM 1909<br />
-                                    <span style="font-size: 14px;">Field for CLA</span><br />
-                                    <span style="font-size: 14px;">Completed: 11/10/2019</span>
-                                </button>
+                            <div style="height: 40%; width: 100%">
+                                 <asp:Repeater ID="rptCompleted" runat="server">
+                                    <ItemTemplate>
+                                        <button type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                                            <br />
+                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
+                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
+                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
+                                        </button>                                       
+                                    </ItemTemplate>
+                                </asp:Repeater>
                             </div>
                             <br />
                             <br />
