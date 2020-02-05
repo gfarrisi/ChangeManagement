@@ -1,13 +1,8 @@
-﻿using ChangeManagementSystem.Utilities;
+﻿
+using ChangeManagementSystem.Utilities;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using ChangeManagementSystem;
 
 namespace ChangeManagementSystem
 {
@@ -27,7 +22,7 @@ namespace ChangeManagementSystem
 
             }
         }
-        
+
         protected void btnViewAll_Click(object sender, EventArgs e)
         {
             Response.Redirect("ViewAllRequests.aspx");
