@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="UserNewCM.aspx.cs" Inherits="ChangeManagementSystem.WebForm5" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-custom">
         <a class="navbar-brand " href="UserDashboard.aspx">
@@ -42,6 +43,44 @@
                 <h1 class="text-center mb-5">CRM Change Management</h1>
                 <div style="margin: 0 auto; max-width: 600px;">
                     <asp:Panel ID="panelCM" runat="server">
+                    </asp:Panel>
+                    <asp:Panel ID="panelScreenshots" runat="server">
+
+                        <asp:Label ID="lblHeading" runat="server" Text="Screenshots" CssClass="form-text h4"></asp:Label>
+                        <div class="row mt-3 mb-3">
+                            <div class="col-lg-6">
+                                <asp:Label ID="lblDesc" runat="server" Text="Detailed description of change" CssClass="form-text"></asp:Label>
+                            </div>
+                            <div class="col-lg-6">
+                                <asp:TextBox ID="txtDescResponse" CssClass="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row mt-3 mb-3">
+                            <div class="col-lg-6">
+                                <asp:Label ID="lblUpload" runat="server" Text="Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots." CssClass="form-text"></asp:Label>
+                            </div>
+                            <div class="col-lg-6">
+                                <asp:FileUpload ID="fuScreenshots" CssClass="form-control-file" runat="server"></asp:FileUpload>
+                            </div>
+                        </div>
+                        <div class="row mt-3 mb-3">
+                            <div class="col-lg-6">
+                                <asp:Label ID="lblDesiredDate" runat="server" Text="Desired date of completion" CssClass="form-text"></asp:Label>
+                            </div>
+                            <div class="col-lg-6">
+                            <asp:TextBox ID="txtDesiredDate" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row mt-3 mb-3">
+                            <div class="col-lg-6">
+                                <asp:Label ID="lblQuesCom" runat="server" Text="Questions/Comments" CssClass="form-text"></asp:Label>
+                            </div>
+                            <div class="col-lg-6">
+                                <asp:TextBox ID="txtQuesCom" CssClass="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+
+
                     </asp:Panel>
                 </div>
             </div>

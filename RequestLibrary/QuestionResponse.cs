@@ -18,6 +18,12 @@ namespace ChangeManagementSystem.RequestLibrary
             questionResponse = response;
         }
 
+        public QuestionResponse(int questionid, string response)
+        {
+            questionID = questionid;
+            questionResponse = response;
+        }
+
         public int CMID
         {
             get { return cmID; }
