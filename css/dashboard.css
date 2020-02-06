@@ -43,3 +43,7 @@
     line-height: 70px;
     font-size: 1.3rem;
 }
+
+.shadow {
+    box-shadow: 0 0 10px 2.5px #8C2132;
+}
