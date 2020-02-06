@@ -22,8 +22,9 @@ namespace ChangeManagementSystem.RequestLibrary
         private int requestTypeID;
         private DateTime desiredDate;
         private List<QuestionResponse> questionResponses;
+        private string projectName;
 
-        public CMRequest(string status, byte[] att1, byte[] att2, byte[] att3, byte[] att4, byte[] att5, string questComm, string lastUser,
+        public CMRequest(string status, string pName, byte[] att1, byte[] att2, byte[] att3, byte[] att4, byte[] att5, string questComm, string lastUser,
             DateTime lastDate, string user, string admin, int typeID, DateTime desireddate, List<QuestionResponse> responses)
         {
             cmStatus = status;
@@ -40,6 +41,7 @@ namespace ChangeManagementSystem.RequestLibrary
             requestTypeID = typeID;
             desiredDate = desireddate;
             questionResponses = responses;
+            projectName = pName;
         }
 
         public int CMID
@@ -83,5 +85,41 @@ namespace ChangeManagementSystem.RequestLibrary
             get { return requestTypeID; }
             set { requestTypeID = value; }
         }
+        public byte[] att1
+        {
+            get { return attachment1; }
+            set { attachment1 = value; }
+        }
+        public byte[] att2
+        {
+            get { return attachment2; }
+            set { attachment2 = value; }
+        }
+        public byte[] att3
+        {
+            get { return attachment3; }
+            set { attachment3 = value; }
+        }
+        public byte[] att4
+        {
+            get { return attachment4; }
+            set { attachment4 = value; }
+        }
+        public byte[] att5
+        {
+            get { return attachment5; }
+            set { attachment5 = value; }
+        }
+        public string questCom
+        {
+            get { return questionsComments; }
+            set { questionsComments = value; }
+        }
+        public string projName
+        {
+            get { return projectName; }
+            set { projectName = value; }
+        }
+        //public List<QuestionResponse>
     }
 }
