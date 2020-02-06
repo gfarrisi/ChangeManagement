@@ -162,8 +162,34 @@ namespace ChangeManagementSystem
 
         protected void rptAssigned_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-           
-            ((HtmlControl)e.Item.FindControl("btnCMAssigned")).Attributes.Add("class", "shadow btn btn-secondary btn-block btn-lg cm-tiles");
+            if (((HiddenField)e.Item.FindControl("hiddenAdminID")).Value == Session["UserID"].ToString())
+            {
+                ((HtmlControl)e.Item.FindControl("btnCM")).Attributes.Add("style", "box-shadow: 0 0 10px 2.5px #8C2132;");
+            }          
+        }
+
+        protected void rptNotAssigned_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (((HiddenField)e.Item.FindControl("hiddenAdminID")).Value == Session["UserID"].ToString())
+            {
+                ((HtmlControl)e.Item.FindControl("btnCM")).Attributes.Add("style", "box-shadow: 0 0 10px 2.5px #8C2132;");
+            }
+        }
+
+        protected void rptPreProduction_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (((HiddenField)e.Item.FindControl("hiddenAdminID")).Value == Session["UserID"].ToString())
+            {
+                ((HtmlControl)e.Item.FindControl("btnCM")).Attributes.Add("style", "box-shadow: 0 0 10px 2.5px #8C2132;");
+            }
+        }
+
+        protected void rptCompleted_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (((HiddenField)e.Item.FindControl("hiddenAdminID")).Value == Session["UserID"].ToString())
+            {
+                ((HtmlControl)e.Item.FindControl("btnCM")).Attributes.Add("style", "box-shadow: 0 0 10px 2.5px #8C2132;");
+            }
         }
     }
 }
