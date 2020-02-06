@@ -1,22 +1,26 @@
 ﻿using ChangeManagementSystem.RequestLibrary;
+using ChangeManagementSystem.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace ChangeManagementSystem
 {
-    
+
     public partial class WebForm5 : System.Web.UI.Page
     {
         private System.Windows.Forms.WebBrowser webBrowser1;
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
             if (!IsPostBack)
             {
                 int RequestID = Convert.ToInt32(Session["SelectedRequestType"].ToString());
@@ -143,8 +147,9 @@ namespace ChangeManagementSystem
                     //add to quiestion response list
                     questionResponseList.Add(questionResponse);
                 }
+
                 string detailedDesc = txtDescResponse.Text;
-                string desiredDate = txtDesiredDate.Text;
+                DateTime desiredDate = DateTime.Parse(txtDesiredDate.Text);
                 string quesCom = txtQuesCom.Text;
 
                 string filename = Path.GetFileName(fuScreenshots.FileName);
@@ -154,36 +159,81 @@ namespace ChangeManagementSystem
                     using (BinaryReader br = new BinaryReader(fs))
                     {
                         byte[] byte1 = br.ReadBytes((Int32)fs.Length);
-
+                        int requestType = Convert.ToInt32(Session["SelectedRequestType"].ToString());
 
                         //create cm-request object based on list and all other fields
-                        CMRequest cmRequest = new CMRequest("Not Assigned", byte1, null, null, null, null, quesCom, userID, DateTime.Now, );
+                        CMRequest newCmRequest = new CMRequest("Not Assigned", detailedDesc, byte1, byte1, null, null, null, quesCom, null, DateTime.Now, userID, null, requestType, desiredDate, questionResponseList);
+                        DBConnect ObjDb = new DBConnect();
+                        SqlCommand objCommand = new SqlCommand();
+                        objCommand.CommandType = CommandType.StoredProcedure;
+                        objCommand.CommandText = "InsertCMRequest";
+                        objCommand.Parameters.AddWithValue("@CMStatus", newCmRequest.CMStatus);
+                        objCommand.Parameters.AddWithValue("@Attachment1", newCmRequest.att1);
+                        objCommand.Parameters.AddWithValue("@Attachment2", newCmRequest.att2);
+                        objCommand.Parameters.AddWithValue("@Attachment3", newCmRequest.att3);
+                        objCommand.Parameters.AddWithValue("@Attachment4", newCmRequest.att4);
+                        objCommand.Parameters.AddWithValue("@Attachment5", newCmRequest.att5);
+                        objCommand.Parameters.AddWithValue("@Question", newCmRequest.questCom);
+                        objCommand.Parameters.AddWithValue("@UserID", userID);
+                        objCommand.Parameters.AddWithValue("@DesiredDate", desiredDate);
+                        objCommand.Parameters.AddWithValue("@RequestTypeID", requestType);
+                        objCommand.Parameters.AddWithValue("@LastUpdateDate", DateTime.Now);
+                        objCommand.Parameters.AddWithValue("@CMProjName", detailedDesc);
 
+                        ObjDb.GetConnection().Open();
+                        int resultID = Convert.ToInt32(ObjDb.ExecuteScalarFunction(objCommand));
+                        Response.Write("<script>alert('" + resultID + "');</script>");
+                        ObjDb.CloseConnection();
 
+                        foreach (QuestionResponse qr in questionResponseList)
+                        {
+                            try
+                            {
+                                QuestionResponse newResponses = new QuestionResponse(resultID, qr.QuestionID, qr.Response);
+                                DBConnect ObjDb2 = new DBConnect();
+                                SqlCommand objCommand2 = new SqlCommand();
+                                objCommand2.CommandType = CommandType.StoredProcedure;
+                                objCommand2.CommandText = "InsertResponse";
+                                objCommand2.Parameters.AddWithValue("@CMID", resultID);
+                                objCommand2.Parameters.AddWithValue("@QuestionID", qr.QuestionID);
+                                objCommand2.Parameters.AddWithValue("@Response", qr.Response);
+                                ObjDb2.GetConnection().Open();
+                                ObjDb2.ExecuteScalarFunction(objCommand2);
+                                ObjDb2.CloseConnection();
+                            }
+                            catch
+                            {
+                                Response.Write("<script>alert('ErrorRRRRRRRRRRRRRRR');</script>");
+                            }
 
-                        //stored procedure - insert into CM_Request
-                        //pass CMRequest object data as params into stored procedures
-                        //in stored procedure return CMID
-
-
-
-                        //for each question is question response
-                        //stored procedure - insert into cm_response
-                        //using CMID and question list objects as paramaters 
-
+                        }
                     }
 
                 }
 
 
 
+                //stored procedure - insert into CM_Request
+                //pass CMRequest object data as params into stored procedures
+                //in stored procedure return CMID
 
 
 
-
-
+                //for each question is question response
+                //stored procedure - insert into cm_response
+                //using CMID and question list objects as paramaters 
 
             }
+
         }
+
+
+
+
+
+
+
+
+
     }
 }
