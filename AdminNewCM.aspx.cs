@@ -113,7 +113,7 @@ namespace ChangeManagementSystem
                         hfQuestionID.ID = "hfQuestionID";
                         hfQuestionID.ClientIDMode = System.Web.UI.ClientIDMode.Static;
 
-                        Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
+                        //Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
                         col6Div.Controls.Add(hfQuestionID);
 
                     }
@@ -137,7 +137,7 @@ namespace ChangeManagementSystem
                 {
                     string questID = id.ToString();
                     string response = Request["ctl00$CPH1$" + questID];
-                    Response.Write("<script>alert('" + response + "');</script>");
+                    //Response.Write("<script>alert('" + response + "');</script>");
 
                     //create question object w/o cmid
                     QuestionResponse questionResponse = new QuestionResponse(id, response);
@@ -160,7 +160,7 @@ namespace ChangeManagementSystem
                         int requestType = Convert.ToInt32(Session["SelectedRequestType"].ToString());
 
                         //create cm-request object based on list and all other fields
-                        CMRequest newCmRequest = new CMRequest("Not Assigned", detailedDesc, CMProjName,byte1, byte1, null, null, null, quesCom, null, DateTime.Now, userID, null, requestType, desiredDate, questionResponseList);
+                        CMRequest newCmRequest = new CMRequest("Not Assigned", detailedDesc, CMProjName, byte1, byte1, null, null, null, quesCom, null, DateTime.Now, userID, null, requestType, desiredDate, questionResponseList);
                         DBConnect ObjDb = new DBConnect();
                         SqlCommand objCommand = new SqlCommand();
                         objCommand.CommandType = CommandType.StoredProcedure;
@@ -177,11 +177,11 @@ namespace ChangeManagementSystem
                         objCommand.Parameters.AddWithValue("@RequestTypeID", requestType);
                         objCommand.Parameters.AddWithValue("@LastUpdateDate", DateTime.Now);
                         objCommand.Parameters.AddWithValue("@CMProjName", CMProjName);
-                        objCommand.Parameters.AddWithValue("@DetailedDesc",newCmRequest.detailDescription);
+                        objCommand.Parameters.AddWithValue("@DetailDescription",newCmRequest.detailDescription);
 
                         ObjDb.GetConnection().Open();
                         int resultID = Convert.ToInt32(ObjDb.ExecuteScalarFunction(objCommand));
-                        Response.Write("<script>alert('" + resultID + "');</script>");
+                        //Response.Write("<script>alert('" + resultID + "');</script>");
                         ObjDb.CloseConnection();
 
                         foreach (QuestionResponse qr in questionResponseList)
