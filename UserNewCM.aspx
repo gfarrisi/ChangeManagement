@@ -42,6 +42,17 @@
             <div class="col-6 pt-5 pb-5" style="background-color: rgba(0,0,0,.03); box-shadow: 0 0 12px 1.5px #808080;">
                 <h1 class="text-center mb-5">CRM Change Management</h1>
                 <div style="margin: 0 auto; max-width: 600px;">
+                    <div class="row mt-3 mb-3">
+                        <div class="col-lg-6">
+                            <asp:Label ID="lblCMname" runat="server" Text="CM Name" CssClass="form-text h4 mb-4"></asp:Label>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <asp:TextBox ID="txtCMname" CssClass="form-control" runat="server"></asp:TextBox>
+                        </div>
+
+                    </div>
+
                     <asp:Panel ID="panelCM" runat="server">
                     </asp:Panel>
                     <asp:Panel ID="panelScreenshots" runat="server">
@@ -68,7 +79,7 @@
                                 <asp:Label ID="lblDesiredDate" runat="server" Text="Desired date of completion" CssClass="form-text"></asp:Label>
                             </div>
                             <div class="col-lg-6">
-                            <asp:TextBox ID="txtDesiredDate" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
+                                <asp:TextBox ID="txtDesiredDate" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row mt-3 mb-3">
