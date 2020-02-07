@@ -23,8 +23,9 @@ namespace ChangeManagementSystem.RequestLibrary
         private DateTime desiredDate;
         private List<QuestionResponse> questionResponses;
         private string projectName;
+        private string detailDesc;
 
-        public CMRequest(string status, string pName, byte[] att1, byte[] att2, byte[] att3, byte[] att4, byte[] att5, string questComm, string lastUser,
+        public CMRequest(string status, string desc, string pName, byte[] att1, byte[] att2, byte[] att3, byte[] att4, byte[] att5, string questComm, string lastUser,
             DateTime lastDate, string user, string admin, int typeID, DateTime desireddate, List<QuestionResponse> responses)
         {
             cmStatus = status;
@@ -42,6 +43,7 @@ namespace ChangeManagementSystem.RequestLibrary
             desiredDate = desireddate;
             questionResponses = responses;
             projectName = pName;
+            detailDesc = desc;
         }
 
         public int CMID
@@ -119,6 +121,11 @@ namespace ChangeManagementSystem.RequestLibrary
         {
             get { return projectName; }
             set { projectName = value; }
+        }
+        public string detailDescription
+        {
+            get { return detailDesc; }
+            set { detailDesc = value; }
         }
         //public List<QuestionResponse>
     }

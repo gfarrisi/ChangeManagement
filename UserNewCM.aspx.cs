@@ -129,7 +129,9 @@ namespace ChangeManagementSystem
 
         protected void btnSubmitUser_Click(object sender, EventArgs e)
         {
-            string userID = "tug41822";
+            string userID = "9153006969";
+            //we will be using a session for this later
+
             List<int> questionIDs = (List<int>)Session["IDs"];
             List<int> submissionQuestionIDs = (List<int>)Session["SubmissionIDs"];
 
@@ -151,6 +153,7 @@ namespace ChangeManagementSystem
                 string detailedDesc = txtDescResponse.Text;
                 DateTime desiredDate = DateTime.Parse(txtDesiredDate.Text);
                 string quesCom = txtQuesCom.Text;
+                string CMProjName = txtCMname.Text;
 
                 string filename = Path.GetFileName(fuScreenshots.FileName);
                 string contentType = fuScreenshots.PostedFile.ContentType;
@@ -162,7 +165,7 @@ namespace ChangeManagementSystem
                         int requestType = Convert.ToInt32(Session["SelectedRequestType"].ToString());
 
                         //create cm-request object based on list and all other fields
-                        CMRequest newCmRequest = new CMRequest("Not Assigned", detailedDesc, byte1, byte1, null, null, null, quesCom, null, DateTime.Now, userID, null, requestType, desiredDate, questionResponseList);
+                        CMRequest newCmRequest = new CMRequest("Not Assigned", detailedDesc, CMProjName, byte1, byte1, null, null, null, quesCom, null, DateTime.Now, userID, null, requestType, desiredDate, questionResponseList);
                         DBConnect ObjDb = new DBConnect();
                         SqlCommand objCommand = new SqlCommand();
                         objCommand.CommandType = CommandType.StoredProcedure;
@@ -178,7 +181,8 @@ namespace ChangeManagementSystem
                         objCommand.Parameters.AddWithValue("@DesiredDate", desiredDate);
                         objCommand.Parameters.AddWithValue("@RequestTypeID", requestType);
                         objCommand.Parameters.AddWithValue("@LastUpdateDate", DateTime.Now);
-                        objCommand.Parameters.AddWithValue("@CMProjName", detailedDesc);
+                        objCommand.Parameters.AddWithValue("@CMProjName", CMProjName);
+                        objCommand.Parameters.AddWithValue("@DetailedDesc", newCmRequest.detailDescription);
 
                         ObjDb.GetConnection().Open();
                         int resultID = Convert.ToInt32(ObjDb.ExecuteScalarFunction(objCommand));
@@ -211,13 +215,9 @@ namespace ChangeManagementSystem
 
                 }
 
-
-
                 //stored procedure - insert into CM_Request
                 //pass CMRequest object data as params into stored procedures
                 //in stored procedure return CMID
-
-
 
                 //for each question is question response
                 //stored procedure - insert into cm_response
@@ -226,13 +226,6 @@ namespace ChangeManagementSystem
             }
 
         }
-
-
-
-
-
-
-
 
 
     }
