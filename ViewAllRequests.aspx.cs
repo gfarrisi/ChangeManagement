@@ -6,6 +6,8 @@ using System.Web;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ChangeManagementSystem.Utilities;
+using System.Data.SqlClient;
 
 namespace ChangeManagementSystem
 {
@@ -19,6 +21,26 @@ namespace ChangeManagementSystem
 
                 gvAllRequests.DataSource = list;
                 gvAllRequests.DataBind();
+
+
+
+                //sam:
+                
+                DBConnect db = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "GetAllCMs";
+                //DataTable requestTable = new DataTable();
+
+                DataSet cmData = db.GetDataSetUsingCmdObj(objCommand);
+                DataTable dataTable = cmData.Tables[0];
+
+                //db.GetDataSetUsingCmdObj(objCommand);
+                
+                
+
+
+
             }
         }
 
