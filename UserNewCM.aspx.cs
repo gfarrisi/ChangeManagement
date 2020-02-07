@@ -115,7 +115,7 @@ namespace ChangeManagementSystem
                         hfQuestionID.ID = "hfQuestionID";
                         hfQuestionID.ClientIDMode = System.Web.UI.ClientIDMode.Static;
 
-                        Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
+                        //Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
                         col6Div.Controls.Add(hfQuestionID);
 
                     }
@@ -130,8 +130,6 @@ namespace ChangeManagementSystem
         protected void btnSubmitUser_Click(object sender, EventArgs e)
         {
             string userID = "9153006969";
-            //we will be using a session for this later
-
             List<int> questionIDs = (List<int>)Session["IDs"];
             List<int> submissionQuestionIDs = (List<int>)Session["SubmissionIDs"];
 
@@ -142,7 +140,7 @@ namespace ChangeManagementSystem
                 {
                     string questID = id.ToString();
                     string response = Request["ctl00$CPH1$" + questID];
-                    Response.Write("<script>alert('" + response + "');</script>");
+                    //Response.Write("<script>alert('" + response + "');</script>");
 
                     //create question object w/o cmid
                     QuestionResponse questionResponse = new QuestionResponse(id, response);
@@ -182,11 +180,11 @@ namespace ChangeManagementSystem
                         objCommand.Parameters.AddWithValue("@RequestTypeID", requestType);
                         objCommand.Parameters.AddWithValue("@LastUpdateDate", DateTime.Now);
                         objCommand.Parameters.AddWithValue("@CMProjName", CMProjName);
-                        objCommand.Parameters.AddWithValue("@DetailedDesc", newCmRequest.detailDescription);
+                        objCommand.Parameters.AddWithValue("@DetailDescription", newCmRequest.detailDescription);
 
                         ObjDb.GetConnection().Open();
                         int resultID = Convert.ToInt32(ObjDb.ExecuteScalarFunction(objCommand));
-                        Response.Write("<script>alert('" + resultID + "');</script>");
+                        //Response.Write("<script>alert('" + resultID + "');</script>");
                         ObjDb.CloseConnection();
 
                         foreach (QuestionResponse qr in questionResponseList)
@@ -215,9 +213,13 @@ namespace ChangeManagementSystem
 
                 }
 
+
+
                 //stored procedure - insert into CM_Request
                 //pass CMRequest object data as params into stored procedures
                 //in stored procedure return CMID
+
+
 
                 //for each question is question response
                 //stored procedure - insert into cm_response
@@ -226,6 +228,7 @@ namespace ChangeManagementSystem
             }
 
         }
+
 
 
     }
