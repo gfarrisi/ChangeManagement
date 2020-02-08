@@ -57,15 +57,15 @@
                     <asp:GridView ID="gvAllRequests" runat="server" CssClass="table" AutoGenerateColumns="False"  AllowSorting="True" BorderColor="#CCCCCC">
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="Cmid" ItemStyle-CssClass="thead-dark" HeaderText="CM ID" ReadOnly="true">
+                            <asp:BoundField DataField="CMID" ItemStyle-CssClass="thead-dark" HeaderText="CM ID" ReadOnly="true">
                                 <ItemStyle CssClass="font-weight-bold" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="User" ItemStyle-CssClass="thead-dark" HeaderText="User" ReadOnly="true" />
-                            <asp:BoundField DataField="Admin" ItemStyle-CssClass="thead-dark" HeaderText="Admin" ReadOnly="true" />
-                            <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" />
-                            <asp:BoundField DataField="Type" HeaderText="Type" ReadOnly="true" />
-                            <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="true" />
-                            <asp:BoundField DataField="Date" HeaderText="Last Updated Date" ReadOnly="true" />
+                            <asp:BoundField DataField="UserID" ItemStyle-CssClass="thead-dark" HeaderText="User" ReadOnly="true" />
+                            <asp:BoundField DataField="AdminID" ItemStyle-CssClass="thead-dark" HeaderText="Admin" ReadOnly="true" />
+                            <asp:BoundField DataField="CMProjectName" HeaderText="Project Name" ReadOnly="true" />
+                            <asp:BoundField DataField="RequestTypeID" HeaderText="Request Type" ReadOnly="true" />
+                            <asp:BoundField DataField="CMStatus" HeaderText="Status" ReadOnly="true" />
+                            <asp:BoundField DataField="DesiredDate" HeaderText="Desired Date of Approval" ReadOnly="true" />
                             <asp:TemplateField HeaderText="View Request" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <a class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></a>

@@ -6,18 +6,29 @@ using System.Web;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Net;
+using System.IO;
+using System.Text;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using ChangeManagementSystem.Utilities;
 
 namespace ChangeManagementSystem
 {
     public partial class ViewAllRequests : System.Web.UI.Page
     {
+        SqlCommand dbCommand = new SqlCommand();
+        DBConnect db = new DBConnect();
+        DataSet ds = new DataSet();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                ArrayList list = theList();
-
-                gvAllRequests.DataSource = list;
+                dbCommand.Parameters.Clear();
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "GetAllCMs";
+                ds = db.GetDataSetUsingCmdObj(dbCommand);
+                gvAllRequests.DataSource = ds;
                 gvAllRequests.DataBind();
             }
         }
