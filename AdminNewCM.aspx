@@ -51,6 +51,9 @@
             <div class="col-3"></div>
             <div class="col-6 pt-5 pb-5" style="background-color: rgba(0,0,0,.03); box-shadow: 0 0 12px 1.5px #808080;">
                 <h1 class="text-center mb-5">CRM Change Management</h1>
+                <div style="text-align:center">
+                    <asp:Label runat="server" ID="lblErrorMessage" Visible="false" Text="*Please submit a response for all required fields!" Font-Size="Large" ForeColor="Red"></asp:Label>
+                </div>
                 <div style="margin: 0 auto; max-width: 600px;">
                     <div class="row mt-3 mb-3">
                          <div class="col-lg-6">
