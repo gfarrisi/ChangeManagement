@@ -288,7 +288,7 @@ namespace ChangeManagementSystem
                                 int requestType = Convert.ToInt32(Session["SelectedRequestType"].ToString());
 
                                 //create cm-request object based on list and all other fields
-                                CMRequest newCmRequest = new CMRequest("Not Assigned", detailedDesc, CMProjName, byte1, byte1, null, null, null, quesCom, null, DateTime.Now, userID, null, requestType, desiredDate, questionResponseList);
+                                CMRequest newCmRequest = new CMRequest("Not Assigned", detailedDesc, CMProjName, byte1, null, null, null, null, quesCom, null, DateTime.Now, userID, null, requestType, desiredDate, questionResponseList);
                                 DBConnect ObjDb = new DBConnect();
                                 SqlCommand objCommand = new SqlCommand();
                                 objCommand.CommandType = CommandType.StoredProcedure;
