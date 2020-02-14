@@ -19,8 +19,7 @@ namespace ChangeManagementSystem
             {
                 ArrayList list = theList();
 
-                gvAllRequests.DataSource = list;
-                gvAllRequests.DataBind();
+
 
 
 
@@ -29,19 +28,39 @@ namespace ChangeManagementSystem
                 DBConnect db = new DBConnect();
                 SqlCommand objCommand = new SqlCommand();
                 objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "GetAllCMs";
+                objCommand.CommandText = "GetAllCMsAdminView";
                 //DataTable requestTable = new DataTable();
 
                 DataSet cmData = db.GetDataSetUsingCmdObj(objCommand);
                 DataTable dataTable = cmData.Tables[0];
 
-                //db.GetDataSetUsingCmdObj(objCommand);
-                
-                
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    string ID = row["CMID"].ToString();
+                    string user = row["UserID"].ToString();
+                    string admin = row["AdminID"].ToString();
+                    string Name = row["CMProjectName"].ToString();
+                    string question = row["Question/Comments"].ToString();
+                    string type = row["RequestTypeName"].ToString();
+                    string college = row["College"].ToString();
+                    string status = row["CMStatus"].ToString();
+                    string date = row["LastUpdateDate"].ToString();
+                    
 
 
+                    ArrayList listDB = new ArrayList();
+                    listDB.Add(new allRequests(ID, user, admin,college, type, status, date));
+                    gvAllRequests.DataSource = dataTable;
+                    gvAllRequests.DataBind();
+                }
+
+
+
+                //gvAllRequests.DataSource = list;
+                //gvAllRequests.DataBind();
 
             }
+
         }
 
         private ArrayList theList()
@@ -49,22 +68,7 @@ namespace ChangeManagementSystem
             ArrayList list = new ArrayList();
             list.Add(new allRequests("CM1900", "Jane Doe", "Kristi Morgridge", "CLA", "Systems View", "Complete", "11/18/19"));
             list.Add(new allRequests("CM1901", "Sandy James", "Kristi Morgridge", "Boyer", "Entity", "Not Assigned", "12/02/19"));
-            list.Add(new allRequests("CM1902", "Sam Kelly", "Dima Dabbas", "Global", "Forms", "Preprod", "11/27/19"));
-            list.Add(new allRequests("CM1903", "Lauren O'Neil", "Dima Dabbas", "Tyler", "Field", "Complete", "11/20/19"));
-            list.Add(new allRequests("CM1904", "Jaime Martino", "Kristi Morgridge", "UG", "Activity Codes", "Assigned", "11/22/19"));
-            list.Add(new allRequests("CM1905", "Jane Doe", "Dima Dabbas", "CLA", "Work Flow", "Assigned", "11/26/19"));
-            list.Add(new allRequests("CM1906", "Jane Doe", "Dima Dabbas", "CLA", "Activity Codes", "Assigned", "11/24/19"));
-            list.Add(new allRequests("CM1907", "Helene Houser", "Kristi Morgridge", "CST", "Workflow", "Complete", "11/18/19"));
-            list.Add(new allRequests("CM1908", "Megan Nyquist", "Dima Dabbas", "CST", "System Views", "Failed", "8/8/19"));
-            list.Add(new allRequests("CM1909", "Jane Doe", "Dima Dabbas", "CLA", "Field", "Complete", "11/10/19"));
-            list.Add(new allRequests("CM1910", "Sam Kelly", "Kristi Morgridge", "Global", "Forms", "Preprod", "11/24/19"));
-            list.Add(new allRequests("CM1911", "Megan Nyquist", "Dima Dabbas", "CST", "System Views", "Failed", "9/8/19"));
-            list.Add(new allRequests("CM1912", "Sandy James", "Dima Dabbas", "Global", "Forms", "Not Assigned", "12/02/19"));
-            list.Add(new allRequests("CM1913", "Jane Doe", "Dima Dabbas", "CLA", "Forms", "Preprod", "11/24/19"));
-            list.Add(new allRequests("CM1914", "Sandy James", "Kristi Morgridge", "Boyer", "Entity", "Not Assigned", "12/02/19"));
-            list.Add(new allRequests("CM1915", "Lauren O'Neil", "Dima Dabbas", "Tyler", "Field", "Complete", "11/28/19"));
-            list.Add(new allRequests("CM1916", "Jane Doe", "Kristi Morgridge", "CLA", "Entity", "Not Assigned", "12/01/19"));
-            list.Add(new allRequests("CM1917", "Sam Kelly", "Dima Dabbas", "Tyler", "Forms", "Not Assigned", "12/02/19"));
+
             return list;
         }
 

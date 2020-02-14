@@ -22,7 +22,7 @@ namespace ChangeManagementSystem
 
             if (!IsPostBack)
             {
-                Session.Add("UserID", 915351046); // Admin user in database; will be preserved from login in the future
+                Session.Add("UserID", 915368285); // Admin user in database; will be preserved from login in the future
 
                 objDB = new DBConnect();
                 objCommand = new SqlCommand();

@@ -54,18 +54,24 @@
         <div style="overflow-y: scroll; height: 500px;">
             <form runat="server">
                 <div class="gv">
-                    <asp:GridView ID="gvAllRequests" runat="server" CssClass="table" AutoGenerateColumns="False"  AllowSorting="True" BorderColor="#CCCCCC">
+                    <asp:GridView ID="gvAllRequests" runat="server" CssClass="table" AutoGenerateColumns="False" AllowSorting="True" BorderColor="#CCCCCC">
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
                         <Columns>
                             <asp:BoundField DataField="CMID" ItemStyle-CssClass="thead-dark" HeaderText="CM ID" ReadOnly="true">
                                 <ItemStyle CssClass="font-weight-bold" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="UserID" ItemStyle-CssClass="thead-dark" HeaderText="User" ReadOnly="true" />
-                            <asp:BoundField DataField="AdminID" ItemStyle-CssClass="thead-dark" HeaderText="Admin" ReadOnly="true" />
-                            <asp:BoundField DataField="CMProjectName" HeaderText="Project Name" ReadOnly="true" />
-                            <asp:BoundField DataField="RequestTypeID" HeaderText="Request Type" ReadOnly="true" />
+                            <asp:BoundField DataField="CMProjectName" ItemStyle-CssClass="thead-dark" HeaderText="CM Project Name" ReadOnly="true" />
+                            <asp:TemplateField ItemStyle-CssClass="thead-dark" HeaderText="User">
+                                <ItemTemplate>
+                                    <%# Eval("FirstName") + " " + Eval("LastName")%>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+  
+                            <asp:BoundField DataField="UserID" ItemStyle-CssClass="thead-dark" HeaderText="UserID" ReadOnly="true" />
+                            <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" />
+                            <asp:BoundField DataField="RequestTypeName" HeaderText="Type" ReadOnly="true" />
                             <asp:BoundField DataField="CMStatus" HeaderText="Status" ReadOnly="true" />
-                            <asp:BoundField DataField="DesiredDate" HeaderText="Desired Date of Approval" ReadOnly="true" />
+                            <asp:BoundField DataField="LastUpdateDate" HeaderText="Last Updated Date" ReadOnly="true" DataFormatString="{0:MM/dd/yyyy}" />
                             <asp:TemplateField HeaderText="View Request" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <a class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></a>
