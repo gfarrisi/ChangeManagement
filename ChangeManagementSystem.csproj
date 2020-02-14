@@ -175,6 +175,7 @@
       <DependentUpon>UserDashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Connection.cs" />
+    <Compile Include="Utilities\Validation.cs" />
     <Compile Include="ViewAllRequests.aspx.cs">
       <DependentUpon>ViewAllRequests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

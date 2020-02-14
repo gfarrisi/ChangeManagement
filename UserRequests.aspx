@@ -35,9 +35,9 @@
         <h2 id="requestHistory">Your Request History</h2>
         <div class="card mb-4 w-50" id="searchBar">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for...">
+                <asp:TextBox ID="txtSearch" CssClass="form-control" runat="server" placeholder="Search for..."></asp:TextBox>
                 <span class="input-group-btn">
-                    <button class="btn btn-dark" type="button">Search</button>
+                    <asp:Button CssClass="btn btn-dark" BorderStyle="None" ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click" />
                 </span>
             </div>
         </div>

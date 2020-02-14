@@ -46,9 +46,9 @@
             <h2 id="requestHistory">User Settings</h2>
             <div class="card mb-4 w-50" id="searchBar">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
+                    <asp:TextBox ID="txtSearch" CssClass="form-control" runat="server" placeholder="Search for..."></asp:TextBox>
                     <span class="input-group-btn">
-                        <button class="btn btn-dark" type="button">Search</button>
+                        <asp:Button CssClass="btn btn-dark" BorderStyle="None" ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click" />
                     </span>
                 </div>
             </div>
@@ -58,14 +58,14 @@
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
 
                         <Columns>
-                            <asp:BoundField DataField="User" HeaderText="User" ReadOnly="true" >
-                                <ItemStyle CssClass="font-weight-bold" />
-                            </asp:BoundField>
+                            <asp:BoundField DataField="FirstName" HeaderText="First Name" ReadOnly="true" />
+                            <asp:BoundField DataField="LastName" HeaderText="Last Name" ReadOnly="true" />
                             <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" />
-                            <asp:BoundField DataField="Date" HeaderText="Last Updated Date" ReadOnly="true" />
+                            <asp:BoundField DataField="UserType" HeaderText="User Type" ReadOnly="true" />
                             <asp:TemplateField HeaderText="Deactivate User" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
-                                    <asp:ImageButton ID="EyeButton" Width="20" Height="20" runat="server" ImageUrl="cancel.jpg" />
+                                    <asp:ImageButton ID="EyeButton" Width="20" Height="20" runat="server" 
+                                         ImageUrl="cancel.jpg" OnClick="EyeButton_Click" />
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
                             </asp:TemplateField>
@@ -103,7 +103,6 @@
                     <div class="modal-body">
                         <div class="form-group form-row">
                             <div class="col-lg-3">
-
                                 <label id="lblAccessNet" style="line-height: 50px;" runat="server">AccessNet ID</label>
                                 <br />
                                 <label id="lblAccountType" style="line-height: 50px;" runat="server">Account Type</label>
@@ -117,9 +116,6 @@
                                     <option value="user">User</option>
                                 </select>
                             </div>
-
-
-
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -130,7 +126,27 @@
             </div>
         </div>
 
-
+        <!-- Modal data-toggle="modal" data-target="#warningModal"-->
+        <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="warningModalLabel">WARNING</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-lg-12">
+                            <label id="Label1" style="line-height: 50px;" runat="server">Are you sure you want to deactivate this user?</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Deactivate User</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 
     <script>
