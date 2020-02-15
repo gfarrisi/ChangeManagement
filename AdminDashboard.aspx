@@ -80,11 +80,12 @@
                             <div style="height: 40%; width: 100%;">
                                 <asp:Repeater ID="rptNotAssigned" runat="server" OnItemDataBound="rptNotAssigned_ItemDataBound">
                                     <ItemTemplate>                                   
-                                        <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                                        <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
                                             <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
+                                            <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
                                         </button>     
                                     </ItemTemplate>
                                 </asp:Repeater>
@@ -104,11 +105,12 @@
                             <div style="/*overflow-y: scroll; */ height: 40%; width: 100%">
                                 <asp:Repeater ID="rptAssigned" runat="server" OnItemDataBound="rptAssigned_ItemDataBound">
                                     <ItemTemplate>
-                                        <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                                        <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
                                             <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
+                                            <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
                                         </button>
                                     </ItemTemplate>
                                 </asp:Repeater>                                                 
@@ -128,11 +130,12 @@
                             <div style="/*overflow-y: scroll; */ height: 40%; width: 100%">
                                 <asp:Repeater ID="rptPreProduction" runat="server" OnItemDataBound="rptPreProduction_ItemDataBound">
                                     <ItemTemplate>
-                                        <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                                        <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
                                             <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
+                                            <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
                                         </button>
                                     </ItemTemplate>
                                 </asp:Repeater>                                       
@@ -153,11 +156,12 @@
                             <div style="height: 40%; width: 100%">
                                  <asp:Repeater ID="rptCompleted" runat="server" OnItemDataBound="rptCompleted_ItemDataBound">
                                     <ItemTemplate>
-                                        <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" data-toggle="modal" data-target="#exampleModalLong">
+                                        <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
                                             <asp:Label runat="server" style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
                                             <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
+                                            <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
                                         </button>                                       
                                     </ItemTemplate>
                                 </asp:Repeater>
@@ -179,7 +183,11 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header" align="center">
-                        <h5 class="modal-title" id="exampleModalLongTitle">CM #1905 - Update Create Person Workflows for UG Transfer</h5>
+                        <asp:Repeater ID="rptModalHeader" runat="server">
+                            <ItemTemplate>
+                                <h5 runat="server" class="modal-title" id="exampleModalLongTitle"><%# "CM: " + DataBinder.Eval(Container.DataItem, "CMID") + " - " + DataBinder.Eval(Container.DataItem, "CMProjectName") %></h5>
+                            </ItemTemplate>
+                        </asp:Repeater>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -190,10 +198,15 @@
                             <div class="col-lg-10 mb-2 ">
                                 <div class=" h-100">
                                     <div class="card-body">
-                                        <h4 class="" align="center">Status: Assigned</h4>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
+                                        <asp:Repeater ID="rptCMStatus" runat="server" OnItemDataBound="rptCMStatus_ItemDataBound">
+                                            <ItemTemplate>
+                                                <h4 runat="server"><%# "Status: " + DataBinder.Eval(Container.DataItem, "CMStatus") %></h4>
+                                                <asp:HiddenField ID="hiddenCMStatus" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMStatus") %>' />
+                                                <div class="progress">
+                                                    <div runat="server" id="progressBar" class="progress-bar bg-success" role="progressbar"></div>
+                                                </div>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
                                         <br />
                                         <%--<div class="status-check"> 
                                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -206,155 +219,136 @@
                                                     <select name="avatar" class="browser-default custom-select">
                                                         <option value="avatars">- Update Status -</option>
                                                         <%--<option value="avatars/avatar-4.jpg">Assign to me</option>--%>
-                                                        <option value="avatars/avatar-1.jpg">CM Failed</option>
-                                                        <option value="avatars/avatar-2.jpg">Change implented in preprod</option>
-                                                        <option value="avatars/avatar-3.jpg">Change implemented in prod</option>
+                                                        <option>CM Failed</option>
+                                                        <option>Change implented in preprod</option>
+                                                        <option>Change implemented in prod</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div align="center">
-                                            <%--   <a href="#" class="btn btn-secondary" align="center">Submit</a>--%>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <br />
                         <div class="row">
-                            <div class="col-lg-12 form-data">
-                                <br />
-                                <div class="row">
-                                    <h4>Request Type: Workflow</h4>
-                                    <br />
-                                </div>
-                                <br />
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <p><b>Name:</b></p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>Jane Doe</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <p><b>Email address: </b></p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>tuf13663@temple.edu</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <p><b>College:</b></p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>College of Liberal Arts</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <p><b>Assigned To:</b></p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>Dima Dabbas</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <p><b>Workflow/Process Name:</b></p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>All 4 Create Person WFs for UG Transfer</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <p><b>Entity:</b></p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>UG Transfer Staging</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <p><b>Description:</b></p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>All 4 Create Person WFs for UG Transfer</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <p><b>Is this a New or Revised workflow?</b></p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>REVISED</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <p><b>Does this workflow fire an email? </b></p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>NO</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <p><b>Is there a corresponding Workflow Schedule?</b></p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>NO - Workflow is triggered</p>
-                                    </div>
-                                </div>
+                            <div class="col-lg-12 form-data">                               
+                                <asp:Repeater ID="rptRequestInfo" runat="server">
+                                    <ItemTemplate>
+                                        <div class="row" runat="server">
+                                        <h4 runat="server"><%# "Request Type: " + DataBinder.Eval(Container.DataItem, "RequestTypeID") %></h4>
+                                        <br />
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p><b>Name:</b></p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p runat="server"><%# DataBinder.Eval(Container.DataItem, "FirstName") + " " + DataBinder.Eval(Container.DataItem, "LastName")  %></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p><b>Email address:</b></p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p runat="server"><%# DataBinder.Eval(Container.DataItem, "Email")%></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p><b>College:</b></p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p runat="server"><%# DataBinder.Eval(Container.DataItem, "College")%></p>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                                <asp:Repeater ID="rptAdminName" runat="server">
+                                    <ItemTemplate>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p><b>Assigned To:</b></p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p runat="server"><%# DataBinder.Eval(Container.DataItem, "FirstName") + " " + DataBinder.Eval(Container.DataItem, "LastName")  %></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p><b>Workflow/Process Name:</b></p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p runat="server"><%# DataBinder.Eval(Container.DataItem, "CMProjectName")%></p>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                                <asp:Repeater ID="rptResponse" runat="server">
+                                    <ItemTemplate>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p><b><%# DataBinder.Eval(Container.DataItem, "QuestionText")%></b></p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p><%# DataBinder.Eval(Container.DataItem, "QuestionResponse")%></p>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
                                 <br />
                                 <div class="row">
                                     <h4>Screenshots & Submission</h4>
                                     <br />
                                 </div>
                                 <br />
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <p><b>Detailed Description of Change</b></p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>Update all 4 Create Person WFs for UG Transfer in PREPROD</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <p><b>Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots</b></p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>
-                                            <a href="">File 1https://drive.google.com/open?id=1gomIbt8yJA2pn0xY06-
-                                            PxS5AZFHYmP2k
-                                            File 2https://drive.google.com/open?id=1hV2JPhOHB47aEy7clxsPuWOiDbad0Ze
-                                            File 3https://drive.google.com/open?id=1L--
-                                            Dnd6dLVQGhCP3hbkZ5Rs-z0iwJUwm
-                                            File 4https://drive.google.com/open?
-                                            id=16nZJaBWjqmG5642crodKkUYnHYhfJE2U
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <p><b>Desired Date for Move</b></p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>Sep 04, 2019</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <p><b>Questions/Comments</b></p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p>Please update workflows in PREPROD and PROD.</p>
-                                    </div>
-                                </div>
+                                <asp:Repeater ID="rptScreenshots" runat="server">
+                                    <ItemTemplate>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p><b>Detailed Description of Change</b></p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p><%# DataBinder.Eval(Container.DataItem, "DetailDescription")%></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p><b>Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots</b></p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p>
+                                                    <a href="">File 1https://drive.google.com/open?id=1gomIbt8yJA2pn0xY06-
+                                                    PxS5AZFHYmP2k
+                                                    File 2https://drive.google.com/open?id=1hV2JPhOHB47aEy7clxsPuWOiDbad0Ze
+                                                    File 3https://drive.google.com/open?id=1L--
+                                                    Dnd6dLVQGhCP3hbkZ5Rs-z0iwJUwm
+                                                    File 4https://drive.google.com/open?
+                                                    id=16nZJaBWjqmG5642crodKkUYnHYhfJE2U
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p><b>Desired Date for Move</b></p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p><%# DataBinder.Eval(Container.DataItem, "DesiredDate")%></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p><b>Questions/Comments</b></p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p><%# DataBinder.Eval(Container.DataItem, "Question/Comments")%></p>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
                                 <div class="row">
                                     <div class="col-lg-9">
                                     </div>
@@ -407,7 +401,7 @@
                                     <div class="card-footer">
                                         <div class="control-group form-group">
                                             <div class="controls">
-                                                <textarea rows="1" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="99"></textarea>
+                                                <textarea rows="1" cols="100" class="form-control" id="message" data-validation-required-message="Please enter your message" maxlength="99"></textarea>
                                             </div>
                                         </div>
                                         <a href="#" class="btn btn-secondary" align="center">Comment</a>
@@ -444,6 +438,19 @@
                 </div>
             </div>
         </div>
+        <div hidden>
+            <asp:Button ClientIDMode="Static" ID="btnCMClicked" runat="server" OnClick="btnCMClicked_Click" />
+        </div>
+        <asp:HiddenField ClientIDMode="Static" ID="hiddenCMClicked" runat="server" />
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
     </form>
+    <script type="text/javascript">
+        
+        function RecordClickedCM(button) {
+            var CMID = (button.innerText.split('\n', 1)[0]).substring(3);
+            document.getElementById("hiddenCMClicked").value = CMID;           
+            document.getElementById("btnCMClicked").click();
+        }
+    </script>
 </asp:Content>
 
