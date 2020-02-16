@@ -150,6 +150,45 @@ namespace ChangeManagementSystem
 
 
             }
+            else
+            {
+                if (hiddenCMClicked.Value != null)
+                {
+                    objDB = new DBConnect();
+                    objCommand = new SqlCommand();
+                    objCommand.CommandType = CommandType.StoredProcedure;
+
+                    string CMID = hiddenCMClicked.Value;
+                    objCommand.CommandText = "GetCMByID";
+                    objCommand.Parameters.AddWithValue("@CMID", CMID);
+                    DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                    rptCMStatus.DataSource = dataSet;
+                    rptCMStatus.DataBind();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#exampleModalLong').modal('show');", true);
+
+                    rptModalHeader.DataSource = dataSet;
+                    rptModalHeader.DataBind();
+
+                    rptScreenshots.DataSource = dataSet;
+                    rptScreenshots.DataBind();
+
+                    objCommand.CommandText = "GetCMAndUserByID";
+                    dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                    rptRequestInfo.DataSource = dataSet;
+                    rptRequestInfo.DataBind();
+
+                    objCommand.CommandText = "GetCMAndAdminByID";
+                    dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                    rptAdminName.DataSource = dataSet;
+                    rptAdminName.DataBind();
+
+                    objCommand.CommandText = "GetResponsesByCMID";
+                    dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+                    rptResponse.DataSource = dataSet;
+                    rptResponse.DataBind();
+
+                }
+            }
         }
 
         protected void btnViewAll_Click(object sender, EventArgs e)
@@ -191,6 +230,50 @@ namespace ChangeManagementSystem
             {
                 ((HtmlControl)e.Item.FindControl("btnCM")).Attributes.Add("style", "box-shadow: 0 0 10px 2.5px #8C2132;");
             }
+        }
+
+        protected void btnCMClicked_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void rptCMStatus_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Not Assigned")
+            {
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 0%");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "0");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                
+
+            }
+            else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Assigned")
+            {
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 25%");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "25");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                
+            }
+            else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production")
+            {
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 75%");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                
+            }
+            else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Completed")
+            {
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 100%");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "100");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                
+            }
+
+
         }
     }
 }
