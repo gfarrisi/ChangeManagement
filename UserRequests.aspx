@@ -30,37 +30,40 @@
     </nav>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
-   
-    <div class="container mt-5" style="height: 100%;">
-        <h2 id="requestHistory">Your Request History</h2>
-        <div class="card mb-4 w-50" id="searchBar">
-            <div class="input-group">
-                <asp:TextBox ID="txtSearch" CssClass="form-control" runat="server" placeholder="Search for..."></asp:TextBox>
-                <span class="input-group-btn">
-                    <asp:Button CssClass="btn btn-dark" BorderStyle="None" ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click" />
-                </span>
+    <form runat="server">
+        <div class="container mt-5" style="height: 100%;">
+            <h2 id="requestHistory">Your Request History</h2>
+            <div class="card mb-4 w-50" id="searchBar">
+                <div class="input-group">
+                    <asp:TextBox ID="txtSearch" CssClass="form-control" runat="server" placeholder="Search for..."></asp:TextBox>
+                    <span class="input-group-btn">
+                        <asp:Button CssClass="btn btn-dark" BorderStyle="None" ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click" />
+                    </span>
+                </div>
             </div>
-        </div>
-        <div style="overflow-y: scroll; height: 50%;">
-            <form runat="server">
+            <div style="overflow-y: scroll; height: 50%;">
+
                 <div class="gv">
-                    <asp:GridView ID="gvUserRequests" runat="server" CssClass="table" CellPadding="3" ForeColor="Black" AutoGenerateColumns="False"  AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical">
+                    <asp:GridView ID="gvUserRequests" runat="server" CssClass="table" CellPadding="3" ForeColor="Black" AutoGenerateColumns="False" AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical">
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="Cmid" HeaderText="CM ID" ReadOnly="true" >
+                            <asp:BoundField DataField="CMID" ItemStyle-CssClass="thead-dark" HeaderText="CM ID" ReadOnly="true">
                                 <ItemStyle CssClass="font-weight-bold" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="User" HeaderText="User" ReadOnly="true" />
-                            <asp:BoundField DataField="Admin" HeaderText="Admin" ReadOnly="true" />
-                            <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" />
-                            <asp:BoundField DataField="Type" HeaderText="Type" ReadOnly="true" />
-                            <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="true" />
-                            <asp:BoundField DataField="Date" HeaderText="Last Updated Date" ReadOnly="true" />
+                            <asp:BoundField DataField="CMProjectName" ItemStyle-CssClass="thead-dark" HeaderText="CM Project Name" ReadOnly="true" />
+                            <asp:TemplateField ItemStyle-CssClass="thead-dark" HeaderText="Assigned Admin">
+                                <ItemTemplate>
+                                    <%# Eval("AdminFirstName") + " " + Eval("AdminLastName")%>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="RequestTypeName" HeaderText="Type" ReadOnly="true" />
+                            <asp:BoundField DataField="CMStatus" HeaderText="Status" ReadOnly="true" />
+                            <asp:BoundField DataField="LastUpdateDate" HeaderText="Last Updated Date" ReadOnly="true" DataFormatString="{0:MM/dd/yyyy}" />
                             <asp:TemplateField HeaderText="View Request" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <a class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></a>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center"></ItemStyle>    
+                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
                             </asp:TemplateField>
                         </Columns>
                         <FooterStyle BackColor="#CCCCCC" />
@@ -73,14 +76,16 @@
                         <SortedDescendingHeaderStyle BackColor="#383838" />
                     </asp:GridView>
                 </div>
-            </form>
+
+            </div>
+
+            <button onclick="exportTableToCSV('Requests.csv')" class="btn btnDownload mt-4">Export Table to CSV File</button>
         </div>
-        <button onclick="exportTableToCSV('Requests.csv')" class="btn btnDownload mt-4">Export Table to CSV File</button>
-    </div>
+    </form>
     <br />
     <br />
     <br />
-     <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">

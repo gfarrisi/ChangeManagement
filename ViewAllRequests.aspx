@@ -46,7 +46,7 @@
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search for...">
                 <span class="input-group-btn">
-                    <button class="btn btn-dark" type="button">Search</button>
+                    <asp:Button CssClass="btn btn-dark" BorderStyle="None" ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click" />
                 </span>
             </div>
         </div>
@@ -66,7 +66,7 @@
                                     <%# Eval("FirstName") + " " + Eval("LastName")%>
                                 </ItemTemplate>
                             </asp:TemplateField>
-  
+
                             <asp:BoundField DataField="UserID" ItemStyle-CssClass="thead-dark" HeaderText="UserID" ReadOnly="true" />
                             <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" />
                             <asp:BoundField DataField="RequestTypeName" HeaderText="Type" ReadOnly="true" />

@@ -11,13 +11,13 @@ using System.Data.SqlClient;
 
 namespace ChangeManagementSystem
 {
-	public partial class ViewAllUsers : System.Web.UI.Page
-	{
+    public partial class ViewAllUsers : System.Web.UI.Page
+    {
         SqlCommand dbCommand = new SqlCommand();
         DBConnect db = new DBConnect();
         DataSet ds = new DataSet();
         protected void Page_Load(object sender, EventArgs e)
-		{
+        {
             if (!IsPostBack)
             {
                 DBConnect db = new DBConnect();
@@ -43,7 +43,8 @@ namespace ChangeManagementSystem
             dbCommand.Parameters.Clear();
             DBConnect db = new DBConnect();
             dbCommand.CommandType = CommandType.StoredProcedure;
-            string UserID = "915307371";
+            HiddenField field = (HiddenField)gvAllUsers.Rows[gvAllUsers.SelectedIndex].FindControl("hdnfldVariable");
+            string UserID = field.ToString();
             dbCommand.Parameters.AddWithValue("@UserID", UserID);
             string theDate = DateTime.Now.ToString();
             dbCommand.Parameters.AddWithValue("@Date", theDate);
@@ -58,6 +59,8 @@ namespace ChangeManagementSystem
 
             gvAllUsers.DataSource = cmData;
             gvAllUsers.DataBind();
+
+            //data - dismiss = "modal"
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -84,6 +87,30 @@ namespace ChangeManagementSystem
                 gvAllUsers.DataSource = searchSet;
                 gvAllUsers.DataBind();
             }
+        }
+
+        protected void btnDeactivate_Click(object sender, EventArgs e)
+        {
+            dbCommand.Parameters.Clear();
+            DBConnect db = new DBConnect();
+            dbCommand.CommandType = CommandType.StoredProcedure;
+
+            HiddenField field = (HiddenField)gvAllUsers.Rows[gvAllUsers.SelectedIndex].FindControl("hdnfldVariable");
+            string UserID = field.ToString();
+            dbCommand.Parameters.AddWithValue("@UserID", UserID);
+            string theDate = DateTime.Now.ToString();
+            dbCommand.Parameters.AddWithValue("@Date", theDate);
+            dbCommand.CommandText = "DeactivateUser";
+            db.GetDataSetUsingCmdObj(dbCommand);
+
+            dbCommand.Parameters.Clear();
+            dbCommand.CommandType = CommandType.StoredProcedure;
+            dbCommand.CommandText = "GetAllUsers";
+            DataSet cmData = db.GetDataSetUsingCmdObj(dbCommand);
+            DataTable dataTable = cmData.Tables[0];
+
+            gvAllUsers.DataSource = cmData;
+            gvAllUsers.DataBind();
         }
     }
 }
