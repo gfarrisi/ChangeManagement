@@ -58,17 +58,19 @@
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
 
                         <Columns>
+                            <asp:BoundField DataField="UserID" HeaderText="TU ID" ReadOnly="true" SortExpression="UserID" />
                             <asp:BoundField DataField="FirstName" HeaderText="First Name" ReadOnly="true" SortExpression="FirstName"/>
                             <asp:BoundField DataField="LastName" HeaderText="Last Name" ReadOnly="true" SortExpression="LastName"/>
                             <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" SortExpression="College" />
                             <asp:BoundField DataField="UserType" HeaderText="User Type" ReadOnly="true" SortExpression="UserType" />
                             <asp:TemplateField HeaderText="Deactivate User" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
-                                    <asp:ImageButton ID="EyeButton" Width="20" Height="20" runat="server" 
-                                         ImageUrl="cancel.jpg" OnClick="EyeButton_Click" />
+                                    <asp:HiddenField ID="hdnfldVariable" Value='<%# Eval("UserID") %>' runat="server" />
+                                    <a class="viewRequest" onclick="getData(this)" data-toggle="modal" data-target="#warningModal" style="cursor: pointer"><i class='fas fa-user-slash'></i></a>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
                             </asp:TemplateField>
+                            
                         </Columns>
                         <FooterStyle BackColor="#CCCCCC" />
                         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -142,7 +144,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Deactivate User</button>
+                        <asp:Button ID="btnDeactivate" CssClass="btn btn-danger" BorderStyle="None" Text="Deactivate User" runat="server" OnClick="btnDeactivate_Click" />
                     </div>
                 </div>
             </div>
@@ -150,6 +152,12 @@
     </form>
 
     <script>
+        function getData(t) {   
+            var row = t.parentElement.parentElement.rowIndex;
+            var userID = document.getElementById('CPH1_gvAllUsers_hdnfldVariable_' + (row - 1)).value;
+            alert(userID);
+        }
+
         function exportTableToCSV(filename) {
             var csv = [];
             var rows = document.querySelectorAll("table tr");

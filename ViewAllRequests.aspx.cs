@@ -15,10 +15,19 @@ namespace ChangeManagementSystem
 {
     public partial class ViewAllRequests : System.Web.UI.Page
     {
+        SqlCommand dbCommand = new SqlCommand();
+        DBConnect db = new DBConnect();
+        DataSet ds = new DataSet();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
             {
+                //sam:
+                
+                DBConnect db = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "GetAllCMsAdminView";
                 this.BindGrid();
             }
 
@@ -156,6 +165,5 @@ namespace ChangeManagementSystem
                 gvAllRequests.DataBind();
             }
         }
-
     }
 }
