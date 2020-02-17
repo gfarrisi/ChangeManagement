@@ -54,14 +54,14 @@
             </div>
             <div style="overflow-y: scroll; height: 500px;">
                 <div class="gv">
-                    <asp:GridView ID="gvAllUsers" runat="server" CellPadding="3" CssClass="table" ForeColor="Black" AutoGenerateColumns="False" AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical">
+                    <asp:GridView ID="gvAllUsers" runat="server" CellPadding="3" CssClass="table" ForeColor="Black" AutoGenerateColumns="False" AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical" OnSorting="OnSorting">
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
 
                         <Columns>
-                            <asp:BoundField DataField="FirstName" HeaderText="First Name" ReadOnly="true" />
-                            <asp:BoundField DataField="LastName" HeaderText="Last Name" ReadOnly="true" />
-                            <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" />
-                            <asp:BoundField DataField="UserType" HeaderText="User Type" ReadOnly="true" />
+                            <asp:BoundField DataField="FirstName" HeaderText="First Name" ReadOnly="true" SortExpression="FirstName"/>
+                            <asp:BoundField DataField="LastName" HeaderText="Last Name" ReadOnly="true" SortExpression="LastName"/>
+                            <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" SortExpression="College" />
+                            <asp:BoundField DataField="UserType" HeaderText="User Type" ReadOnly="true" SortExpression="UserType" />
                             <asp:TemplateField HeaderText="Deactivate User" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="EyeButton" Width="20" Height="20" runat="server" 

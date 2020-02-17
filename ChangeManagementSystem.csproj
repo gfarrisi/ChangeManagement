@@ -146,6 +146,7 @@
     <Compile Include="AdminNewCM.aspx.designer.cs">
       <DependentUpon>AdminNewCM.aspx</DependentUpon>
     </Compile>
+    <Compile Include="RequestLibrary\allRequests.cs" />
     <Compile Include="RequestLibrary\CMRequest.cs" />
     <Compile Include="RequestLibrary\QuestionResponse.cs" />
     <Compile Include="RequestLibrary\RequestTypeData.cs" />
