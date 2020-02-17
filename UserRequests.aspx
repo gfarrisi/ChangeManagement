@@ -47,18 +47,18 @@
                     <asp:GridView ID="gvUserRequests" runat="server" CssClass="table" CellPadding="3" ForeColor="Black" AutoGenerateColumns="False" AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical">
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="CMID" ItemStyle-CssClass="thead-dark" HeaderText="CM ID" ReadOnly="true">
+                            <asp:BoundField DataField="CMID" ItemStyle-CssClass="thead-dark" HeaderText="CM ID" ReadOnly="true" SortExpression="CMID">
                                 <ItemStyle CssClass="font-weight-bold" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="CMProjectName" ItemStyle-CssClass="thead-dark" HeaderText="CM Project Name" ReadOnly="true" />
-                            <asp:TemplateField ItemStyle-CssClass="thead-dark" HeaderText="Assigned Admin">
+                            <asp:BoundField DataField="CMProjectName" ItemStyle-CssClass="thead-dark" HeaderText="CM Project Name" ReadOnly="true" SortExpression="CMProjectName" />
+                            <asp:TemplateField ItemStyle-CssClass="thead-dark" HeaderText="Assigned Admin" SortExpression="AdminLastName">
                                 <ItemTemplate>
                                     <%# Eval("AdminFirstName") + " " + Eval("AdminLastName")%>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="RequestTypeName" HeaderText="Type" ReadOnly="true" />
-                            <asp:BoundField DataField="CMStatus" HeaderText="Status" ReadOnly="true" />
-                            <asp:BoundField DataField="LastUpdateDate" HeaderText="Last Updated Date" ReadOnly="true" DataFormatString="{0:MM/dd/yyyy}" />
+                            <asp:BoundField DataField="RequestTypeName" HeaderText="Type" ReadOnly="true" SortExpression="RequestTypeName" />
+                            <asp:BoundField DataField="CMStatus" HeaderText="Status" ReadOnly="true" SortExpression="CMStatus" />
+                            <asp:BoundField DataField="LastUpdateDate" HeaderText="Last Updated Date" ReadOnly="true" DataFormatString="{0:MM/dd/yyyy}" SortExpression="LastUpdateDate" />
                             <asp:TemplateField HeaderText="View Request" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <a class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></a>
@@ -76,7 +76,6 @@
                         <SortedDescendingHeaderStyle BackColor="#383838" />
                     </asp:GridView>
                 </div>
-
             </div>
 
             <button onclick="exportTableToCSV('Requests.csv')" class="btn btnDownload mt-4">Export Table to CSV File</button>
