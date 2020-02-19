@@ -18,12 +18,19 @@ namespace ChangeManagementSystem
         SqlCommand objCommand;
         DataSet dashboardData;
         SqlCommand objCommandDashboard;
+
+        bool IsPageRefresh = false;
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!IsPostBack)
             {
+                ViewState["ViewStateId"] = System.Guid.NewGuid().ToString();
+                Session["SessionId"] = ViewState["ViewStateId"].ToString();
+                hiddenCMClicked.Value = null;
+
                 Session.Add("UserID", 915368285); // Admin user in database; will be preserved from login in the future
+
 
                 objDB = new DBConnect();
                 objCommand = new SqlCommand();
@@ -156,13 +163,24 @@ namespace ChangeManagementSystem
             }
             else
             {
-                if (hiddenCMClicked.Value != null)
+                if (ViewState["ViewStateId"].ToString() != Session["SessionId"].ToString())
                 {
+                    IsPageRefresh = true;
+                }
+
+                Session["SessionId"] = System.Guid.NewGuid().ToString();
+                ViewState["ViewStateId"] = Session["SessionId"].ToString();
+                if (hiddenCMClicked.Value != null && IsPageRefresh == false)
+                {
+                    Page.MaintainScrollPositionOnPostBack = true;
+
                     objDB = new DBConnect();
                     objCommand = new SqlCommand();
                     objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.Parameters.Clear();
 
                     string CMID = hiddenCMClicked.Value;
+
                     objCommand.CommandText = "GetCMByID";
                     objCommand.Parameters.AddWithValue("@CMID", CMID);
                     DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
@@ -190,19 +208,65 @@ namespace ChangeManagementSystem
                     dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
                     rptResponse.DataSource = dataSet;
                     rptResponse.DataBind();
+
+
+
+                    //int selectedCM = Convert.ToInt32(CMID);
+                    //string userID = Session["UserID"].ToString();
+
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetComments";
+                    objCommand.Parameters.Clear();
+                    objCommand.Parameters.AddWithValue("@CMID", CMID);
+                  
+
+                    DataSet cmRequestData = objDB.GetDataSetUsingCmdObj(objCommand);
+                    DataTable dataTable = cmRequestData.Tables[0];
+
+                    if (dataTable.Rows.Count > 0)
+                    {
+                        pnlNoComments.Visible = false;
+                        pnlComments.Visible = true;
+                        rptComments.DataSource = dataTable;
+                        rptComments.DataBind();
+                    }
+                    else
+                    {
+                        pnlComments.Visible = false;
+                        pnlNoComments.Visible = true;
+                    }
+
+                   // multitxt.Text = "Line1" + Environment.NewLine + "Line2";
+
                 }
             }
 
         }
 
+        protected void tmComments_Tick(object sender, EventArgs e)
+        {
+            //SqlCommand objCommand = new SqlCommand();
+            //objCommand.CommandType = CommandType.StoredProcedure;
+            //objCommand.CommandText = "TP_GetCurrentOrder";
+            //objCommand.Parameters.Clear();
+            //objCommand.Parameters.AddWithValue("@OrderID", OrderID);
+            //DataSet ds = objDB.GetDataSetUsingCmdObj(objCommand);
+            //if (ds != null)
+            //{
+               
+            //}
+        }
+
+
         protected void btnNewRequest_Click(object sender, EventArgs e)
         {
-
+            hiddenCMClicked.Value = null;
             Response.Redirect("SelectRequestType.aspx");
         }
 
         protected void btnViewAll_Click(object sender, EventArgs e)
         {
+            hiddenCMClicked.Value = null;
             Response.Redirect("ViewAllRequests.aspx");
         }
 
@@ -279,6 +343,60 @@ namespace ChangeManagementSystem
 
             }
 
+        }
+
+        protected void btnNewComment_Click(object sender, EventArgs e)
+        {
+            //validate comment text
+            if (Validation.ValidateForm(txtNewComment.Text) && IsPageRefresh == false)
+            {
+                DateTime dt = DateTime.Now;
+                string CMID = hiddenCMClicked.Value;
+                Session.Add("UserID", 915368285);
+                //insert new comment into cm
+                DBConnect ObjDb = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "InsertComment";
+                objCommand.Parameters.AddWithValue("@CommentText", txtNewComment.Text);
+                objCommand.Parameters.AddWithValue("@LastUpdateDate", dt.ToString());
+                objCommand.Parameters.AddWithValue("@CommenterID", Session["UserID"].ToString());
+                objCommand.Parameters.AddWithValue("@CMID", CMID);
+
+                int response = objDB.DoUpdateUsingCmdObj(objCommand);
+                if(response > 0)
+                {
+                    //Response.Write("<script>alert('Comment entered!');</script>");
+                    txtNewComment.Text = "";
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetComments";
+                    objCommand.Parameters.Clear();
+                    objCommand.Parameters.AddWithValue("@CMID", CMID);
+
+
+                    DataSet cmRequestData = objDB.GetDataSetUsingCmdObj(objCommand);
+                    DataTable dataTable = cmRequestData.Tables[0];
+
+                    if (dataTable.Rows.Count > 0)
+                    {
+                        pnlNoComments.Visible = false;
+                        pnlComments.Visible = true;
+                        rptComments.DataSource = dataTable;
+                        rptComments.DataBind();                        
+                    }
+                    else
+                    {
+                        pnlComments.Visible = false;
+                        pnlNoComments.Visible = true;
+                    }
+
+                }
+                else
+                {
+                    Response.Write("<script>alert('Comment not entered');</script>");
+                }
+            }
+            
         }
     }        
 }
