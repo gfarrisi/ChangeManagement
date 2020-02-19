@@ -29,6 +29,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="CPH1" runat="server">
     <form runat="server">
+        <asp:ScriptManager ID="scriptman" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
         <div class="pull-right pt-5 pb-4" style="background-color: rgba(0,0,0,.03);">
             <div class="pl-5 ml-5">
                 <div class="row1">
@@ -40,9 +41,7 @@
                     </div>
                     <div class="col-lg-1 mb-1"></div>
                     <div class="col-lg-5 mb-1"></div>
-                    <div class="col-lg-2 mb-1">
-                        <button class="btn btn-secondary-fake" style="box-shadow: 0 0 10px 2.5px #8C2132; cursor: auto;">Assigned to me</button>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -70,14 +69,14 @@
                         <div>
                             <div style="height: 40%; width: 100%;">
                                 <asp:Repeater ID="rptNotAssigned" runat="server" OnItemDataBound="rptNotAssigned_ItemDataBound">
-                                    <ItemTemplate>                                   
+                                    <ItemTemplate>
                                         <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
-                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
-                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
-                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
+                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
+                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
+                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
                                             <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
                                             <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
-                                        </button>     
+                                        </button>
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </div>
@@ -97,14 +96,14 @@
                                 <asp:Repeater ID="rptAssigned" runat="server" OnItemDataBound="rptAssigned_ItemDataBound">
                                     <ItemTemplate>
                                         <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
-                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
-                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
-                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
+                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
+                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
+                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
                                             <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
                                             <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
                                         </button>
                                     </ItemTemplate>
-                                </asp:Repeater>                                                 
+                                </asp:Repeater>
                             </div>
                         </div>
                     </div>
@@ -122,21 +121,21 @@
                                 <asp:Repeater ID="rptPreProduction" runat="server" OnItemDataBound="rptPreProduction_ItemDataBound">
                                     <ItemTemplate>
                                         <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
-                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
-                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
-                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
+                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
+                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
+                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
                                             <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
                                             <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
                                         </button>
                                     </ItemTemplate>
-                                </asp:Repeater>                                       
+                                </asp:Repeater>
                             </div>
                             <br />
                         </div>
                     </div>
                 </div>
 
-                
+
                 <%-- completed --%>
 
 
@@ -145,15 +144,15 @@
                     <div class="col-lg-12 mb-5">
                         <div style="height: 100%;">
                             <div style="height: 40%; width: 100%">
-                                 <asp:Repeater ID="rptCompleted" runat="server" OnItemDataBound="rptCompleted_ItemDataBound">
+                                <asp:Repeater ID="rptCompleted" runat="server" OnItemDataBound="rptCompleted_ItemDataBound">
                                     <ItemTemplate>
                                         <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
-                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
-                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
-                                            <asp:Label runat="server" style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
+                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
+                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
+                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
                                             <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
                                             <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
-                                        </button>                                       
+                                        </button>
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </div>
@@ -223,12 +222,12 @@
                         </div>
                         <br />
                         <div class="row">
-                            <div class="col-lg-12 form-data">                               
+                            <div class="col-lg-12 form-data">
                                 <asp:Repeater ID="rptRequestInfo" runat="server">
                                     <ItemTemplate>
                                         <div class="row" runat="server">
-                                        <h4 runat="server"><%# "Request Type: " + DataBinder.Eval(Container.DataItem, "RequestTypeID") %></h4>
-                                        <br />
+                                            <h4 runat="server"><%# "Request Type: " + DataBinder.Eval(Container.DataItem, "RequestTypeID") %></h4>
+                                            <br />
                                         </div>
                                         <br />
                                         <div class="row">
@@ -352,50 +351,54 @@
                         </div>
                         <div class="row mb-7">
                             <div class="col-lg-1 mb-7"></div>
-                            <div class="col-lg-11 mb-7" style="height: 400px; padding-left: 0;">
+                            <div class="col-lg-11 mb-7" style="height: 50%; padding-left: 0;">
                                 <h4 class="mb-3 ml-1 mt-3">Comments</h4>
-                                <div class="card h-100">
-                                    <div class="card-body overflow-auto">
-                                        <p class="card-text">
-                                            Admin  
-                                            <br />
-                                            <span class="comment-time">[10/17/2019 4:42 PM]</span>
-                                            <br />
-                                            <span class="comment-text">Was this the first submission of this form? It looks like we may have completed this two weeks ago.</span>
-                                        </p>
-                                        <hr>
-                                        <p class="card-text">
-                                            Jane Doe 
-                                            <br />
-                                            <span class="comment-time">[10/19/2019 6:42 PM]</span>
-                                            <br />
-                                            <span class="comment-text">The form submitted two weeks ago was similar, but we actually need a few things added so this is a new submission request.</span>
-                                        </p>
-                                        <hr>
-                                        <p class="card-text">
-                                            Admin  
-                                            <br />
-                                            <span class="comment-time">[10/20/2019 11:40 AM]</span>
-                                            <br />
-                                            <span class="comment-text">Can you provide the CM# for that request?</span>
-                                        </p>
+                                <div class="card ">
+                                    <div class="card-body"  style="height: 20rem; overflow-y: scroll;">
+                                        <asp:Panel ID="pnlNoComments" runat="server">
+                                            <p class="pt-3 pb-5">
+                                                There are no existing comments
+                                            </p>
+                                        </asp:Panel>
+                                        <%--<asp:Panel ID="pnlComments" runat="server">--%>
+                                        <asp:UpdatePanel ID="pnlComments" style="width: 100%" runat="server">
+                                            <ContentTemplate>
+                                                <%--<asp:Timer ID="tmComments" OnTick="tmComments_Tick" runat="server" Interval="3000" />--%>
+                                                <asp:Repeater ID="rptComments" runat="server">
+                                                    <ItemTemplate>
+                                                        <%--<asp:Label ID="Label6" runat="server" ForeColor="#FF5581" Font-Size="Large" Font-Bold="true" Text="Restaurant Info"></asp:Label>--%>
+                                                        <%--<asp:HiddenField ID="hfRestaurantID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "Restaurant_ID") %>' />--%>
+                                                        <p class="card-text">
+                                                            <asp:Label ID="lbCommentName" CssClass="" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "UserType") + ": " + DataBinder.Eval(Container.DataItem, "FirstName") + " " + DataBinder.Eval(Container.DataItem, "LastName") %>'></asp:Label>
+                                                            <br />
+                                                            <span class="comment-time">
+                                                                <asp:Label ID="lbCommentTime" runat="server" Font-Italic="true" CssClass="" Text='<%# DataBinder.Eval(Container.DataItem, "LastUpdateDate") %>'></asp:Label>
+                                                            </span>
+                                                            <br />
+                                                            <span class="comment-text">
+                                                                <asp:Label ID="lbCommentText" runat="server" Font-Italic="true" CssClass="" Text='<%# DataBinder.Eval(Container.DataItem, "CommentText") %>'></asp:Label>
+                                                            </span>
+                                                        </p>
+                                                        <hr />
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
 
-                                        <hr>
-                                        <p class="card-text">
-                                            Jane Doe 
-                                            <br />
-                                            <span class="comment-time">[10/20/2019 1:12 PM]</span>
-                                            <br />
-                                            <span class="comment-text">Sure, it was #9127</span>
-                                        </p>
+                                            </ContentTemplate>
+                                            <Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="rptComments" EventName="ItemDataBound" />
+                                            </Triggers>
+                                        </asp:UpdatePanel>
+                                        <%--</asp:Panel>--%>
                                     </div>
                                     <div class="card-footer">
                                         <div class="control-group form-group">
                                             <div class="controls">
-                                                <textarea rows="1" cols="100" class="form-control" id="message" data-validation-required-message="Please enter your message" maxlength="99"></textarea>
+                                                <asp:TextBox ID="txtNewComment" CssClass="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                                <%--<textarea rows="1" cols="100" class="form-control" id="message" data-validation-required-message="Please enter your message" maxlength="99"></textarea>--%>
                                             </div>
                                         </div>
-                                        <a href="#" class="btn btn-secondary" align="center">Comment</a>
+                                        <asp:Button ID="btnNewComment" Text="Comment" runat="server" CssClass="btn btn-secondary" OnClick="btnNewComment_Click"/>
+                                        <%--<a href="#" class="btn btn-secondary" align="center">Comment</a>--%>
                                     </div>
                                 </div>
 
@@ -433,13 +436,13 @@
             <asp:Button ClientIDMode="Static" ID="btnCMClicked" runat="server" OnClick="btnCMClicked_Click" />
         </div>
         <asp:HiddenField ClientIDMode="Static" ID="hiddenCMClicked" runat="server" />
-        <asp:ScriptManager runat="server"></asp:ScriptManager>
+
     </form>
     <script type="text/javascript">
-        
+
         function RecordClickedCM(button) {
             var CMID = (button.innerText.split('\n', 1)[0]).substring(3);
-            document.getElementById("hiddenCMClicked").value = CMID;           
+            document.getElementById("hiddenCMClicked").value = CMID;
             document.getElementById("btnCMClicked").click();
         }
     </script>
