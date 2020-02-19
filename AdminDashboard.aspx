@@ -208,21 +208,12 @@
                                             </ItemTemplate>
                                         </asp:Repeater>
                                         <br />
-                                        <%--<div class="status-check"> 
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                    </div>--%>
                                         <div class="row">
                                             <div class="col-lg-3 mb-2"></div>
                                             <div class="col-lg-6">
                                                 <div class="status-check">
-                                                    <select name="avatar" class="browser-default custom-select">
-                                                        <option value="avatars">- Update Status -</option>
-                                                        <%--<option value="avatars/avatar-4.jpg">Assign to me</option>--%>
-                                                        <option>CM Failed</option>
-                                                        <option>Change implented in preprod</option>
-                                                        <option>Change implemented in prod</option>
-                                                    </select>
+                                                    <asp:Label ID="lblCMStatus" runat="server">Update Status</asp:Label>
+                                                    <asp:DropDownList class="browser-default custom-select"  ID="ddlCMStatus" runat="server" ></asp:DropDownList>                                                  
                                                 </div>
                                             </div>
                                         </div>
@@ -414,7 +405,7 @@
                     <div class="modal-footer mt-5">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
                         <button type="button" class="btn btn-secondary" id="btnDownload">Download</button>
-                        <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal" data-toggle="modal" data-target="#mdlSavedChanges">Save changes</button>
+                        <asp:Button runat="server" class="btn btn-primary" id="btnSave" Text="Save changes" OnClick="btnSave_Click"></asp:Button>
                     </div>
                 </div>
 

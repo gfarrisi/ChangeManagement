@@ -112,8 +112,8 @@ namespace ChangeManagementSystem
                     
                 Session.Add("responseListPreProduction", responseListPreProduction.ToString());
 
+                objCommandDashboard.CommandText = "GetPreProdCMs";
                 objCommandDashboard.Parameters.Clear();
-                objCommandDashboard.Parameters.AddWithValue("@CMStatus", "pre-production");
                 dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
                 rptPreProduction.DataSource = dashboardData;
                 rptPreProduction.DataBind();
@@ -140,14 +140,11 @@ namespace ChangeManagementSystem
                    
                 Session.Add("responseListCompleted", responseListCompleted.ToString());
 
+                objCommandDashboard.CommandText = "GetCompletedCMs";
                 objCommandDashboard.Parameters.Clear();
-                objCommandDashboard.Parameters.AddWithValue("@CMStatus", "completed");
                 dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
                 rptCompleted.DataSource = dashboardData;
                 rptCompleted.DataBind();
-
-
-
 
             }
             else
@@ -245,6 +242,12 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+
+                List<string> statusList = new List<string>();
+                statusList.Add("Assign to Me");
+                statusList.Add("CM Failed");
+                ddlCMStatus.DataSource = statusList;
+                ddlCMStatus.DataBind();
                 
 
             }
@@ -254,15 +257,40 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "25");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
-                
+
+                List<string> statusList = new List<string>();
+                statusList.Add("Change Implemented in Pre-Production");
+                statusList.Add("CM Failed");
+                ddlCMStatus.DataSource = statusList;
+                ddlCMStatus.DataBind();
+
             }
-            else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production")
+            else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production Needs Testing")
             {
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 75%");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
-                
+
+                ddlCMStatus.Visible = false;
+                lblCMStatus.Text = "Pending User Testing of Changes";
+            }
+            else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production")
+            {
+                ddlCMStatus.Visible = true;
+                lblCMStatus.Text = "Update Status";
+
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 75%");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+
+                List<string> statusList = new List<string>();
+                statusList.Add("Change Implemented in Production");
+                statusList.Add("CM Failed");
+                ddlCMStatus.DataSource = statusList;
+                ddlCMStatus.DataBind();
+
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Completed")
             {
@@ -273,6 +301,40 @@ namespace ChangeManagementSystem
                 
             }
 
+
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            objCommand.CommandText = "UpdateCMStatus";
+
+            objCommand.Parameters.Clear();
+            objCommand.Parameters.AddWithValue("@CMID", hiddenCMClicked.Value);
+
+            if (ddlCMStatus.SelectedValue == "CM Failed")
+            {
+                objCommand.Parameters.AddWithValue("@CMStatus", "Failed");
+            }
+            else if (ddlCMStatus.SelectedValue == "Assign to Me")
+            {
+                objCommand.CommandText = "UpdateCMStatusAndAdmin";
+                objCommand.Parameters.AddWithValue("@CMStatus", "Assigned");
+                objCommand.Parameters.AddWithValue("@AdminID", Session["UserID"].ToString());
+            }
+            else if (ddlCMStatus.SelectedValue == "Change Implemented in Pre-Production")
+            {
+                objCommand.Parameters.AddWithValue("@CMStatus", "Pre-Production Needs Testing");
+            }
+            else if (ddlCMStatus.SelectedValue == "Change Implemented in Production")
+            {
+                objCommand.Parameters.AddWithValue("@CMStatus", "Production");
+            }
+
+            objDB.DoUpdateUsingCmdObj(objCommand);
+            Server.Transfer("AdminDashboard.aspx");
+            // Need to open confirmation modal after performing update and reload dashboard
+
+            // Conditions will eventually need to trigger emails
 
         }
     }
