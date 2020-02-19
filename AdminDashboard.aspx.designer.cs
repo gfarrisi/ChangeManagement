@@ -67,6 +67,24 @@ namespace ChangeManagementSystem {
         protected global::System.Web.UI.WebControls.Repeater rptCMStatus;
         
         /// <summary>
+        /// lblCMStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCMStatus;
+        
+        /// <summary>
+        /// ddlCMStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCMStatus;
+        
+        /// <summary>
         /// rptRequestInfo control.
         /// </summary>
         /// <remarks>
@@ -101,6 +119,15 @@ namespace ChangeManagementSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptScreenshots;
+        
+        /// <summary>
+        /// btnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
         /// btnCMClicked control.
