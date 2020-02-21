@@ -36,10 +36,21 @@ namespace ChangeManagementSystem
                 objCommand = new SqlCommand();
                 objCommandDashboard = new SqlCommand();
 
+                //get user name for nav
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "GetUserByID";
+                objCommand.Parameters.Clear();
+                objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+                DataSet userData = objDB.GetDataSetUsingCmdObj(objCommand);
+                DataTable dt = userData.Tables[0];
+                string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
+                lblUserName.Text = userName;
                 // Not assigned CMs
 
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "GetCMResponsesByUserByStatus";
+                objCommand.Parameters.Clear();
                 objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
                 objCommand.Parameters.AddWithValue("@CMStatus", "not assigned");
 
@@ -209,11 +220,7 @@ namespace ChangeManagementSystem
                     rptResponse.DataSource = dataSet;
                     rptResponse.DataBind();
 
-
-
-                    //int selectedCM = Convert.ToInt32(CMID);
-                    //string userID = Session["UserID"].ToString();
-
+                                                       
                     objCommand.CommandType = CommandType.StoredProcedure;
                     objCommand.CommandText = "GetComments";
                     objCommand.Parameters.Clear();

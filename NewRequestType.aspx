@@ -27,7 +27,8 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dima Dabbas
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <asp:Label runat="server" ID="lblUserName" Text="Default"></asp:Label>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                         <a class="dropdown-item" href="Login.aspx">Log Out</a>
@@ -57,17 +58,17 @@
                                 <asp:TextBox ID="txtRequestName" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
-                </div>
-                <div style="margin: 0 auto; max-width: 600px;">
-                    <asp:Panel ID="pnlNewRequestType" runat="server">
-                    </asp:Panel>
-                </div>
-                <div class="form-row">
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-8">
-                        <button type="button" class="btn btn-secondary mt-5 ml-5" data-toggle="modal" data-target="#mdlAddQuestion" data-whatever="@fat">Add Question</button>
                     </div>
-                </div>
+                    <div style="margin: 0 auto; max-width: 600px;">
+                        <asp:Panel ID="pnlNewRequestType" runat="server">
+                        </asp:Panel>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-8">
+                            <button type="button" class="btn btn-secondary mt-5 ml-5" data-toggle="modal" data-target="#mdlAddQuestion" data-whatever="@fat">Add Question</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 

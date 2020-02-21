@@ -1,7 +1,10 @@
 ﻿using ChangeManagementSystem.RequestLibrary;
+using ChangeManagementSystem.Utilities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
@@ -20,6 +23,19 @@ namespace ChangeManagementSystem
 
             if (!IsPostBack)
             {
+                DBConnect db = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "GetUserByID";
+                objCommand.Parameters.Clear();
+                objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+                DataSet userData = db.GetDataSetUsingCmdObj(objCommand);
+                DataTable dt = userData.Tables[0];
+                string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
+                lblUserName.Text = userName;
+
                 questionOrder = 1;
             }
                 
