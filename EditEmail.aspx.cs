@@ -6,6 +6,9 @@ using System.Web;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using ChangeManagementSystem.Utilities;
+using ChangeManagementSystem.RequestLibrary;
 
 namespace ChangeManagementSystem
 {
@@ -14,71 +17,57 @@ namespace ChangeManagementSystem
         ArrayList list = new ArrayList();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                ArrayList list = theList();
-                gvEmails.DataSource = list;
-                gvEmails.DataBind();
-                
-            }
-        }
 
-        private ArrayList theList()
-        {
-            list.Add(new allRequests(1, "Moved to Assigned", "Recruit User", "CM #{} : Has Been Assigned", "Your CM has been assigned to USER, Click Here to view CM"));
-            list.Add(new allRequests(2, "Implemented in Pre-Prod", "Recruit User", "CM #{} : Has Been Implemented in Pre-Production", "Your CM has been implemented in pre-production, Click Here to view CM"));
-            list.Add(new allRequests(3, "Implemented in Prod", "Recruit User", "CM #{} : Has Been Implemented in Production", "Your CM has been implemented in production, Click Here to view CM"));
-            list.Add(new allRequests(4, "CM has failed", "Recruit User", "CM #{} : Has Failed", "Your CM has been marked as failed, Click Here to view CM"));
-            list.Add(new allRequests(5, "New Request", "CM Admin", "New Request Submitted", "A new request has been submitted, Click Here to view CM"));
-            list.Add(new allRequests(6, "Confirmed Testing", "CM Admin", "{USER} Has Confirmed Testing of CM # {}", "A User has confirmed testing on an existing CM, Click Here to view CM"));
-            return list;
-        }
-        public class allRequests
-        {
-            private string body;
-            private string subject;
-            private string sent;
-            private string type;
-            private int id;
-            public allRequests(int id, string type, string sent, string subject, string body)
-            {
-                Sent = sent;
-                ID = id;
-                Type = type;
-                Subject = subject;
-                Body = body;
-            }
-            public int ID
-            {
-                get { return id; }
-                set { id = value; }
-            }
-            public string Sent
-            {
-                get { return sent; }
-                set { sent = value; }
-            }
-            public string Subject
-            {
-                get { return subject; }
-                set { subject = value; }
-            }
-            public string Body
-            {
-                get { return body; }
-                set { body = value; }
-            }
-            public string Type
-            {
-                get { return type; }
-                set { type = value; }
-            }
-        }
 
+                if (!IsPostBack)
+                {
+                    DBConnect db = new DBConnect();
+                    SqlCommand objCommand = new SqlCommand();
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetEmailTemplate";
+
+                    DataSet cmData = db.GetDataSetUsingCmdObj(objCommand);
+                    DataTable dataTable = cmData.Tables[0];
+
+                    gvEmails.DataSource = cmData;
+                    gvEmails.DataBind();
+                }
+            }
+        
+
+      
         protected void btnEdit_Click(object sender, EventArgs e)
         {
+          
+            Response.Write("<script>alert('" + (hf.Value.ToString()) + "');</script>");
+
+            int row = Convert.ToInt32(hf.Value);
+            GridViewRow emailRow = gvEmails.SelectedRow;
+
             string body = txtBody.Text;
 
+            DBConnect db = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "UpdateEmailTemplate";
+
+            objCommand.Parameters.AddWithValue("@id", row);
+            objCommand.Parameters.AddWithValue("@Body",body);
+            db.GetConnection().Open();
+            db.ExecuteScalarFunction(objCommand);
+
+
+
+            DBConnect db2 = new DBConnect();
+            SqlCommand objCommand2 = new SqlCommand();
+            objCommand2.CommandType = CommandType.StoredProcedure;
+            objCommand2.CommandText = "GetEmailTemplate";
+
+            DataSet cmData2 = db.GetDataSetUsingCmdObj(objCommand2);
+            DataTable dataTable2 = cmData2.Tables[0];
+
+            gvEmails.DataSource = cmData2;
+            gvEmails.DataBind();
         }
     }
 }
