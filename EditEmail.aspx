@@ -39,11 +39,14 @@
     </nav>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
+   
     <div class="container mt-5" style="height: 100%;">
         <h2 id="automateEmails">Automated Emails</h2>
         <div>
-            <form runat="server">
+            <form id="form1" runat="server">
+               
                 <div class="gvE">
+                     <asp:HiddenField runat="server" ID="hf" ClientIDMode="Static" />
                     <asp:GridView ID="gvEmails" runat="server" CssClass="table" AutoGenerateColumns="False" Width="1000px" BorderColor="#CCCCCC">
                         <Columns>
                             <asp:BoundField DataField="Type" HeaderText="Email" ReadOnly="true">
@@ -57,12 +60,19 @@
                                     <a class="viewRequest" onclick="getData(this)" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer"><i class='far fa-edit'></i></a>
                                 </ItemTemplate>
                             </asp:TemplateField>
+
+
+<%--                            <asp:HiddenField runat="server" ID="SendA" Value=""></asp:HiddenField>
+                            <script type="text/javascript">
+                                document.getElementById("<%=SendA.Email%>").value="1";
+                            </script>--%>
                         </Columns>
                         <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
                         <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
                         <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
                     </asp:GridView>
+                    
                 </div>
 
                 <!-- Modal -->
@@ -90,7 +100,9 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <asp:Button ID="btnEdit" class="btn btn-primary" runat="server" Text="Edit Email" OnClick="btnEdit_Click" />
+                                <asp:Button ID="btnEdit" class="btn btn-primary" runat="server" Text="Edit Email" OnClick="btnEdit_Click" OnClientClick="abc()" />
+          
+                                
                             </div>
                         </div>
                     </div>
@@ -102,11 +114,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js" integrity="sha256-uC1JMW5e1U5D28+mXFxzTz4SSMCywqhxQIodqLECnfU=" crossorigin="anonymous"></script>
     <script type="text/javascript">
         function getData(t) {
+            
             var row = t.parentElement.parentElement.rowIndex;
+            
             var subject = document.querySelectorAll('tr')[row].cells[2].innerHTML;
             var body = document.querySelectorAll('tr')[row].cells[3].innerHTML;
             document.querySelectorAll('input[name="ctl00$CPH1$txtSubject"]')[0].value = subject;
             document.querySelectorAll('input[name="ctl00$CPH1$txtBody"]')[0].value = body;
+            //alert(String(row));
+            //document.getElementById("labelRow").innerHTML = '' + String(row);
+            $("#hf").val(String(row))
+          
+       
         }
+  
+
     </script>
 </asp:Content>
