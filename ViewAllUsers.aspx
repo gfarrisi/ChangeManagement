@@ -27,7 +27,8 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dima Dabbas
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <asp:Label runat="server" ID="lblUserName" Text="Default"></asp:Label>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                         <a class="dropdown-item" href="Login.aspx">Log Out</a>
@@ -60,8 +61,8 @@
 
                         <Columns>
                             <asp:BoundField DataField="UserID" HeaderText="TU ID" ReadOnly="true" SortExpression="UserID" />
-                            <asp:BoundField DataField="FirstName" HeaderText="First Name" ReadOnly="true" SortExpression="FirstName"/>
-                            <asp:BoundField DataField="LastName" HeaderText="Last Name" ReadOnly="true" SortExpression="LastName"/>
+                            <asp:BoundField DataField="FirstName" HeaderText="First Name" ReadOnly="true" SortExpression="FirstName" />
+                            <asp:BoundField DataField="LastName" HeaderText="Last Name" ReadOnly="true" SortExpression="LastName" />
                             <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" SortExpression="College" />
                             <asp:BoundField DataField="UserType" HeaderText="User Type" ReadOnly="true" SortExpression="UserType" />
                             <asp:TemplateField HeaderText="Deactivate User" ItemStyle-HorizontalAlign="Center">
@@ -71,7 +72,7 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
                             </asp:TemplateField>
-                            
+
                         </Columns>
                         <FooterStyle BackColor="#CCCCCC" />
                         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -153,7 +154,7 @@
     </form>
 
     <script>
-        function getData(t) {   
+        function getData(t) {
             var row = t.parentElement.parentElement.rowIndex;
             var userID = document.getElementById('CPH1_gvAllUsers_hdnfldVariable_' + (row - 1)).value;
             $("#hf").val(String(userID))

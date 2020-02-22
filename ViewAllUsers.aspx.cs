@@ -37,6 +37,19 @@ namespace ChangeManagementSystem
         {
             if (!this.IsPostBack)
             {
+                DBConnect db = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "GetUserByID";
+                objCommand.Parameters.Clear();
+                objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+                DataSet userData = db.GetDataSetUsingCmdObj(objCommand);
+                DataTable dt = userData.Tables[0];
+                string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
+                lblUserName.Text = userName;
+
                 this.BindGrid();
             }
 
