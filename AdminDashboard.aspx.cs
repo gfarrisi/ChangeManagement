@@ -1,4 +1,4 @@
-﻿
+﻿using IronPdf;
 using ChangeManagementSystem.Utilities;
 using System;
 using System.Data;
@@ -11,6 +11,8 @@ using ChangeManagementSystem;
 using ChangeManagementSystem.RequestLibrary;
 using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
+using System.Net;
+using System.IO;
 
 namespace ChangeManagementSystem
 {
@@ -436,6 +438,34 @@ namespace ChangeManagementSystem
                 }
             }
 
+        }
+
+        protected void btnDownloadAsPDF_Click(object sender, EventArgs e)
+        {
+            WebRequest request;
+            WebResponse reponse;
+            StreamReader reader;
+            StreamWriter writer;
+            string strHTML;
+
+            string cmName = "CMRequest"; // will be dynamic later, need to figure out how to retrieve the specific name
+            IronPdf.HtmlToPdf Renderer = new IronPdf.HtmlToPdf();
+
+            request = WebRequest.Create("http://localhost:55877/AdminDashboard.aspx");
+            reponse = request.GetResponse();
+            reader = new StreamReader(reponse.GetResponseStream());
+            strHTML = reader.ReadToEnd();
+
+            var PDF = Renderer.RenderHtmlAsPdf(strHTML);
+
+            Response.Clear();
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + cmName + ".pdf");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.BinaryWrite(PDF.BinaryData);
+
+            Response.End();
+            Response.Flush();
         }
     }
 }
