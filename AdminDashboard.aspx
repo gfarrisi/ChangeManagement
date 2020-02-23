@@ -192,6 +192,7 @@
                         <asp:Repeater ID="rptModalHeader" runat="server">
                             <ItemTemplate>
                                 <h5 runat="server" class="modal-title" id="exampleModalLongTitle"><%# "CM: " + DataBinder.Eval(Container.DataItem, "CMID") + " - " + DataBinder.Eval(Container.DataItem, "CMProjectName") %></h5>
+                                <asp:HiddenField ID="hiddenTitle" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'/>
                             </ItemTemplate>
                         </asp:Repeater>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -414,7 +415,7 @@
                     </div>
                     <div class="modal-footer mt-5">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
-                        <button type="button" class="btn btn-secondary" id="btnDownload">Download</button>
+                        <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click"/>
                         <asp:Button runat="server" class="btn btn-primary" ID="btnSave" Text="Save changes" OnClick="btnSave_Click"></asp:Button>
                     </div>
                 </div>
