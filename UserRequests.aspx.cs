@@ -22,8 +22,22 @@ namespace ChangeManagementSystem
             if (!this.IsPostBack)
             {
                 objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "GetUserByID";
+                objCommand.Parameters.Clear();
+                objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+                DataSet userData = db.GetDataSetUsingCmdObj(objCommand);
+                DataTable dt = userData.Tables[0];
+                string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
+                lblUserName.Text = userName;
+
+                objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "GetAllCMsByUser";
-                objCommand.Parameters.AddWithValue("@UserID", "915368285");
+
+                objCommand.Parameters.Clear();
+                 objCommand.Parameters.AddWithValue("@UserID", "915368285");
+               
+
 
                 DataSet cmData = db.GetDataSetUsingCmdObj(objCommand);
                 DataTable dataTable = cmData.Tables[0];

@@ -13,6 +13,15 @@ namespace ChangeManagementSystem {
     public partial class UserDashboard {
         
         /// <summary>
+        /// lblUserName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUserName;
+        
+        /// <summary>
         /// scriptman control.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,42 @@ namespace ChangeManagementSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptCMStatus;
+        
+        /// <summary>
+        /// lblPreProdTesting control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPreProdTesting;
+        
+        /// <summary>
+        /// chkPreProd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkPreProd;
+        
+        /// <summary>
+        /// lblTestingConfirmed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTestingConfirmed;
+        
+        /// <summary>
+        /// btnSubmitTesting control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmitTesting;
         
         /// <summary>
         /// rptRequestInfo control.
@@ -155,6 +200,15 @@ namespace ChangeManagementSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnNewComment;
+        
+        /// <summary>
+        /// btnDownloadAsPDF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDownloadAsPDF;
         
         /// <summary>
         /// btnCMClicked control.

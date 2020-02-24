@@ -16,7 +16,8 @@
                     <a class="nav-link" href="UserDashboard.aspx">Dashboard</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="CM.aspx" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jane Doe
+                    <a class="nav-link dropdown-toggle" href="CM.aspx" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <asp:Label runat="server" ID="lblUserName" Text="Default"></asp:Label>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                         <a class="dropdown-item" href="Login.aspx">Logout</a>
@@ -34,10 +35,10 @@
             <div class="pl-5 ml-5">
                 <div class="row1">
                     <div class="col-lg-1 mb-1">
-                        <a href="ViewAllRequests.aspx" class="btn btn-dark">View All</a>
+                        <a href="UserRequests.aspx" class="btn btn-dark">View All</a>
                     </div>
                     <div class="col-lg-3 mb-1">
-                        <a href="AdminSelectRequestType.aspx" class="btn btn-dark">New Request</a>
+                        <a href="UserSelectRequestType.aspx" class="btn btn-dark">New Request</a>
                     </div>
                     <div class="col-lg-1 mb-1"></div>
                     <div class="col-lg-5 mb-1"></div>
@@ -73,7 +74,7 @@
                                         <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
                                             <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
                                             <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
-                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
+                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Desired Date of Completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate", "{0:MM/dd/yy}")%>'></asp:Label>
                                             <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
                                             <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
                                         </button>
@@ -98,7 +99,7 @@
                                         <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
                                             <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
                                             <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
-                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
+                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Desired Date of Completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate", "{0:MM/dd/yy}")%>'></asp:Label>
                                             <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
                                             <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
                                         </button>
@@ -123,7 +124,7 @@
                                         <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
                                             <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
                                             <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
-                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
+                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Desired Date of Completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate", "{0:MM/dd/yy}")%>'></asp:Label>
                                             <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
                                             <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
                                         </button>
@@ -149,7 +150,7 @@
                                         <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
                                             <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
                                             <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
-                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "Desired date of completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate") %>'></asp:Label>
+                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Desired Date of Completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate", "{0:MM/dd/yy}")%>'></asp:Label>
                                             <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
                                             <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
                                         </button>
@@ -198,21 +199,14 @@
                                             </ItemTemplate>
                                         </asp:Repeater>
                                         <br />
-                                        <%--<div class="status-check"> 
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                    </div>--%>
                                         <div class="row">
                                             <div class="col-lg-3 mb-2"></div>
                                             <div class="col-lg-6">
                                                 <div class="status-check">
-                                                    <select name="avatar" class="browser-default custom-select">
-                                                        <option value="avatars">- Update Status -</option>
-                                                        <%--<option value="avatars/avatar-4.jpg">Assign to me</option>--%>
-                                                        <option>CM Failed</option>
-                                                        <option>Change implented in preprod</option>
-                                                        <option>Change implemented in prod</option>
-                                                    </select>
+                                                    <asp:Label Visible="false" ID="lblPreProdTesting" runat="server" CssClass="font-weight-bold">User Testing Required in Pre-Prod</asp:Label><br /><br />
+                                                    <asp:CheckBox Visible="false" class="checkbox" ID="chkPreProd" runat="server"></asp:CheckBox>
+                                                    <asp:Label Visible="false" ID="lblTestingConfirmed" runat="server">I have tested and approved pre-prod changes. Move to production</asp:Label><br /><br />
+                                                    <asp:Button ID="btnSubmitTesting" runat="server" CssClass="btn btn-primary" Text="Submit" OnClick="btnSubmitTesting_Click" />
                                                 </div>
                                             </div>
                                         </div>
@@ -354,7 +348,7 @@
                             <div class="col-lg-11 mb-7" style="height: 50%; padding-left: 0;">
                                 <h4 class="mb-3 ml-1 mt-3">Comments</h4>
                                 <div class="card ">
-                                    <div class="card-body"  style="height: 20rem; overflow-y: scroll;">
+                                    <div class="card-body" style="height: 20rem; overflow-y: scroll;">
                                         <asp:Panel ID="pnlNoComments" runat="server">
                                             <p class="pt-3 pb-5">
                                                 There are no existing comments
@@ -397,7 +391,7 @@
                                                 <%--<textarea rows="1" cols="100" class="form-control" id="message" data-validation-required-message="Please enter your message" maxlength="99"></textarea>--%>
                                             </div>
                                         </div>
-                                        <asp:Button ID="btnNewComment" Text="Comment" runat="server" CssClass="btn btn-secondary" OnClick="btnNewComment_Click"/>
+                                        <asp:Button ID="btnNewComment" Text="Comment" runat="server" CssClass="btn btn-secondary" OnClick="btnNewComment_Click" />
                                         <%--<a href="#" class="btn btn-secondary" align="center">Comment</a>--%>
                                     </div>
                                 </div>
@@ -407,7 +401,7 @@
                     </div>
                     <div class="modal-footer mt-5">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
-                        <button type="button" class="btn btn-secondary" id="btnDownload">Download</button>
+                        <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
                         <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal" data-toggle="modal" data-target="#mdlSavedChanges">Save changes</button>
                     </div>
                 </div>
@@ -441,7 +435,7 @@
     <script type="text/javascript">
 
         function RecordClickedCM(button) {
-            var CMID = (button.innerText.split('\n', 1)[0]).substring(3);
+            var CMID = (button.innerText.split('\r\n', 1)[0]).substring(3);
             document.getElementById("hiddenCMClicked").value = CMID;
             document.getElementById("btnCMClicked").click();
         }

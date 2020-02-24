@@ -37,6 +37,19 @@ namespace ChangeManagementSystem
         {
             if (!this.IsPostBack)
             {
+                DBConnect db = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "GetUserByID";
+                objCommand.Parameters.Clear();
+                objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+                DataSet userData = db.GetDataSetUsingCmdObj(objCommand);
+                DataTable dt = userData.Tables[0];
+                string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
+                lblUserName.Text = userName;
+
                 this.BindGrid();
             }
 
@@ -92,31 +105,6 @@ namespace ChangeManagementSystem
             Response.Redirect("NewUser.aspx");
         }
 
-        protected void EyeButton_Click(object sender, ImageClickEventArgs e)
-        {
-            dbCommand.Parameters.Clear();
-            DBConnect db = new DBConnect();
-            dbCommand.CommandType = CommandType.StoredProcedure;
-            HiddenField field = (HiddenField)gvAllUsers.Rows[gvAllUsers.SelectedIndex].FindControl("hdnfldVariable");
-            string UserID = field.ToString();
-            dbCommand.Parameters.AddWithValue("@UserID", UserID);
-            string theDate = DateTime.Now.ToString();
-            dbCommand.Parameters.AddWithValue("@Date", theDate);
-            dbCommand.CommandText = "DeactivateUser";
-            db.GetDataSetUsingCmdObj(dbCommand);
-
-            dbCommand.Parameters.Clear();
-            dbCommand.CommandType = CommandType.StoredProcedure;
-            dbCommand.CommandText = "GetAllUsers";
-            DataSet cmData = db.GetDataSetUsingCmdObj(dbCommand);
-            DataTable dataTable = cmData.Tables[0];
-
-            gvAllUsers.DataSource = cmData;
-            gvAllUsers.DataBind();
-
-            //data - dismiss = "modal"
-        }
-
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             if (txtSearch.Text == "")
@@ -149,8 +137,7 @@ namespace ChangeManagementSystem
             DBConnect db = new DBConnect();
             dbCommand.CommandType = CommandType.StoredProcedure;
 
-            HiddenField field = (HiddenField)gvAllUsers.Rows[gvAllUsers.SelectedIndex].FindControl("hdnfldVariable");
-            string UserID = field.ToString();
+            int UserID = Convert.ToInt32(hf.Value);
             dbCommand.Parameters.AddWithValue("@UserID", UserID);
             string theDate = DateTime.Now.ToString();
             dbCommand.Parameters.AddWithValue("@Date", theDate);
