@@ -47,7 +47,7 @@
                 <div class="input-group">
                     <asp:TextBox ID="txtSearch" CssClass="form-control" runat="server" placeholder="Search for..."></asp:TextBox>
                     <span class="input-group-btn">
-                         <asp:Button CssClass="btn btn-dark" BorderStyle="None" ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click" />
+                        <asp:Button CssClass="btn btn-dark" BorderStyle="None" ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click" />
                     </span>
                 </div>
             </div>
@@ -65,19 +65,18 @@
                             <asp:TemplateField ItemStyle-CssClass="thead-dark" SortExpression="LastName" HeaderText="User">
                                 <ItemTemplate>
                                     <%# Eval("FirstName") + " " + Eval("LastName")%>
-                                   
                                 </ItemTemplate>
-                            
-                            </asp:TemplateField>
-                            <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName"/>
-                            <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName"/>
 
-                           
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" />
+                            <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName" />
+
+
                             <%--<asp:BoundField DataField="UserID" ItemStyle-CssClass="thead-dark" HeaderText="UserID" ReadOnly="true" />--%>
-                            <asp:BoundField DataField="College" HeaderText="College" SortExpression="College"/>
-                            <asp:BoundField DataField="RequestTypeName" HeaderText="Type" SortExpression="RequestTypeName"/>
-                            <asp:BoundField DataField="CMStatus" HeaderText="Status" SortExpression="CMStatus"/>
-                            <asp:BoundField DataField="LastUpdateDate" HeaderText="Last Updated Date" DataFormatString="{0:MM/dd/yyyy}" SortExpression="LastUpdateDate"/>
+                            <asp:BoundField DataField="College" HeaderText="College" SortExpression="College" />
+                            <asp:BoundField DataField="RequestTypeName" HeaderText="Type" SortExpression="RequestTypeName" />
+                            <asp:BoundField DataField="CMStatus" HeaderText="Status" SortExpression="CMStatus" />
+                            <asp:BoundField DataField="LastUpdateDate" HeaderText="Last Updated Date" DataFormatString="{0:MM/dd/yyyy}" SortExpression="LastUpdateDate" />
                             <asp:TemplateField HeaderText="View Request" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <a class="viewRequest" data-toggle="modal" data-target="#exampleModalLong" style="cursor: pointer"><i class='far fa-eye'></i></a>
@@ -89,7 +88,8 @@
                 </div>
 
             </div>
-            <button onclick="exportTableToCSV('Requests.csv')" class="btn btnDownload mt-4">Export Table to CSV File</button>
+            <button onclick="exportTableToCSV('Requests.csv')" class="btn btnDownload mt-1">Export Table to .CSV File</button>
+
 
         </div>
 
@@ -387,7 +387,25 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js" integrity="sha256-uC1JMW5e1U5D28+mXFxzTz4SSMCywqhxQIodqLECnfU=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script type="text/javascript">
+        $("body").on("click", "#btnExport", function () {
+            html2canvas($('[id*=gvAllRequests]')[0], {
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        content: [{
+                            image: data,
+                            width: 500
+                        }]
+                    };
+                    pdfMake.createPdf(docDefinition).download("Table.pdf");
+                }
+            });
+        });
+
         function exportTableToCSV(filename) {
             var csv = [];
             var rows = document.querySelectorAll("table tr");
@@ -433,7 +451,12 @@
         $(document).ready(function () {
             $("#gvAllRequests").tablesorter();
         });
+
+
+
+
     </script>
+
 
 
 
