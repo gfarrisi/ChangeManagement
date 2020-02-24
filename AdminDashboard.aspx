@@ -448,7 +448,7 @@
     <script type="text/javascript">
 
         function RecordClickedCM(button) {
-            var CMID = (button.innerText.split('\n', 1)[0]).substring(3);
+            var CMID = (button.innerText.split('\r\n', 1)[0]).substring(3);
             document.getElementById("hiddenCMClicked").value = CMID;
             document.getElementById("btnCMClicked").click();
         }
