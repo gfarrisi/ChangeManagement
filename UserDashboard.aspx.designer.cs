@@ -85,6 +85,42 @@ namespace ChangeManagementSystem {
         protected global::System.Web.UI.WebControls.Repeater rptCMStatus;
         
         /// <summary>
+        /// lblPreProdTesting control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPreProdTesting;
+        
+        /// <summary>
+        /// chkPreProd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkPreProd;
+        
+        /// <summary>
+        /// lblTestingConfirmed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTestingConfirmed;
+        
+        /// <summary>
+        /// btnSubmitTesting control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmitTesting;
+        
+        /// <summary>
         /// rptRequestInfo control.
         /// </summary>
         /// <remarks>

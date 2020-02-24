@@ -199,21 +199,14 @@
                                             </ItemTemplate>
                                         </asp:Repeater>
                                         <br />
-                                        <%--<div class="status-check"> 
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                    </div>--%>
                                         <div class="row">
                                             <div class="col-lg-3 mb-2"></div>
                                             <div class="col-lg-6">
                                                 <div class="status-check">
-                                                    <select name="avatar" class="browser-default custom-select">
-                                                        <option value="avatars">- Update Status -</option>
-                                                        <%--<option value="avatars/avatar-4.jpg">Assign to me</option>--%>
-                                                        <option>CM Failed</option>
-                                                        <option>Change implented in preprod</option>
-                                                        <option>Change implemented in prod</option>
-                                                    </select>
+                                                    <asp:Label Visible="false" ID="lblPreProdTesting" runat="server" CssClass="font-weight-bold">User Testing Required in Pre-Prod</asp:Label><br /><br />
+                                                    <asp:CheckBox Visible="false" class="checkbox" ID="chkPreProd" runat="server"></asp:CheckBox>
+                                                    <asp:Label Visible="false" ID="lblTestingConfirmed" runat="server">I have tested and approved pre-prod changes. Move to production</asp:Label><br /><br />
+                                                    <asp:Button ID="btnSubmitTesting" runat="server" CssClass="btn btn-primary" Text="Submit" OnClick="btnSubmitTesting_Click" />
                                                 </div>
                                             </div>
                                         </div>
@@ -442,7 +435,7 @@
     <script type="text/javascript">
 
         function RecordClickedCM(button) {
-            var CMID = (button.innerText.split('\n', 1)[0]).substring(3);
+            var CMID = (button.innerText.split('\r\n', 1)[0]).substring(3);
             document.getElementById("hiddenCMClicked").value = CMID;
             document.getElementById("btnCMClicked").click();
         }

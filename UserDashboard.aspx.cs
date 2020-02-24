@@ -133,8 +133,8 @@ namespace ChangeManagementSystem
 
                 Session.Add("responseListPreProduction", responseListPreProduction.ToString());
 
+                objCommandDashboard.CommandText = "GetPreProdCMsByUser";
                 objCommandDashboard.Parameters.Clear();
-                objCommandDashboard.Parameters.AddWithValue("@CMStatus", "pre-production");
                 objCommandDashboard.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
 
                 dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
@@ -164,8 +164,8 @@ namespace ChangeManagementSystem
 
                 Session.Add("responseListCompleted", responseListCompleted.ToString());
 
+                objCommandDashboard.CommandText = "GetCompletedCMsByUser";
                 objCommandDashboard.Parameters.Clear();
-                objCommandDashboard.Parameters.AddWithValue("@CMStatus", "completed");
                 objCommandDashboard.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
 
                 dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
@@ -340,6 +340,10 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
+                lblPreProdTesting.Visible = true;
+                chkPreProd.Visible = true;
+                lblTestingConfirmed.Visible = true;
+
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Completed")
             {
@@ -404,6 +408,21 @@ namespace ChangeManagementSystem
                 }
             }
             
+        }
+
+        protected void btnSubmitTesting_Click(object sender, EventArgs e)
+        {
+            if (chkPreProd.Checked == true)
+            {
+                objCommand.CommandText = "UpdateCMStatus";
+
+                objCommand.Parameters.Clear();
+                objCommand.Parameters.AddWithValue("@CMID", hiddenCMClicked.Value);
+                objCommand.Parameters.AddWithValue("@CMStatus", "Pre-Production");
+
+                objDB.DoUpdateUsingCmdObj(objCommand);
+                Server.Transfer("UserDashboard.aspx");
+            }
         }
     }        
 }
