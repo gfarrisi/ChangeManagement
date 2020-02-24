@@ -23,7 +23,7 @@ namespace ChangeManagementSystem
             {
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "GetAllCMsByUser";
-                objCommand.Parameters.AddWithValue("@UserID", "915351045");
+                objCommand.Parameters.AddWithValue("@UserID", "915368285");
 
                 DataSet cmData = db.GetDataSetUsingCmdObj(objCommand);
                 DataTable dataTable = cmData.Tables[0];
@@ -113,7 +113,7 @@ namespace ChangeManagementSystem
                 objCommand.Parameters.Clear();
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "GetAllCMsByUser";
-                objCommand.Parameters.AddWithValue("@UserID", "915351045");
+                objCommand.Parameters.AddWithValue("@UserID", "915368285");
 
                 DataSet cmData = db.GetDataSetUsingCmdObj(objCommand);
                 DataTable dataTable = cmData.Tables[0];
@@ -127,10 +127,13 @@ namespace ChangeManagementSystem
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "UserRequestSearch";
                 SqlParameter inputParameter = new SqlParameter("@Search", search);
+                SqlParameter inputParameter2 = new SqlParameter("@UserID", "915368285");
+
                 inputParameter.Direction = ParameterDirection.Input;
                 inputParameter.SqlDbType = SqlDbType.VarChar;
                 inputParameter.Size = 50;
                 objCommand.Parameters.Add(inputParameter);
+                objCommand.Parameters.Add(inputParameter2);
 
                 DataSet searchSet = db.GetDataSetUsingCmdObj(objCommand);
                 gvUserRequests.DataSource = searchSet;
