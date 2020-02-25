@@ -243,6 +243,11 @@ namespace ChangeManagementSystem
             }
         }
 
+        private void submssionModal()
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMSubmssion').modal('show');", true);
+
+        }
 
         protected void btnSubmitUser_Click(object sender, EventArgs e)
         {
@@ -347,16 +352,17 @@ namespace ChangeManagementSystem
                                     }
                                     catch
                                     {
-                                        Response.Write("<script>alert('ErrorRRRRRRRRRRRRRRR');</script>");
+                                        Response.Write("<script>alert('Error');</script>");
                                     }
 
                                 }
                             }
                         }
-
-                        lblErrorMessage.Visible = true;
-                        lblErrorMessage.Text = "Your request has been successfully submitted!";
-                        lblErrorMessage.ForeColor = System.Drawing.Color.Green;
+                        Session["CMSuccess"] = "Success";
+                        submssionModal();
+                        //lblErrorMessage.Visible = true;
+                        //lblErrorMessage.Text = "Your request has been successfully submitted!";
+                        //lblErrorMessage.ForeColor = System.Drawing.Color.Green;
                     }
                     //stored procedure - insert into CM_Request
                     //pass CMRequest object data as params into stored procedures
@@ -372,6 +378,11 @@ namespace ChangeManagementSystem
                 }
 
             }
+        }
+
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("UserDashboard.aspx");
         }
     }
 }
