@@ -427,6 +427,7 @@ namespace ChangeManagementSystem
                 objDB.DoUpdateUsingCmdObj(objCommand);
                 Server.Transfer("UserDashboard.aspx");
             }
+        }
 
         protected void btnDownloadAsPDF_Click(object sender, EventArgs e)
         {

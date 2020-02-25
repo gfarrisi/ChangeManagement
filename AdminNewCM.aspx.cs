@@ -21,7 +21,7 @@ namespace ChangeManagementSystem
 
             if (!IsPostBack)
             {
-
+                Session["CMSuccess"] = "Failure";
                 DBConnect objDB = new DBConnect();
                 SqlCommand objCommand = new SqlCommand();
 
@@ -141,6 +141,12 @@ namespace ChangeManagementSystem
             }
             else
             {
+                //if session submission is successful
+                if(Session["CMSuccess"].ToString() == "Success")
+                {
+                    submssionModal();
+                }
+
                 RequestTypeData requestTypeData = new RequestTypeData();
                 Request requestType = requestTypeData.GetRequestTypeData(Convert.ToInt32(ViewState["requestNum"]));
 
@@ -240,6 +246,11 @@ namespace ChangeManagementSystem
             }
         }
 
+        private void submssionModal()
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMSubmssion').modal('show');", true);
+
+        }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             string userID = Session["UserID"].ToString();
@@ -345,30 +356,32 @@ namespace ChangeManagementSystem
                                     }
                                     catch
                                     {
-                                        Response.Write("<script>alert('ErrorRRRRRRRRRRRRRRR');</script>");
+                                        Response.Write("<script>alert('Error');</script>");
                                     }
 
                                 }
                             }
                         }
 
-                        lblErrorMessage.Visible = true;
-                        lblErrorMessage.Text = "Your request has been successfully submitted!";
-                        lblErrorMessage.ForeColor = System.Drawing.Color.Green;
+                        Session["CMSuccess"] = "Success";
+                        submssionModal();
+                        //lblErrorMessage.Visible = true;
+                        //lblErrorMessage.Text = "Your request has been successfully submitted!";
+                        //lblErrorMessage.ForeColor = System.Drawing.Color.Green;
                     }     
-                    //stored procedure - insert into CM_Request
-                    //pass CMRequest object data as params into stored procedures
-                    //in stored procedure return CMID
-
-                    //for each question is question response
-                    //stored procedure - insert into cm_response
-                    //using CMID and question list objects as paramaters 
+                   
                 }
                 else
                 {
+                    Session["CMSuccess"] = "Failure";
                     lblErrorMessage.Visible = true;
                 }
             }
+        }
+
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminDashboard.aspx");
         }
     }
 }

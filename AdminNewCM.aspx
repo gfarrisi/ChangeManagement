@@ -38,6 +38,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="scriptman" runat="server"></asp:ScriptManager>
         <div class="pull-right pt-5 pb-1">
             <div class="pl-5 ml-5">
                 <div class="row">
@@ -48,24 +49,24 @@
                 </div>
             </div>
         </div>
-  <div class="row">
+        <div class="row">
             <div class="col-3"></div>
             <div class="col-6 pt-5 pb-5" style="background-color: rgba(0,0,0,.03); box-shadow: 0 0 12px 1.5px #808080;">
                 <h1 class="text-center mb-5">CRM Change Management</h1>
-                <div style="text-align:center">
+                <div style="text-align: center">
                     <asp:Label runat="server" ID="lblErrorMessage" Visible="false" Text="*Please submit a response for all required fields!" Font-Size="Large" ForeColor="Red"></asp:Label>
                 </div>
                 <div style="margin: 0 auto; max-width: 600px;">
                     <div class="row mt-3 mb-3">
-                         <div class="col-lg-6">
-                             <asp:Label ID="lblCMname" runat="server" Text="CM Name" CssClass="form-text h4 mb-4"></asp:Label>
-                             </div>
+                        <div class="col-lg-6">
+                            <asp:Label ID="lblCMname" runat="server" Text="CM Name" CssClass="form-text h4 mb-4"></asp:Label>
+                        </div>
 
                         <div class="col-lg-6">
-                                <asp:TextBox ID="txtCMname" CssClass="form-control" runat="server"></asp:TextBox>
-                            </div>
-
+                            <asp:TextBox ID="txtCMname" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
+
+                    </div>
                     <asp:Panel ID="panelCM" runat="server">
                     </asp:Panel>
                     <asp:Panel ID="panelScreenshots" runat="server">
@@ -92,7 +93,7 @@
                                 <asp:Label ID="lblDesiredDate" runat="server" Text="Desired date of completion" CssClass="form-text"></asp:Label>
                             </div>
                             <div class="col-lg-6">
-                            <asp:TextBox ID="txtDesiredDate" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
+                                <asp:TextBox ID="txtDesiredDate" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row mt-3 mb-3">
@@ -117,5 +118,28 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal data-toggle="modal" data-target="#warningModal"-->
+        <div class="modal fade" id="mdlCMSubmssion" tabindex="-1" role="dialog" aria-labelledby="mdlCMSubmissionLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="mdlCMSubmissionLabel">CM Submssion</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-lg-12">
+                            <label id="Label1" style="line-height: 50px;" runat="server">Thank you for submitting your CM!<br /> Please check your email or dashboard for updates!</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btnClose" CssClass="btn btn-secondary" BorderStyle="None" OnClick="btnClose_Click" Text="Close" runat="server" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
+
 </asp:Content>
