@@ -203,10 +203,11 @@
                                             <div class="col-lg-3 mb-2"></div>
                                             <div class="col-lg-6">
                                                 <div class="status-check">
-                                                    <asp:Label Visible="false" ID="lblPreProdTesting" runat="server" CssClass="font-weight-bold">User Testing Required in Pre-Prod</asp:Label><br /><br />
-                                                    <asp:CheckBox Visible="false" class="checkbox" ID="chkPreProd" runat="server"></asp:CheckBox>
-                                                    <asp:Label Visible="false" ID="lblTestingConfirmed" runat="server">I have tested and approved pre-prod changes. Move to production</asp:Label><br /><br />
-                                                    <asp:Button ID="btnSubmitTesting" runat="server" CssClass="btn btn-primary" Text="Submit" OnClick="btnSubmitTesting_Click" />
+                                                    <asp:Label ID="lblAwaitingAdmin" runat="server" CssClass="font-weight-bold">Awaiting Move to Production</asp:Label>
+                                                    <asp:Label ID="lblPreProdTesting" runat="server" CssClass="font-weight-bold">User Testing Required in Pre-Prod</asp:Label><br /><br />
+                                                    <asp:CheckBox class="checkbox" ID="chkPreProd" runat="server"></asp:CheckBox>
+                                                    <asp:Label ID="lblTestingConfirmed" runat="server">I have tested and approved pre-prod changes. Move to production</asp:Label><br /><br />
+                                                    <asp:Button ID="btnSubmitTesting" runat="server" CssClass="btn btn-primary" Text="Submit" OnClick="btnSubmitTesting_Click" />                                                 
                                                 </div>
                                             </div>
                                         </div>

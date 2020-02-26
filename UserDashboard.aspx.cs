@@ -326,7 +326,11 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
-
+                lblPreProdTesting.Visible = false;
+                chkPreProd.Visible = false;
+                lblTestingConfirmed.Visible = false;
+                btnSubmitTesting.Visible = false;
+                lblAwaitingAdmin.Visible = false;
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Assigned")
             {
@@ -335,8 +339,13 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
+                lblPreProdTesting.Visible = false;
+                chkPreProd.Visible = false;
+                lblTestingConfirmed.Visible = false;
+                btnSubmitTesting.Visible = false;
+                lblAwaitingAdmin.Visible = false;
             }
-            else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production")
+            else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production Needs Testing")
             {
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 75%");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
@@ -346,7 +355,22 @@ namespace ChangeManagementSystem
                 lblPreProdTesting.Visible = true;
                 chkPreProd.Visible = true;
                 lblTestingConfirmed.Visible = true;
+                btnSubmitTesting.Visible = true;
+                lblAwaitingAdmin.Visible = false;
 
+            }
+            else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production")
+            {
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 75%");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+
+                lblPreProdTesting.Visible = false;
+                chkPreProd.Visible = false;
+                lblTestingConfirmed.Visible = false;
+                btnSubmitTesting.Visible = false;
+                lblAwaitingAdmin.Visible = true;
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Completed")
             {
@@ -354,6 +378,12 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "100");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+
+                lblPreProdTesting.Visible = false;
+                chkPreProd.Visible = false;
+                lblTestingConfirmed.Visible = false;
+                btnSubmitTesting.Visible = false;
+                lblAwaitingAdmin.Visible = false;
 
             }
 
