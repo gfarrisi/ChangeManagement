@@ -219,7 +219,7 @@
                                             <div class="col-lg-3 mb-2"></div>
                                             <div class="col-lg-6">
                                                 <div class="status-check">
-                                                    <asp:Label ID="lblCMStatus" runat="server">Update Status</asp:Label>
+                                                    <asp:Label ID="lblCMStatus" runat="server" CssClass="font-weight-bold">Update Status</asp:Label>
                                                     <asp:DropDownList class="browser-default custom-select" ID="ddlCMStatus" runat="server"></asp:DropDownList>
                                                 </div>
                                             </div>
