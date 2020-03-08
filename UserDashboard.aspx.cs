@@ -487,5 +487,43 @@ namespace ChangeManagementSystem
             Response.Flush();
 
         }
+
+        protected void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            objDB = new DBConnect();
+            objCommandDashboard = new SqlCommand();
+
+            objCommandDashboard.CommandType = CommandType.StoredProcedure;
+            objCommandDashboard.CommandText = "GetCMsByUserByStatus";
+            objCommandDashboard.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+            objCommandDashboard.Parameters.AddWithValue("@CMStatus", "not assigned");
+
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptNotAssigned.DataSource = dashboardData;
+            rptNotAssigned.DataBind();
+
+            objCommandDashboard.Parameters.Clear();
+            objCommandDashboard.Parameters.AddWithValue("@CMStatus", "assigned");
+            objCommandDashboard.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptAssigned.DataSource = dashboardData;
+            rptAssigned.DataBind();
+
+            objCommandDashboard.CommandText = "GetPreProdCMsByUser";
+            objCommandDashboard.Parameters.Clear();
+            objCommandDashboard.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptPreProduction.DataSource = dashboardData;
+            rptPreProduction.DataBind();
+
+            objCommandDashboard.CommandText = "GetCompletedCMsByUser";
+            objCommandDashboard.Parameters.Clear();
+            objCommandDashboard.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptCompleted.DataSource = dashboardData;
+            rptCompleted.DataBind();
+        }
     }        
 }

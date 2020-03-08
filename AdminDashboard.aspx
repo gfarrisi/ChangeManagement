@@ -39,150 +39,163 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">  
     <form runat="server">
-          <asp:ScriptManager ID="scriptman" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
-        <div class="pull-right pt-5 pb-4" style="background-color: rgba(0,0,0,.03);">
-            <div class="pl-5 ml-5">
-                <div class="row1">
-                    <div class="col-lg-1 mb-1">
-                        <a href="ViewAllRequests.aspx" class="btn btn-dark">View All</a>
-                    </div>
-                    <div class="col-lg-3 mb-1">
-                        <a href="AdminSelectRequestType.aspx" class="btn btn-dark">New Request</a>
-                    </div>
-                    <div class="col-lg-1 mb-1"></div>
-                    <div class="col-lg-5 mb-1"></div>
-                    <div class="col-lg-2 mb-1">
-                        <button class="btn btn-secondary-fake" style="box-shadow: 0 0 10px 2.5px #8C2132; cursor: auto;">Assigned to me</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-cm" style="height: 100%;">
-            <div class="row ">
-                <div class="col-lg-3 mb-1">
-                    <h3 class="card-title" align="center">Not Assigned</h3>
-                </div>
-                <div class="col-lg-3 mb-1">
-                    <h3 class="card-title" align="center">Assigned</h3>
-                </div>
-                <div class="col-lg-3 mb-1">
-                    <h3 class="card-title" align="center" runat="server">Pre-Production </h3>
-                </div>
-                <div class="col-lg-3 mb-1">
-                    <h3 class="card-title" align="center" runat="server">Completed<span style="font-size: 15px;"> (In Last 30 days)</span></h3>
-                </div>
-            </div>
-
-            <%-- not assigned --%>
-
-            <div class="row  card-footer" style="height: 40rem; overflow-y: scroll;">
-                <div class="col-lg-3 mb-5">
-                    <div class="col-lg-12 mb-5">
-                        <div>
-                            <div style="height: 40%; width: 100%;">
-                                <asp:Repeater ID="rptNotAssigned" runat="server" OnItemDataBound="rptNotAssigned_ItemDataBound">
-                                    <ItemTemplate>
-                                        <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
-                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
-                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
-                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Desired Date of Completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate", "{0:MM/dd/yy}")%>'></asp:Label>
-                                            <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
-                                            <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
-                                        </button>
-                                    </ItemTemplate>
-                                </asp:Repeater>
+        <asp:ScriptManager ID="scriptman" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
+        <asp:UpdatePanel runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <div class="pull-right pt-5 pb-4" style="background-color: rgba(0,0,0,.03);">
+                    <div class="pl-5 ml-5">
+                        <div class="row1">
+                            <div class="col-lg-1 mb-1">
+                                <a href="ViewAllRequests.aspx" class="btn btn-dark">View All</a>
+                            </div>
+                            <div class="col-lg-3 mb-1">
+                                <a href="AdminSelectRequestType.aspx" class="btn btn-dark">New Request</a>
+                            </div>
+                            <div class="col-lg-1 mb-1"></div>
+                            <div class="col-lg-5 mb-1"></div>
+                            <div class="col-lg-2 mb-1">
+                                <button class="btn btn-secondary-fake" style="box-shadow: 0 0 10px 2.5px #8C2132; cursor: auto;">Assigned to me</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-                <%-- assigned --%>
-
-
-                <!-- /.col-md-4 -->
-                <div class="col-lg-3 mb-5">
-                    <div class="col-lg-12 mb-5">
-                        <div style="height: 100%;">
-                            <div style="/*overflow-y: scroll; */ height: 40%; width: 100%">
-                                <asp:Repeater ID="rptAssigned" runat="server" OnItemDataBound="rptAssigned_ItemDataBound">
-                                    <ItemTemplate>
-                                        <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
-                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
-                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
-                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Desired Date of Completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate", "{0:MM/dd/yy}")%>'></asp:Label>
-                                            <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
-                                            <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
-                                        </button>
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                            </div>
+                <div class="container-cm" style="height: 100%;">
+                    <div class="row ">
+                        <div class="col-lg-3 mb-1">
+                            <h3 class="card-title" align="center">Not Assigned</h3>
+                        </div>
+                        <div class="col-lg-3 mb-1">
+                            <h3 class="card-title" align="center">Assigned</h3>
+                        </div>
+                        <div class="col-lg-3 mb-1">
+                            <h3 class="card-title" align="center" runat="server">Pre-Production </h3>
+                        </div>
+                        <div class="col-lg-3 mb-1">
+                            <h3 class="card-title" align="center" runat="server">Completed<span style="font-size: 15px;"> (In Last 30 days)</span></h3>
                         </div>
                     </div>
-                </div>
 
+                    <%-- not assigned --%>
 
-                <%-- pre-production --%>
-
-
-                <!-- /.col-md-4 -->
-                <div class="col-lg-3 mb-5">
-                    <div class="col-lg-12 mb-5">
-                        <div style="height: 100%;">
-                            <div style="/*overflow-y: scroll; */ height: 40%; width: 100%">
-                                <asp:Repeater ID="rptPreProduction" runat="server" OnItemDataBound="rptPreProduction_ItemDataBound">
-                                    <ItemTemplate>
-                                        <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
-                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
-                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
-                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Desired Date of Completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate", "{0:MM/dd/yy}")%>'></asp:Label>
-                                            <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
-                                            <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
-                                        </button>
-                                    </ItemTemplate>
-                                </asp:Repeater>
+                    <div class="row  card-footer" style="height: 40rem; overflow-y: scroll;">
+                        <div class="col-lg-3 mb-5">
+                            <div class="col-lg-12 mb-5">
+                                <div>
+                                    <div style="height: 40%; width: 100%;">
+                                        <asp:Repeater ID="rptNotAssigned" runat="server" OnItemDataBound="rptNotAssigned_ItemDataBound">
+                                            <ItemTemplate>
+                                                <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "RequestTypeName") %>'></asp:Label><br />
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Date of Last Update: " + DataBinder.Eval(Container.DataItem, "LastUpdateDate", "{0:MM/dd/yy}")%>'></asp:Label><br />
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Last Updated By: " + DataBinder.Eval(Container.DataItem, "FirstName") + " " + DataBinder.Eval(Container.DataItem, "LastName")%>'></asp:Label>
+                                                    <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
+                                                    <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
+                                                </button>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </div>
+                                </div>
                             </div>
-                            <br />
                         </div>
-                    </div>
-                </div>
 
 
-                <%-- completed --%>
+                        <%-- assigned --%>
 
 
-                <!-- /.col-md-4 -->
-                <div class="col-lg-3 mb-5">
-                    <div class="col-lg-12 mb-5">
-                        <div style="height: 100%;">
-                            <div style="height: 40%; width: 100%">
-                                <asp:Repeater ID="rptCompleted" runat="server" OnItemDataBound="rptCompleted_ItemDataBound">
-                                    <ItemTemplate>
-                                        <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
-                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
-                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
-                                            <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Desired Date of Completion: " + DataBinder.Eval(Container.DataItem, "DesiredDate", "{0:MM/dd/yy}")%>'></asp:Label>
-                                            <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
-                                            <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
-                                        </button>
-                                    </ItemTemplate>
-                                </asp:Repeater>
+                        <!-- /.col-md-4 -->
+                        <div class="col-lg-3 mb-5">
+                            <div class="col-lg-12 mb-5">
+                                <div style="height: 100%;">
+                                    <div style="/*overflow-y: scroll; */ height: 40%; width: 100%">
+                                        <asp:Repeater ID="rptAssigned" runat="server" OnItemDataBound="rptAssigned_ItemDataBound">
+                                            <ItemTemplate>
+                                                <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "RequestTypeName") %>'></asp:Label><br />
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Date of Last Update: " + DataBinder.Eval(Container.DataItem, "LastUpdateDate", "{0:MM/dd/yy}")%>'></asp:Label><br />
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Last Updated By: " + DataBinder.Eval(Container.DataItem, "FirstName") + " " + DataBinder.Eval(Container.DataItem, "LastName")%>'></asp:Label>
+                                                    <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
+                                                    <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
+                                                </button>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </div>
+                                </div>
                             </div>
-                            <br />
-                            <br />
-                            <br />
                         </div>
+
+
+                        <%-- pre-production --%>
+
+
+                        <!-- /.col-md-4 -->
+                        <div class="col-lg-3 mb-5">
+                            <div class="col-lg-12 mb-5">
+                                <div style="height: 100%;">
+                                    <div style="/*overflow-y: scroll; */ height: 40%; width: 100%">
+                                        <asp:Repeater ID="rptPreProduction" runat="server" OnItemDataBound="rptPreProduction_ItemDataBound">
+                                            <ItemTemplate>
+                                                <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "RequestTypeName") %>'></asp:Label><br />
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Date of Last Update: " + DataBinder.Eval(Container.DataItem, "LastUpdateDate", "{0:MM/dd/yy}")%>'></asp:Label><br />
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Last Updated By: " + DataBinder.Eval(Container.DataItem, "FirstName") + " " + DataBinder.Eval(Container.DataItem, "LastName")%>'></asp:Label>
+                                                    <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
+                                                    <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
+                                                </button>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </div>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <%-- completed --%>
+
+
+                        <!-- /.col-md-4 -->
+                        <div class="col-lg-3 mb-5">
+                            <div class="col-lg-12 mb-5">
+                                <div style="height: 100%;">
+                                    <div style="height: 40%; width: 100%">
+                                        <asp:Repeater ID="rptCompleted" runat="server" OnItemDataBound="rptCompleted_ItemDataBound">
+                                            <ItemTemplate>
+                                                <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "RequestTypeName") %>'></asp:Label><br />
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Date of Last Update: " + DataBinder.Eval(Container.DataItem, "LastUpdateDate", "{0:MM/dd/yy}")%>'></asp:Label><br />
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Last Updated By: " + DataBinder.Eval(Container.DataItem, "FirstName") + " " + DataBinder.Eval(Container.DataItem, "LastName")%>'></asp:Label>
+                                                    <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
+                                                    <asp:HiddenField ID="hiddenCMID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMID") %>' />
+                                                </button>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-md-4 -->
                     </div>
+                    <!-- /.row -->
+                    <br />
+                    <br />
                 </div>
-                <!-- /.col-md-4 -->
-            </div>
-            <!-- /.row -->
-            <br />
-            <br />
-        </div>
-
-
-
+            </ContentTemplate>
+             <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="RefreshTimer" EventName="Tick" />
+            </Triggers> 
+        </asp:UpdatePanel>
+        <asp:Timer ID="RefreshTimer" runat="server" Interval="30000" OnTick="RefreshTimer_Tick"></asp:Timer>
 
         <!-- Modal -->
         <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
