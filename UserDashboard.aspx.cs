@@ -193,7 +193,7 @@ namespace ChangeManagementSystem
                     objCommand.CommandType = CommandType.StoredProcedure;
                     objCommand.Parameters.Clear();
 
-                    string CMID = hiddenCMClicked.Value;
+                    int CMID = Convert.ToInt32(hiddenCMClicked.Value);
 
                     objCommand.CommandText = "GetCMByID";
                     objCommand.Parameters.AddWithValue("@CMID", CMID);
