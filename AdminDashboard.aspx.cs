@@ -478,5 +478,37 @@ namespace ChangeManagementSystem
             Response.End();
             Response.Flush();
         }
+
+        protected void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            objDB = new DBConnect();
+            objCommandDashboard = new SqlCommand();
+
+            objCommandDashboard.CommandType = CommandType.StoredProcedure;
+            objCommandDashboard.CommandText = "GetCMsByStatus";
+
+            objCommandDashboard.Parameters.AddWithValue("@CMStatus", "not assigned");
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptNotAssigned.DataSource = dashboardData;
+            rptNotAssigned.DataBind();
+
+            objCommandDashboard.Parameters.Clear();
+            objCommandDashboard.Parameters.AddWithValue("@CMStatus", "assigned");
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptAssigned.DataSource = dashboardData;
+            rptAssigned.DataBind();
+
+            objCommandDashboard.CommandText = "GetPreProdCMs";
+            objCommandDashboard.Parameters.Clear();
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptPreProduction.DataSource = dashboardData;
+            rptPreProduction.DataBind();
+
+            objCommandDashboard.CommandText = "GetCompletedCMs";
+            objCommandDashboard.Parameters.Clear();
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptCompleted.DataSource = dashboardData;
+            rptCompleted.DataBind();
+        }
     }
 }
