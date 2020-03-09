@@ -398,6 +398,26 @@ namespace ChangeManagementSystem
 
             // Conditions will eventually need to trigger emails
 
+            //GetEmailByStatus
+
+
+            Email objEmail = new Email();
+            String strTO = "";
+            String strFROM = "noreply@temple.edu";
+            String strSubject = "Forgot Password";
+            String strMessage = "Your account password is. Please return to http://cis-iis2.temple.edu/Fall2019/CIS3342_tug35007/TermProject/Login.aspx to sign in.";
+
+            try
+            {
+                objEmail.SendMail(strTO, strFROM, strSubject, strMessage);
+                //  lblDisplay.Text = "The email was sent.";
+            }
+            catch (Exception ex)
+            {
+                //lblDisplay.Text = "The email wasn't sent because one of the required fields was missing.";
+            }
+
+
         }
         protected void btnNewComment_Click(object sender, EventArgs e)
         {

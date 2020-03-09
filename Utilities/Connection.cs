@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace ChangeManagementSystem.Utilities
     {
         
         SqlConnection cnn;
-        string connectionString = "server=np-stem.temple.edu;Database=CIS4396S08;User id=usrCIS4396S08;Password=34GlEzz40";
+        //string connectionString = "server=np-stem.temple.edu;Database=CIS4396S08;User id=usrCIS4396S08;Password=34GlEzz40";
         //string connectionString = @"Data Source=aa1u7dhinfk038.cjs3gc4sjyiv.us-east-2.rds.amazonaws.com;Network Library = DBMSSOCN; Initial Catalog=TUcms;User id=admin; Password=adminadmin";
-
+        string connectionString = ConfigurationManager.ConnectionStrings["Connection_Database"].ToString();
 
         SqlConnection myConnectionSql;
         SqlCommand objCmd;
