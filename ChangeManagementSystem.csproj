@@ -168,6 +168,7 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DownloadAsPDFPage.aspx.cs">
       <DependentUpon>DownloadAsPDFPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
