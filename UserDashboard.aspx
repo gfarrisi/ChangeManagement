@@ -16,7 +16,7 @@
                     <a class="nav-link" href="UserDashboard.aspx">Dashboard</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="CM.aspx" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <asp:Label runat="server" ID="lblUserName" Text="Default"></asp:Label>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
@@ -30,7 +30,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="CPH1" runat="server">
     <form runat="server">
-        <asp:ScriptManager ID="scriptman" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
+        <asp:ScriptManager ID="scriptman" runat="server"></asp:ScriptManager>
         <div class="pull-right pt-5 pb-4" style="background-color: rgba(0,0,0,.03);">
             <div class="pl-5 ml-5">
                 <div class="row1">
@@ -435,7 +435,26 @@
     <script type="text/javascript">
 
         function RecordClickedCM(button) {
-            var CMID = (button.innerText.split('\r\n', 1)[0]).substring(3);
+            var CMID = null;
+            if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
+                CMID = (button.innerText.split('\r\n', 1)[0]).substring(3);
+            }
+            else if (navigator.userAgent.indexOf("Chrome") != -1) {
+                CMID = (button.innerText.split('\n', 1)[0]).substring(3);
+            }
+            else if (navigator.userAgent.indexOf("Safari") != -1) { 
+                CMID = (button.innerText.split('\n', 1)[0]).substring(3);
+            }
+            else if (navigator.userAgent.indexOf("Firefox") != -1) {
+                CMID = (button.innerText.split('\n', 1)[0]).substring(3);
+            }
+            else if ((navigator.userAgent.indexOf("MSIE") != -1) || (!!document.documentMode == true)) //IF IE > 10
+            {
+                CMID = (button.innerText.split('\r\n', 1)[0]).substring(3);
+            }
+            else {
+
+            }
             document.getElementById("hiddenCMClicked").value = CMID;
             document.getElementById("btnCMClicked").click();
         }

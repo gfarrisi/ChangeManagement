@@ -26,7 +26,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <asp:Label runat="server" ID="lblUserName" Text="Default"></asp:Label>                                            
+                        <asp:Label runat="server" ID="lblUserName" Text="Default"></asp:Label>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                         <a class="dropdown-item" href="Login.aspx">Log Out</a>
@@ -37,9 +37,9 @@
     </nav>
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">  
+<asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
     <form runat="server">
-          <asp:ScriptManager ID="scriptman" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
+        <asp:ScriptManager ID="scriptman" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
         <div class="pull-right pt-5 pb-4" style="background-color: rgba(0,0,0,.03);">
             <div class="pl-5 ml-5">
                 <div class="row1">
@@ -192,7 +192,7 @@
                         <asp:Repeater ID="rptModalHeader" runat="server">
                             <ItemTemplate>
                                 <h5 runat="server" class="modal-title" id="exampleModalLongTitle"><%# "CM: " + DataBinder.Eval(Container.DataItem, "CMID") + " - " + DataBinder.Eval(Container.DataItem, "CMProjectName") %></h5>
-                                <asp:HiddenField ID="hiddenTitle" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'/>
+                                <asp:HiddenField ID="hiddenTitle" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>' />
                             </ItemTemplate>
                         </asp:Repeater>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -415,7 +415,7 @@
                     </div>
                     <div class="modal-footer mt-5">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
-                        <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click"/>
+                        <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
                         <asp:Button runat="server" class="btn btn-primary" ID="btnSave" Text="Save changes" OnClick="btnSave_Click"></asp:Button>
                     </div>
                 </div>
@@ -448,9 +448,29 @@
     <script type="text/javascript">
 
         function RecordClickedCM(button) {
-            var CMID = (button.innerText.split('\r\n', 1)[0]).substring(3);
+            var CMID = null;
+            if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
+                CMID = (button.innerText.split('\r\n', 1)[0]).substring(3);
+            }
+            else if (navigator.userAgent.indexOf("Chrome") != -1) {
+                CMID = (button.innerText.split('\n', 1)[0]).substring(3);             
+            }
+            else if (navigator.userAgent.indexOf("Safari") != -1) {
+                CMID = (button.innerText.split('\n', 1)[0]).substring(3);    
+            }
+            else if (navigator.userAgent.indexOf("Firefox") != -1) {
+                CMID = (button.innerText.split('\n', 1)[0]).substring(3);    
+            }
+            else if ((navigator.userAgent.indexOf("MSIE") != -1) || (!!document.documentMode == true)) //IF IE > 10
+            {
+                CMID = (button.innerText.split('\r\n', 1)[0]).substring(3);             
+            }
+            else {
+
+            }
             document.getElementById("hiddenCMClicked").value = CMID;
-            document.getElementById("btnCMClicked").click();
+            document.getElementById("btnCMClicked").click();          
+
         }
     </script>
 </asp:Content>
