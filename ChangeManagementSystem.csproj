@@ -87,6 +87,7 @@
     <Content Include="css\modern-business.css" />
     <Content Include="css\footer-distributed-with-address-and-phones.css" />
     <Content Include="Default.aspx" />
+    <Content Include="DownloadAsPDFPage.aspx" />
     <Content Include="gulpfile.js" />
     <Content Include="js\contact_me.js" />
     <Content Include="js\dashboard.js" />
@@ -167,6 +168,12 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="DownloadAsPDFPage.aspx.cs">
+      <DependentUpon>DownloadAsPDFPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DownloadAsPDFPage.aspx.designer.cs">
+      <DependentUpon>DownloadAsPDFPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

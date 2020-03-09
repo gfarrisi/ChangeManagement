@@ -177,6 +177,8 @@ namespace ChangeManagementSystem
             }
             else
             {
+                Session["hiddenCMClickedS"] = hiddenCMClicked.Value; //stores CMID for cm to pdf page
+                
                 if (ViewState["ViewStateId"].ToString() != Session["SessionId"].ToString())
                 {
                     IsPageRefresh = true;
@@ -193,7 +195,7 @@ namespace ChangeManagementSystem
                     objCommand.CommandType = CommandType.StoredProcedure;
                     objCommand.Parameters.Clear();
 
-                    string CMID = hiddenCMClicked.Value;
+                    int CMID = Convert.ToInt32(hiddenCMClicked.Value);
 
                     objCommand.CommandText = "GetCMByID";
                     objCommand.Parameters.AddWithValue("@CMID", CMID);
@@ -326,7 +328,11 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
-
+                lblPreProdTesting.Visible = false;
+                chkPreProd.Visible = false;
+                lblTestingConfirmed.Visible = false;
+                btnSubmitTesting.Visible = false;
+                lblAwaitingAdmin.Visible = false;
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Assigned")
             {
@@ -335,8 +341,13 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
+                lblPreProdTesting.Visible = false;
+                chkPreProd.Visible = false;
+                lblTestingConfirmed.Visible = false;
+                btnSubmitTesting.Visible = false;
+                lblAwaitingAdmin.Visible = false;
             }
-            else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production")
+            else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production Needs Testing")
             {
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 75%");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
@@ -346,7 +357,22 @@ namespace ChangeManagementSystem
                 lblPreProdTesting.Visible = true;
                 chkPreProd.Visible = true;
                 lblTestingConfirmed.Visible = true;
+                btnSubmitTesting.Visible = true;
+                lblAwaitingAdmin.Visible = false;
 
+            }
+            else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production")
+            {
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 75%");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+
+                lblPreProdTesting.Visible = false;
+                chkPreProd.Visible = false;
+                lblTestingConfirmed.Visible = false;
+                btnSubmitTesting.Visible = false;
+                lblAwaitingAdmin.Visible = true;
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Completed")
             {
@@ -354,6 +380,12 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "100");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+
+                lblPreProdTesting.Visible = false;
+                chkPreProd.Visible = false;
+                lblTestingConfirmed.Visible = false;
+                btnSubmitTesting.Visible = false;
+                lblAwaitingAdmin.Visible = false;
 
             }
 
@@ -431,31 +463,45 @@ namespace ChangeManagementSystem
 
         protected void btnDownloadAsPDF_Click(object sender, EventArgs e)
         {
-            WebRequest request;
-            WebResponse reponse;
-            StreamReader reader;
-            StreamWriter writer;
-            string strHTML;
-  
-            string cmName = "CMRequest"; // will be dynamic later, need to figure out how to retrieve the specific name
-            IronPdf.HtmlToPdf Renderer = new IronPdf.HtmlToPdf();
- 
-            request = WebRequest.Create("http://localhost:55877/AdminDashboard.aspx");
-            reponse = request.GetResponse();
-            reader = new StreamReader(reponse.GetResponseStream());
-            strHTML = reader.ReadToEnd();
+            Response.Redirect("http://localhost:55867/DownloadAsPDFPage.aspx");
+        }
 
-            var PDF = Renderer.RenderHtmlAsPdf(strHTML);
+        protected void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            objDB = new DBConnect();
+            objCommandDashboard = new SqlCommand();
 
-            Response.Clear();
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", "attachment; filename=" + cmName + ".pdf");
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.BinaryWrite(PDF.BinaryData);
+            objCommandDashboard.CommandType = CommandType.StoredProcedure;
+            objCommandDashboard.CommandText = "GetCMsByUserByStatus";
+            objCommandDashboard.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+            objCommandDashboard.Parameters.AddWithValue("@CMStatus", "not assigned");
 
-            Response.End();
-            Response.Flush();
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptNotAssigned.DataSource = dashboardData;
+            rptNotAssigned.DataBind();
 
+            objCommandDashboard.Parameters.Clear();
+            objCommandDashboard.Parameters.AddWithValue("@CMStatus", "assigned");
+            objCommandDashboard.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptAssigned.DataSource = dashboardData;
+            rptAssigned.DataBind();
+
+            objCommandDashboard.CommandText = "GetPreProdCMsByUser";
+            objCommandDashboard.Parameters.Clear();
+            objCommandDashboard.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptPreProduction.DataSource = dashboardData;
+            rptPreProduction.DataBind();
+
+            objCommandDashboard.CommandText = "GetCompletedCMsByUser";
+            objCommandDashboard.Parameters.Clear();
+            objCommandDashboard.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptCompleted.DataSource = dashboardData;
+            rptCompleted.DataBind();
         }
     }        
 }
