@@ -10,60 +10,42 @@
 namespace ChangeManagementSystem.Secure {
     
     
-    public partial class Default {
+    public partial class _500http {
         
         /// <summary>
-        /// form1 control.
+        /// Head1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
         
         /// <summary>
-        /// divError control.
+        /// Link1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divError;
+        protected global::System.Web.UI.HtmlControls.HtmlLink Link1;
         
         /// <summary>
-        /// lblError control.
+        /// Link2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
+        protected global::System.Web.UI.HtmlControls.HtmlLink Link2;
         
         /// <summary>
-        /// btnShibb control.
+        /// logoLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShibb;
-        
-        /// <summary>
-        /// btnEmployee control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEmployee;
-        
-        /// <summary>
-        /// btnStudent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnStudent;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor logoLink;
     }
 }
