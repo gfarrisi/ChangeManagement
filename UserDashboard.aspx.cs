@@ -49,6 +49,8 @@ namespace ChangeManagementSystem
                 DataTable dt = userData.Tables[0];
                 string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
                 lblUserName.Text = userName;
+
+
                 // Not assigned CMs
 
                 objCommand.CommandType = CommandType.StoredProcedure;
