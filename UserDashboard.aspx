@@ -475,5 +475,9 @@
             document.getElementById("hiddenCMClicked").value = CMID;
             document.getElementById("btnCMClicked").click();
         }
+
+        $(document).ready(function () {
+            $(".dropdown-toggle").dropdown();
+        });
     </script>
 </asp:Content>
