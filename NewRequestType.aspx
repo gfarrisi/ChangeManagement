@@ -131,4 +131,10 @@
            alert("clicked!")
         }
     </script>--%>
+
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-toggle").dropdown();
+        });
+    </script>
 </asp:Content>

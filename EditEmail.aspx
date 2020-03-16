@@ -127,7 +127,9 @@
           
        
         }
-  
 
+        $(document).ready(function () {
+            $(".dropdown-toggle").dropdown();
+        });
     </script>
 </asp:Content>

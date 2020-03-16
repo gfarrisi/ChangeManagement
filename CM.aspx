@@ -247,4 +247,10 @@
     <!-- /.row -->
 
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-toggle").dropdown();
+        });
+    </script>
 </asp:Content>

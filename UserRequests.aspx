@@ -45,6 +45,7 @@
             </div>
             <div style="overflow-y: scroll; height: 50%;">
                 <div class="gv">
+                    <asp:HiddenField runat="server" ID="hf" ClientIDMode="Static" />
                     <asp:GridView ID="gvUserRequests" runat="server" CssClass="table" AutoGenerateColumns="False" AllowSorting="True" BorderColor="#CCCCCC" OnSorting="OnSorting" PageSize="50">
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
                         <Columns>
@@ -385,7 +386,9 @@
             downloadLink.click();
         }
 
-
+        $(document).ready(function () {
+            $(".dropdown-toggle").dropdown();
+        });
     </script>
 
 </asp:Content>
