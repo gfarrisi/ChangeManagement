@@ -67,6 +67,15 @@ namespace ChangeManagementSystem {
         protected global::System.Web.UI.WebControls.Repeater rptCompleted;
         
         /// <summary>
+        /// RefreshTimer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer RefreshTimer;
+        
+        /// <summary>
         /// rptModalHeader control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,15 @@ namespace ChangeManagementSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptCMStatus;
+        
+        /// <summary>
+        /// lblAwaitingAdmin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAwaitingAdmin;
         
         /// <summary>
         /// lblPreProdTesting control.

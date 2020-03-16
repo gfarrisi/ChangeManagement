@@ -33,6 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DeployEncryptKey>Encryption password is used only if any deployment setting is marked as secure</DeployEncryptKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -46,13 +47,15 @@
     <Reference Include="IronPdf, Version=2020.0.1.24570, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
       <HintPath>packages\IronPdf.2020.1.0\lib\net40\IronPdf.dll</HintPath>
     </Reference>
-    <Reference Include="IronPdf.Assets.Rendering.Windows, Version=16.0.0.0, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
-      <HintPath>packages\Iron.Assets.Rendering.Windows.16.0.0\lib\net40\IronPdf.Assets.Rendering.Windows.dll</HintPath>
+    <Reference Include="IronPdf.Assets.Rendering.Windows, Version=17.0.0.0, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
+      <HintPath>packages\Iron.Assets.Rendering.Windows.17.0.0\lib\net40\IronPdf.Assets.Rendering.Windows.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.CSharp">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -75,6 +78,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
     <Content Include="AdminDashboard.aspx" />
     <Content Include="cancel.jpg" />
     <Content Include="CM.aspx" />
@@ -82,6 +86,8 @@
     <Content Include="css\dashboard.css" />
     <Content Include="css\modern-business.css" />
     <Content Include="css\footer-distributed-with-address-and-phones.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="DownloadAsPDFPage.aspx" />
     <Content Include="gulpfile.js" />
     <Content Include="js\contact_me.js" />
     <Content Include="js\dashboard.js" />
@@ -92,6 +98,10 @@
     <Content Include="AdminSelectRequestType.aspx" />
     <Content Include="AdminNewCM.aspx" />
     <Content Include="NewRequestType.aspx" />
+    <Content Include="Secure\500http.aspx" />
+    <Content Include="Secure\Default.aspx" />
+    <Content Include="Secure\Home.aspx" />
+    <Content Include="Secure\Logout.aspx" />
     <Content Include="T.png" />
     <Content Include="UserDashboard.aspx" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.css" />
@@ -110,6 +120,28 @@
     <Content Include="vendor\jquery\jquery.slim.min.js" />
     <Content Include="ViewAllRequests.aspx" />
     <Content Include="ViewAllUsers.aspx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\WS_LDAP_Search\ldap_search.disco" />
+    <None Include="Web References\WS_Programs_And_Degrees\ProgramsAndDegrees.disco" />
+    <Content Include="Web References\WS_Student_Search\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\WS_Student_Search\Result.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\WS_Programs_And_Degrees\ProgramsAndDegrees.wsdl" />
+    <Content Include="Web References\WS_Programs_And_Degrees\ProgramsAndDegreesEntry.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\WS_Programs_And_Degrees\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\WS_Student_Search\ws_student.disco" />
     <Content Include="UserRequests.aspx" />
     <Content Include="EditEmail.aspx" />
     <Content Include="UserSelectRequestType.aspx" />
@@ -129,6 +161,20 @@
     </Compile>
     <Compile Include="CM.aspx.designer.cs">
       <DependentUpon>CM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DownloadAsPDFPage.aspx.cs">
+      <DependentUpon>DownloadAsPDFPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DownloadAsPDFPage.aspx.designer.cs">
+      <DependentUpon>DownloadAsPDFPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -150,6 +196,11 @@
     </Compile>
     <Compile Include="AdminNewCM.aspx.designer.cs">
       <DependentUpon>AdminNewCM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="RequestLibrary\allRequests.cs" />
     <Compile Include="RequestLibrary\CMRequest.cs" />
@@ -173,6 +224,34 @@
       <DependentUpon>NewRequestType.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Secure\500http.aspx.cs">
+      <DependentUpon>500http.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secure\500http.aspx.designer.cs">
+      <DependentUpon>500http.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secure\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secure\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secure\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secure\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secure\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secure\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UserDashboard.aspx.cs">
       <DependentUpon>UserDashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -181,7 +260,9 @@
       <DependentUpon>UserDashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Connection.cs" />
+    <Compile Include="Utilities\Email.cs" />
     <Compile Include="Utilities\Validation.cs" />
+    <Compile Include="Utilities\WebService.cs" />
     <Compile Include="ViewAllRequests.aspx.cs">
       <DependentUpon>ViewAllRequests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -224,6 +305,21 @@
     <Compile Include="UserNewCM.aspx.designer.cs">
       <DependentUpon>UserNewCM.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Web References\WS_LDAP_Search\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\WS_Programs_And_Degrees\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\WS_Student_Search\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
@@ -243,6 +339,56 @@
     <Content Include="package.json" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Web References\WS_LDAP_Search\ldap_search.wsdl" />
+    <Content Include="Web References\WS_LDAP_Search\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\WS_LDAP_Search\TempleLDAPEntry.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\WS_Student_Search\ws_student.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="https://preprod-wsw.temple.edu/programsanddegrees/ProgramsAndDegrees.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WS_Programs_And_Degrees\</RelPath>
+      <UpdateFromURL>https://preprod-wsw.temple.edu/programsanddegrees/ProgramsAndDegrees.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>ChangeManagementSystem_WS_Programs_And_Degrees_ProgramsAndDegrees</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://preprod-wsw.temple.edu/ws_ldapsearch/ldap_search.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WS_LDAP_Search\</RelPath>
+      <UpdateFromURL>https://preprod-wsw.temple.edu/ws_ldapsearch/ldap_search.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>ChangeManagementSystem_WS_LDAP_Search_LDAP_Search</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://preprod-wsw.temple.edu/ws_student/ws_student.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WS_Student_Search\</RelPath>
+      <UpdateFromURL>https://preprod-wsw.temple.edu/ws_student/ws_student.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>ChangeManagementSystem_WS_Student_Search_WS_Student</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -251,10 +251,11 @@ namespace ChangeManagementSystem
 
         protected void btnSubmitUser_Click(object sender, EventArgs e)
         {
-            string userID = "9153006969";
+            string userID = "915368285";
             List<int> questionIDs = (List<int>)Session["IDs"];
             List<int> submissionQuestionIDs = (List<int>)Session["SubmissionIDs"];
 
+           
             List<QuestionResponse> questionResponseList = new List<QuestionResponse>();
             if (questionIDs != null)
             {
@@ -274,7 +275,9 @@ namespace ChangeManagementSystem
 
                 for (int i = 0; i < questionResponseList.Count; i++)
                 {
-                    if (!Validation.ValidateForm(questionResponseList[i].Response))
+                    String strResponse = questionResponseList[i].Response.ToString();
+
+                    if (!Validation.ValidateForm(strResponse))
                     {
                         valid = false;
                     }
@@ -291,6 +294,11 @@ namespace ChangeManagementSystem
                     DateTime desiredDate;
                     string quesCom = txtQuesCom.Text;
                     string CMProjName = txtCMname.Text;
+                    byte[] byte0 = null;
+                    byte[] byte1 = null;
+                    byte[] byte2 = null;
+                    byte[] byte3 = null;
+                    byte[] byte4 = null;
 
                     if (!Validation.ValidateBottomForm(detailedDesc, txtDesiredDate.Text, quesCom, CMProjName))
                     {
@@ -299,18 +307,86 @@ namespace ChangeManagementSystem
                     else
                     {
                         desiredDate = DateTime.Parse(txtDesiredDate.Text);
+                        //foreach (HttpPostedFile file in fuScreenshots.PostedFiles)
+                        //{
 
-                        string filename = Path.GetFileName(fuScreenshots.FileName);
-                        string contentType = fuScreenshots.PostedFile.ContentType;
-                        using (Stream fs = fuScreenshots.PostedFile.InputStream)
+                        //}
+
+
+                   
+                        for (int i =0; i < fuScreenshots.PostedFiles.Count(); i++)
                         {
-                            using (BinaryReader br = new BinaryReader(fs))
+                         
+                            if (i == 0)
                             {
-                                byte[] byte1 = br.ReadBytes((Int32)fs.Length);
+                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[0].FileName);
+                                string contentType = fuScreenshots.PostedFiles[0].ContentType;
+                                using (Stream fs = fuScreenshots.PostedFiles[0].InputStream)
+                                {
+                                    using (BinaryReader br = new BinaryReader(fs))
+                                    {
+                                        byte0 = br.ReadBytes((Int32)fs.Length);
+                                        i++;
+                                    }
+                                }
+                            }
+                            if (i == 1 && fuScreenshots.PostedFiles.Count()>1)
+                            {
+                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[1].FileName);
+                                string contentType = fuScreenshots.PostedFiles[1].ContentType;
+                                using (Stream fs = fuScreenshots.PostedFiles[1].InputStream)
+                                {
+                                    using (BinaryReader br = new BinaryReader(fs))
+                                    {
+                                        byte1 = br.ReadBytes((Int32)fs.Length);
+                                        i++;
+                                    }
+                                }
+                            }
+                            if (i == 2 && fuScreenshots.PostedFiles.Count() > 2)
+                            {
+                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[2].FileName);
+                                string contentType = fuScreenshots.PostedFiles[2].ContentType;
+                                using (Stream fs = fuScreenshots.PostedFiles[2].InputStream)
+                                {
+                                    using (BinaryReader br = new BinaryReader(fs))
+                                    {
+                                        byte2 = br.ReadBytes((Int32)fs.Length);
+                                        i++;
+                                    }
+                                }
+                            }
+                            if (i == 3 && fuScreenshots.PostedFiles.Count() > 3)
+                            {
+                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[3].FileName);
+                                string contentType = fuScreenshots.PostedFiles[3].ContentType;
+                                using (Stream fs = fuScreenshots.PostedFiles[3].InputStream)
+                                {
+                                    using (BinaryReader br = new BinaryReader(fs))
+                                    {
+                                        byte3 = br.ReadBytes((Int32)fs.Length);
+                                        i++;
+                                    }
+                                }
+                            }
+                            if (i == 4 && fuScreenshots.PostedFiles.Count()<6 && fuScreenshots.PostedFiles.Count() > 4)
+                            {
+                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[4].FileName);
+                                string contentType = fuScreenshots.PostedFiles[4].ContentType;
+                                using (Stream fs = fuScreenshots.PostedFiles[4].InputStream)
+                                {
+                                    using (BinaryReader br = new BinaryReader(fs))
+                                    {
+                                        byte4 = br.ReadBytes((Int32)fs.Length);
+                                        i++;
+                                    }
+                                }
+                            }
+                          
                                 int requestType = Convert.ToInt32(Session["SelectedRequestType"].ToString());
 
                                 //create cm-request object based on list and all other fields
-                                CMRequest newCmRequest = new CMRequest("Not Assigned", detailedDesc, CMProjName, byte1, byte1, null, null, null, quesCom, null, DateTime.Now, userID, null, requestType, desiredDate, questionResponseList);
+                                CMRequest newCmRequest = new CMRequest("Not Assigned", detailedDesc, CMProjName, byte0, byte1, byte2, byte3, byte4, quesCom, null, DateTime.Now, userID, null, requestType, desiredDate, questionResponseList);
                                 DBConnect ObjDb = new DBConnect();
                                 SqlCommand objCommand = new SqlCommand();
                                 objCommand.CommandType = CommandType.StoredProcedure;
@@ -356,30 +432,36 @@ namespace ChangeManagementSystem
                                     }
 
                                 }
-                            }
-                        }
-                        Session["CMSuccess"] = "Success";
-                        submssionModal();
-                        //lblErrorMessage.Visible = true;
-                        //lblErrorMessage.Text = "Your request has been successfully submitted!";
-                        //lblErrorMessage.ForeColor = System.Drawing.Color.Green;
-                    }
-                    //stored procedure - insert into CM_Request
-                    //pass CMRequest object data as params into stored procedures
-                    //in stored procedure return CMID
+                                //    }
+                                //}
 
-                    //for each question is question response
-                    //stored procedure - insert into cm_response
-                    //using CMID and question list objects as paramaters 
-                }
+                                Session["CMSuccess"] = "Success";
+                                submssionModal();
+                                //lblErrorMessage.Visible = true;
+                                //lblErrorMessage.Text = "Your request has been successfully submitted!";
+                                //lblErrorMessage.ForeColor = System.Drawing.Color.Green;
+                            }
+
+                        }
+                    }
+                        
+                        
+
+                        //string filename = Path.GetFileName(fuScreenshots.FileName);
+                        //string contentType = fuScreenshots.PostedFile.ContentType;
+                        //using (Stream fs = fuScreenshots.PostedFile.InputStream)
+                        //{
+                        //    using (BinaryReader br = new BinaryReader(fs))
+                        //    {
+                         //       byte[] byte1 = br.ReadBytes((Int32)fs.Length);
+                                
                 else
                 {
+                    Session["CMSuccess"] = "Failure";
                     lblErrorMessage.Visible = true;
                 }
-
             }
         }
-
         protected void btnClose_Click(object sender, EventArgs e)
         {
             Response.Redirect("UserDashboard.aspx");

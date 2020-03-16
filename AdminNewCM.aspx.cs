@@ -142,7 +142,7 @@ namespace ChangeManagementSystem
             else
             {
                 //if session submission is successful
-                if(Session["CMSuccess"].ToString() == "Success")
+                if (Session["CMSuccess"].ToString() == "Success")
                 {
                     submssionModal();
                 }
@@ -295,6 +295,11 @@ namespace ChangeManagementSystem
                     DateTime desiredDate;
                     string quesCom = txtQuesCom.Text;
                     string CMProjName = txtCMname.Text;
+                    byte[] byte0 = null;
+                    byte[] byte1 = null;
+                    byte[] byte2 = null;
+                    byte[] byte3 = null;
+                    byte[] byte4 = null;
 
                     if (!Validation.ValidateBottomForm(detailedDesc, txtDesiredDate.Text, quesCom, CMProjName))
                     {
@@ -303,18 +308,86 @@ namespace ChangeManagementSystem
                     else
                     {
                         desiredDate = DateTime.Parse(txtDesiredDate.Text);
-        
-                        string filename = Path.GetFileName(fuScreenshots.FileName);
-                        string contentType = fuScreenshots.PostedFile.ContentType;
-                        using (Stream fs = fuScreenshots.PostedFile.InputStream)
+                        //foreach (HttpPostedFile file in fuScreenshots.PostedFiles)
+                        //{
+
+                        //}
+
+
+                   
+                        for (int i =0; i < fuScreenshots.PostedFiles.Count(); i++)
                         {
-                            using (BinaryReader br = new BinaryReader(fs))
+                         
+                            if (i == 0)
                             {
-                                byte[] byte1 = br.ReadBytes((Int32)fs.Length);
+                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[0].FileName);
+                                string contentType = fuScreenshots.PostedFiles[0].ContentType;
+                                using (Stream fs = fuScreenshots.PostedFiles[0].InputStream)
+                                {
+                                    using (BinaryReader br = new BinaryReader(fs))
+                                    {
+                                        byte0 = br.ReadBytes((Int32)fs.Length);
+                                        i++;
+                                    }
+                                }
+                            }
+                            if (i == 1 && fuScreenshots.PostedFiles.Count()>1)
+                            {
+                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[1].FileName);
+                                string contentType = fuScreenshots.PostedFiles[1].ContentType;
+                                using (Stream fs = fuScreenshots.PostedFiles[1].InputStream)
+                                {
+                                    using (BinaryReader br = new BinaryReader(fs))
+                                    {
+                                        byte1 = br.ReadBytes((Int32)fs.Length);
+                                        i++;
+                                    }
+                                }
+                            }
+                            if (i == 2 && fuScreenshots.PostedFiles.Count() > 2)
+                            {
+                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[2].FileName);
+                                string contentType = fuScreenshots.PostedFiles[2].ContentType;
+                                using (Stream fs = fuScreenshots.PostedFiles[2].InputStream)
+                                {
+                                    using (BinaryReader br = new BinaryReader(fs))
+                                    {
+                                        byte2 = br.ReadBytes((Int32)fs.Length);
+                                        i++;
+                                    }
+                                }
+                            }
+                            if (i == 3 && fuScreenshots.PostedFiles.Count() > 3)
+                            {
+                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[3].FileName);
+                                string contentType = fuScreenshots.PostedFiles[3].ContentType;
+                                using (Stream fs = fuScreenshots.PostedFiles[3].InputStream)
+                                {
+                                    using (BinaryReader br = new BinaryReader(fs))
+                                    {
+                                        byte3 = br.ReadBytes((Int32)fs.Length);
+                                        i++;
+                                    }
+                                }
+                            }
+                            if (i == 4 && fuScreenshots.PostedFiles.Count()<6 && fuScreenshots.PostedFiles.Count() > 4)
+                            {
+                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[4].FileName);
+                                string contentType = fuScreenshots.PostedFiles[4].ContentType;
+                                using (Stream fs = fuScreenshots.PostedFiles[4].InputStream)
+                                {
+                                    using (BinaryReader br = new BinaryReader(fs))
+                                    {
+                                        byte4 = br.ReadBytes((Int32)fs.Length);
+                                        i++;
+                                    }
+                                }
+                            }
+                          
                                 int requestType = Convert.ToInt32(Session["SelectedRequestType"].ToString());
 
                                 //create cm-request object based on list and all other fields
-                                CMRequest newCmRequest = new CMRequest("Not Assigned", detailedDesc, CMProjName, byte1, null, null, null, null, quesCom, null, DateTime.Now, userID, null, requestType, desiredDate, questionResponseList);
+                                CMRequest newCmRequest = new CMRequest("Not Assigned", detailedDesc, CMProjName, byte0, byte1, byte2, byte3, byte4, quesCom, null, DateTime.Now, userID, null, requestType, desiredDate, questionResponseList);
                                 DBConnect ObjDb = new DBConnect();
                                 SqlCommand objCommand = new SqlCommand();
                                 objCommand.CommandType = CommandType.StoredProcedure;
@@ -360,17 +433,29 @@ namespace ChangeManagementSystem
                                     }
 
                                 }
-                            }
-                        }
+                                //    }
+                                //}
 
-                        Session["CMSuccess"] = "Success";
-                        submssionModal();
-                        //lblErrorMessage.Visible = true;
-                        //lblErrorMessage.Text = "Your request has been successfully submitted!";
-                        //lblErrorMessage.ForeColor = System.Drawing.Color.Green;
-                    }     
-                   
-                }
+                                Session["CMSuccess"] = "Success";
+                                submssionModal();
+                                //lblErrorMessage.Visible = true;
+                                //lblErrorMessage.Text = "Your request has been successfully submitted!";
+                                //lblErrorMessage.ForeColor = System.Drawing.Color.Green;
+                            }
+
+                        }
+                    }
+                        
+                        
+
+                        //string filename = Path.GetFileName(fuScreenshots.FileName);
+                        //string contentType = fuScreenshots.PostedFile.ContentType;
+                        //using (Stream fs = fuScreenshots.PostedFile.InputStream)
+                        //{
+                        //    using (BinaryReader br = new BinaryReader(fs))
+                        //    {
+                         //       byte[] byte1 = br.ReadBytes((Int32)fs.Length);
+                                
                 else
                 {
                     Session["CMSuccess"] = "Failure";

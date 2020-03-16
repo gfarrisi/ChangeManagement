@@ -169,6 +169,8 @@ namespace ChangeManagementSystem
             }
             else
             {
+                Session["hiddenCMClickedS"] = hiddenCMClicked.Value; //stores CMID for cm to pdf page
+
                 if (ViewState["ViewStateId"].ToString() != Session["SessionId"].ToString())
                 {
                     IsPageRefresh = true;
@@ -182,7 +184,7 @@ namespace ChangeManagementSystem
                     objCommand = new SqlCommand();
                     objCommand.CommandType = CommandType.StoredProcedure;
 
-                    string CMID = hiddenCMClicked.Value;
+                    int CMID = Convert.ToInt32(hiddenCMClicked.Value);
                     objCommand.CommandText = "GetCMByID";
                     objCommand.Parameters.AddWithValue("@CMID", CMID);
                     DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
@@ -292,6 +294,9 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
+                lblCMStatus.Visible = false;
+                ddlCMStatus.Visible = true;
+
                 List<string> statusList = new List<string>();
                 statusList.Add("Assign to Me");
                 statusList.Add("CM Failed");
@@ -306,6 +311,9 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "25");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+
+                lblCMStatus.Visible = false;
+                ddlCMStatus.Visible = true;
 
                 List<string> statusList = new List<string>();
                 statusList.Add("Change Implemented in Pre-Production");
@@ -323,11 +331,13 @@ namespace ChangeManagementSystem
 
                 ddlCMStatus.Visible = false;
                 lblCMStatus.Text = "Pending User Testing of Changes";
+                lblCMStatus.Visible = true;
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production")
             {
                 ddlCMStatus.Visible = true;
                 lblCMStatus.Text = "Update Status";
+                lblCMStatus.Visible = true;
 
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 75%");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
@@ -343,6 +353,9 @@ namespace ChangeManagementSystem
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Completed")
             {
+                ddlCMStatus.Visible = false;
+                lblCMStatus.Visible = false;
+
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 100%");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "100");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
@@ -384,6 +397,26 @@ namespace ChangeManagementSystem
             // Need to open confirmation modal after performing update and reload dashboard
 
             // Conditions will eventually need to trigger emails
+
+            //GetEmailByStatus
+
+
+            Email objEmail = new Email();
+            String strTO = "";
+            String strFROM = "noreply@temple.edu";
+            String strSubject = "Forgot Password";
+            String strMessage = "Your account password is. Please return to http://cis-iis2.temple.edu/Fall2019/CIS3342_tug35007/TermProject/Login.aspx to sign in.";
+
+            try
+            {
+                objEmail.SendMail(strTO, strFROM, strSubject, strMessage);
+                //  lblDisplay.Text = "The email was sent.";
+            }
+            catch (Exception ex)
+            {
+                //lblDisplay.Text = "The email wasn't sent because one of the required fields was missing.";
+            }
+
 
         }
         protected void btnNewComment_Click(object sender, EventArgs e)
@@ -442,30 +475,39 @@ namespace ChangeManagementSystem
 
         protected void btnDownloadAsPDF_Click(object sender, EventArgs e)
         {
-            WebRequest request;
-            WebResponse reponse;
-            StreamReader reader;
-            StreamWriter writer;
-            string strHTML;
+            Response.Redirect("http://localhost:55867/DownloadAsPDFPage.aspx");
+        }
 
-            string cmName = "CMRequest"; // will be dynamic later, need to figure out how to retrieve the specific name
-            IronPdf.HtmlToPdf Renderer = new IronPdf.HtmlToPdf();
+        protected void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            objDB = new DBConnect();
+            objCommandDashboard = new SqlCommand();
 
-            request = WebRequest.Create("http://localhost:55877/AdminDashboard.aspx");
-            reponse = request.GetResponse();
-            reader = new StreamReader(reponse.GetResponseStream());
-            strHTML = reader.ReadToEnd();
+            objCommandDashboard.CommandType = CommandType.StoredProcedure;
+            objCommandDashboard.CommandText = "GetCMsByStatus";
 
-            var PDF = Renderer.RenderHtmlAsPdf(strHTML);
+            objCommandDashboard.Parameters.AddWithValue("@CMStatus", "not assigned");
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptNotAssigned.DataSource = dashboardData;
+            rptNotAssigned.DataBind();
 
-            Response.Clear();
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", "attachment; filename=" + cmName + ".pdf");
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.BinaryWrite(PDF.BinaryData);
+            objCommandDashboard.Parameters.Clear();
+            objCommandDashboard.Parameters.AddWithValue("@CMStatus", "assigned");
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptAssigned.DataSource = dashboardData;
+            rptAssigned.DataBind();
 
-            Response.End();
-            Response.Flush();
+            objCommandDashboard.CommandText = "GetPreProdCMs";
+            objCommandDashboard.Parameters.Clear();
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptPreProduction.DataSource = dashboardData;
+            rptPreProduction.DataBind();
+
+            objCommandDashboard.CommandText = "GetCompletedCMs";
+            objCommandDashboard.Parameters.Clear();
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptCompleted.DataSource = dashboardData;
+            rptCompleted.DataBind();
         }
     }
 }

@@ -76,7 +76,7 @@
                                 <asp:Label ID="lblUpload" runat="server" Text="Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots." CssClass="form-text"></asp:Label>
                             </div>
                             <div class="col-lg-6">
-                                <asp:FileUpload ID="fuScreenshots" CssClass="form-control-file" runat="server"></asp:FileUpload>
+                                <asp:FileUpload ID="fuScreenshots" CssClass="form-control-file" runat="server" ClientIDMode="Static"></asp:FileUpload>
                             </div>
                         </div>
                         <div class="row mt-3 mb-3">
