@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 
@@ -46,10 +47,9 @@ namespace ChangeManagementSystem
                 RequestTypeData requestTypeData = new RequestTypeData();
                 Request requestType = requestTypeData.GetRequestTypeData(RequestID);
 
-                Label lblHeading = new Label();
-                lblHeading.Text = requestType.RequestName;
-                lblHeading.CssClass = "form-text h4";
-                panelCM.Controls.Add(lblHeading);
+                spanCM.InnerHtml = requestType.RequestName;
+
+
 
                 //to write to session
                 List<int> idArray = new List<int>();
@@ -147,10 +147,6 @@ namespace ChangeManagementSystem
                 RequestTypeData requestTypeData = new RequestTypeData();
                 Request requestType = requestTypeData.GetRequestTypeData(Convert.ToInt32(ViewState["requestNum"]));
 
-                Label lblHeading = new Label();
-                lblHeading.Text = requestType.RequestName;
-                lblHeading.CssClass = "form-text h4";
-                panelCM.Controls.Add(lblHeading);
 
                 //to write to session
                 List<int> idArray = new List<int>();
