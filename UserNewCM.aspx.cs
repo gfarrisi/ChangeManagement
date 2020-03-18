@@ -21,126 +21,137 @@ namespace ChangeManagementSystem
         private System.Windows.Forms.WebBrowser webBrowser1;
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if (!IsPostBack)
+            if (isAuthenticated() == false)
             {
-
-                DBConnect objDB = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
-               
-                //get user name for nav
-                objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "GetUserByID";
-                objCommand.Parameters.Clear();
-                objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
-
-                DataSet userData = objDB.GetDataSetUsingCmdObj(objCommand);
-                DataTable dt = userData.Tables[0];
-                string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
-                lblUserName.Text = userName;
-
-
-                int RequestID = Convert.ToInt32(Session["SelectedRequestType"].ToString());
-
-                ViewState["requestNum"] = RequestID;
-
-                RequestTypeData requestTypeData = new RequestTypeData();
-                Request requestType = requestTypeData.GetRequestTypeData(RequestID);
-
-                spanCM.InnerHtml = requestType.RequestName;
-
-
-
-                //to write to session
-                List<int> idArray = new List<int>();
-
-                foreach (Question question in requestType.requestQuestions)
+                Session["Authenticated"] = false;
+                Response.Redirect("default.aspx");
+            }
+            else if (isAuthenticated() == true)
+            {
+                if (!IsPostBack)
                 {
-                    if (question.Question_ID < 92)
+
+                    DBConnect objDB = new DBConnect();
+                    SqlCommand objCommand = new SqlCommand();
+
+                    //get user name for nav
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetUserByID";
+                    objCommand.Parameters.Clear();
+                    objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+                    DataSet userData = objDB.GetDataSetUsingCmdObj(objCommand);
+                    DataTable dt = userData.Tables[0];
+                    string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
+                    lblUserName.Text = userName;
+
+
+                    int RequestID = Convert.ToInt32(Session["SelectedRequestType"].ToString());
+
+                    ViewState["requestNum"] = RequestID;
+
+
+                    RequestTypeData requestTypeData = new RequestTypeData();
+                    Request requestType = requestTypeData.GetRequestTypeData(RequestID);
+
+                    spanCM.InnerHtml = requestType.RequestName;
+
+                    Label lblHeading = new Label();
+                    lblHeading.Text = requestType.RequestName;
+                    lblHeading.CssClass = "form-text h4";
+                    panelCM.Controls.Add(lblHeading);
+
+                    //to write to session
+                    List<int> idArray = new List<int>();
+
+                    foreach (Question question in requestType.requestQuestions)
                     {
-                        string question_text = question.Question_Text;
-                        string question_control = question.Question_Control;
-                        int question_id = question.Question_ID;
-                        List<string> question_options = question.Question_Options;
-                        idArray.Add(question_id);
-
-                        System.Web.UI.HtmlControls.HtmlGenericControl rowDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                        rowDiv.ID = "rowDiv";
-                        rowDiv.Attributes.Add("class", "row mt-3 mb-3");
-                        panelCM.Controls.Add(rowDiv);
-
-
-                        System.Web.UI.HtmlControls.HtmlGenericControl colDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                        colDiv.ID = "colDiv";
-                        colDiv.Attributes.Add("class", "col-lg-6");
-                        rowDiv.Controls.Add(colDiv);
-
-
-                        Label lblText = new Label();
-                        lblText.Text = question_text;
-                        lblText.CssClass = "form-text";
-                        colDiv.Controls.Add(lblText);
-
-
-                        System.Web.UI.HtmlControls.HtmlGenericControl col6Div = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                        col6Div.ID = "col6Div";
-                        col6Div.Attributes.Add("class", "col-lg-6");
-                        rowDiv.Controls.Add(col6Div);
-
-                        if (question_control == "RadioButton")
+                        if (question.Question_ID < 92)
                         {
+                            string question_text = question.Question_Text;
+                            string question_control = question.Question_Control;
+                            int question_id = question.Question_ID;
+                            List<string> question_options = question.Question_Options;
+                            idArray.Add(question_id);
 
-                            RadioButtonList rbList = new RadioButtonList();
-                            foreach (string option in question_options)
+                            System.Web.UI.HtmlControls.HtmlGenericControl rowDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+                            rowDiv.ID = "rowDiv";
+                            rowDiv.Attributes.Add("class", "row mt-3 mb-3");
+                            panelCM.Controls.Add(rowDiv);
+
+
+                            System.Web.UI.HtmlControls.HtmlGenericControl colDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+                            colDiv.ID = "colDiv";
+                            colDiv.Attributes.Add("class", "col-lg-6");
+                            rowDiv.Controls.Add(colDiv);
+
+
+                            Label lblText = new Label();
+                            lblText.Text = question_text;
+                            lblText.CssClass = "form-text";
+                            colDiv.Controls.Add(lblText);
+
+
+                            System.Web.UI.HtmlControls.HtmlGenericControl col6Div = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+                            col6Div.ID = "col6Div";
+                            col6Div.Attributes.Add("class", "col-lg-6");
+                            rowDiv.Controls.Add(col6Div);
+
+                            if (question_control == "RadioButton")
                             {
-                                ListItem rbOption = new ListItem();
-                                rbOption.Text = option;
-                                rbList.Items.Add(rbOption);
+
+                                RadioButtonList rbList = new RadioButtonList();
+                                foreach (string option in question_options)
+                                {
+                                    ListItem rbOption = new ListItem();
+                                    rbOption.Text = option;
+                                    rbList.Items.Add(rbOption);
+                                }
+                                rbList.CssClass = "form-check";
+                                rbList.ID = question_id.ToString();
+                                rbList.Attributes.Add("name", question_id.ToString());
+                                rbList.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                                col6Div.Controls.Add(rbList);
+
                             }
-                            rbList.CssClass = "form-check";
-                            rbList.ID = question_id.ToString();
-                            rbList.Attributes.Add("name", question_id.ToString());
-                            rbList.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-                            col6Div.Controls.Add(rbList);
-
-                        }
-                        else if (question_control == "TextBox")
-                        {
-                            TextBox txtAnswer = new TextBox();
-                            txtAnswer.CssClass = "form-control";
-                            txtAnswer.ID = question_id.ToString();
-                            txtAnswer.Attributes.Add("name", txtAnswer.ClientIDMode.ToString());
-                            txtAnswer.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-                            col6Div.Controls.Add(txtAnswer);
-                        }
-                        else if (question_control == "DropDownList")
-                        {
-                            DropDownList ddlOptions = new DropDownList();
-                            ddlOptions.CssClass = "dropdown form-control";
-
-                            foreach (string option in question_options)
+                            else if (question_control == "TextBox")
                             {
-                                ddlOptions.Items.Add(option);
-                                col6Div.Controls.Add(ddlOptions);
+                                TextBox txtAnswer = new TextBox();
+                                txtAnswer.CssClass = "form-control";
+                                txtAnswer.ID = question_id.ToString();
+                                txtAnswer.Attributes.Add("name", txtAnswer.ClientIDMode.ToString());
+                                txtAnswer.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                                col6Div.Controls.Add(txtAnswer);
                             }
-                            ddlOptions.ID = question_id.ToString();
-                            ddlOptions.Attributes.Add("name", question_id.ToString());
-                            ddlOptions.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                            else if (question_control == "DropDownList")
+                            {
+                                DropDownList ddlOptions = new DropDownList();
+                                ddlOptions.CssClass = "dropdown form-control";
+
+                                foreach (string option in question_options)
+                                {
+                                    ddlOptions.Items.Add(option);
+                                    col6Div.Controls.Add(ddlOptions);
+                                }
+                                ddlOptions.ID = question_id.ToString();
+                                ddlOptions.Attributes.Add("name", question_id.ToString());
+                                ddlOptions.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                            }
+
+                            HiddenField hfQuestionID = new HiddenField();
+                            hfQuestionID.Value = question_id.ToString();
+                            hfQuestionID.ID = "hfQuestionID";
+                            hfQuestionID.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+
+                            //Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
+                            col6Div.Controls.Add(hfQuestionID);
+
                         }
-
-                        HiddenField hfQuestionID = new HiddenField();
-                        hfQuestionID.Value = question_id.ToString();
-                        hfQuestionID.ID = "hfQuestionID";
-                        hfQuestionID.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-
-                        //Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
-                        col6Div.Controls.Add(hfQuestionID);
-
                     }
-                }
-                Session["IDs"] = idArray;
+                    Session["IDs"] = idArray;
 
-                //  buildSubmission();
+                    //  buildSubmission();
+                }
             }
             else
             {
@@ -239,6 +250,37 @@ namespace ChangeManagementSystem
             }
         }
 
+        protected Boolean isAuthenticated()
+        {
+            Boolean isAllowed = false;
+
+            if (Session["Authenticated"] == null)
+            {
+                isAllowed = false;
+            }
+            else if (Session["Authenticated"] != null)
+            {
+                Boolean isAuthenticated = Boolean.Parse(Session["Authenticated"].ToString());
+
+                if (!isAuthenticated)
+                {
+                    isAllowed = false;
+                }
+                else if (isAuthenticated)
+                {
+                    if (Session["UserType"].ToString() == "User")
+                    {
+                        isAllowed = true;
+                    }
+                    else
+                    {
+                        isAllowed = false;
+                    }
+                }
+            }
+
+            return isAllowed;
+        }
         private void submssionModal()
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMSubmssion').modal('show');", true);
