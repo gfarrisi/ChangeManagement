@@ -27,7 +27,7 @@ namespace ChangeManagementSystem
             {
                 ViewState["ViewStateId"] = System.Guid.NewGuid().ToString();
                 Session["SessionId"] = ViewState["ViewStateId"].ToString();
-                Session.Add("UserID", 915351045);
+                Session.Add("UserID", 915368285);
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "GetAllCMsByUser";
                 objCommand.Parameters.Clear();
@@ -213,7 +213,7 @@ namespace ChangeManagementSystem
             {
                 DateTime dt = DateTime.Now;
                 string CMID = hf.Value;
-                Session.Add("UserID", 915351047);
+                Session.Add("UserID", 915368285);
                 //insert new comment into cm
                 DBConnect ObjDb = new DBConnect();
                 SqlCommand objCommand = new SqlCommand();
