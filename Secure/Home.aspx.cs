@@ -42,11 +42,15 @@ namespace ChangeManagementSystem.Secure
 
                 if (type == "Admin")
                 {
+                    Session["UserType"] = "Admin";
                     Response.Redirect("../AdminDashboard.aspx");
+                  
                 }
                 else
                 {
+                    Session["UserType"] = "User";
                     Response.Redirect("../UserDashboard.aspx");
+                    
                 }
 
             }

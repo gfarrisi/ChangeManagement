@@ -18,7 +18,13 @@ namespace ChangeManagementSystem
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
+            if (isAuthenticated() == false)
+            {
+                Session["Authenticated"] = false;
+                Response.Redirect("default.aspx");
+            }
+            else if (isAuthenticated() == true)
+            {
                 if (!IsPostBack)
                 {
                     DBConnect db = new DBConnect();
@@ -33,9 +39,41 @@ namespace ChangeManagementSystem
                     gvEmails.DataBind();
                 }
             }
-        
+        }
 
-      
+
+
+        protected Boolean isAuthenticated()
+        {
+            Boolean isAllowed = false;
+
+            if (Session["Authenticated"] == null)
+            {
+                isAllowed = false;
+            }
+            else if (Session["Authenticated"] != null)
+            {
+                Boolean isAuthenticated = Boolean.Parse(Session["Authenticated"].ToString());
+
+                if (!isAuthenticated)
+                {
+                    isAllowed = false;
+                }
+                else if (isAuthenticated)
+                {
+                    if (Session["UserType"].ToString() == "Admin")
+                    {
+                        isAllowed = true;
+                    }
+                    else
+                    {
+                        isAllowed = false;
+                    }
+                }
+            }
+
+            return isAllowed;
+        }
         protected void btnEdit_Click(object sender, EventArgs e)
         {
           
