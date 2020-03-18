@@ -21,6 +21,7 @@ namespace ChangeManagementSystem
         SqlCommand objCommand = new SqlCommand();
         DataSet ds = new DataSet();
         bool IsPageRefresh = false;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (isAuthenticated() == false)
@@ -30,7 +31,6 @@ namespace ChangeManagementSystem
             }
             else if (isAuthenticated() == true)
             {
-
                 if (!IsPostBack)
                 {
                     ViewState["ViewStateId"] = System.Guid.NewGuid().ToString();
@@ -140,7 +140,7 @@ namespace ChangeManagementSystem
             }
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
+         protected void btnSearch_Click(object sender, EventArgs e)
         {
             SqlCommand dbCommand = new SqlCommand();
             DBConnect db = new DBConnect();
@@ -252,7 +252,9 @@ namespace ChangeManagementSystem
             if (Validation.ValidateForm(txtNewComment.Text) && IsPageRefresh == false)
             {
                 DateTime dt = DateTime.Now;
+
                 string CMID = hf.Value;              
+
                 //insert new comment into cm
                 DBConnect ObjDb = new DBConnect();
                 SqlCommand objCommand = new SqlCommand();
