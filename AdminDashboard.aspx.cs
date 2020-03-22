@@ -425,7 +425,7 @@ namespace ChangeManagementSystem
             try
             {
                 objEmail.SendMail(strTO, strFROM, strSubject, strMessage);
-                //  lblDisplay.Text = "The email was sent.";
+                //  lblDisplay.Text = "The email was sent";
             }
             catch (Exception ex)
             {
