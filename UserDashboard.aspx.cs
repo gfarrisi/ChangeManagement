@@ -40,7 +40,6 @@ namespace ChangeManagementSystem
 
                     Session.Add("UserID", Session["TU_ID"].ToString()); // Admin user in database; will be preserved from login in the future
 
-
                     objDB = new DBConnect();
                     objCommand = new SqlCommand();
                     objCommandDashboard = new SqlCommand();
@@ -500,6 +499,35 @@ namespace ChangeManagementSystem
                 objCommand.Parameters.AddWithValue("@CMStatus", "Pre-Production");
 
                 objDB.DoUpdateUsingCmdObj(objCommand);
+
+                objCommand.Parameters.Clear();
+                objCommand.CommandText = "GetCMAndAdminByID";
+                objCommand.Parameters.AddWithValue("@CMID", hiddenCMClicked.Value);
+                DataSet cmData = objDB.GetDataSetUsingCmdObj(objCommand);
+                DataTable cmTable = cmData.Tables[0];
+
+                SqlCommand objCommandEmail = new SqlCommand();
+                objCommandEmail.CommandType = CommandType.StoredProcedure;
+                objCommandEmail.CommandText = "GetEmailByType";
+                objCommandEmail.Parameters.AddWithValue("@Type", "Has Confirmed Testing");
+                DataSet emailData = objDB.GetDataSetUsingCmdObj(objCommandEmail);
+                DataTable emailTable = emailData.Tables[0];
+
+                Email objEmail = new Email();
+                String strTO = "tug52322@temple.edu"; // Change to cmTable.Columns["Email"].ToString(); 
+                String strFROM = "noreply@temple.edu";
+                String strSubject = emailTable.Columns["Subject"].ToString();
+                String strMessage = "CM #{" + hiddenCMClicked.Value + "}: " + emailTable.Columns["Body"].ToString();
+
+                try
+                {
+                    objEmail.SendMail(strTO, strFROM, strSubject, strMessage);
+                }
+                catch (Exception ex)
+                {
+
+                }
+
                 Server.Transfer("UserDashboard.aspx");
             }
         }
