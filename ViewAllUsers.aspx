@@ -201,6 +201,10 @@
             // Click download link
             downloadLink.click();
         }
+
+        $(document).ready(function () {
+            $(".dropdown-toggle").dropdown();
+        });
     </script>
 
 </asp:Content>

@@ -54,7 +54,7 @@
                             <div class="col-lg-1 mb-1"></div>
                             <div class="col-lg-5 mb-1"></div>
                             <div class="col-lg-2 mb-1">
-                                <button class="btn btn-secondary-fake" style="box-shadow: 0 0 10px 2.5px #8C2132; cursor: auto;">Assigned to me</button>
+                                <button class="btn btn-secondary" style="box-shadow: 0 0 10px 2.5px #8C2132; cursor: auto;">Assigned to me</button>
                             </div>
                         </div>
                     </div>
@@ -481,6 +481,10 @@
             document.getElementById("hiddenCMClicked").value = CMID;
             document.getElementById("btnCMClicked").click();          
         }
+
+        $(document).ready(function () {
+            $(".dropdown-toggle").dropdown();
+        });
     </script>
 </asp:Content>
 

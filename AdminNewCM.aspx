@@ -52,7 +52,8 @@
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6 pt-5 pb-5" style="background-color: rgba(0,0,0,.03); box-shadow: 0 0 12px 1.5px #808080;">
-                <h1 class="text-center mb-5">CRM Change Management</h1>
+
+                <h1 class="text-center mb-5"><span id="spanCM" runat="server"></span></h1>
                 <div style="text-align: center">
                     <asp:Label runat="server" ID="lblErrorMessage" Visible="false" Text="*Please submit a response for all required fields!" Font-Size="Large" ForeColor="Red"></asp:Label>
                 </div>
@@ -71,7 +72,7 @@
                     </asp:Panel>
                     <asp:Panel ID="panelScreenshots" runat="server">
 
-                        <asp:Label ID="lblHeading" runat="server" Text="Screenshots" CssClass="form-text h4"></asp:Label>
+                        <asp:Label ID="lblHeading" runat="server" Text="Screenshots & Submission" CssClass="form-text h4"></asp:Label>
                         <div class="row mt-3 mb-3">
                             <div class="col-lg-6">
                                 <asp:Label ID="lblDesc" runat="server" Text="Detailed description of change" CssClass="form-text"></asp:Label>
@@ -82,10 +83,10 @@
                         </div>
                         <div class="row mt-3 mb-3">
                             <div class="col-lg-6">
-                                <asp:Label ID="lblUpload" runat="server" Text="Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots." CssClass="form-text"></asp:Label>
+                                <asp:Label ID="lblUpload" runat="server" Text="Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots. (Maximum of 5)" CssClass="form-text"></asp:Label>
                             </div>
                             <div class="col-lg-6">
-                                <asp:FileUpload ID="fuScreenshots" CssClass="form-control-file" runat="server"></asp:FileUpload>
+                                <asp:FileUpload ID="fuScreenshots" AllowMultiple="true" CssClass="form-control-file" runat="server" ClientIDMode="Static"></asp:FileUpload>
                             </div>
                         </div>
                         <div class="row mt-3 mb-3">
@@ -114,7 +115,7 @@
             <div class="col-5 ml-5"></div>
             <div class="col-3 pt-5 pr-5">
                 <div>
-                    <asp:Button CssClass="btn btn-primary btn-lg" BorderStyle="None" ID="btnSubmit" Text="Submit Request" BackColor="#9D2235" ForeColor="#ffffff" runat="server" OnClick="btnSubmit_Click" />
+                    <asp:Button CssClass="btn btn-primary btn-lg" BorderStyle="None" ID="btnSubmit" Text="Submit Request" BackColor="#9D2235" ForeColor="#ffffff" runat="server" OnClick="btnSubmit_Click" OnClientClick="ValidateFile" />
                 </div>
             </div>
         </div>
@@ -131,7 +132,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="col-lg-12">
-                            <label id="Label1" style="line-height: 50px;" runat="server">Thank you for submitting your CM!<br /> Please check your email or dashboard for updates!</label>
+                            <label id="Label1" style="line-height: 50px;" runat="server">Thank you for submitting your CM!<br />
+                                Please check your email or dashboard for updates!</label>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -142,4 +144,26 @@
         </div>
     </form>
 
+
+    <script>
+
+     $(document).ready(function () {
+        $('#fuScreenshots').change(function () {
+            var files = $(this)[0].files;
+            if (files.length > 5) {
+                alert("You cannot select more than 5 attachments!");
+                $('#fuScreenshots').val(null);
+                
+            }
+            else
+            {
+                //alert("success");
+            }
+        });
+        });
+
+        $(document).ready(function () {
+            $(".dropdown-toggle").dropdown();
+        });
+        </script>
 </asp:Content>

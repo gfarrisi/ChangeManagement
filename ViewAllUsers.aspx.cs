@@ -35,24 +35,65 @@ namespace ChangeManagementSystem
         //      }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!this.IsPostBack)
+
+            if (isAuthenticated() == false)
             {
-                DBConnect db = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
+                Session["Authenticated"] = false;
+                Response.Redirect("default.aspx");
+            }
+            else if (isAuthenticated() == true)
+            {
+                if (!this.IsPostBack)
+                {
+                    DBConnect db = new DBConnect();
+                    SqlCommand objCommand = new SqlCommand();
 
-                objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "GetUserByID";
-                objCommand.Parameters.Clear();
-                objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetUserByID";
+                    objCommand.Parameters.Clear();
+                    objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
 
-                DataSet userData = db.GetDataSetUsingCmdObj(objCommand);
-                DataTable dt = userData.Tables[0];
-                string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
-                lblUserName.Text = userName;
+                    DataSet userData = db.GetDataSetUsingCmdObj(objCommand);
+                    DataTable dt = userData.Tables[0];
+                    string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
+                    lblUserName.Text = userName;
 
-                this.BindGrid();
+                    this.BindGrid();
+                }
             }
 
+        }
+
+        protected Boolean isAuthenticated()
+        {
+            Boolean isAllowed = false;
+
+            if (Session["Authenticated"] == null)
+            {
+                isAllowed = false;
+            }
+            else if (Session["Authenticated"] != null)
+            {
+                Boolean isAuthenticated = Boolean.Parse(Session["Authenticated"].ToString());
+
+                if (!isAuthenticated)
+                {
+                    isAllowed = false;
+                }
+                else if (isAuthenticated)
+                {
+                    if (Session["UserType"].ToString() == "Admin")
+                    {
+                        isAllowed = true;
+                    }
+                    else
+                    {
+                        isAllowed = false;
+                    }
+                }
+            }
+
+            return isAllowed;
         }
         private string SortDirection
         {

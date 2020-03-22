@@ -98,7 +98,10 @@
     <Content Include="AdminSelectRequestType.aspx" />
     <Content Include="AdminNewCM.aspx" />
     <Content Include="NewRequestType.aspx" />
+    <Content Include="Secure\500http.aspx" />
     <Content Include="Secure\Default.aspx" />
+    <Content Include="Secure\Home.aspx" />
+    <Content Include="Secure\Logout.aspx" />
     <Content Include="T.png" />
     <Content Include="UserDashboard.aspx" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.css" />
@@ -139,13 +142,20 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
     <None Include="Web References\WS_Student_Search\ws_student.disco" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="UserRequests.aspx" />
     <Content Include="EditEmail.aspx" />
     <Content Include="UserSelectRequestType.aspx" />
     <Content Include="UserNewCM.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDashboard.aspx.cs">
@@ -224,12 +234,33 @@
       <DependentUpon>NewRequestType.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Secure\500http.aspx.cs">
+      <DependentUpon>500http.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secure\500http.aspx.designer.cs">
+      <DependentUpon>500http.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Secure\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Secure\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secure\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secure\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secure\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secure\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserDashboard.aspx.cs">
       <DependentUpon>UserDashboard.aspx</DependentUpon>
@@ -327,12 +358,6 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <None Include="Web References\WS_Student_Search\ws_student.wsdl" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
@@ -390,7 +415,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55867/</IISUrl>
+          <IISUrl>http://localhost:55804/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
