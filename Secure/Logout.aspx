@@ -34,7 +34,7 @@
     <div id="navBar">
         <nav class="navbar-temple navbar-fixed-top">
             <div class="navbar-header">
-                <a id="logoLink" runat="server" class="navbar-brand" href="default.aspx">Capstone Template</a>
+                <a id="logoLink" runat="server" class="navbar-brand" href="default.aspx">Cancel Logout</a>
             </div>
         </nav>
     </div>
