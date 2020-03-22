@@ -80,6 +80,15 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="AdminDashboard.aspx" />
+    <Content Include="bin\ChangeManagementSystem.dll" />
+    <Content Include="bin\ChangeManagementSystem.pdb" />
+    <Content Include="bin\IronPdf.Assets.Rendering.Windows.dll" />
+    <Content Include="bin\IronPdf.dll" />
+    <Content Include="bin\IronPdf.xml" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
     <Content Include="cancel.jpg" />
     <Content Include="CM.aspx" />
     <Content Include="css\cm-request.css" />
@@ -146,16 +155,6 @@
     <Content Include="EditEmail.aspx" />
     <Content Include="UserSelectRequestType.aspx" />
     <Content Include="UserNewCM.aspx" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDashboard.aspx.cs">

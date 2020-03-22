@@ -534,7 +534,7 @@ namespace ChangeManagementSystem
 
         protected void btnDownloadAsPDF_Click(object sender, EventArgs e)
         {
-            Response.Redirect("http://localhost:55867/DownloadAsPDFPage.aspx");
+            Response.Redirect("DownloadAsPDFPage.aspx");
         }
 
         protected void RefreshTimer_Tick(object sender, EventArgs e)

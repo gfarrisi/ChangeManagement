@@ -416,7 +416,7 @@
                     </div>
                     <div class="modal-footer mt-5">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
-                        <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
+                        <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" style="background-color:#8C2132" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
                         <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal" data-toggle="modal" data-target="#mdlSavedChanges">Save changes</button>
                     </div>
                 </div>
