@@ -406,14 +406,16 @@ namespace ChangeManagementSystem
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            objCommand.CommandText = "UpdateCMStatus";
+            objDB = new DBConnect();
 
+            objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "UpdateCMStatus";
             objCommand.Parameters.Clear();
             objCommand.Parameters.AddWithValue("@CMID", hiddenCMClicked.Value);
 
             SqlCommand objCommandEmail = new SqlCommand();
             objCommandEmail.CommandType = CommandType.StoredProcedure;
-            
             objCommandEmail.CommandText = "GetEmailByType";
 
             if (ddlCMStatus.SelectedValue == "CM Failed")
@@ -425,6 +427,8 @@ namespace ChangeManagementSystem
             else if (ddlCMStatus.SelectedValue == "Assign to Me")
             {
                 objCommand.CommandText = "UpdateCMStatusAndAdmin";
+                objCommand.Parameters.Clear();
+                objCommand.Parameters.AddWithValue("@CMID", hiddenCMClicked.Value);
                 objCommand.Parameters.AddWithValue("@CMStatus", "Assigned");
                 objCommand.Parameters.AddWithValue("@AdminID", Session["UserID"].ToString());
 
