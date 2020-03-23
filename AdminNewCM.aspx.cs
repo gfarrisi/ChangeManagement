@@ -477,6 +477,8 @@ namespace ChangeManagementSystem
                             //lblErrorMessage.ForeColor = System.Drawing.Color.Green;
                         }
 
+                        sendEmail();
+
                     }
                 }
 
@@ -495,6 +497,33 @@ namespace ChangeManagementSystem
                     Session["CMSuccess"] = "Failure";
                     lblErrorMessage.Visible = true;
                 }
+            }
+        }
+
+        public void sendEmail()
+        {
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommandEmail = new SqlCommand();
+            objCommandEmail.CommandType = CommandType.StoredProcedure;
+            objCommandEmail.CommandText = "GetEmailByType";
+            objCommandEmail.Parameters.AddWithValue("@Type", "New Request Submitted");
+
+            DataSet emailData = objDB.GetDataSetUsingCmdObj(objCommandEmail);
+            DataTable emailTable = emailData.Tables[0];
+
+            Email objEmail = new Email();
+            String strTO = "tug52322@temple.edu"; //Admin email
+            String strFROM = "noreply@temple.edu";
+            String strSubject = emailTable.Rows[0]["Subject"].ToString();
+            String strMessage = emailTable.Rows[0]["Body"].ToString();
+
+            try
+            {
+                objEmail.SendMail(strTO, strFROM, strSubject, strMessage);
+            }
+            catch (Exception ex)
+            {
+                
             }
         }
 
