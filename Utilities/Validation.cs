@@ -33,5 +33,18 @@ namespace ChangeManagementSystem.Utilities
 
             return valid;
         }
+
+        public static Boolean ValidateNewUser(string TUID, string firstName, string lastName, string userEmail, string college)
+        {
+            bool valid = false;
+
+            if (!(String.IsNullOrEmpty(TUID) || String.IsNullOrWhiteSpace(TUID) || String.IsNullOrEmpty(firstName) || String.IsNullOrWhiteSpace(firstName)
+                || String.IsNullOrWhiteSpace(lastName) || String.IsNullOrEmpty(lastName) || String.IsNullOrEmpty(userEmail) || String.IsNullOrWhiteSpace(userEmail) || String.IsNullOrEmpty(college) || String.IsNullOrWhiteSpace(college)))
+            {
+                valid = true;
+            }
+
+            return valid;
+        }
     }
 }

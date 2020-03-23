@@ -57,7 +57,7 @@
                 <div class="gv">
                     <asp:HiddenField runat="server" ID="hf" ClientIDMode="Static" />
                     <asp:GridView ID="gvAllUsers" runat="server" CellPadding="3" CssClass="table" ForeColor="Black" AutoGenerateColumns="False" AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical" OnSorting="OnSorting">
-                        <HeaderStyle BackColor="#333333" ForeColor="White" />
+                        <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
 
                         <Columns>
                             <asp:BoundField DataField="UserID" HeaderText="TU ID" ReadOnly="true" SortExpression="UserID" />
@@ -75,7 +75,6 @@
 
                         </Columns>
                         <FooterStyle BackColor="#CCCCCC" />
-                        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                         <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                         <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
                         <SortedAscendingCellStyle BackColor="#F1F1F1" />
@@ -87,10 +86,7 @@
             </div>
             <div class="container mt-4">
                 <button type="button" onclick="exportTableToCSV('Users.csv')" class="btn btnDownload">Download All Users as CSV</button>
-                <button type="button" class="btn btnAdd" data-toggle="modal" data-target="#exampleModal">
-                    Add New User
-                </button>
-                <%--<asp:Button ID="btnNewUser" runat="server" Text="Add New User" OnClick="btnNewUser_Click" class="btn btnAdd" />--%>
+                <asp:Button ID="btnOpenModal" CssClass="btn btnAdd" runat="server" Text="Add New User" OnClick="btnOpenModal_Click" />
             </div>
         </div>
 
@@ -106,25 +102,79 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group form-row">
+                            <!-- Panels for normal modal and expanded enter info modal -->
                             <div class="col-lg-3">
-                                <label id="lblAccessNet" style="line-height: 50px;" runat="server">AccessNet ID</label>
+                                <br />
+                                <label id="lblAccessNet" style="line-height: 50px;" runat="server">TU ID</label>
                                 <br />
                                 <label id="lblAccountType" style="line-height: 50px;" runat="server">Account Type</label>
                             </div>
                             <div class="col-lg-9">
-                                <input class="form-control" id="txtTUID" type="text" runat="server" />
+                                <asp:Label ID="lblError" CssClass="col-lg-9" runat="server" Text=""></asp:Label>
+                                <asp:TextBox ID="txtID" CssClass="form-control" runat="server"></asp:TextBox>
                                 <br />
-                                <select class="form-control" runat="server">
-                                    <option>- Choose Type -</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="user">User</option>
-                                </select>
+                                <asp:DropDownList ID="ddlType" CssClass="form-control" runat="server">
+                                    <asp:ListItem Selected="True" Value="User"> User </asp:ListItem>
+                                    <asp:ListItem Value="Admin"> Admin </asp:ListItem>
+                                </asp:DropDownList>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Add</button>
+                        <asp:Button ID="btnManual" CssClass="btn btn-primary" runat="server" Text="Enter Manually" OnClick="btnManual_Click" Visible="False" />
+                        <asp:Button ID="btnAdd" CssClass="btn btn-primary" runat="server" Text="Add" OnClick="btnAdd_Click" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Manual -->
+        <div class="modal fade" id="manualModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="manualModalLabel">Enter New User</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group form-row">
+                            <div class="col-lg-3">
+                                <br />
+                                <label id="lblAccessNet2" style="line-height: 50px;" runat="server">TU ID</label>
+                                <br />
+                                <label id="lblAccountType2" style="line-height: 50px;" runat="server">Account Type</label>
+                                <br />
+                                <label id="lblFirstName" style="line-height: 50px;" runat="server">First Name</label>
+                                <br />
+                                <label id="lblLastName" style="line-height: 60px;" runat="server">Last Name</label>
+                                <br />
+                                <asp:Label ID="lblEmail" runat="server" style="line-height: 60px;">Email</asp:Label>
+                                <br />
+                                <asp:Label ID="lblCollege" runat="server" style="line-height: 60px;">College</asp:Label>
+                            </div>
+                            <div class="col-lg-9">
+                                <asp:Label ID="lblError2" CssClass="col-lg-9" runat="server" Text=""></asp:Label>
+                                <asp:TextBox ID="txtID2" CssClass="form-control" runat="server"></asp:TextBox>
+                                <br />
+                                <asp:DropDownList ID="ddlType2" CssClass="form-control" runat="server">
+                                    <asp:ListItem Selected="True" Value="User"> User </asp:ListItem>
+                                    <asp:ListItem Value="Admin"> Admin </asp:ListItem>
+                                </asp:DropDownList>
+                                <br />
+                                <asp:TextBox ID="txtFName" CssClass="form-control" runat="server"></asp:TextBox>
+                                <br />
+                                <asp:TextBox ID="txtLName" CssClass="form-control" runat="server"></asp:TextBox>
+                                <br />
+                                <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server"></asp:TextBox>
+                                <br />
+                                <asp:TextBox ID="txtCollege" CssClass="form-control" runat="server"></asp:TextBox>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btnAdd2" CssClass="btn btn-primary" runat="server" Text="Add" OnClick="btnAdd2_Click" />
                     </div>
                 </div>
             </div>
@@ -152,8 +202,16 @@
             </div>
         </div>
     </form>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js" integrity="sha256-uC1JMW5e1U5D28+mXFxzTz4SSMCywqhxQIodqLECnfU=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script>
+        $("modal").on("hidden.bs.modal", function ()){
+
+        }
+
         function getData(t) {
             var row = t.parentElement.parentElement.rowIndex;
             var userID = document.getElementById('CPH1_gvAllUsers_hdnfldVariable_' + (row - 1)).value;

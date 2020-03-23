@@ -47,7 +47,10 @@ body {
 .cm-shadow {
     box-shadow: 0 0 10px 2.5px #8C2132;
 }
-
+.invisible{
+    display: none;
+    visibility: hidden;
+}
 
 .comment-time{
     font-size: 12px;
@@ -100,6 +103,10 @@ table {
     margin-right: auto;*/
     /*width: 1000px;*/
     text-align: center;
+}
+
+.fixedHeader {
+    position: absolute;
 }
 
 .gvE {
