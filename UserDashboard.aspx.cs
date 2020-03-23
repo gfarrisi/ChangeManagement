@@ -517,7 +517,7 @@ namespace ChangeManagementSystem
                 DataTable emailTable = emailData.Tables[0];
 
                 Email objEmail = new Email();
-                String strTO = "tug52322@temple.edu"; // Change to cmTable.Columns["Email"].ToString(); 
+                String strTO = "tug52322@temple.edu"; // cmTable.Columns["Email"].ToString(); 
                 String strFROM = "noreply@temple.edu";
                 String strSubject = emailTable.Columns["Subject"].ToString();
                 String strMessage = "CM #{" + hiddenCMClicked.Value + "}: " + emailTable.Columns["Body"].ToString();
