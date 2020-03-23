@@ -218,12 +218,12 @@ namespace ChangeManagementSystem
                         rptScreenshots.DataSource = dataSet;
                         rptScreenshots.DataBind();
 
-                        objCommand.CommandText = "GetCMAndUserByID";
+                        objCommand.CommandText = "GetCMAndUserAndTypeByID";
                         dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
                         rptRequestInfo.DataSource = dataSet;
                         rptRequestInfo.DataBind();
 
-                        objCommand.CommandText = "GetCMAndAdminByID";
+                        objCommand.CommandText = "GetCMAndAdminAndTypeByID";
                         dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
                         rptAdminName.DataSource = dataSet;
                         rptAdminName.DataBind();
@@ -504,7 +504,7 @@ namespace ChangeManagementSystem
                 objDB.DoUpdateUsingCmdObj(objCommand);
 
                 objCommand.Parameters.Clear();
-                objCommand.CommandText = "GetCMAndAdminByID";
+                objCommand.CommandText = "GetCMAndAdminAndTypeByID";
                 objCommand.Parameters.AddWithValue("@CMID", hiddenCMClicked.Value);
                 DataSet cmData = objDB.GetDataSetUsingCmdObj(objCommand);
                 DataTable cmTable = cmData.Tables[0];
