@@ -45,7 +45,8 @@
             </div>
             <div style="overflow-y: scroll; height: 50%;">
                 <div class="gv">
-                    <asp:GridView ID="gvUserRequests" runat="server" CssClass="table" AutoGenerateColumns="False" AllowSorting="True" BorderColor="#CCCCCC" OnSorting="OnSorting" PageSize="50">
+                    <asp:HiddenField runat="server" ID="hf" ClientIDMode="Static" />
+                    <asp:GridView ID="gvUserRequests" runat="server" CssClass="table" AutoGenerateColumns="False" AllowSorting="True" BorderColor="#CCCCCC" OnSorting="OnSorting" PageSize="10" AllowCustomPaging="False" AllowPaging="True">
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
                         <Columns>
                             <asp:BoundField DataField="CMID" ItemStyle-CssClass="thead-dark" HeaderText="CM ID" ReadOnly="true" SortExpression="CMID">
@@ -74,8 +75,7 @@
                             </asp:TemplateField>
                         </Columns>
                         <FooterStyle BackColor="#CCCCCC" />
-                        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                        <PagerStyle BackColor="#333333" ForeColor="White" HorizontalAlign="Center" Font-Bold="True" />
                         <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
                         <SortedAscendingCellStyle BackColor="#F1F1F1" />
                         <SortedAscendingHeaderStyle BackColor="#808080" />

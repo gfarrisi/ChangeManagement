@@ -54,7 +54,7 @@
             <div style="overflow-y: scroll; height: 500px;">
                 <div class="gv">
                     <asp:HiddenField runat="server" ID="hf" ClientIDMode="Static" />
-                    <asp:GridView ID="gvAllRequests" runat="server" CssClass="table" AutoGenerateColumns="False" AllowSorting="True" BorderColor="#CCCCCC" OnSorting="OnSorting" PageSize="50">
+                    <asp:GridView ID="gvAllRequests" runat="server" CssClass="table" OnRowDataBound="gvAllRequests_RowDataBound" AutoGenerateColumns="False" AllowSorting="True" BorderColor="#CCCCCC" OnSorting="OnSorting" PageSize="10" AllowPaging="True">
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
                         <Columns>
                             <asp:BoundField DataField="CMID" ItemStyle-CssClass="thead-dark" HeaderText="CMID" SortExpression="CMID">
@@ -79,6 +79,7 @@
                                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
                             </asp:TemplateField>
                         </Columns>
+                        <PagerStyle BackColor="#333333" ForeColor="White" HorizontalAlign="Center" Font-Bold="True" />
                     </asp:GridView>
                 </div>
             </div>
