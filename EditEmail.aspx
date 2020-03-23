@@ -27,7 +27,8 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dima Dabbas
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <asp:Label ID="lblUserName" runat="server" Text="Default"></asp:Label>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                         <a class="dropdown-item" href="Login.aspx">Log Out</a>
@@ -127,7 +128,9 @@
           
        
         }
-  
 
+        $(document).ready(function () {
+            $(".dropdown-toggle").dropdown();
+        });
     </script>
 </asp:Content>

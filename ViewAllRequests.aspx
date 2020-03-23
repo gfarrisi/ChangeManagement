@@ -321,7 +321,7 @@
                     </div>
                     <div class="modal-footer mt-5">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
-                        <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
+                        <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" style="background-color:#8C2132" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
                         <asp:Button runat="server" class="btn btn-primary" ID="btnSave" Text="Save changes" OnClick="btnSave_Click"></asp:Button>
                     </div>
                 </div>
@@ -353,6 +353,10 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script type="text/javascript">
+        $(document).ready(function () {
+            $(".dropdown-toggle").dropdown();
+        });
+
         function RecordClickedCM(t) {
             var row = t.parentElement.parentElement.rowIndex;
             var userID = document.getElementById('CPH1_gvAllUsers_hdnfldVariable_' + (row - 1)).value;

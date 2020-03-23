@@ -24,25 +24,66 @@ namespace ChangeManagementSystem
         bool IsPageRefresh = false;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (isAuthenticated() == false)
             {
-                ViewState["ViewStateId"] = System.Guid.NewGuid().ToString();
-                Session["SessionId"] = ViewState["ViewStateId"].ToString();
-                objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "GetUserByID";
-                objCommand.Parameters.Clear();
-                objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
-
-                DataSet userData = db.GetDataSetUsingCmdObj(objCommand);
-                DataTable dt = userData.Tables[0];
-                string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
-                lblUserName.Text = userName;
-
-                objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "GetAllCMsAdminView";
-                objCommand.Parameters.Clear();
-                this.BindGrid();
+                Session["Authenticated"] = false;
+                Response.Redirect("default.aspx");
             }
+            else if (isAuthenticated() == true)
+            {
+
+                if (!IsPostBack)
+                {
+                    ViewState["ViewStateId"] = System.Guid.NewGuid().ToString();
+                    Session["SessionId"] = ViewState["ViewStateId"].ToString();
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetUserByID";
+                    objCommand.Parameters.Clear();
+                    objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+                    DataSet userData = db.GetDataSetUsingCmdObj(objCommand);
+                    DataTable dt = userData.Tables[0];
+                    string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
+                    lblUserName.Text = userName;
+
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetAllCMsAdminView";
+                    objCommand.Parameters.Clear();
+                    this.BindGrid();
+                }
+            }
+        }
+
+        protected Boolean isAuthenticated()
+        {
+            Boolean isAllowed = false;
+
+            if (Session["Authenticated"] == null)
+            {
+                isAllowed = false;
+            }
+            else if (Session["Authenticated"] != null)
+            {
+                Boolean isAuthenticated = Boolean.Parse(Session["Authenticated"].ToString());
+
+                if (!isAuthenticated)
+                {
+                    isAllowed = false;
+                }
+                else if (isAuthenticated)
+                {
+                    if (Session["UserType"].ToString() == "Admin")
+                    {
+                        isAllowed = true;
+                    }
+                    else
+                    {
+                        isAllowed = false;
+                    }
+                }
+            }
+
+            return isAllowed;
         }
         private string SortDirection
         {
@@ -254,30 +295,31 @@ namespace ChangeManagementSystem
 
         protected void btnDownloadAsPDF_Click(object sender, EventArgs e)
         {
-            WebRequest request;
-            WebResponse reponse;
-            StreamReader reader;
-            StreamWriter writer;
-            string strHTML;
+            Response.Redirect("DownloadAsPDFPage.aspx");
+            //WebRequest request;
+            //WebResponse reponse;
+            //StreamReader reader;
+            //StreamWriter writer;
+            //string strHTML;
 
-            string cmName = "CMRequest"; // will be dynamic later, need to figure out how to retrieve the specific name
-            IronPdf.HtmlToPdf Renderer = new IronPdf.HtmlToPdf();
+            //string cmName = "CMRequest"; // will be dynamic later, need to figure out how to retrieve the specific name
+            //IronPdf.HtmlToPdf Renderer = new IronPdf.HtmlToPdf();
 
-            request = WebRequest.Create("http://localhost:55877/AdminDashboard.aspx");
-            reponse = request.GetResponse();
-            reader = new StreamReader(reponse.GetResponseStream());
-            strHTML = reader.ReadToEnd();
+            //request = WebRequest.Create("http://localhost:55877/AdminDashboard.aspx");
+            //reponse = request.GetResponse();
+            //reader = new StreamReader(reponse.GetResponseStream());
+            //strHTML = reader.ReadToEnd();
 
-            var PDF = Renderer.RenderHtmlAsPdf(strHTML);
+            //var PDF = Renderer.RenderHtmlAsPdf(strHTML);
 
-            Response.Clear();
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", "attachment; filename=" + cmName + ".pdf");
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.BinaryWrite(PDF.BinaryData);
+            //Response.Clear();
+            //Response.ContentType = "application/pdf";
+            //Response.AddHeader("Content-Disposition", "attachment; filename=" + cmName + ".pdf");
+            //Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            //Response.BinaryWrite(PDF.BinaryData);
 
-            Response.End();
-            Response.Flush();
+            //Response.End();
+            //Response.Flush();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)

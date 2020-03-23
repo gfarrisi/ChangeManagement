@@ -42,6 +42,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header" align="center">
+                        <button class="btn btn-secondary" style="background-color:#8C2132" onclick="printFunction()">Save As PDF</button>
                         <asp:Repeater ID="rptModalHeader" runat="server">
                             <ItemTemplate>
                                 <h5 runat="server" class="modal-title" id="exampleModalLongTitle"><%# "CM: " + DataBinder.Eval(Container.DataItem, "CMID") + " - " + DataBinder.Eval(Container.DataItem, "CMProjectName") %></h5>
@@ -258,4 +259,14 @@
             </div>
         </div>
     </form>
+
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-toggle").dropdown();
+        });
+
+        function printFunction() {
+            window.print();
+        }
+    </script>
 </asp:Content>
