@@ -506,7 +506,7 @@ namespace ChangeManagementSystem
             SqlCommand objCommandEmail = new SqlCommand();
             objCommandEmail.CommandType = CommandType.StoredProcedure;
             objCommandEmail.CommandText = "GetEmailByType";
-            objCommandEmail.Parameters.AddWithValue("@Type", "New Request Submitted");
+            objCommandEmail.Parameters.AddWithValue("@Type", "New Request");
 
             DataSet emailData = objDB.GetDataSetUsingCmdObj(objCommandEmail);
             DataTable emailTable = emailData.Tables[0];
