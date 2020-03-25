@@ -289,7 +289,7 @@ namespace ChangeManagementSystem
 
         protected void btnSubmitUser_Click(object sender, EventArgs e)
         {
-            string userID = "915368285";
+            string userID = Session["UserID"].ToString();
             List<int> questionIDs = (List<int>)Session["IDs"];
             List<int> submissionQuestionIDs = (List<int>)Session["SubmissionIDs"];
 

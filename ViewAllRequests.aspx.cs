@@ -260,7 +260,7 @@ namespace ChangeManagementSystem
             {
                 DateTime dt = DateTime.Now;
                 string CMID = hf.Value;
-                Session.Add("UserID", 915351047);
+                Session.Add("UserID", Session["UserID"].ToString());
                 //insert new comment into cm
                 DBConnect ObjDb = new DBConnect();
                 SqlCommand objCommand = new SqlCommand();
@@ -442,10 +442,10 @@ namespace ChangeManagementSystem
             }
             else
             {
+                int CMID = Int32.Parse(name);
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "GetComments";
-                objCommand.Parameters.Clear();
-                string CMID = "915368285";
+                objCommand.Parameters.Clear();              
                 objCommand.Parameters.AddWithValue("@CMID", CMID);
             }
         }

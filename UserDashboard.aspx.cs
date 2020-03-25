@@ -440,7 +440,7 @@ namespace ChangeManagementSystem
             {
                 DateTime dt = DateTime.Now;
                 string CMID = hiddenCMClicked.Value;
-                Session.Add("UserID", 915368285);
+                
                 //insert new comment into cm
                 DBConnect ObjDb = new DBConnect();
                 SqlCommand objCommand = new SqlCommand();
