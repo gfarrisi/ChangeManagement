@@ -448,5 +448,11 @@ namespace ChangeManagementSystem
                 }
             }
         }
+
+        protected void gvUserRequests_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvUserRequests.PageIndex = e.NewPageIndex;
+            this.BindGrid();
+        }
     }
 }

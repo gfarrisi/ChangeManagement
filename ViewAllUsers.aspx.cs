@@ -229,7 +229,7 @@ namespace ChangeManagementSystem
                         objCommand.Parameters.AddWithValue("@UserID", TUID);
                         string theDate = DateTime.Now.ToString();
                         objCommand.Parameters.AddWithValue("@Date", theDate);
-                        
+
                         db.GetDataSetUsingCmdObj(objCommand);
 
                         objCommand.Parameters.Clear();
@@ -296,7 +296,7 @@ namespace ChangeManagementSystem
             DataSet myDS = db.GetDataSetUsingCmdObj(objCommand);
             int size = myDS.Tables[0].Rows.Count;
 
-            if(size == 0)
+            if (size == 0)
             {
                 return 0;
             }
@@ -319,7 +319,7 @@ namespace ChangeManagementSystem
                     return 1;
                 }
             }
-            
+
         }
 
         protected void btnManual_Click(object sender, EventArgs e)
@@ -330,16 +330,28 @@ namespace ChangeManagementSystem
         protected void btnAdd2_Click(object sender, EventArgs e)
         {
             lblError.Text = "";
-            btnAdd2.Visible = false;
             string TUID = txtID2.Text;
             string firstName = txtFName.Text;
             string lastName = txtLName.Text;
             string userEmail = txtEmail.Text;
             string college = txtCollege.Text;
-            if (!Validation.ValidateNewUser(TUID, firstName, lastName, userEmail, college))
+
+            if (!Validation.ValidateTUID(TUID))
             {
                 lblError2.Attributes.Remove("invisible");
-                lblError2.Text = "Make sure every field has been filled out";
+                lblError2.Text = "*Make sure you are using a valid, 9 digit TUID";
+                ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#manualModal').modal('show')", true);
+            }
+            else if (!Validation.ValidateTempleEmail(userEmail))
+            {
+                lblError2.Attributes.Remove("invisible");
+                lblError2.Text = "*Make sure you are using a temple email";
+                ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#manualModal').modal('show')", true);
+            }
+            else if (!Validation.ValidateNewUser(TUID, firstName, lastName, userEmail, college))
+            {
+                lblError2.Attributes.Remove("invisible");
+                lblError2.Text = "*Make sure every field has been filled out";
                 ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#manualModal').modal('show')", true);
             }
             else
