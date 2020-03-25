@@ -442,10 +442,10 @@ namespace ChangeManagementSystem
             }
             else
             {
+                int CMID = Int32.Parse(name);
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "GetComments";
-                objCommand.Parameters.Clear();
-                string CMID = "915368285";
+                objCommand.Parameters.Clear();              
                 objCommand.Parameters.AddWithValue("@CMID", CMID);
             }
         }
