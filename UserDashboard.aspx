@@ -129,7 +129,7 @@
                                                 <button runat="server" id="btnCM" type="button" class="btn btn-secondary btn-block btn-lg cm-tiles" onclick="RecordClickedCM(this)">
                                                     <asp:Label runat="server" Style="font-size: 14px;" Text='<%# "CM " + DataBinder.Eval(Container.DataItem, "CMID") %>'></asp:Label><br />
                                                     <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>'></asp:Label><br />
-                                                   <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "RequestTypeName") %>'></asp:Label><br />
+                                                    <asp:Label runat="server" Style="font-size: 14px;" Text='<%# DataBinder.Eval(Container.DataItem, "RequestTypeName") %>'></asp:Label><br />
                                                     <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Date of Last Update: " + DataBinder.Eval(Container.DataItem, "LastUpdateDate", "{0:MM/dd/yy}")%>'></asp:Label><br />
                                                     <asp:Label runat="server" Style="font-size: 14px;" Text='<%#"Last Updated By: " + DataBinder.Eval(Container.DataItem, "FirstName") + " " + DataBinder.Eval(Container.DataItem, "LastName")%>'></asp:Label>
                                                     <asp:HiddenField ID="hiddenAdminID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "AdminID") %>' />
@@ -181,7 +181,7 @@
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="RefreshTimer" EventName="Tick" />
-            </Triggers> 
+            </Triggers>
         </asp:UpdatePanel>
         <asp:Timer ID="RefreshTimer" runat="server" Interval="30000" OnTick="RefreshTimer_Tick"></asp:Timer>
 
@@ -218,12 +218,18 @@
                                         <div class="row">
                                             <div class="col-lg-3 mb-2"></div>
                                             <div class="col-lg-6">
-                                                <div class="status-check">
-                                                    <asp:Label ID="lblAwaitingAdmin" runat="server" CssClass="font-weight-bold">Awaiting Move to Production</asp:Label>
-                                                    <asp:Label ID="lblPreProdTesting" runat="server" CssClass="font-weight-bold">User Testing Required in Pre-Prod</asp:Label><br /><br />
-                                                    <asp:CheckBox class="checkbox" ID="chkPreProd" runat="server"></asp:CheckBox>
-                                                    <asp:Label ID="lblTestingConfirmed" runat="server">I have tested and approved pre-prod changes. Move to production</asp:Label><br /><br />
-                                                    <asp:Button ID="btnSubmitTesting" runat="server" CssClass="btn btn-primary" Text="Submit" OnClick="btnSubmitTesting_Click" />                                                 
+                                                <div class="status-check" id="status" runat="server">
+                                                    <div id="preprodTested" runat="server">
+                                                        <asp:Label ID="lblAwaitingAdmin" runat="server" CssClass="font-weight-bold">Awaiting Move to Production</asp:Label>
+                                                    </div>
+                                                    <div id="preprod" runat="server">
+                                                        <asp:Label ID="lblPreProdTesting" runat="server" CssClass="font-weight-bold">User Testing Required in Pre-Prod</asp:Label><br />
+                                                        <br />
+                                                        <asp:CheckBox class="checkbox" ID="chkPreProd" runat="server"></asp:CheckBox>
+                                                        <asp:Label ID="lblTestingConfirmed" runat="server">I have tested and approved pre-prod changes. Move to production</asp:Label><br />
+                                                        <br />
+                                                        <asp:Button ID="btnSubmitTesting" runat="server" CssClass="btn btn-primary" Text="Submit" OnClick="btnSubmitTesting_Click" />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -237,7 +243,7 @@
                                 <asp:Repeater ID="rptRequestInfo" runat="server">
                                     <ItemTemplate>
                                         <div class="row" runat="server">
-                                            <h4 runat="server"><%# "Request Type: " + DataBinder.Eval(Container.DataItem, "RequestTypeName") %></h4>
+                                            <h4 runat="server" class="pl-2"><%# "Request Type: " + DataBinder.Eval(Container.DataItem, "RequestTypeName") %></h4>
                                             <br />
                                         </div>
                                         <br />
@@ -301,7 +307,7 @@
                                 </asp:Repeater>
                                 <br />
                                 <div class="row">
-                                    <h4>Screenshots & Submission</h4>
+                                    <h4 class="pl-2">Screenshots & Submission</h4>
                                     <br />
                                 </div>
                                 <br />
@@ -416,7 +422,7 @@
                     </div>
                     <div class="modal-footer mt-5">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
-                        <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" style="background-color:#8C2132" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
+                        <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" Style="background-color: #8C2132" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
                         <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal" data-toggle="modal" data-target="#mdlSavedChanges">Save changes</button>
                     </div>
                 </div>
@@ -457,7 +463,7 @@
             else if (navigator.userAgent.indexOf("Chrome") != -1) {
                 CMID = (button.innerText.split('\n', 1)[0]).substring(3);
             }
-            else if (navigator.userAgent.indexOf("Safari") != -1) { 
+            else if (navigator.userAgent.indexOf("Safari") != -1) {
                 CMID = (button.innerText.split('\n', 1)[0]).substring(3);
             }
             else if (navigator.userAgent.indexOf("Firefox") != -1) {
