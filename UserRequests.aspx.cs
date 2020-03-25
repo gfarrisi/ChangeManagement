@@ -125,7 +125,7 @@ namespace ChangeManagementSystem
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "GetAllCMsByUser";
-                cmd.Parameters.AddWithValue("@UserID", "915368285");
+                cmd.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
                 using (SqlDataAdapter sda = new SqlDataAdapter())
                 {
 
@@ -162,7 +162,7 @@ namespace ChangeManagementSystem
                 objCommand.Parameters.Clear();
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "GetAllCMsByUser";
-                objCommand.Parameters.AddWithValue("@UserID", "915368285");
+                objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
 
                 DataSet cmData = db.GetDataSetUsingCmdObj(objCommand);
                 DataTable dataTable = cmData.Tables[0];
@@ -176,7 +176,7 @@ namespace ChangeManagementSystem
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "UserRequestSearch";
                 SqlParameter inputParameter = new SqlParameter("@Search", search);
-                SqlParameter inputParameter2 = new SqlParameter("@UserID", "915368285");
+                SqlParameter inputParameter2 = new SqlParameter("@UserID", Session["UserID"].ToString());
 
                 inputParameter.Direction = ParameterDirection.Input;
                 inputParameter.SqlDbType = SqlDbType.VarChar;

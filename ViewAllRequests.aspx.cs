@@ -260,7 +260,7 @@ namespace ChangeManagementSystem
             {
                 DateTime dt = DateTime.Now;
                 string CMID = hf.Value;
-                Session.Add("UserID", 915351047);
+                Session.Add("UserID", Session["UserID"].ToString());
                 //insert new comment into cm
                 DBConnect ObjDb = new DBConnect();
                 SqlCommand objCommand = new SqlCommand();

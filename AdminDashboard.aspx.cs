@@ -482,8 +482,7 @@ namespace ChangeManagementSystem
             if (Validation.ValidateForm(txtNewComment.Text) && IsPageRefresh == false)
             {
                 DateTime dt = DateTime.Now;
-                string CMID = hiddenCMClicked.Value;
-                Session.Add("UserID", 915351047);
+                string CMID = hiddenCMClicked.Value;             
                 //insert new comment into cm
                 DBConnect ObjDb = new DBConnect();
                 SqlCommand objCommand = new SqlCommand();
