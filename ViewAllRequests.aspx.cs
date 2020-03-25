@@ -187,6 +187,9 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
+                lblCMStatus.Visible = false;
+                ddlCMStatus.Visible = true;
+
                 List<string> statusList = new List<string>();
                 statusList.Add("Assign to Me");
                 statusList.Add("CM Failed");
@@ -199,6 +202,9 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "25");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+
+                lblCMStatus.Visible = false;
+                ddlCMStatus.Visible = true;
 
                 List<string> statusList = new List<string>();
                 statusList.Add("Change Implemented in Pre-Production");
@@ -215,11 +221,14 @@ namespace ChangeManagementSystem
 
                 ddlCMStatus.Visible = false;
                 lblCMStatus.Text = "Pending User Testing of Changes";
+                lblCMStatus.Visible = true;
+                
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production")
             {
                 ddlCMStatus.Visible = true;
                 lblCMStatus.Text = "Update Status";
+                lblCMStatus.Visible = true;
 
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 75%");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
@@ -234,6 +243,9 @@ namespace ChangeManagementSystem
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Completed")
             {
+                ddlCMStatus.Visible = false;
+                lblCMStatus.Visible = false;
+
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 100%");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "100");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
