@@ -370,11 +370,12 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
-                lblPreProdTesting.Visible = false;
-                chkPreProd.Visible = false;
-                lblTestingConfirmed.Visible = false;
-                btnSubmitTesting.Visible = false;
-                lblAwaitingAdmin.Visible = false;
+                status.Attributes.Add("class", "visibility-hidden");
+                //lblPreProdTesting.Visible = false;
+                //chkPreProd.Visible = false;
+                //lblTestingConfirmed.Visible = false;
+                //btnSubmitTesting.Visible = false;
+                //lblAwaitingAdmin.Visible = false;
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Assigned")
             {
@@ -383,12 +384,9 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
-                lblPreProdTesting.Visible = false;
-                chkPreProd.Visible = false;
-                lblTestingConfirmed.Visible = false;
-                btnSubmitTesting.Visible = false;
-                lblAwaitingAdmin.Visible = false;
+                status.Attributes.Add("class", "visibility-hidden");
             }
+
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production Needs Testing")
             {
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 75%");
@@ -396,11 +394,10 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
-                lblPreProdTesting.Visible = true;
-                chkPreProd.Visible = true;
-                lblTestingConfirmed.Visible = true;
-                btnSubmitTesting.Visible = true;
-                lblAwaitingAdmin.Visible = false;
+                status.Attributes.Clear();
+                preprod.Attributes.Clear();
+                preprodTested.Attributes.Add("class", "visibility-hidden");
+                             
 
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production")
@@ -410,11 +407,9 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
-                lblPreProdTesting.Visible = false;
-                chkPreProd.Visible = false;
-                lblTestingConfirmed.Visible = false;
-                btnSubmitTesting.Visible = false;
-                lblAwaitingAdmin.Visible = true;
+                status.Attributes.Clear();
+                preprodTested.Attributes.Clear();
+                preprod.Attributes.Add("class", "visibility-hidden");
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Completed")
             {
@@ -423,11 +418,7 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
-                lblPreProdTesting.Visible = false;
-                chkPreProd.Visible = false;
-                lblTestingConfirmed.Visible = false;
-                btnSubmitTesting.Visible = false;
-                lblAwaitingAdmin.Visible = false;
+                status.Attributes.Add("class", "visibility-hidden");          
 
             }
 
