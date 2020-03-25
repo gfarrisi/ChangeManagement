@@ -446,5 +446,11 @@ namespace ChangeManagementSystem
                     e.Row.Style.Add("height", "50px");
             }
         }
+
+        protected void gvAllRequests_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvAllRequests.PageIndex = e.NewPageIndex;
+            this.BindGrid();
+        }
     }
 }
