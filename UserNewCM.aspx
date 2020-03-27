@@ -5,7 +5,7 @@
         <a class="navbar-brand " href="UserDashboard.aspx">
             <img src="T.png" alt="" width="40">
         </a>
-        <a class="navbar-brand" href="UserDashboard.aspx" >CRM Recruit: Change Management</a>
+        <a class="navbar-brand" href="UserDashboard.aspx">CRM Recruit: Change Management</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -76,9 +76,14 @@
                             <div class="col-lg-6">
                                 <asp:Label ID="lblUpload" runat="server" Text="Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots. (Maximum of 5)" CssClass="form-text"></asp:Label>
                             </div>
+
                             <div class="col-lg-6">
-                                <asp:FileUpload ID="fuScreenshots" CssClass="form-control-file" runat="server" ClientIDMode="Static"></asp:FileUpload>
+                                <asp:FileUpload ID="fuScreenshots" CssClass="form-control-file" runat="server" ClientIDMode="Static" AllowMultiple="true"/>
+
                             </div>
+
+
+
                         </div>
                         <div class="row mt-3 mb-3">
                             <div class="col-lg-6">
