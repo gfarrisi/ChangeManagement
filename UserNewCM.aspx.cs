@@ -21,6 +21,7 @@ namespace ChangeManagementSystem
         private System.Windows.Forms.WebBrowser webBrowser1;
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (isAuthenticated() == false)
             {
                 Session["Authenticated"] = false;
@@ -28,6 +29,22 @@ namespace ChangeManagementSystem
             }
             else if (isAuthenticated() == true)
             {
+                //foreach (HttpPostedFile file in fuScreenshots.PostedFiles){
+                //    RegularExpressionValidator regex = new RegularExpressionValidator()
+                //    {
+                //        ControlToValidate = fuScreenshots.UniqueID.ToString(),
+                //        ID = "regexValidator",
+                //        ValidationExpression = "(.+\([Pp][Dd][Ff])|.+\.([]",
+                //        Text = "ERROR",
+                //        Enabled = true,
+                //        EnableViewState = true,
+                //        CssClass = "Error"
+                //    };
+                //}
+
+
+
+
                 if (!IsPostBack)
                 {
 
@@ -293,7 +310,7 @@ namespace ChangeManagementSystem
             List<int> questionIDs = (List<int>)Session["IDs"];
             List<int> submissionQuestionIDs = (List<int>)Session["SubmissionIDs"];
 
-           
+
             List<QuestionResponse> questionResponseList = new List<QuestionResponse>();
             if (questionIDs != null)
             {
@@ -345,156 +362,167 @@ namespace ChangeManagementSystem
                     else
                     {
                         desiredDate = DateTime.Parse(txtDesiredDate.Text);
-                        //foreach (HttpPostedFile file in fuScreenshots.PostedFiles)
-                        //{
-
-                        //}
 
 
-                   
-                        for (int i =0; i < fuScreenshots.PostedFiles.Count(); i++)
+
+                        foreach (HttpPostedFile file in fuScreenshots.PostedFiles)
                         {
-                         
-                            if (i == 0)
+                            if (!(Path.GetExtension(file.FileName) == ".pdf" ||
+                                Path.GetExtension(file.FileName) == ".png" ||
+                                Path.GetExtension(file.FileName) == ".jpg" ||
+                                Path.GetExtension(file.FileName) == ".xls" ||
+                                Path.GetExtension(file.FileName) == ".xlsx" ||
+                                Path.GetExtension(file.FileName) == ".doc" ||
+                                Path.GetExtension(file.FileName) == ".docx" ||
+                                Path.GetExtension(file.FileName) == ".csv"))
                             {
-                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[0].FileName);
-                                string contentType = fuScreenshots.PostedFiles[0].ContentType;
-                                using (Stream fs = fuScreenshots.PostedFiles[0].InputStream)
-                                {
-                                    using (BinaryReader br = new BinaryReader(fs))
-                                    {
-                                        byte0 = br.ReadBytes((Int32)fs.Length);
-                                        i++;
-                                    }
-                                }
-                            }
-                            if (i == 1 && fuScreenshots.PostedFiles.Count()>1)
-                            {
-                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[1].FileName);
-                                string contentType = fuScreenshots.PostedFiles[1].ContentType;
-                                using (Stream fs = fuScreenshots.PostedFiles[1].InputStream)
-                                {
-                                    using (BinaryReader br = new BinaryReader(fs))
-                                    {
-                                        byte1 = br.ReadBytes((Int32)fs.Length);
-                                        i++;
-                                    }
-                                }
-                            }
-                            if (i == 2 && fuScreenshots.PostedFiles.Count() > 2)
-                            {
-                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[2].FileName);
-                                string contentType = fuScreenshots.PostedFiles[2].ContentType;
-                                using (Stream fs = fuScreenshots.PostedFiles[2].InputStream)
-                                {
-                                    using (BinaryReader br = new BinaryReader(fs))
-                                    {
-                                        byte2 = br.ReadBytes((Int32)fs.Length);
-                                        i++;
-                                    }
-                                }
-                            }
-                            if (i == 3 && fuScreenshots.PostedFiles.Count() > 3)
-                            {
-                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[3].FileName);
-                                string contentType = fuScreenshots.PostedFiles[3].ContentType;
-                                using (Stream fs = fuScreenshots.PostedFiles[3].InputStream)
-                                {
-                                    using (BinaryReader br = new BinaryReader(fs))
-                                    {
-                                        byte3 = br.ReadBytes((Int32)fs.Length);
-                                        i++;
-                                    }
-                                }
-                            }
-                            if (i == 4 && fuScreenshots.PostedFiles.Count()<6 && fuScreenshots.PostedFiles.Count() > 4)
-                            {
-                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[4].FileName);
-                                string contentType = fuScreenshots.PostedFiles[4].ContentType;
-                                using (Stream fs = fuScreenshots.PostedFiles[4].InputStream)
-                                {
-                                    using (BinaryReader br = new BinaryReader(fs))
-                                    {
-                                        byte4 = br.ReadBytes((Int32)fs.Length);
-                                        i++;
-                                    }
-                                }
-                            }
-                          
-                                int requestType = Convert.ToInt32(Session["SelectedRequestType"].ToString());
-
-                                //create cm-request object based on list and all other fields
-                                CMRequest newCmRequest = new CMRequest("Not Assigned", detailedDesc, CMProjName, byte0, byte1, byte2, byte3, byte4, quesCom, null, DateTime.Now, userID, null, requestType, desiredDate, questionResponseList);
-                                DBConnect ObjDb = new DBConnect();
-                                SqlCommand objCommand = new SqlCommand();
-                                objCommand.CommandType = CommandType.StoredProcedure;
-                                objCommand.CommandText = "InsertCMRequest";
-                                objCommand.Parameters.AddWithValue("@CMStatus", newCmRequest.CMStatus);
-                                objCommand.Parameters.AddWithValue("@Attachment1", newCmRequest.att1);
-                                objCommand.Parameters.AddWithValue("@Attachment2", newCmRequest.att2);
-                                objCommand.Parameters.AddWithValue("@Attachment3", newCmRequest.att3);
-                                objCommand.Parameters.AddWithValue("@Attachment4", newCmRequest.att4);
-                                objCommand.Parameters.AddWithValue("@Attachment5", newCmRequest.att5);
-                                objCommand.Parameters.AddWithValue("@Question", newCmRequest.questCom);
-                                objCommand.Parameters.AddWithValue("@UserID", userID);
-                                objCommand.Parameters.AddWithValue("@DesiredDate", desiredDate);
-                                objCommand.Parameters.AddWithValue("@RequestTypeID", requestType);
-                                objCommand.Parameters.AddWithValue("@LastUpdateDate", DateTime.Now);
-                                objCommand.Parameters.AddWithValue("@CMProjName", CMProjName);
-                                objCommand.Parameters.AddWithValue("@DetailDescription", newCmRequest.detailDescription);
-
-                                ObjDb.GetConnection().Open();
-                                int resultID = Convert.ToInt32(ObjDb.ExecuteScalarFunction(objCommand));
-                                //Response.Write("<script>alert('" + resultID + "');</script>");
-                                ObjDb.CloseConnection();
-
-                                foreach (QuestionResponse qr in questionResponseList)
-                                {
-                                    try
-                                    {
-                                        QuestionResponse newResponses = new QuestionResponse(resultID, qr.QuestionID, qr.Response);
-                                        DBConnect ObjDb2 = new DBConnect();
-                                        SqlCommand objCommand2 = new SqlCommand();
-                                        objCommand2.CommandType = CommandType.StoredProcedure;
-                                        objCommand2.CommandText = "InsertResponse";
-                                        objCommand2.Parameters.AddWithValue("@CMID", resultID);
-                                        objCommand2.Parameters.AddWithValue("@QuestionID", qr.QuestionID);
-                                        objCommand2.Parameters.AddWithValue("@Response", qr.Response);
-                                        ObjDb2.GetConnection().Open();
-                                        ObjDb2.ExecuteScalarFunction(objCommand2);
-                                        ObjDb2.CloseConnection();
-                                    }
-                                    catch
-                                    {
-                                        Response.Write("<script>alert('Error');</script>");
-                                    }
-
-                                }
-                                //    }
-                                //}
-
-                                Session["CMSuccess"] = "Success";
-                                submssionModal();
-                                //lblErrorMessage.Visible = true;
-                                //lblErrorMessage.Text = "Your request has been successfully submitted!";
-                                //lblErrorMessage.ForeColor = System.Drawing.Color.Green;
-                        }
-
-                            sendEmail();
-
-                        }
-                    }
-                        
-                        
-
-                        //string filename = Path.GetFileName(fuScreenshots.FileName);
-                        //string contentType = fuScreenshots.PostedFile.ContentType;
-                        //using (Stream fs = fuScreenshots.PostedFile.InputStream)
-                        //{
-                        //    using (BinaryReader br = new BinaryReader(fs))
-                        //    {
-                         //       byte[] byte1 = br.ReadBytes((Int32)fs.Length);
                                 
+                                Response.Write("<script>alert('You are only permitted to submit files with a .pdf, .png, .jpg, .xls, .xlsx, .doc, .docx, or .csv file extension!');</script>");
+                                fuScreenshots.Attributes.Clear();
+                            }
+                            else
+                            {
+                                for (int i = 0; i < fuScreenshots.PostedFiles.Count(); i++)
+                                {
+
+                                    if (i == 0)
+                                    {
+                                        string filename = Path.GetFileName(fuScreenshots.PostedFiles[0].FileName);
+                                        string contentType = fuScreenshots.PostedFiles[0].ContentType;
+                                        using (Stream fs = fuScreenshots.PostedFiles[0].InputStream)
+                                        {
+                                            using (BinaryReader br = new BinaryReader(fs))
+                                            {
+                                                byte0 = br.ReadBytes((Int32)fs.Length);
+                                                i++;
+                                            }
+                                        }
+                                    }
+                                    if (i == 1 && fuScreenshots.PostedFiles.Count() > 1)
+                                    {
+                                        string filename = Path.GetFileName(fuScreenshots.PostedFiles[1].FileName);
+                                        string contentType = fuScreenshots.PostedFiles[1].ContentType;
+                                        using (Stream fs = fuScreenshots.PostedFiles[1].InputStream)
+                                        {
+                                            using (BinaryReader br = new BinaryReader(fs))
+                                            {
+                                                byte1 = br.ReadBytes((Int32)fs.Length);
+                                                i++;
+                                            }
+                                        }
+                                    }
+                                    if (i == 2 && fuScreenshots.PostedFiles.Count() > 2)
+                                    {
+                                        string filename = Path.GetFileName(fuScreenshots.PostedFiles[2].FileName);
+                                        string contentType = fuScreenshots.PostedFiles[2].ContentType;
+                                        using (Stream fs = fuScreenshots.PostedFiles[2].InputStream)
+                                        {
+                                            using (BinaryReader br = new BinaryReader(fs))
+                                            {
+                                                byte2 = br.ReadBytes((Int32)fs.Length);
+                                                i++;
+                                            }
+                                        }
+                                    }
+                                    if (i == 3 && fuScreenshots.PostedFiles.Count() > 3)
+                                    {
+                                        string filename = Path.GetFileName(fuScreenshots.PostedFiles[3].FileName);
+                                        string contentType = fuScreenshots.PostedFiles[3].ContentType;
+                                        using (Stream fs = fuScreenshots.PostedFiles[3].InputStream)
+                                        {
+                                            using (BinaryReader br = new BinaryReader(fs))
+                                            {
+                                                byte3 = br.ReadBytes((Int32)fs.Length);
+                                                i++;
+                                            }
+                                        }
+                                    }
+                                    if (i == 4 && fuScreenshots.PostedFiles.Count() < 6 && fuScreenshots.PostedFiles.Count() > 4)
+                                    {
+                                        string filename = Path.GetFileName(fuScreenshots.PostedFiles[4].FileName);
+                                        string contentType = fuScreenshots.PostedFiles[4].ContentType;
+                                        using (Stream fs = fuScreenshots.PostedFiles[4].InputStream)
+                                        {
+                                            using (BinaryReader br = new BinaryReader(fs))
+                                            {
+                                                byte4 = br.ReadBytes((Int32)fs.Length);
+                                                i++;
+                                            }
+                                        }
+                                    }
+
+                                    int requestType = Convert.ToInt32(Session["SelectedRequestType"].ToString());
+
+                                    //create cm-request object based on list and all other fields
+                                    CMRequest newCmRequest = new CMRequest("Not Assigned", detailedDesc, CMProjName, byte0, byte1, byte2, byte3, byte4, quesCom, null, DateTime.Now, userID, null, requestType, desiredDate, questionResponseList);
+                                    DBConnect ObjDb = new DBConnect();
+                                    SqlCommand objCommand = new SqlCommand();
+                                    objCommand.CommandType = CommandType.StoredProcedure;
+                                    objCommand.CommandText = "InsertCMRequest";
+                                    objCommand.Parameters.AddWithValue("@CMStatus", newCmRequest.CMStatus);
+                                    objCommand.Parameters.AddWithValue("@Attachment1", newCmRequest.att1);
+                                    objCommand.Parameters.AddWithValue("@Attachment2", newCmRequest.att2);
+                                    objCommand.Parameters.AddWithValue("@Attachment3", newCmRequest.att3);
+                                    objCommand.Parameters.AddWithValue("@Attachment4", newCmRequest.att4);
+                                    objCommand.Parameters.AddWithValue("@Attachment5", newCmRequest.att5);
+                                    objCommand.Parameters.AddWithValue("@Question", newCmRequest.questCom);
+                                    objCommand.Parameters.AddWithValue("@UserID", userID);
+                                    objCommand.Parameters.AddWithValue("@DesiredDate", desiredDate);
+                                    objCommand.Parameters.AddWithValue("@RequestTypeID", requestType);
+                                    objCommand.Parameters.AddWithValue("@LastUpdateDate", DateTime.Now);
+                                    objCommand.Parameters.AddWithValue("@CMProjName", CMProjName);
+                                    objCommand.Parameters.AddWithValue("@DetailDescription", newCmRequest.detailDescription);
+
+                                    ObjDb.GetConnection().Open();
+                                    int resultID = Convert.ToInt32(ObjDb.ExecuteScalarFunction(objCommand));
+                                    //Response.Write("<script>alert('" + resultID + "');</script>");
+                                    ObjDb.CloseConnection();
+
+                                    foreach (QuestionResponse qr in questionResponseList)
+                                    {
+                                        try
+                                        {
+                                            QuestionResponse newResponses = new QuestionResponse(resultID, qr.QuestionID, qr.Response);
+                                            DBConnect ObjDb2 = new DBConnect();
+                                            SqlCommand objCommand2 = new SqlCommand();
+                                            objCommand2.CommandType = CommandType.StoredProcedure;
+                                            objCommand2.CommandText = "InsertResponse";
+                                            objCommand2.Parameters.AddWithValue("@CMID", resultID);
+                                            objCommand2.Parameters.AddWithValue("@QuestionID", qr.QuestionID);
+                                            objCommand2.Parameters.AddWithValue("@Response", qr.Response);
+                                            ObjDb2.GetConnection().Open();
+                                            ObjDb2.ExecuteScalarFunction(objCommand2);
+                                            ObjDb2.CloseConnection();
+                                        }
+                                        catch
+                                        {
+                                            Response.Write("<script>alert('Error');</script>");
+                                        }
+
+                                    }
+                                    //    }
+                                    //}
+
+                                    Session["CMSuccess"] = "Success";
+                                    submssionModal();
+                                    //lblErrorMessage.Visible = true;
+                                    //lblErrorMessage.Text = "Your request has been successfully submitted!";
+                                    //lblErrorMessage.ForeColor = System.Drawing.Color.Green;
+                                }
+                            }
+
+
+                        }
+
+
+                        sendEmail();
+
+                    }
+                }
+
+
+
+
                 else
                 {
                     Session["CMSuccess"] = "Failure";
