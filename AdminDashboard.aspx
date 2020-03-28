@@ -314,7 +314,7 @@
                                     <br />
                                 </div>
                                 <br />
-                                <asp:Repeater ID="rptScreenshots" runat="server">
+                                <asp:Repeater ID="rptScreenshots" runat="server" OnItemDataBound="rptScreenshots_ItemDataBound">
                                     <ItemTemplate>
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -329,16 +329,15 @@
                                                 <p><b>Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots</b></p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p>
-                                                    <a href="">File 1https://drive.google.com/open?id=1gomIbt8yJA2pn0xY06-
-                                                    PxS5AZFHYmP2k
-                                                    File 2https://drive.google.com/open?id=1hV2JPhOHB47aEy7clxsPuWOiDbad0Ze
-                                                    File 3https://drive.google.com/open?id=1L--
-                                                    Dnd6dLVQGhCP3hbkZ5Rs-z0iwJUwm
-                                                    File 4https://drive.google.com/open?
-                                                    id=16nZJaBWjqmG5642crodKkUYnHYhfJE2U
-                                                    </a>
-                                                </p>
+                                                <asp:LinkButton runat="server" ID="btnLink1" OnClick="btnLink1_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment1Name") %></asp:LinkButton>
+                                                <br />
+                                                <asp:LinkButton runat="server" Visible="false" ID="btnLink2" OnClick="btnLink2_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment2Name") %></asp:LinkButton>
+                                                <br />
+                                                <asp:LinkButton runat="server" Visible="false" ID="btnLink3" OnClick="btnLink3_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment3Name") %></asp:LinkButton>
+                                                <br />
+                                                <asp:LinkButton runat="server" Visible="false" ID="btnLink4" OnClick="btnLink4_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment4Name") %></asp:LinkButton>
+                                                <br />
+                                                <asp:LinkButton runat="server" Visible="false" ID="btnLink5" OnClick="btnLink5_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment5Name") %></asp:LinkButton>
                                             </div>
                                         </div>
                                         <div class="row">
