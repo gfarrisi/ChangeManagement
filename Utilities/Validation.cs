@@ -34,12 +34,12 @@ namespace ChangeManagementSystem.Utilities
             return valid;
         }
 
-        public static Boolean ValidateNewUser(string TUID, string firstName, string lastName, string userEmail, string college)
+        public static Boolean ValidateNewUser(string TUID, string firstName, string lastName, string userEmail)
         {
             bool valid = false;
 
             if (!(String.IsNullOrEmpty(TUID) || String.IsNullOrWhiteSpace(TUID) || String.IsNullOrEmpty(firstName) || String.IsNullOrWhiteSpace(firstName)
-                || String.IsNullOrWhiteSpace(lastName) || String.IsNullOrEmpty(lastName) || String.IsNullOrEmpty(userEmail) || String.IsNullOrWhiteSpace(userEmail) || String.IsNullOrEmpty(college) || String.IsNullOrWhiteSpace(college)))
+                || String.IsNullOrWhiteSpace(lastName) || String.IsNullOrEmpty(lastName) || String.IsNullOrEmpty(userEmail) || String.IsNullOrWhiteSpace(userEmail)))
             {
                 valid = true;
             }
@@ -88,30 +88,5 @@ namespace ChangeManagementSystem.Utilities
             Regex regexTUID = new Regex(@"^\d{9}$");
             return (regexTUID.IsMatch(TUID));
         }
-
-        //Validate length of string in a text box
-        public static bool ValidateLength(string tbox, int length)
-        {
-            return tbox.Length == length;
-        }
-
-        //Validate word count in a text field
-        public static bool ValidateWordCount(string tbox, int count)
-        {
-            return tbox.Length <= (count * 10);
-        }
-
-        public static bool ValidateNumberValue(string num, double maxNum)
-        {
-            if (!string.IsNullOrEmpty(num))
-            {
-                return long.Parse(num) <= maxNum;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
     }
 }

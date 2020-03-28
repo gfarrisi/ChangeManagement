@@ -16,7 +16,6 @@ namespace ChangeManagementSystem
         SqlCommand objCommand = new SqlCommand();
         DBConnect db = new DBConnect();
         DataSet ds = new DataSet();
-        bool IsPageRefresh = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (isAuthenticated() == false)
@@ -47,6 +46,20 @@ namespace ChangeManagementSystem
                     string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
                     lblUserName.Text = userName;
 
+
+                    WebService.College[] colleges = WebService.Webservice.getAllColleges();
+                    int len = colleges.Length;
+                    ddlCollege.Items.Add("CRM");
+                    ddlCollege.Items.Add("UG Admissions");
+                    ddlCollege.Items.Add("Graduate School");
+                    ddlCollege2.Items.Add("CRM");
+                    ddlCollege2.Items.Add("UG Admissions");
+                    ddlCollege2.Items.Add("Graduate School");
+                    for (int i = 0; i < len; i++)
+                    {
+                        ddlCollege.Items.Add(colleges[i].collegeName.ToString().Trim());
+                        ddlCollege2.Items.Add(colleges[i].collegeName.ToString().Trim());
+                    }
                     this.BindGrid();
                 }
             }
@@ -55,7 +68,6 @@ namespace ChangeManagementSystem
         protected Boolean isAuthenticated()
         {
             Boolean isAllowed = false;
-
             if (Session["Authenticated"] == null)
             {
                 isAllowed = false;
@@ -63,7 +75,6 @@ namespace ChangeManagementSystem
             else if (Session["Authenticated"] != null)
             {
                 Boolean isAuthenticated = Boolean.Parse(Session["Authenticated"].ToString());
-
                 if (!isAuthenticated)
                 {
                     isAllowed = false;
@@ -80,7 +91,6 @@ namespace ChangeManagementSystem
                     }
                 }
             }
-
             return isAllowed;
         }
 
@@ -204,15 +214,7 @@ namespace ChangeManagementSystem
                     Session["First_Name"] = Temple_Information.givenName;
                     Session["Last_Name"] = Temple_Information.sn;
                     Session["Email"] = Temple_Information.mail;
-
-                    /* If the user is a student, we can request academic information via the Web Service */
-                    WebService.StudentObj Student_Information = WebService.Webservice.getStudentInfo(Temple_Information.templeEduID);
-
-                    /* Checking we received something from Web Service and then adding information to the Session Object*/
-                    if (Student_Information != null)
-                    {
-                        Session["School"] = Student_Information.school;
-                    }
+                    Session["School"] = ddlCollege.SelectedValue;
 
                     int check = checkDisabled(TUID);
                     if (check == 1) //if info already in DB alert them
@@ -284,6 +286,7 @@ namespace ChangeManagementSystem
                 txtID.Text = "";
                 ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#exampleModal').modal('show')", true);
             }
+            txtID.Text = "";
         }
 
         public int checkDisabled(string TUID)
@@ -334,7 +337,7 @@ namespace ChangeManagementSystem
             string firstName = txtFName.Text;
             string lastName = txtLName.Text;
             string userEmail = txtEmail.Text;
-            string college = txtCollege.Text;
+            string college = ddlCollege2.SelectedValue;
 
             if (!Validation.ValidateTUID(TUID))
             {
@@ -348,7 +351,7 @@ namespace ChangeManagementSystem
                 lblError2.Text = "*Make sure you are using a temple email";
                 ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#manualModal').modal('show')", true);
             }
-            else if (!Validation.ValidateNewUser(TUID, firstName, lastName, userEmail, college))
+            else if (!Validation.ValidateNewUser(TUID, firstName, lastName, userEmail))
             {
                 lblError2.Attributes.Remove("visibility-hidden");
                 lblError2.Text = "*Make sure every field has been filled out";
@@ -380,6 +383,7 @@ namespace ChangeManagementSystem
                 gvAllUsers.DataSource = cmData;
                 gvAllUsers.DataBind();
             }
+            txtID2.Text = "";
         }
 
         protected void btnOpenModal_Click(object sender, EventArgs e)

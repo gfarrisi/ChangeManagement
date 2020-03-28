@@ -18,6 +18,8 @@ body {
   background-size: cover;
 }
 
+
+
 .portfolio-item {
   margin-bottom: 30px;
 }
@@ -106,7 +108,8 @@ table {
 }
 
 .fixedHeader {
-    position: absolute;
+    position: fixed;
+    z-index: 1030;
 }
 
 .gvE {
