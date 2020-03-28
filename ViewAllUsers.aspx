@@ -108,6 +108,8 @@
                                 <label id="lblAccessNet" style="line-height: 50px;" runat="server">TU ID</label>
                                 <br />
                                 <label id="lblAccountType" style="line-height: 50px;" runat="server">Account Type</label>
+                                <br />
+                                <asp:Label ID="lblCollege" runat="server" style="line-height: 50px;">College</asp:Label>
                             </div>
                             <div class="col-lg-9">
                                 <asp:Label ID="lblError" CssClass="col-lg-9" runat="server" Text=""></asp:Label>
@@ -116,6 +118,9 @@
                                 <asp:DropDownList ID="ddlType" CssClass="form-control" runat="server">
                                     <asp:ListItem Selected="True" Value="User"> User </asp:ListItem>
                                     <asp:ListItem Value="Admin"> Admin </asp:ListItem>
+                                </asp:DropDownList>
+                                <br />
+                                <asp:DropDownList ID="ddlCollege" CssClass="form-control" runat="server">
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -152,7 +157,7 @@
                                 <br />
                                 <asp:Label ID="lblEmail" runat="server" style="line-height: 60px;">Email</asp:Label>
                                 <br />
-                                <asp:Label ID="lblCollege" runat="server" style="line-height: 60px;">College</asp:Label>
+                                <asp:Label ID="lblCollege2" runat="server" style="line-height: 60px;">College</asp:Label>
                             </div>
                             <div class="col-lg-9">
                                 <asp:Label ID="lblError2" CssClass="col-lg-9" runat="server" Text=""></asp:Label>
@@ -169,7 +174,10 @@
                                 <br />
                                 <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server"></asp:TextBox>
                                 <br />
-                                <asp:TextBox ID="txtCollege" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:DropDownList ID="ddlCollege2" CssClass="form-control" runat="server">
+                                    <asp:ListItem Selected="True" Value="User"> User </asp:ListItem>
+                                    <asp:ListItem Value="Admin"> Admin </asp:ListItem>
+                                </asp:DropDownList>
                             </div>
                         </div>
                     </div>
