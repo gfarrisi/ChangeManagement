@@ -71,7 +71,7 @@
                             <h3 class="card-title" align="center" runat="server">Pre-Production </h3>
                         </div>
                         <div class="col-lg-3 mb-1">
-                            <h3 class="card-title" align="center" runat="server">Completed<span style="font-size: 15px;"> (In Last 30 days)</span></h3>
+                            <h3 class="card-title" align="center" runat="server">Completed<span style="font-size: 15px;"> (Last 30 CMs)</span></h3>
                         </div>
                     </div>
 
@@ -197,7 +197,7 @@
         <asp:Timer ID="RefreshTimer" runat="server" Interval="30000" OnTick="RefreshTimer_Tick"></asp:Timer>
 
         <!-- Modal -->
-        <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" on>
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header" align="center">
@@ -207,7 +207,7 @@
                                 <asp:HiddenField ID="hiddenTitle" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>' />
                             </ItemTemplate>
                         </asp:Repeater>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -453,6 +453,7 @@
             <asp:Button ClientIDMode="Static" ID="btnCMClicked" runat="server" OnClick="btnCMClicked_Click" />
         </div>
         <asp:HiddenField ClientIDMode="Static" ID="hiddenCMClicked" runat="server" />
+        <asp:HiddenField ClientIDMode="Static" ID="isModalOpen" runat="server" />
     </form>
     <script type="text/javascript">
 
@@ -478,12 +479,17 @@
 
             }
             document.getElementById("hiddenCMClicked").value = CMID;
+            document.getElementById("isModalOpen").value = "true";
             document.getElementById("btnCMClicked").click();          
         }
 
         $(document).ready(function () {
             $(".dropdown-toggle").dropdown();
         });
+
+        function closeModal() {
+            document.getElementById("isModalOpen").value = "false";
+        }
     </script>
 </asp:Content>
 

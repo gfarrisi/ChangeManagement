@@ -543,7 +543,7 @@ namespace ChangeManagementSystem
             DataTable emailTable = emailData.Tables[0];
 
             Email objEmail = new Email();
-            String strTO = "tug52322@temple.edu"; //Admin email
+            String strTO = "tug52322@temple.edu"; //crm@temple.edu
             String strFROM = "noreply@temple.edu";
             String strSubject = emailTable.Rows[0]["Subject"].ToString();
             String strMessage = emailTable.Rows[0]["Body"].ToString();

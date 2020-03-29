@@ -210,7 +210,11 @@ namespace ChangeManagementSystem
                         DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
                         rptCMStatus.DataSource = dataSet;
                         rptCMStatus.DataBind();
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#exampleModalLong').modal('show');", true);
+
+                        if (isModalOpen.Value == "true")
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#exampleModalLong').modal('show');", true);
+                        }
 
                         rptModalHeader.DataSource = dataSet;
                         rptModalHeader.DataBind();

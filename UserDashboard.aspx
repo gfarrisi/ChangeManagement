@@ -59,7 +59,7 @@
                             <h3 class="card-title" align="center" runat="server">Pre-Production </h3>
                         </div>
                         <div class="col-lg-3 mb-1">
-                            <h3 class="card-title" align="center" runat="server">Completed<span style="font-size: 15px;"> (In Last 30 days)</span></h3>
+                            <h3 class="card-title" align="center" runat="server">Completed<span style="font-size: 15px;"> (Last 30 CMs)</span></h3>
                         </div>
                     </div>
 
@@ -195,7 +195,7 @@
                                 <h5 runat="server" class="modal-title" id="exampleModalLongTitle"><%# "CM: " + DataBinder.Eval(Container.DataItem, "CMID") + " - " + DataBinder.Eval(Container.DataItem, "CMProjectName") %></h5>
                             </ItemTemplate>
                         </asp:Repeater>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -450,6 +450,7 @@
             <asp:Button ClientIDMode="Static" ID="btnCMClicked" runat="server" OnClick="btnCMClicked_Click" />
         </div>
         <asp:HiddenField ClientIDMode="Static" ID="hiddenCMClicked" runat="server" />
+        <asp:HiddenField ClientIDMode="Static" ID="isModalOpen" runat="server" />
 
     </form>
     <script type="text/javascript">
@@ -476,11 +477,16 @@
 
             }
             document.getElementById("hiddenCMClicked").value = CMID;
+            document.getElementById("isModalOpen").value = "true";
             document.getElementById("btnCMClicked").click();
         }
 
         $(document).ready(function () {
             $(".dropdown-toggle").dropdown();
         });
+
+        function closeModal() {
+            document.getElementById("isModalOpen").value = "false";
+        }
     </script>
 </asp:Content>
