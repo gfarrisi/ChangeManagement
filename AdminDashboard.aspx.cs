@@ -184,6 +184,7 @@ namespace ChangeManagementSystem
                     }
                     Session["SessionId"] = System.Guid.NewGuid().ToString();
                     ViewState["ViewStateId"] = Session["SessionId"].ToString();
+
                     if (hiddenCMClicked.Value != null && IsPageRefresh == false)
                     {
                         Page.MaintainScrollPositionOnPostBack = true;
@@ -197,7 +198,12 @@ namespace ChangeManagementSystem
                         DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
                         rptCMStatus.DataSource = dataSet;
                         rptCMStatus.DataBind();
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#exampleModalLong').modal('show');", true);
+
+
+                        if (isModalOpen.Value == "true")
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#exampleModalLong').modal('show');", true);
+                        }
 
                         rptModalHeader.DataSource = dataSet;
                         rptModalHeader.DataBind();
