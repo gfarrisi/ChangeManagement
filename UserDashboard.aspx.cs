@@ -211,9 +211,19 @@ namespace ChangeManagementSystem
                         rptCMStatus.DataSource = dataSet;
                         rptCMStatus.DataBind();
 
+                        // only assign false if attachment link was clicked
+                        if (downloadFile.Value == "true")
+                        {
+                            isModalOpen.Value = "false";
+                        }
+
                         if (isModalOpen.Value == "true")
                         {
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#exampleModalLong').modal('show');", true);
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
                         }
 
                         rptModalHeader.DataSource = dataSet;
@@ -576,26 +586,41 @@ namespace ChangeManagementSystem
         protected void btnLink1_Click(object sender, EventArgs e)
         {
             DownloadAttachment(3, 16);
+            isModalOpen.Value = "false";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
         }
 
         protected void btnLink2_Click(object sender, EventArgs e)
         {
             DownloadAttachment(4, 17);
+            isModalOpen.Value = "false";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
         }
 
         protected void btnLink3_Click(object sender, EventArgs e)
         {
             DownloadAttachment(5, 18);
+            isModalOpen.Value = "false";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
         }
 
         protected void btnLink4_Click(object sender, EventArgs e)
         {
             DownloadAttachment(6, 19);
+            isModalOpen.Value = "false";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
         }
 
         protected void btnLink5_Click(object sender, EventArgs e)
         {
             DownloadAttachment(7, 20);
+            isModalOpen.Value = "false";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
         }
 
         protected void DownloadAttachment(int imgCol, int nameCol)
@@ -614,8 +639,18 @@ namespace ChangeManagementSystem
             byte[] imgByte = (byte[])dt.Rows[0][imgCol];
             string imgName = (string)dt.Rows[0][nameCol];
 
-            // turn byte into downloaded file
-            System.IO.File.WriteAllBytes(@"W:\CIS4396-S08\tug94028\" + imgName, imgByte);
+            if ((imgByte != null) && (imgName != null))
+            {
+                // turn byte into downloaded file
+                System.IO.File.WriteAllBytes(@"W:\CIS4396-S08\tug94028\" + imgName, imgByte);
+
+                attachmentModal(imgName);
+            }
+            else
+            {
+                string name = "noname";
+                attachmentModal(name);
+            }
         }
 
         protected void rptScreenshots_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -658,6 +693,23 @@ namespace ChangeManagementSystem
             else if (dt.Rows[0][4] != DBNull.Value)
             {
                 l2.Visible = true;
+            }
+        }
+
+        protected void btnAttachment_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("UserDashboard.aspx");
+        }
+
+        protected void attachmentModal(string name)
+        {
+            if (name != "noname")
+            {
+                Label1.InnerText = name + " has successfully downloaded!";    
+            }
+            else
+            {
+                Label1.InnerText = "The attachment has failed to download. Please try again.";
             }
         }
     }

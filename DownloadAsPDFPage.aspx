@@ -257,6 +257,28 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal data-toggle="modal" data-target="#warningModal"-->
+        <div class="modal fade" id="mdlCMAttachment" tabindex="-1" role="dialog" aria-labelledby="mdlCMAttachmentLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="mdlCMAttachmentLabel">Attachment Download</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-lg-12">
+                            <label id="Label1" style="line-height: 50px;" runat="server">The attachment has been downloaded!</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btnClose" CssClass="btn btn-secondary" BorderStyle="None" OnClick="btnClose_Click" Text="Close" runat="server" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 
     <script>

@@ -326,15 +326,15 @@
                                                 <p><b>Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots</b></p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <asp:LinkButton runat="server" ID="btnLink1" OnClick="btnLink1_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment1Name") %></asp:LinkButton>
+                                                <asp:LinkButton runat="server" ID="btnLink1" OnClientClick="DownloadAttachment()" OnClick="btnLink1_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment1Name") %></asp:LinkButton>
                                                 <br />
-                                                <asp:LinkButton runat="server" ID="btnLink2" Visible="false" OnClick="btnLink2_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment2Name") %></asp:LinkButton>
+                                                <asp:LinkButton runat="server" ID="btnLink2" Visible="false" OnClientClick="DownloadAttachment()" OnClick="btnLink2_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment2Name") %></asp:LinkButton>
                                                 <br />
-                                                <asp:LinkButton runat="server" ID="btnLink3" Visible="false" OnClick="btnLink3_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment3Name") %></asp:LinkButton>
+                                                <asp:LinkButton runat="server" ID="btnLink3" Visible="false" OnClientClick="DownloadAttachment()" OnClick="btnLink3_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment3Name") %></asp:LinkButton>
                                                 <br />
-                                                <asp:LinkButton runat="server" ID="btnLink4" Visible="false" OnClick="btnLink4_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment4Name") %></asp:LinkButton>
+                                                <asp:LinkButton runat="server" ID="btnLink4" Visible="false" OnClientClick="DownloadAttachment()" OnClick="btnLink4_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment4Name") %></asp:LinkButton>
                                                 <br />
-                                                <asp:LinkButton runat="server" ID="btnLink5" Visible="false" OnClick="btnLink5_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment5Name") %></asp:LinkButton>
+                                                <asp:LinkButton runat="server" ID="btnLink5" Visible="false" OnClientClick="DownloadAttachment()" OnClick="btnLink5_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment5Name") %></asp:LinkButton>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -451,6 +451,29 @@
         </div>
         <asp:HiddenField ClientIDMode="Static" ID="hiddenCMClicked" runat="server" />
         <asp:HiddenField ClientIDMode="Static" ID="isModalOpen" runat="server" />
+        <asp:HiddenField ClientIDMode="Static" ID="downloadFile" runat="server" />
+
+          <!-- Modal data-toggle="modal" data-target="#warningModal"-->
+        <div class="modal fade" id="mdlCMAttachment" tabindex="-1" role="dialog" aria-labelledby="mdlCMAttachmentLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="mdlCMAttachmentLabel">Attachment Download</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-lg-12">
+                            <label id="Label1" style="line-height: 50px;" runat="server">The attachment has been downloaded!</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btnAttachment" CssClass="btn btn-secondary" BorderStyle="None" OnClick="btnAttachment_Click" Text="Close" runat="server" />
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </form>
     <script type="text/javascript">
@@ -479,6 +502,10 @@
             document.getElementById("hiddenCMClicked").value = CMID;
             document.getElementById("isModalOpen").value = "true";
             document.getElementById("btnCMClicked").click();
+        }
+
+        function DownloadAttachment() {
+            document.getElementById("downloadFile").value = "true";
         }
 
         $(document).ready(function () {
