@@ -87,6 +87,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <asp:FileUpload ID="fuScreenshots" AllowMultiple="true" CssClass="form-control-file" runat="server" ClientIDMode="Static"></asp:FileUpload>
+                              <asp:Label ID="lblScreenshotsError" runat="server" Visible="false" Font-Size="Large" ForeColor="Red">You are only permitted to submit files with a .pdf, .png, .jpg, .xls, .xlsx, .doc, .docx, or .csv file extension!</asp:Label>
                             </div>
                         </div>
                         <div class="row mt-3 mb-3">

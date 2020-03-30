@@ -183,7 +183,8 @@ namespace ChangeManagementSystem
                     Session["SessionId"] = System.Guid.NewGuid().ToString();
                     ViewState["ViewStateId"] = Session["SessionId"].ToString();
 
-                    if (hiddenCMClicked.Value != null && IsPageRefresh == false)
+                    if (hiddenCMClicked.Value != "" && IsPageRefresh == false)
+
                     {
                         Page.MaintainScrollPositionOnPostBack = true;
                         objDB = new DBConnect();
@@ -256,6 +257,10 @@ namespace ChangeManagementSystem
                         }
 
                         Session["hiddenCMClickedS"] = hiddenCMClicked.Value; //stores CMID for cm to pdf page
+                    }
+                    else
+                    {
+                        Response.Redirect(Request.RawUrl);
                     }
                 }
             }
