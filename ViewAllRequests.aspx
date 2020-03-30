@@ -208,7 +208,7 @@
                                     <br />
                                 </div>
                                 <br />
-                                <asp:Repeater ID="rptScreenshots" runat="server">
+                                <asp:Repeater ID="rptScreenshots" runat="server" OnItemDataBound="rptScreenshots_ItemDataBound">
                                     <ItemTemplate>
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -223,16 +223,15 @@
                                                 <p><b>Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots</b></p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p>
-                                                    <a href="">File 1https://drive.google.com/open?id=1gomIbt8yJA2pn0xY06-
-                                                    PxS5AZFHYmP2k
-                                                    File 2https://drive.google.com/open?id=1hV2JPhOHB47aEy7clxsPuWOiDbad0Ze
-                                                    File 3https://drive.google.com/open?id=1L--
-                                                    Dnd6dLVQGhCP3hbkZ5Rs-z0iwJUwm
-                                                    File 4https://drive.google.com/open?
-                                                    id=16nZJaBWjqmG5642crodKkUYnHYhfJE2U
-                                                    </a>
-                                                </p>
+                                                <asp:LinkButton runat="server" ID="btnLink1" OnClick="btnLink1_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment1Name") %></asp:LinkButton>
+                                                <br />
+                                                <asp:LinkButton runat="server" ID="btnLink2" OnClick="btnLink2_Click" Visible="false"><%# DataBinder.Eval(Container.DataItem, "Attachment2Name") %></asp:LinkButton>
+                                                <br />
+                                                <asp:LinkButton runat="server" ID="btnLink3" OnClick="btnLink3_Click" Visible="false"><%# DataBinder.Eval(Container.DataItem, "Attachment3Name") %></asp:LinkButton>
+                                                <br />
+                                                <asp:LinkButton runat="server" ID="btnLink4" OnClick="btnLink4_Click" Visible="false"><%# DataBinder.Eval(Container.DataItem, "Attachment4Name") %></asp:LinkButton>
+                                                <br />
+                                                <asp:LinkButton runat="server" ID="btnLink5" OnClick="btnLink5_Click" Visible="false"><%# DataBinder.Eval(Container.DataItem, "Attachment5Name") %></asp:LinkButton>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -342,6 +341,28 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+          <!-- Modal data-toggle="modal" data-target="#warningModal"-->
+        <div class="modal fade" id="mdlCMAttachment" tabindex="-1" role="dialog" aria-labelledby="mdlCMAttachment" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="mdlCMAttachmentLabel">Attachment Download</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-lg-12">
+                            <label id="Label1" style="line-height: 50px;" runat="server">The attachment has been downloaded!</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btnAttachment" CssClass="btn btn-secondary" BorderStyle="None" OnClick="btnAttachment_Click" Text="Close" runat="server" />
                     </div>
                 </div>
             </div>

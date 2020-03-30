@@ -71,7 +71,7 @@
                             <h3 class="card-title" align="center" runat="server">Pre-Production </h3>
                         </div>
                         <div class="col-lg-3 mb-1">
-                            <h3 class="card-title" align="center" runat="server">Completed<span style="font-size: 15px;"> (In Last 30 days)</span></h3>
+                            <h3 class="card-title" align="center" runat="server">Completed<span style="font-size: 15px;"> (Last 30 CMs)</span></h3>
                         </div>
                     </div>
 
@@ -207,7 +207,7 @@
                                 <asp:HiddenField ID="hiddenTitle" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMProjectName") %>' />
                             </ItemTemplate>
                         </asp:Repeater>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -314,7 +314,7 @@
                                     <br />
                                 </div>
                                 <br />
-                                <asp:Repeater ID="rptScreenshots" runat="server">
+                                <asp:Repeater ID="rptScreenshots" runat="server" OnItemDataBound="rptScreenshots_ItemDataBound">
                                     <ItemTemplate>
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -329,16 +329,15 @@
                                                 <p><b>Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots</b></p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p>
-                                                    <a href="">File 1https://drive.google.com/open?id=1gomIbt8yJA2pn0xY06-
-                                                    PxS5AZFHYmP2k
-                                                    File 2https://drive.google.com/open?id=1hV2JPhOHB47aEy7clxsPuWOiDbad0Ze
-                                                    File 3https://drive.google.com/open?id=1L--
-                                                    Dnd6dLVQGhCP3hbkZ5Rs-z0iwJUwm
-                                                    File 4https://drive.google.com/open?
-                                                    id=16nZJaBWjqmG5642crodKkUYnHYhfJE2U
-                                                    </a>
-                                                </p>
+                                                <asp:LinkButton runat="server" ID="btnLink1" OnClientClick="DownloadAttachment()" OnClick="btnLink1_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment1Name") %></asp:LinkButton>  
+                                                <br />
+                                                <asp:LinkButton runat="server" Visible="false" ID="btnLink2" OnClientClick="DownloadAttachment()" OnClick="btnLink2_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment2Name") %></asp:LinkButton>
+                                                <br />
+                                                <asp:LinkButton runat="server" Visible="false" ID="btnLink3" OnClientClick="DownloadAttachment()" OnClick="btnLink3_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment3Name") %></asp:LinkButton>
+                                                <br />
+                                                <asp:LinkButton runat="server" Visible="false" ID="btnLink4" OnClientClick="DownloadAttachment()" OnClick="btnLink4_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment4Name") %></asp:LinkButton>
+                                                <br />
+                                                <asp:LinkButton runat="server" Visible="false" ID="btnLink5" OnClientClick="DownloadAttachment()" OnClick="btnLink5_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment5Name") %></asp:LinkButton>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -454,6 +453,30 @@
             <asp:Button ClientIDMode="Static" ID="btnCMClicked" runat="server" OnClick="btnCMClicked_Click" />
         </div>
         <asp:HiddenField ClientIDMode="Static" ID="hiddenCMClicked" runat="server" />
+        <asp:HiddenField ClientIDMode="Static" ID="isModalOpen" runat="server" />
+        <asp:HiddenField ClientIDMode="Static" ID="downloadFile" runat="server" />
+  
+        <!-- Modal data-toggle="modal" data-target="#warningModal"-->
+        <div class="modal fade"data-toggle="modal" id="mdlCMAttachment" tabindex="-1" role="dialog" aria-labelledby="mdlCMAttachmentLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="mdlCMAttachmentLabel">Attachment Download</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-lg-12">
+                            <label id="Label1" style="line-height: 50px;" runat="server">The attachment has been downloaded!</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="Button1" CssClass="btn btn-secondary" BorderStyle="None" OnClick="Button1_Click" Text="Close" runat="server" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
     <script type="text/javascript">
 
@@ -479,12 +502,21 @@
 
             }
             document.getElementById("hiddenCMClicked").value = CMID;
-            document.getElementById("btnCMClicked").click();          
+            document.getElementById("isModalOpen").value = "true";
+            document.getElementById("btnCMClicked").click();
+        }
+
+        function DownloadAttachment() {
+            document.getElementById("downloadFile").value = "true";
         }
 
         $(document).ready(function () {
             $(".dropdown-toggle").dropdown();
         });
+
+        function closeModal() {
+            document.getElementById("isModalOpen").value = "false";
+        }
     </script>
 </asp:Content>
 
