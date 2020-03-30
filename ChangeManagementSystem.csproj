@@ -157,6 +157,13 @@
     <Content Include="EditEmail.aspx" />
     <Content Include="UserSelectRequestType.aspx" />
     <Content Include="UserNewCM.aspx" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDashboard.aspx.cs">
@@ -208,6 +215,9 @@
     <Compile Include="AdminNewCM.aspx.designer.cs">
       <DependentUpon>AdminNewCM.aspx</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

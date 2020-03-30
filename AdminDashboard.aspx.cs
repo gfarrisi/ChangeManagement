@@ -184,7 +184,7 @@ namespace ChangeManagementSystem
                     }
                     Session["SessionId"] = System.Guid.NewGuid().ToString();
                     ViewState["ViewStateId"] = Session["SessionId"].ToString();
-                    if (hiddenCMClicked.Value != null && IsPageRefresh == false)
+                    if (hiddenCMClicked.Value != "" && IsPageRefresh == false)
                     {
                         Page.MaintainScrollPositionOnPostBack = true;
                         objDB = new DBConnect();
@@ -241,6 +241,10 @@ namespace ChangeManagementSystem
                             pnlComments.Visible = false;
                             pnlNoComments.Visible = true;
                         }
+                    }
+                    else
+                    {
+                        Response.Redirect(Request.RawUrl);
                     }
                 }
             }

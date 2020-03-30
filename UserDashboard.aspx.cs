@@ -194,7 +194,7 @@ namespace ChangeManagementSystem
 
                     Session["SessionId"] = System.Guid.NewGuid().ToString();
                     ViewState["ViewStateId"] = Session["SessionId"].ToString();
-                    if (hiddenCMClicked.Value != null && IsPageRefresh == false)
+                    if (hiddenCMClicked.Value != "" && IsPageRefresh == false)
                     {
                         Page.MaintainScrollPositionOnPostBack = true;
 
@@ -258,6 +258,10 @@ namespace ChangeManagementSystem
 
                         // multitxt.Text = "Line1" + Environment.NewLine + "Line2";
 
+                    }
+                    else
+                    {
+                        Response.Redirect(Request.RawUrl);
                     }
                 }
             }
