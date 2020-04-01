@@ -393,7 +393,7 @@ namespace ChangeManagementSystem
                     ddlCMStatus.DataSource = statusList;
                     ddlCMStatus.DataBind();
                 }
-                
+
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production Needs Testing")
             {
@@ -417,7 +417,7 @@ namespace ChangeManagementSystem
                     lblCMStatus.Text = "Pending User Testing of Changes";
                     lblCMStatus.Attributes.Clear();
                 }
-                
+
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production")
             {
@@ -541,7 +541,7 @@ namespace ChangeManagementSystem
             if (Validation.ValidateForm(txtNewComment.Text) && IsPageRefresh == false)
             {
                 DateTime dt = DateTime.Now;
-                string CMID = hiddenCMClicked.Value;             
+                string CMID = hiddenCMClicked.Value;
                 //insert new comment into cm
                 DBConnect ObjDb = new DBConnect();
                 SqlCommand objCommand = new SqlCommand();
@@ -626,7 +626,7 @@ namespace ChangeManagementSystem
         }
 
         protected void btnLink1_Click(object sender, EventArgs e)
-        {        
+        {
             DownloadAttachment(3, 16);
             isModalOpen.Value = "false";
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
@@ -769,7 +769,7 @@ namespace ChangeManagementSystem
                 DataTable emailTable = emailData.Tables[0];
 
                 Email objEmail = new Email();
-                String strTO = "tug52322@temple.edu"; // cmTable.Rows[0]["Email"].ToString(); 
+                String strTO = "tug52322@temple.edu"; //  cmTable.Rows[0]["Email"].ToString(); 
                 String strFROM = "noreply@temple.edu";
                 String strSubject = "CM #{" + hiddenCMClicked.Value + "}: " + emailTable.Rows[0]["Subject"].ToString();
                 String strMessage = emailTable.Rows[0]["Body"].ToString();
@@ -785,6 +785,7 @@ namespace ChangeManagementSystem
 
                 Server.Transfer("UserDashboard.aspx");
             }
+        }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -795,7 +796,7 @@ namespace ChangeManagementSystem
         {
             if (name != "noname")
             {
-                Label1.InnerText = name + " has successfully downloaded!";              
+                Label1.InnerText = name + " has successfully downloaded!";
             }
             else
             {
@@ -808,4 +809,5 @@ namespace ChangeManagementSystem
 
         }
     }
+        
 }
