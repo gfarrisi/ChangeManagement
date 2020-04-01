@@ -221,6 +221,7 @@
                                             <ItemTemplate>
                                                 <h4 runat="server"><%# "Status: " + DataBinder.Eval(Container.DataItem, "CMStatus") %></h4>
                                                 <asp:HiddenField ID="hiddenCMStatus" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMStatus") %>' />
+                                                <asp:HiddenField ID="selectedCMUserID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "UserID") %>' />
                                                 <div class="progress">
                                                     <div runat="server" id="progressBar" class="progress-bar bg-success" role="progressbar"></div>
                                                 </div>
@@ -231,8 +232,23 @@
                                             <div class="col-lg-3 mb-2"></div>
                                             <div class="col-lg-6">
                                                 <div class="status-check">
-                                                    <asp:Label ID="lblCMStatus" runat="server" CssClass="font-weight-bold">Update Status</asp:Label>
-                                                    <asp:DropDownList class="browser-default custom-select" ID="ddlCMStatus" runat="server"></asp:DropDownList>
+                                                    <div id="status" runat="server">
+                                                        <div id="preprodTested" runat="server">
+                                                            <asp:Label ID="lblAwaitingAdmin" runat="server" CssClass="font-weight-bold">Awaiting Move to Production</asp:Label>
+                                                        </div>
+                                                        <div id="preprod" runat="server">
+                                                            <asp:Label ID="lblPreProdTesting" runat="server" CssClass="font-weight-bold">User Testing Required in Pre-Prod</asp:Label><br />
+                                                            <br />
+                                                            <asp:CheckBox class="checkbox" ID="chkPreProd" runat="server"></asp:CheckBox>
+                                                            <asp:Label ID="lblTestingConfirmed" runat="server">I have tested and approved pre-prod changes. Move to production</asp:Label><br />
+                                                            <br />
+                                                            <asp:Button ID="btnSubmitTesting" runat="server" CssClass="btn btn-primary" Text="Submit" OnClick="btnSubmitTesting_Click" />
+                                                        </div>
+                                                    </div>
+                                                    <div id="statusChangeControls" runat="server">
+                                                        <asp:Label ID="lblCMStatus" runat="server" CssClass="font-weight-bold">Update Status</asp:Label>
+                                                        <asp:DropDownList class="browser-default custom-select" ID="ddlCMStatus" runat="server"></asp:DropDownList>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -423,7 +439,7 @@
                         </div>
                     </div>
                     <div class="modal-footer mt-5">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose" onclick="closeModal()">Close</button>
                         <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" style="background-color:#8C2132" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
                         <asp:Button runat="server" class="btn btn-primary" ID="btnSave" Text="Save changes" OnClick="btnSave_Click"></asp:Button>
                     </div>
