@@ -508,8 +508,18 @@ namespace ChangeManagementSystem
             byte[] imgByte = (byte[])dt.Rows[0][imgCol];
             string imgName = (string)dt.Rows[0][nameCol];
 
-            // turn byte into downloaded file
-            System.IO.File.WriteAllBytes(@"W:\CIS4396-S08\tug94028\" + imgName, imgByte);
+            if ((imgByte != null) && (imgName != null))
+            {
+                // turn byte into downloaded file
+                System.IO.File.WriteAllBytes(@"W:\CIS4396-S08\tug94028\" + imgName, imgByte);
+
+                attachmentModal(imgName);
+            }
+            else
+            {
+                string name = "noname";
+                attachmentModal(name);
+            }
         }
 
         protected void rptScreenshots_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -553,6 +563,25 @@ namespace ChangeManagementSystem
             {
                 l2.Visible = true;
             }
+        }
+
+        protected void btnAttachment_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ViewAllRequests.aspx");
+        }
+
+        protected void attachmentModal(string name)
+        {
+            if (name != "noname")
+            {
+                Label1.InnerText = name + " has successfully downloaded!";
+            }
+            else
+            {
+                Label1.InnerText = "The attachment has failed to download. Please try again.";
+            }
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
         }
     }
 }

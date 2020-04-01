@@ -16,12 +16,13 @@ using System.Web.UI.WebControls;
 namespace ChangeManagementSystem
 {
 
+
     public partial class WebForm5 : System.Web.UI.Page
     {
+        List<int> idArray = new List<int>();
         private System.Windows.Forms.WebBrowser webBrowser1;
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (isAuthenticated() == false)
             {
                 Session["Authenticated"] = false;
@@ -29,244 +30,258 @@ namespace ChangeManagementSystem
             }
             else if (isAuthenticated() == true)
             {
-                //foreach (HttpPostedFile file in fuScreenshots.PostedFiles){
-                //    RegularExpressionValidator regex = new RegularExpressionValidator()
-                //    {
-                //        ControlToValidate = fuScreenshots.UniqueID.ToString(),
-                //        ID = "regexValidator",
-                //        ValidationExpression = "(.+\([Pp][Dd][Ff])|.+\.([]",
-                //        Text = "ERROR",
-                //        Enabled = true,
-                //        EnableViewState = true,
-                //        CssClass = "Error"
-                //    };
+                if (!IsPostBack)
+                {
+                    generateForm(true);
+                }
+                if (IsPostBack)
+                {
+                    panelCM.Attributes.Clear();
+                    generateTypeQuestions();
+
+                }
+                //else if (IsPostBack)
+                //{
+                //    Response.Redirect(Request.RawUrl);
                 //}
 
 
-
-
-                if (!IsPostBack)
-                {
-
-                    DBConnect objDB = new DBConnect();
-                    SqlCommand objCommand = new SqlCommand();
-
-                    //get user name for nav
-                    objCommand.CommandType = CommandType.StoredProcedure;
-                    objCommand.CommandText = "GetUserByID";
-                    objCommand.Parameters.Clear();
-                    objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
-
-                    DataSet userData = objDB.GetDataSetUsingCmdObj(objCommand);
-                    DataTable dt = userData.Tables[0];
-                    string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
-                    lblUserName.Text = userName;
-
-
-                    int RequestID = Convert.ToInt32(Session["SelectedRequestType"].ToString());
-
-                    ViewState["requestNum"] = RequestID;
-
-
-                    RequestTypeData requestTypeData = new RequestTypeData();
-                    Request requestType = requestTypeData.GetRequestTypeData(RequestID);
-
-                    spanCM.InnerHtml = requestType.RequestName;
-
-                    Label lblHeading = new Label();
-                    lblHeading.Text = requestType.RequestName;
-                    lblHeading.CssClass = "form-text h4";
-                    panelCM.Controls.Add(lblHeading);
-
-                    //to write to session
-                    List<int> idArray = new List<int>();
-
-                    foreach (Question question in requestType.requestQuestions)
-                    {
-                        if (question.Question_ID < 92)
-                        {
-                            string question_text = question.Question_Text;
-                            string question_control = question.Question_Control;
-                            int question_id = question.Question_ID;
-                            List<string> question_options = question.Question_Options;
-                            idArray.Add(question_id);
-
-                            System.Web.UI.HtmlControls.HtmlGenericControl rowDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                            rowDiv.ID = "rowDiv";
-                            rowDiv.Attributes.Add("class", "row mt-3 mb-3");
-                            panelCM.Controls.Add(rowDiv);
-
-
-                            System.Web.UI.HtmlControls.HtmlGenericControl colDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                            colDiv.ID = "colDiv";
-                            colDiv.Attributes.Add("class", "col-lg-6");
-                            rowDiv.Controls.Add(colDiv);
-
-
-                            Label lblText = new Label();
-                            lblText.Text = question_text;
-                            lblText.CssClass = "form-text";
-                            colDiv.Controls.Add(lblText);
-
-
-                            System.Web.UI.HtmlControls.HtmlGenericControl col6Div = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                            col6Div.ID = "col6Div";
-                            col6Div.Attributes.Add("class", "col-lg-6");
-                            rowDiv.Controls.Add(col6Div);
-
-                            if (question_control == "RadioButton")
-                            {
-
-                                RadioButtonList rbList = new RadioButtonList();
-                                foreach (string option in question_options)
-                                {
-                                    ListItem rbOption = new ListItem();
-                                    rbOption.Text = option;
-                                    rbList.Items.Add(rbOption);
-                                }
-                                rbList.CssClass = "form-check";
-                                rbList.ID = question_id.ToString();
-                                rbList.Attributes.Add("name", question_id.ToString());
-                                rbList.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-                                col6Div.Controls.Add(rbList);
-
-                            }
-                            else if (question_control == "TextBox")
-                            {
-                                TextBox txtAnswer = new TextBox();
-                                txtAnswer.CssClass = "form-control";
-                                txtAnswer.ID = question_id.ToString();
-                                txtAnswer.Attributes.Add("name", txtAnswer.ClientIDMode.ToString());
-                                txtAnswer.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-                                col6Div.Controls.Add(txtAnswer);
-                            }
-                            else if (question_control == "DropDownList")
-                            {
-                                DropDownList ddlOptions = new DropDownList();
-                                ddlOptions.CssClass = "dropdown form-control";
-
-                                foreach (string option in question_options)
-                                {
-                                    ddlOptions.Items.Add(option);
-                                    col6Div.Controls.Add(ddlOptions);
-                                }
-                                ddlOptions.ID = question_id.ToString();
-                                ddlOptions.Attributes.Add("name", question_id.ToString());
-                                ddlOptions.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-                            }
-
-                            HiddenField hfQuestionID = new HiddenField();
-                            hfQuestionID.Value = question_id.ToString();
-                            hfQuestionID.ID = "hfQuestionID";
-                            hfQuestionID.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-
-                            //Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
-                            col6Div.Controls.Add(hfQuestionID);
-
-                        }
-                    }
-                    Session["IDs"] = idArray;
-
-                    //  buildSubmission();
-                }
             }
             else
             {
-                RequestTypeData requestTypeData = new RequestTypeData();
-                Request requestType = requestTypeData.GetRequestTypeData(Convert.ToInt32(ViewState["requestNum"]));
-
-
-                //to write to session
-                List<int> idArray = new List<int>();
-
-                foreach (Question question in requestType.requestQuestions)
-                {
-                    if (question.Question_ID < 92)
-                    {
-                        string question_text = question.Question_Text;
-                        string question_control = question.Question_Control;
-                        int question_id = question.Question_ID;
-                        List<string> question_options = question.Question_Options;
-                        idArray.Add(question_id);
-
-                        System.Web.UI.HtmlControls.HtmlGenericControl rowDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                        rowDiv.ID = "rowDiv" + Guid.NewGuid().ToString("N");
-                        rowDiv.Attributes.Add("class", "row mt-3 mb-3");
-                        panelCM.Controls.Add(rowDiv);
-
-
-                        System.Web.UI.HtmlControls.HtmlGenericControl colDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                        colDiv.ID = "colDiv" + Guid.NewGuid().ToString("N");
-                        colDiv.Attributes.Add("class", "col-lg-6");
-                        rowDiv.Controls.Add(colDiv);
-
-
-                        Label lblText = new Label();
-                        lblText.Text = question_text;
-                        lblText.CssClass = "form-text";
-                        colDiv.Controls.Add(lblText);
-
-
-                        System.Web.UI.HtmlControls.HtmlGenericControl col6Div = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                        col6Div.ID = "col6Div" + Guid.NewGuid().ToString("N");
-                        col6Div.Attributes.Add("class", "col-lg-6");
-                        rowDiv.Controls.Add(col6Div);
-
-                        if (question_control == "RadioButton")
-                        {
-
-                            RadioButtonList rbList = new RadioButtonList();
-                            foreach (string option in question_options)
-                            {
-                                ListItem rbOption = new ListItem();
-                                rbOption.Text = option;
-                                rbList.Items.Add(rbOption);
-                            }
-                            rbList.CssClass = "form-check";
-                            rbList.ID = question_id.ToString();
-                            rbList.Attributes.Add("name", question_id.ToString());
-                            rbList.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-                            col6Div.Controls.Add(rbList);
-
-                        }
-                        else if (question_control == "TextBox")
-                        {
-                            TextBox txtAnswer = new TextBox();
-                            txtAnswer.CssClass = "form-control";
-                            txtAnswer.ID = question_id.ToString();
-                            txtAnswer.Attributes.Add("name", txtAnswer.ClientIDMode.ToString());
-                            txtAnswer.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-                            col6Div.Controls.Add(txtAnswer);
-                        }
-                        else if (question_control == "DropDownList")
-                        {
-                            DropDownList ddlOptions = new DropDownList();
-                            ddlOptions.CssClass = "dropdown form-control";
-
-                            foreach (string option in question_options)
-                            {
-                                ddlOptions.Items.Add(option);
-                                col6Div.Controls.Add(ddlOptions);
-                            }
-                            ddlOptions.ID = question_id.ToString();
-                            ddlOptions.Attributes.Add("name", question_id.ToString());
-                            ddlOptions.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-                        }
-
-                        HiddenField hfQuestionID = new HiddenField();
-                        hfQuestionID.Value = question_id.ToString();
-                        hfQuestionID.ID = "hfQuestionID" + Guid.NewGuid().ToString("N");
-                        hfQuestionID.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-
-                        //Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
-                        col6Div.Controls.Add(hfQuestionID);
-
-                    }
-                }
-                Session["IDs"] = idArray;
+                generateTypeQuestions();
             }
         }
+        private void generateTypeQuestions()
+        {
 
+
+            RequestTypeData requestTypeData = new RequestTypeData();
+            Request requestType = requestTypeData.GetRequestTypeData(Convert.ToInt32(ViewState["requestNum"]));
+
+
+            //to write to session
+            //List<int> idArray = new List<int>();
+
+            foreach (Question question in requestType.requestQuestions)
+            {
+                if (question.Question_ID < 92 || question.Question_ID > 95)
+                {
+                    string question_text = question.Question_Text;
+                    string question_control = question.Question_Control;
+                    int question_id = question.Question_ID;
+                    List<string> question_options = question.Question_Options;
+                    idArray.Add(question_id);
+
+                    System.Web.UI.HtmlControls.HtmlGenericControl rowDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+                    rowDiv.ID = "rowDiv" + Guid.NewGuid().ToString("N");
+                    rowDiv.Attributes.Add("class", "row mt-3 mb-3");
+                    panelCM.Controls.Add(rowDiv);
+
+
+                    System.Web.UI.HtmlControls.HtmlGenericControl colDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+                    colDiv.ID = "colDiv" + Guid.NewGuid().ToString("N");
+                    colDiv.Attributes.Add("class", "col-lg-6");
+                    rowDiv.Controls.Add(colDiv);
+
+
+                    Label lblText = new Label();
+                    lblText.Text = question_text;
+                    lblText.CssClass = "form-text";
+                    colDiv.Controls.Add(lblText);
+
+
+                    System.Web.UI.HtmlControls.HtmlGenericControl col6Div = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+                    col6Div.ID = "col6Div" + Guid.NewGuid().ToString("N");
+                    col6Div.Attributes.Add("class", "col-lg-6");
+                    rowDiv.Controls.Add(col6Div);
+
+                    if (question_control == "RadioButton")
+                    {
+
+                        RadioButtonList rbList = new RadioButtonList();
+                        foreach (string option in question_options)
+                        {
+                            ListItem rbOption = new ListItem();
+                            rbOption.Text = option;
+                            rbList.Items.Add(rbOption);
+                        }
+                        rbList.CssClass = "form-check";
+                        rbList.ID = question_id.ToString();
+                        rbList.Attributes.Add("name", question_id.ToString());
+                        rbList.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                        col6Div.Controls.Add(rbList);
+
+                    }
+                    else if (question_control == "TextBox")
+                    {
+                        TextBox txtAnswer = new TextBox();
+                        txtAnswer.CssClass = "form-control";
+                        txtAnswer.ID = question_id.ToString();
+                        txtAnswer.Attributes.Add("name", txtAnswer.ClientIDMode.ToString());
+                        txtAnswer.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                        col6Div.Controls.Add(txtAnswer);
+                    }
+                    else if (question_control == "DropDownList")
+                    {
+                        DropDownList ddlOptions = new DropDownList();
+                        ddlOptions.CssClass = "dropdown form-control";
+
+                        foreach (string option in question_options)
+                        {
+                            ddlOptions.Items.Add(option);
+                            col6Div.Controls.Add(ddlOptions);
+                        }
+                        ddlOptions.ID = question_id.ToString();
+                        ddlOptions.Attributes.Add("name", question_id.ToString());
+                        ddlOptions.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                    }
+
+                    HiddenField hfQuestionID = new HiddenField();
+                    hfQuestionID.Value = question_id.ToString();
+                    hfQuestionID.ID = "hfQuestionID" + Guid.NewGuid().ToString("N");
+                    hfQuestionID.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+
+                    //Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
+                    col6Div.Controls.Add(hfQuestionID);
+
+                }
+            }
+            Session["IDs"] = idArray;
+
+
+        }
+        private void generateForm(Boolean isValid)
+        {
+
+            //pass in boolean, determine which error to display
+            //validSubmission or //BlankEntry
+            // Boolean isBlank = false;
+            // Boolean isValidSubmission = false;
+
+            DBConnect objDB = new DBConnect();
+            SqlCommand objCommand = new SqlCommand();
+
+            //get user name for nav
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetUserByID";
+            objCommand.Parameters.Clear();
+            objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+            DataSet userData = objDB.GetDataSetUsingCmdObj(objCommand);
+            DataTable dt = userData.Tables[0];
+            string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
+            lblUserName.Text = userName;
+
+
+            int RequestID = Convert.ToInt32(Session["SelectedRequestType"].ToString());
+
+            ViewState["requestNum"] = RequestID;
+
+
+            RequestTypeData requestTypeData = new RequestTypeData();
+            Request requestType = requestTypeData.GetRequestTypeData(RequestID);
+
+            spanCM.InnerHtml = requestType.RequestName;
+
+            Label lblHeading = new Label();
+            lblHeading.Text = requestType.RequestName;
+            lblHeading.CssClass = "form-text h4";
+            panelCM.Controls.Add(lblHeading);
+
+            //to write to session
+            // List<int> idArray = new List<int>();
+
+            foreach (Question question in requestType.requestQuestions)
+            {
+                if (question.Question_ID < 92 || question.Question_ID > 95)
+                {
+                    string question_text = question.Question_Text;
+                    string question_control = question.Question_Control;
+                    int question_id = question.Question_ID;
+                    List<string> question_options = question.Question_Options;
+                    idArray.Add(question_id);
+
+                    System.Web.UI.HtmlControls.HtmlGenericControl rowDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+                    rowDiv.ID = "rowDiv";
+                    rowDiv.Attributes.Add("class", "row mt-3 mb-3");
+                    panelCM.Controls.Add(rowDiv);
+
+
+                    System.Web.UI.HtmlControls.HtmlGenericControl colDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+                    colDiv.ID = "colDiv";
+                    colDiv.Attributes.Add("class", "col-lg-6");
+                    rowDiv.Controls.Add(colDiv);
+
+
+                    Label lblText = new Label();
+                    lblText.Text = question_text;
+                    lblText.CssClass = "form-text";
+                    colDiv.Controls.Add(lblText);
+
+
+                    System.Web.UI.HtmlControls.HtmlGenericControl col6Div = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+                    col6Div.ID = "col6Div";
+                    col6Div.Attributes.Add("class", "col-lg-6");
+                    rowDiv.Controls.Add(col6Div);
+
+                    if (question_control == "RadioButton")
+                    {
+
+                        RadioButtonList rbList = new RadioButtonList();
+                        foreach (string option in question_options)
+                        {
+                            ListItem rbOption = new ListItem();
+                            rbOption.Text = option;
+                            rbList.Items.Add(rbOption);
+                        }
+                        rbList.CssClass = "form-check";
+                        rbList.ID = question_id.ToString();
+                        rbList.Attributes.Add("name", question_id.ToString());
+                        rbList.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                        col6Div.Controls.Add(rbList);
+
+                    }
+                    else if (question_control == "TextBox")
+                    {
+
+                        TextBox txtAnswer = new TextBox();
+                        txtAnswer.CssClass = "form-control";
+                        txtAnswer.ID = question_id.ToString();
+                        txtAnswer.Attributes.Add("name", txtAnswer.ClientIDMode.ToString());
+                        txtAnswer.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                        col6Div.Controls.Add(txtAnswer);
+                    }
+                    else if (question_control == "DropDownList")
+                    {
+                        DropDownList ddlOptions = new DropDownList();
+                        ddlOptions.CssClass = "dropdown form-control";
+
+                        foreach (string option in question_options)
+                        {
+                            ddlOptions.Items.Add(option);
+                            col6Div.Controls.Add(ddlOptions);
+                        }
+                        ddlOptions.ID = question_id.ToString();
+                        ddlOptions.Attributes.Add("name", question_id.ToString());
+                        ddlOptions.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                    }
+
+                    HiddenField hfQuestionID = new HiddenField();
+                    hfQuestionID.Value = question_id.ToString();
+                    hfQuestionID.ID = "hfQuestionID";
+                    hfQuestionID.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+
+                    //Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
+                    col6Div.Controls.Add(hfQuestionID);
+
+                }
+            }
+            Session["IDs"] = idArray;
+
+            //  buildSubmission();
+
+        }
         protected Boolean isAuthenticated()
         {
             Boolean isAllowed = false;
@@ -307,7 +322,7 @@ namespace ChangeManagementSystem
         protected void btnSubmitUser_Click(object sender, EventArgs e)
         {
             string userID = Session["UserID"].ToString();
-            List<int> questionIDs = (List<int>)Session["IDs"];
+            List<int> questionIDs = (List<int>)idArray;
             List<int> submissionQuestionIDs = (List<int>)Session["SubmissionIDs"];
 
 
@@ -327,6 +342,7 @@ namespace ChangeManagementSystem
                 }
 
                 bool valid = true;
+
 
                 for (int i = 0; i < questionResponseList.Count; i++)
                 {
@@ -354,33 +370,54 @@ namespace ChangeManagementSystem
                     byte[] byte2 = null;
                     byte[] byte3 = null;
                     byte[] byte4 = null;
+                    string file1 = null;
+                    string file2 = null;
+                    string file3 = null;
+                    string file4 = null;
+                    string file5 = null;
+
+
 
                     if (!Validation.ValidateBottomForm(detailedDesc, txtDesiredDate.Text, quesCom, CMProjName))
                     {
+                        if (fuScreenshots.PostedFiles == null)
+                        {
+                            lblErrorMessage.Visible = true;
+                        }
                         lblErrorMessage.Visible = true;
                     }
                     else
                     {
                         desiredDate = DateTime.Parse(txtDesiredDate.Text);
-
-
+                        bool validScreenshots = true;
 
                         foreach (HttpPostedFile file in fuScreenshots.PostedFiles)
                         {
                             if (!(Path.GetExtension(file.FileName) == ".pdf" ||
-                                Path.GetExtension(file.FileName) == ".png" ||
-                                Path.GetExtension(file.FileName) == ".jpg" ||
-                                Path.GetExtension(file.FileName) == ".xls" ||
-                                Path.GetExtension(file.FileName) == ".xlsx" ||
-                                Path.GetExtension(file.FileName) == ".doc" ||
-                                Path.GetExtension(file.FileName) == ".docx" ||
-                                Path.GetExtension(file.FileName) == ".csv"))
+                                    Path.GetExtension(file.FileName) == ".PDF" ||
+                                    Path.GetExtension(file.FileName) == ".PNG" ||
+                                    Path.GetExtension(file.FileName) == ".png" ||
+                                    Path.GetExtension(file.FileName) == ".JPG" ||
+                                    Path.GetExtension(file.FileName) == ".jpg" ||
+                                    Path.GetExtension(file.FileName) == ".xls" ||
+                                    Path.GetExtension(file.FileName) == ".XLS" ||
+                                    Path.GetExtension(file.FileName) == ".xlsx" ||
+                                    Path.GetExtension(file.FileName) == ".XLSX" ||
+                                    Path.GetExtension(file.FileName) == ".doc" ||
+                                    Path.GetExtension(file.FileName) == ".DOC" ||
+                                    Path.GetExtension(file.FileName) == ".docx" ||
+                                    Path.GetExtension(file.FileName) == ".DOCX" ||
+                                    Path.GetExtension(file.FileName) == ".csv" ||
+                                    Path.GetExtension(file.FileName) == ".CSV"
+                                   ))
                             {
-                                
-                                Response.Write("<script>alert('You are only permitted to submit files with a .pdf, .png, .jpg, .xls, .xlsx, .doc, .docx, or .csv file extension!');</script>");
+                                validScreenshots = false;
+                                lblScreenshotsError.Visible = true;
                                 fuScreenshots.Attributes.Clear();
+
+
                             }
-                            else
+                            else if (validScreenshots == true)
                             {
                                 for (int i = 0; i < fuScreenshots.PostedFiles.Count(); i++)
                                 {
@@ -388,6 +425,7 @@ namespace ChangeManagementSystem
                                     if (i == 0)
                                     {
                                         string filename = Path.GetFileName(fuScreenshots.PostedFiles[0].FileName);
+                                        file1 = filename;
                                         string contentType = fuScreenshots.PostedFiles[0].ContentType;
                                         using (Stream fs = fuScreenshots.PostedFiles[0].InputStream)
                                         {
@@ -401,6 +439,7 @@ namespace ChangeManagementSystem
                                     if (i == 1 && fuScreenshots.PostedFiles.Count() > 1)
                                     {
                                         string filename = Path.GetFileName(fuScreenshots.PostedFiles[1].FileName);
+                                        file2 = filename;
                                         string contentType = fuScreenshots.PostedFiles[1].ContentType;
                                         using (Stream fs = fuScreenshots.PostedFiles[1].InputStream)
                                         {
@@ -414,6 +453,7 @@ namespace ChangeManagementSystem
                                     if (i == 2 && fuScreenshots.PostedFiles.Count() > 2)
                                     {
                                         string filename = Path.GetFileName(fuScreenshots.PostedFiles[2].FileName);
+                                        file3 = filename;
                                         string contentType = fuScreenshots.PostedFiles[2].ContentType;
                                         using (Stream fs = fuScreenshots.PostedFiles[2].InputStream)
                                         {
@@ -427,6 +467,7 @@ namespace ChangeManagementSystem
                                     if (i == 3 && fuScreenshots.PostedFiles.Count() > 3)
                                     {
                                         string filename = Path.GetFileName(fuScreenshots.PostedFiles[3].FileName);
+                                        file4 = filename;
                                         string contentType = fuScreenshots.PostedFiles[3].ContentType;
                                         using (Stream fs = fuScreenshots.PostedFiles[3].InputStream)
                                         {
@@ -440,6 +481,7 @@ namespace ChangeManagementSystem
                                     if (i == 4 && fuScreenshots.PostedFiles.Count() < 6 && fuScreenshots.PostedFiles.Count() > 4)
                                     {
                                         string filename = Path.GetFileName(fuScreenshots.PostedFiles[4].FileName);
+                                        file5 = filename;
                                         string contentType = fuScreenshots.PostedFiles[4].ContentType;
                                         using (Stream fs = fuScreenshots.PostedFiles[4].InputStream)
                                         {
@@ -454,7 +496,7 @@ namespace ChangeManagementSystem
                                     int requestType = Convert.ToInt32(Session["SelectedRequestType"].ToString());
 
                                     //create cm-request object based on list and all other fields
-                                    CMRequest newCmRequest = new CMRequest("Not Assigned", detailedDesc, CMProjName, byte0, byte1, byte2, byte3, byte4, quesCom, null, DateTime.Now, userID, null, requestType, desiredDate, questionResponseList);
+                                    CMRequest newCmRequest = new CMRequest("Not Assigned", detailedDesc, CMProjName, byte0, byte1, byte2, byte3, byte4, quesCom, null, DateTime.Now, userID, null, requestType, desiredDate, questionResponseList, file1, file2, file3, file4, file5);
                                     DBConnect ObjDb = new DBConnect();
                                     SqlCommand objCommand = new SqlCommand();
                                     objCommand.CommandType = CommandType.StoredProcedure;
@@ -465,6 +507,12 @@ namespace ChangeManagementSystem
                                     objCommand.Parameters.AddWithValue("@Attachment3", newCmRequest.att3);
                                     objCommand.Parameters.AddWithValue("@Attachment4", newCmRequest.att4);
                                     objCommand.Parameters.AddWithValue("@Attachment5", newCmRequest.att5);
+                                    objCommand.Parameters.AddWithValue("@filename1", newCmRequest.File1);
+                                    objCommand.Parameters.AddWithValue("@filename2", newCmRequest.File2);
+                                    objCommand.Parameters.AddWithValue("@filename3", newCmRequest.File3);
+                                    objCommand.Parameters.AddWithValue("@filename4", newCmRequest.File4);
+                                    objCommand.Parameters.AddWithValue("@filename5", newCmRequest.File5);
+
                                     objCommand.Parameters.AddWithValue("@Question", newCmRequest.questCom);
                                     objCommand.Parameters.AddWithValue("@UserID", userID);
                                     objCommand.Parameters.AddWithValue("@DesiredDate", desiredDate);
@@ -509,13 +557,12 @@ namespace ChangeManagementSystem
                                     //lblErrorMessage.Text = "Your request has been successfully submitted!";
                                     //lblErrorMessage.ForeColor = System.Drawing.Color.Green;
                                 }
+                                sendEmail();
                             }
 
 
                         }
-
-
-                        sendEmail();
+                        //sendEmail();
 
                     }
                 }
