@@ -420,7 +420,7 @@
                         </div>
                     </div>
                     <div class="modal-footer mt-5">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose" onclick="closeModal()">Close</button>
                         <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" Style="background-color: #8C2132" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
                         <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal" data-toggle="modal" data-target="#mdlSavedChanges">Save changes</button>
                     </div>
