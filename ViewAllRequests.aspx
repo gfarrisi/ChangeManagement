@@ -41,20 +41,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="CPH1" runat="server">
     <form runat="server">
         <asp:ScriptManager ID="scriptman" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
-        <div class="container mt-5" style="height: 100%;">
+        <div class="container">
             <h2 id="requestHistory">Request History</h2>
-            <div class="card mb-4 w-50" id="searchBar">
-                <div class="input-group">
-                    <asp:TextBox ID="txtSearch" CssClass="form-control" runat="server" placeholder="Search for..."></asp:TextBox>
-                    <span class="input-group-btn">
-                        <asp:Button CssClass="btn btn-dark" ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click" />
-                    </span>
-                </div>
-            </div>
-            <div style="overflow-y: scroll; height: 500px;">
+                
                 <div class="gv">
                     <asp:HiddenField runat="server" ID="hf" ClientIDMode="Static" />
-                    <asp:GridView ID="gvAllRequests" runat="server" CssClass="table" OnRowDataBound="gvAllRequests_RowDataBound" AutoGenerateColumns="False" AllowSorting="True" BorderColor="#CCCCCC" OnSorting="OnSorting" PageSize="10" AllowPaging="True" OnPageIndexChanging="gvAllRequests_PageIndexChanging">
+                    <asp:GridView ID="gvAllRequests" runat="server" CellPadding="3" CssClass="datatable" AutoGenerateColumns="False" AllowPaging="false" BorderColor="#CCCCCC" OnRowDataBound="gvAllRequests_RowDataBound">
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
                         <Columns>
                             <asp:BoundField DataField="CMID" ItemStyle-CssClass="thead-dark" HeaderText="CMID" SortExpression="CMID">
@@ -78,14 +70,14 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
                             </asp:TemplateField>
-                        </Columns>
-                        <PagerStyle BackColor="#333333" ForeColor="White" HorizontalAlign="Center" Font-Bold="True" />
+                        </Columns>   
                     </asp:GridView>
                 </div>
-            </div>
-            <button onclick="exportTableToCSV('Requests.csv')" class="btn btnDownload mt-1">Export Table to .CSV File</button>
-        </div>
-
+        
+                <div class="container mt-4">
+                    <button onclick="exportTableToCSV('Requests.csv')" class="btn btnDownload mt-1">Export Table to .CSV File</button>
+                </div>
+         </div> 
         <br />
         <br />
         <br />
@@ -368,11 +360,12 @@
             </div>
         </div>
     </form>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js" integrity="sha256-uC1JMW5e1U5D28+mXFxzTz4SSMCywqhxQIodqLECnfU=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <style>
+        .datatable tr td {
+            border-top: 1px solid grey;
+            border-bottom: 1px solid grey;
+        }
+    </style>
     <script type="text/javascript">
         $(document).ready(function () {
             $(".dropdown-toggle").dropdown();
@@ -442,9 +435,12 @@
             downloadLink.click();
         }
 
-        $(document).ready(function () {
-            $("#gvAllRequests").tablesorter();
-        });
+        $(document).ready(function() {
+            $('.datatable').DataTable({
+                "scrollY": "800px",
+                "scrollCollapse": true
+            });
+        });  
     </script>
 </asp:Content>
 

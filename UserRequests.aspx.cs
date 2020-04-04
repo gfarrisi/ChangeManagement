@@ -70,6 +70,44 @@ namespace ChangeManagementSystem
                         gvUserRequests.DataBind();
                     }
                 }
+                else
+                {
+                    // need the entire block so that data table functions (like search and pagination) don't disappear
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetUserByID";
+                    objCommand.Parameters.Clear();
+                    objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+                    DataSet userData = objDB.GetDataSetUsingCmdObj(objCommand);
+                    DataTable dt = userData.Tables[0];
+                    string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
+                    lblUserName.Text = userName;
+
+                    ViewState["ViewStateId"] = System.Guid.NewGuid().ToString();
+                    Session["SessionId"] = ViewState["ViewStateId"].ToString();
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetAllCMsByUser";
+                    objCommand.Parameters.Clear();
+                    objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+                    DataSet cmData = db.GetDataSetUsingCmdObj(objCommand);
+                    DataTable dataTable = cmData.Tables[0];
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        string ID = row["CMID"].ToString();
+                        string user = row["UserID"].ToString();
+                        string admin = row["AdminID"].ToString();
+                        string Name = row["CMProjectName"].ToString();
+                        string question = row["Question/Comments"].ToString();
+                        string type = row["RequestTypeName"].ToString();
+                        string college = row["College"].ToString();
+                        string status = row["CMStatus"].ToString();
+                        string date = row["LastUpdateDate"].ToString();
+                        ArrayList listDB = new ArrayList();
+                        listDB.Add(new allRequests(ID, user, admin, college, type, status, date));
+                        gvUserRequests.DataSource = dataTable;
+                        gvUserRequests.DataBind();
+                    }
+                }
             }
         }
 
@@ -105,95 +143,7 @@ namespace ChangeManagementSystem
             return isAllowed;
         }
 
-        private string SortDirection
-        {
-            get { return ViewState["SortDirection"] != null ? ViewState["SortDirection"].ToString() : "ASC"; }
-            set { ViewState["SortDirection"] = value; }
-        }
-
-        protected void OnSorting(object sender, GridViewSortEventArgs e)
-        {
-            this.BindGrid(e.SortExpression);
-        }
-
-        private void BindGrid(string sortExpression = null)
-        {
-            DBConnect db = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
-            using (SqlCommand cmd = new SqlCommand())
-            {
-
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "GetAllCMsByUser";
-                cmd.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
-                using (SqlDataAdapter sda = new SqlDataAdapter())
-                {
-
-                    cmd.Connection = db.GetConnection();
-                    using (DataTable dt = new DataTable())
-                    {
-                        sda.SelectCommand = cmd;
-                        sda.Fill(dt);
-                        if (sortExpression != null)
-                        {
-                            DataView dv = dt.AsDataView();
-                            this.SortDirection = this.SortDirection == "ASC" ? "DESC" : "ASC";
-
-                            dv.Sort = sortExpression + " " + this.SortDirection;
-                            gvUserRequests.DataSource = dv;
-                        }
-                        else
-                        {
-                            gvUserRequests.DataSource = dt;
-                        }
-                        gvUserRequests.DataBind();
-                    }
-                }
-            }
-        }
-
-         protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            SqlCommand dbCommand = new SqlCommand();
-            DBConnect db = new DBConnect();
-            DataSet ds = new DataSet();
-            if (txtSearch.Text == "")
-            {
-                objCommand.Parameters.Clear();
-                objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "GetAllCMsByUser";
-                objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
-
-                DataSet cmData = db.GetDataSetUsingCmdObj(objCommand);
-                DataTable dataTable = cmData.Tables[0];
-                gvUserRequests.DataSource = dataTable;
-                gvUserRequests.DataBind();
-            }
-            else
-            {
-                string search = txtSearch.Text;
-                objCommand.Parameters.Clear();
-                objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "UserRequestSearch";
-                SqlParameter inputParameter = new SqlParameter("@Search", search);
-                SqlParameter inputParameter2 = new SqlParameter("@UserID", Session["UserID"].ToString());
-
-                inputParameter.Direction = ParameterDirection.Input;
-                inputParameter.SqlDbType = SqlDbType.VarChar;
-                inputParameter.Size = 50;
-                objCommand.Parameters.Add(inputParameter);
-                objCommand.Parameters.Add(inputParameter2);
-
-                DataSet searchSet = db.GetDataSetUsingCmdObj(objCommand);
-                gvUserRequests.DataSource = searchSet;
-                gvUserRequests.DataBind();
-            }
-        }
-
-        protected void gvUserRequests_Sorting(object sender, GridViewSortEventArgs e)
-        {
-
-        }
+       
 
         protected void rptCMStatus_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
@@ -392,7 +342,6 @@ namespace ChangeManagementSystem
             ViewState["ViewStateId"] = Session["SessionId"].ToString();
             if (hf.Value != null && IsPageRefresh == false)
             {
-                Page.MaintainScrollPositionOnPostBack = true;
 
                 int CMID = Int32.Parse(name);
 
@@ -450,12 +399,6 @@ namespace ChangeManagementSystem
                     pnlNoComments.Visible = true;
                 }
             }
-        }
-
-        protected void gvUserRequests_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvUserRequests.PageIndex = e.NewPageIndex;
-            this.BindGrid();
         }
 
         protected void btnLink1_Click(object sender, EventArgs e)
@@ -573,6 +516,14 @@ namespace ChangeManagementSystem
             }
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
+        }
+
+        protected void gvUserRequests_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.TableSection = TableRowSection.TableHeader;
+            }
         }
     }
 }

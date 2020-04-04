@@ -145,32 +145,7 @@ namespace ChangeManagementSystem
             Response.Redirect("NewUser.aspx");
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            if (txtSearch.Text == "")
-            {
-                DataSet searchSet = db.GetDataSet("SELECT * FROM [User] WHERE Active = 1");
-                gvAllUsers.DataSource = searchSet;
-                gvAllUsers.DataBind();
-            }
-            else
-            {
-                string search = txtSearch.Text;
-                objCommand.Parameters.Clear();
-                objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "UserSearch";
-                SqlParameter inputParameter = new SqlParameter("@Search", search);
-                inputParameter.Direction = ParameterDirection.Input;
-                inputParameter.SqlDbType = SqlDbType.VarChar;
-                inputParameter.Size = 50;
-                objCommand.Parameters.Add(inputParameter);
-
-                DataSet searchSet = db.GetDataSetUsingCmdObj(objCommand);
-                gvAllUsers.DataSource = searchSet;
-                gvAllUsers.DataBind();
-            }
-        }
-
+      
         protected void btnDeactivate_Click(object sender, EventArgs e)
         {
             objCommand.Parameters.Clear();
@@ -392,6 +367,14 @@ namespace ChangeManagementSystem
             lblError.Text = "";
             lblError2.Text = "";
             btnManual.Visible = false;
+        }
+
+        protected void gvAllUsers_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.TableSection = TableRowSection.TableHeader;
+            }
         }
     }
 }
