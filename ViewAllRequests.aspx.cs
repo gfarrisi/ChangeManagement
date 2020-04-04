@@ -52,6 +52,25 @@ namespace ChangeManagementSystem
                     objCommand.Parameters.Clear();
                     this.BindGrid();
                 }
+                else
+                {
+                    ViewState["ViewStateId"] = System.Guid.NewGuid().ToString();
+                    Session["SessionId"] = ViewState["ViewStateId"].ToString();
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetUserByID";
+                    objCommand.Parameters.Clear();
+                    objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+                    DataSet userData = db.GetDataSetUsingCmdObj(objCommand);
+                    DataTable dt = userData.Tables[0];
+                    string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
+                    lblUserName.Text = userName;
+
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetAllCMsAdminView";
+                    objCommand.Parameters.Clear();
+                    this.BindGrid();
+                }
             }
         }
 
@@ -86,11 +105,6 @@ namespace ChangeManagementSystem
 
             return isAllowed;
         }
-        private string SortDirection
-        {
-            get { return ViewState["SortDirection"] != null ? ViewState["SortDirection"].ToString() : "ASC"; }
-            set { ViewState["SortDirection"] = value; }
-        }
 
         private void BindGrid(string sortExpression = null)
         {
@@ -108,77 +122,15 @@ namespace ChangeManagementSystem
                     {
                         sda.SelectCommand = cmd;
                         sda.Fill(dt);
-                        if (sortExpression != null)
-                        {
-                            DataView dv = dt.AsDataView();
-                            this.SortDirection = this.SortDirection == "ASC" ? "DESC" : "ASC";
+ 
+                        gvAllRequests.DataSource = dt;
 
-                            dv.Sort = sortExpression + " " + this.SortDirection;
-                            gvAllRequests.DataSource = dv;
-                        }
-                        else
-                        {
-                            gvAllRequests.DataSource = dt;
-                        }
                         gvAllRequests.DataBind();
                     }
                 }
             }
         }
-        protected void OnSorting(object sender, GridViewSortEventArgs e)
-        {
-            this.BindGrid(e.SortExpression);
-        }
-
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            DBConnect db2 = new DBConnect();
-            SqlCommand objCommand2 = new SqlCommand();
-
-            if (txtSearch.Text == "")
-            {
-                objCommand2.CommandType = CommandType.StoredProcedure;
-                objCommand2.CommandText = "GetAllCMsAdminView";
-
-                DataSet cmData = db2.GetDataSetUsingCmdObj(objCommand2);
-                DataTable dataTable = cmData.Tables[0];
-
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    string ID = row["CMID"].ToString();
-                    string user = row["UserID"].ToString();
-                    string admin = row["AdminID"].ToString();
-                    string Name = row["CMProjectName"].ToString();
-                    string question = row["Question/Comments"].ToString();
-                    string type = row["RequestTypeName"].ToString();
-                    string college = row["College"].ToString();
-                    string status = row["CMStatus"].ToString();
-                    string date = row["LastUpdateDate"].ToString();
-
-                    ArrayList listDB = new ArrayList();
-                    listDB.Add(new allRequests(ID, user, admin, college, type, status, date));
-                    gvAllRequests.DataSource = dataTable;
-                    gvAllRequests.DataBind();
-                }
-            }
-            else
-            {
-                string search = txtSearch.Text;
-                objCommand2.Parameters.Clear();
-                objCommand2.CommandType = CommandType.StoredProcedure;
-                objCommand2.CommandText = "SearchAllCMsAdminView";
-                SqlParameter inputParameter = new SqlParameter("@Search", search);
-                inputParameter.Direction = ParameterDirection.Input;
-                inputParameter.SqlDbType = SqlDbType.VarChar;
-                inputParameter.Size = 50;
-                objCommand2.Parameters.Add(inputParameter);
-
-                DataSet searchSet = db2.GetDataSetUsingCmdObj(objCommand2);
-                gvAllRequests.DataSource = searchSet;
-                gvAllRequests.DataBind();
-            }
-        }
-
+       
         protected void rptCMStatus_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Not Assigned")
@@ -452,20 +404,6 @@ namespace ChangeManagementSystem
             }
         }
 
-        protected void gvAllRequests_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                if (e.Row.RowIndex == 0)
-                    e.Row.Style.Add("height", "50px");
-            }
-        }
-
-        protected void gvAllRequests_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvAllRequests.PageIndex = e.NewPageIndex;
-            this.BindGrid();
-        }
 
         protected void btnLink1_Click(object sender, EventArgs e)
         {
@@ -582,6 +520,14 @@ namespace ChangeManagementSystem
             }
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
+        }
+
+        protected void gvAllRequests_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.TableSection = TableRowSection.TableHeader;
+            }
         }
     }
 }

@@ -81,7 +81,7 @@ body {
 }
 
 table {
-    margin-top: 2%;
+    margin-top: -2px;
 }
 
 .btnDownload {
@@ -172,3 +172,4 @@ table {
     flex-wrap: wrap;
     margin-left: -15px;
 }
+

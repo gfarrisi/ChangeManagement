@@ -44,21 +44,11 @@
     <form runat="server">
         <br />
         <div class="container">
-            <h2 id="requestHistory">User Settings</h2>
-            <div class="card mb-4 w-50" id="searchBar">
-                <div class="input-group">
-                    <asp:TextBox ID="txtSearch" CssClass="form-control" runat="server" placeholder="Search for..."></asp:TextBox>
-                    <span class="input-group-btn">
-                        <asp:Button CssClass="btn btn-dark" BorderStyle="None" ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click" />
-                    </span>
-                </div>
-            </div>
-            <div style="overflow-y: scroll; height: 500px;">
+            <h2 id="requestHistory">User Settings</h2>       
                 <div class="gv">
                     <asp:HiddenField runat="server" ID="hf" ClientIDMode="Static" />
-                    <asp:GridView ID="gvAllUsers" runat="server" CellPadding="3" CssClass="table" ForeColor="Black" AutoGenerateColumns="False" AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical" OnSorting="OnSorting">
+                    <asp:GridView ID="gvAllUsers" runat="server" CellPadding="3" ForeColor="Black" AutoGenerateColumns="False" AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical" OnSorting="OnSorting" CssClass="datatable" OnRowDataBound="gvAllUsers_RowDataBound">
                         <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
-
                         <Columns>
                             <asp:BoundField DataField="UserID" HeaderText="TU ID" ReadOnly="true" SortExpression="UserID" />
                             <asp:BoundField DataField="FirstName" HeaderText="First Name" ReadOnly="true" SortExpression="FirstName" />
@@ -72,7 +62,6 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
                             </asp:TemplateField>
-
                         </Columns>
                         <FooterStyle BackColor="#CCCCCC" />
                         <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
@@ -88,8 +77,7 @@
                 <button type="button" onclick="exportTableToCSV('Users.csv')" class="btn btnDownload">Download All Users as CSV</button>
                 <asp:Button ID="btnOpenModal" CssClass="btn btnAdd" runat="server" Text="Add New User" OnClick="btnOpenModal_Click" />
             </div>
-        </div>
-
+ 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -210,14 +198,23 @@
             </div>
         </div>
     </form>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/b-1.6.1/fh-3.1.6/r-2.2.3/sc-2.0.1/sp-1.0.1/datatables.min.css"/>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js" integrity="sha256-uC1JMW5e1U5D28+mXFxzTz4SSMCywqhxQIodqLECnfU=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/b-1.6.1/fh-3.1.6/r-2.2.3/sc-2.0.1/sp-1.0.1/datatables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <style>
+        .datatable tr td {
+            border-top: 1px solid grey;
+            border-bottom: 1px solid grey;
+        }
+    </style>
     <script>
         function getData(t) {
             var row = t.parentElement.parentElement.rowIndex;
@@ -270,6 +267,12 @@
         $(document).ready(function () {
             $(".dropdown-toggle").dropdown();
         });
-    </script>
 
+        $(document).ready(function() {
+            $('.datatable').DataTable({
+                "scrollY": "800px",
+                "scrollCollapse": true
+            });
+        });  
+    </script>
 </asp:Content>

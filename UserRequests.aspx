@@ -35,18 +35,10 @@
         <asp:ScriptManager ID="scriptman" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
         <div class="container mt-5" style="height: 100%;">
             <h2 id="requestHistory">Your Request History</h2>
-            <div class="card mb-4 w-50" id="searchBar">
-                <div class="input-group">
-                    <asp:TextBox ID="txtSearch" CssClass="form-control" runat="server" placeholder="Search for..."></asp:TextBox>
-                    <span class="input-group-btn">
-                        <asp:Button CssClass="btn btn-dark" ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click" />
-                    </span>
-                </div>
-            </div>
-            <div style="overflow-y: scroll; height: 50%;">
+           
                 <div class="gv">
                     <asp:HiddenField runat="server" ID="hf" ClientIDMode="Static" />
-                    <asp:GridView ID="gvUserRequests" runat="server" CssClass="table" AutoGenerateColumns="False" AllowSorting="True" BorderColor="#CCCCCC" OnSorting="OnSorting" PageSize="10" AllowCustomPaging="False" AllowPaging="True" OnPageIndexChanging="gvUserRequests_PageIndexChanging">
+                    <asp:GridView ID="gvUserRequests" runat="server" CssClass="datatable" AutoGenerateColumns="False" BorderColor="#CCCCCC" AllowPaging="false" OnRowDataBound="gvUserRequests_RowDataBound">
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
                         <Columns>
                             <asp:BoundField DataField="CMID" ItemStyle-CssClass="thead-dark" HeaderText="CM ID" ReadOnly="true" SortExpression="CMID">
@@ -86,7 +78,7 @@
             </div>
 
             <button onclick="exportTableToCSV('Requests.csv')" class="btn btnDownload mt-4">Export Table to CSV File</button>
-        </div>
+
         <br />
         <br />
         <br />
@@ -408,7 +400,10 @@
         }
 
         $(document).ready(function () {
-            $(".dropdown-toggle").dropdown();
+            $('.datatable').DataTable({
+                "scrollY": "800px",
+                "scrollCollapse": true
+            });
         });
     </script>
 
