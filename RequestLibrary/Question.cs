@@ -12,6 +12,10 @@ namespace ChangeManagementSystem.RequestLibrary
         private int question_id { get; set; }
         private List<string> question_options { get; set; }
 
+        public Question()
+        {
+
+        }
         public Question(string text, string control, int id, List<string> options)
         {
             question_text = text;

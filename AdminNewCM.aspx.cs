@@ -67,8 +67,7 @@ namespace ChangeManagementSystem
 
             foreach (Question question in requestType.requestQuestions)
             {
-                if (question.Question_ID < 92 || question.Question_ID > 95)
-                {
+                
                     string question_text = question.Question_Text;
                     string question_control = question.Question_Control;
                     int question_id = question.Question_ID;
@@ -146,8 +145,7 @@ namespace ChangeManagementSystem
 
                     //Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
                     col6Div.Controls.Add(hfQuestionID);
-
-                }
+              
             }
             Session["IDs"] = idArray;
         }
@@ -170,7 +168,6 @@ namespace ChangeManagementSystem
             string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
             lblUserName.Text = userName;
 
-
             int RequestID = Convert.ToInt32(Session["SelectedRequestType"].ToString());
 
             ViewState["requestNum"] = RequestID;
@@ -179,14 +176,17 @@ namespace ChangeManagementSystem
             Request requestType = requestTypeData.GetRequestTypeData(RequestID);
 
 
+            System.Web.UI.HtmlControls.HtmlGenericControl colDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+            colDiv.ID = "colDiv" + Guid.NewGuid().ToString("N");
+            colDiv.Attributes.Add("class", "col-lg-6");
+            rowDiv.Controls.Add(colDiv);
+
             spanCM.InnerHtml = requestType.RequestName;
             //to write to session
             List<int> idArray = new List<int>();
 
             foreach (Question question in requestType.requestQuestions)
-            {
-                if (question.Question_ID < 92 || question.Question_ID > 95)
-                {
+            {                
                     string question_text = question.Question_Text;
                     string question_control = question.Question_Control;
                     int question_id = question.Question_ID;
@@ -265,7 +265,7 @@ namespace ChangeManagementSystem
                     //Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
                     col6Div.Controls.Add(hfQuestionID);
 
-                }
+               
             }
             Session["IDs"] = idArray;
 

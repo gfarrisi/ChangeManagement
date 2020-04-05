@@ -14,6 +14,16 @@ function chgControlType() {
 }
 var optionNumber = 2;
 
+function clearModal() {
+    $("#control-text").val("");
+    $("#control-type").val("- Select control type -");
+
+    $.cookie('optioncookie', null);
+
+    var optionContainer = document.getElementById("option-container");     
+    optionContainer.classList.remove("d-block");
+    optionContainer.classList.add("d-none");
+}
 
 function addOption() {  
    
@@ -114,8 +124,11 @@ function addOptionsToSession() {
 }
 
 
+//$(document).on('click', '#iconWrapper', function () {
+//    alert("clcked")
+//})
+
+
 //document.getElementById("btnAdd").addEventListener("click", addOptionsToSession);
 
-function clearModal() {
 
-}

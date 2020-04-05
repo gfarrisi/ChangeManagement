@@ -42,7 +42,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
     <form id="form1" runat="server">
         <br />
-
+                
         <div class="mt-5">
             <div class="row mt-5">
                 <div class="col-3"></div>
@@ -51,7 +51,7 @@
                     <h2 id="requestHistory" class="mb-5 ">New Request Type</h2>
                     <div style="margin: 0 auto; max-width: 600px;">
                         <div class="row mt-3 mb-3">
-                            <div class="col-lg-6">
+                            <div class="col-lg-5 ml-3">
                                 <asp:Label runat="server" CssClass="form-text font-weight-bold">Request Type Name</asp:Label>
                             </div>
                             <div class="col-lg-6">
@@ -62,21 +62,68 @@
                     <div style="margin: 0 auto; max-width: 600px;">
                         <asp:Panel ID="pnlNewRequestType" runat="server">
                         </asp:Panel>
+                        <div id="newRequestType_container" runat="server"></div>
                     </div>
-                    <div class="form-row">
-                        <div class="col-lg-4"></div>
-                        <div class="col-lg-8">
-                            <button type="button" class="btn btn-secondary mt-5 ml-5" data-toggle="modal" data-target="#mdlAddQuestion" data-whatever="@fat">Add Question</button>
+                    <div class="form-row mt-5">
+                        <div class="col-lg-5"></div>
+                        <div class="col-lg-4">
+                            <button type="button" class="btn btn-secondary mt-5" data-toggle="modal" data-target="#mdlAddQuestion" id="btnAddQuestion" onclick="clearModal()" data-whatever="@fat">Add Question</button>
                         </div>
+                    </div>
+                    <div style="margin: 0 auto; max-width: 600px;">
+                        <asp:Panel ID="panelScreenshots" CssClass="mt-5" runat="server">
+
+                            <asp:Label ID="lblHeading" runat="server" Text="Screenshots & Submission" CssClass="form-text h4"></asp:Label>
+                            <div class="row mt-3 mb-3">
+                                <div class="col-lg-5 ml-3">
+                                    <asp:Label ID="lblDesc" runat="server" Text="Detailed description of change" CssClass="form-text"></asp:Label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <asp:TextBox ID="txtDescResponse" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row mt-3 mb-3">
+                                <div class="col-lg-5 ml-3">
+                                    <asp:Label ID="lblUpload" runat="server" Text="Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots. (Maximum of 5)" CssClass="form-text"></asp:Label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <asp:FileUpload ID="fuScreenshots" CssClass="form-control-file" runat="server" ClientIDMode="Static" Enabled="false"></asp:FileUpload>
+                                </div>
+                            </div>
+                            <div class="row mt-3 mb-3">
+                                <div class="col-lg-5 ml-3">
+                                    <asp:Label ID="lblDesiredDate" runat="server" Text="Desired date of completion" CssClass="form-text"></asp:Label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <asp:TextBox ID="txtDesiredDate" CssClass="form-control" runat="server" TextMode="Date" Enabled="false"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row mt-3 mb-3">
+                                <div class="col-lg-5 ml-3">
+                                    <asp:Label ID="lblQuesCom" runat="server" Text="Questions/Comments" CssClass="form-text"></asp:Label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <asp:TextBox ID="txtQuesCom" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
+                                </div>
+                            </div>
+                        </asp:Panel>
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-3"></div>
-                <asp:Button BackColor="#9D2235" ForeColor="#ffffff" CssClass="btn btn-secondary mt-5 ml-3" BorderStyle="None" ID="btnSubmit" runat="server" Text="Create new request type" OnClick="btnSubmit_Click" />
+            <div class="row mt-5">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-8">
+                    <%--<asp:RequiredFieldValidator runat="server" Font-Size="Large" ID="reqRequestName" CssClass="ml-5" ControlToValidate="txtRequestName" ForeColor="DarkRed" ErrorMessage="*Please enter the requests type name." />--%>
+                </div>
             </div>
-
+            <div class="row">
+                <div class="col-lg-5"></div>
+                <div class="col-lg-7">
+                    
+                    <asp:Button BackColor="#9D2235" ForeColor="#ffffff" CssClass="btn btn-secondary mt-5 ml-3" BorderStyle="None" ID="btnSubmit" runat="server" Text="Create new request type" OnClick="btnSubmit_Click" />
+                </div>
+            </div>
+            
         </div>
         <!-- Modal -->
         <div class="modal fade" id="mdlAddQuestion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -101,13 +148,13 @@
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Control Text/Question:</label>
-                            <input type="text" class="form-control" id="control-text" name="control-text" required>
+                            <input type="text" class="form-control" id="control-text" name="control-text" >
                         </div>
                         <div id="option-container" class="d-none form-group">
                             <label for="message-text" class="col-form-label">Options:</label>
                             <div id="options">
                                 <div id="Option 1">
-                                    <input type="text" class="form-control mb-2" style="width: 95%; display: inline;" id="control-option" onchange="addOptionsToSession()" placeholder="Option 1" required>
+                                    <input type="text" class="form-control mb-2" style="width: 95%; display: inline;" id="control-option" onchange="addOptionsToSession()" placeholder="Option 1" >
                                     <i id="1"></i>
                                 </div>
                             </div>
@@ -126,15 +173,57 @@
             </div>
         </div>
     </form>
-    <%--<script>
-        function myFunction() {
-           alert("clicked!")
-        }
-    </script>--%>
 
     <script>
         $(document).ready(function () {
             $(".dropdown-toggle").dropdown();
         });
+
+
+        function edit(renderedID) {
+            //alert("clicked");
+            console.log(renderedID)
+            var id = renderedID.split("__")
+            var questionID = id[1];
+            // console.log(questionID)
+
+            console.log("outside loop",questionID)
+            // Get saved data from sessionStorage
+            var requestSessionValue = '<%=Session["request"]%>'
+            const requestObj = JSON.parse(requestSessionValue);
+
+
+            requestObj.forEach(function (obj) {
+                
+                if (obj.Question_ID == questionID) {
+
+                    $("#control-text").val(obj.Question_Text);
+                    console.log("in loop id", obj.Question_ID)
+                    console.log(obj.Question_Control)
+                    console.log(obj.Question_Text)
+                    $("#control-type").val(obj.Question_Control);
+
+                    var optionContainer = document.getElementById("option-container");
+                    var controlType = document.getElementById("control-type").value;
+                    if (controlType == "Dropdown" || controlType == "RadioButton") {
+                        optionContainer.classList.add("d-block");
+                        optionContainer.classList.remove("d-none");
+                    }
+                    else {
+                        optionContainer.classList.remove("d-block");
+                        optionContainer.classList.add("d-none");
+                    }
+                    $('#mdlAddQuestion').modal('show')
+                }
+                else {
+                    console.log("not correct id ", obj.Question_ID)
+                }
+            });
+
+        }
+
+
+
     </script>
+
 </asp:Content>

@@ -65,8 +65,6 @@ namespace ChangeManagementSystem
 
             foreach (Question question in requestType.requestQuestions)
             {
-                if (question.Question_ID < 92 || question.Question_ID > 95)
-                {
                     string question_text = question.Question_Text;
                     string question_control = question.Question_Control;
                     int question_id = question.Question_ID;
@@ -145,7 +143,7 @@ namespace ChangeManagementSystem
                     //Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
                     col6Div.Controls.Add(hfQuestionID);
 
-                }
+                
             }
             Session["IDs"] = idArray;
 
@@ -193,9 +191,7 @@ namespace ChangeManagementSystem
             // List<int> idArray = new List<int>();
 
             foreach (Question question in requestType.requestQuestions)
-            {
-                if (question.Question_ID < 92 || question.Question_ID > 95)
-                {
+            {               
                     string question_text = question.Question_Text;
                     string question_control = question.Question_Control;
                     int question_id = question.Question_ID;
@@ -207,7 +203,6 @@ namespace ChangeManagementSystem
                     rowDiv.Attributes.Add("class", "row mt-3 mb-3");
                     panelCM.Controls.Add(rowDiv);
 
-
                     System.Web.UI.HtmlControls.HtmlGenericControl colDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
                     colDiv.ID = "colDiv";
                     colDiv.Attributes.Add("class", "col-lg-6");
@@ -218,7 +213,6 @@ namespace ChangeManagementSystem
                     lblText.Text = question_text;
                     lblText.CssClass = "form-text";
                     colDiv.Controls.Add(lblText);
-
 
                     System.Web.UI.HtmlControls.HtmlGenericControl col6Div = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
                     col6Div.ID = "col6Div";
@@ -275,7 +269,7 @@ namespace ChangeManagementSystem
                     //Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
                     col6Div.Controls.Add(hfQuestionID);
 
-                }
+                
             }
             Session["IDs"] = idArray;
 
@@ -391,6 +385,7 @@ namespace ChangeManagementSystem
                         desiredDate = DateTime.Parse(txtDesiredDate.Text);
                         bool validScreenshots = true;
 
+
                         foreach (HttpPostedFile file in fuScreenshots.PostedFiles)
                         {
                             if (!(Path.GetExtension(file.FileName) == ".pdf" ||
@@ -410,6 +405,7 @@ namespace ChangeManagementSystem
                                     Path.GetExtension(file.FileName) == ".csv" ||
                                     Path.GetExtension(file.FileName) == ".CSV"
                                    ))
+
                             {
                                 validScreenshots = false;
                                 lblScreenshotsError.Visible = true;
@@ -417,7 +413,9 @@ namespace ChangeManagementSystem
 
 
                             }
+
                             else if (validScreenshots == true)
+
                             {
                                 for (int i = 0; i < fuScreenshots.PostedFiles.Count(); i++)
                                 {
@@ -464,6 +462,7 @@ namespace ChangeManagementSystem
                                             }
                                         }
                                     }
+
                                     if (i == 3 && fuScreenshots.PostedFiles.Count() > 3)
                                     {
                                         string filename = Path.GetFileName(fuScreenshots.PostedFiles[3].FileName);
@@ -478,6 +477,7 @@ namespace ChangeManagementSystem
                                             }
                                         }
                                     }
+
                                     if (i == 4 && fuScreenshots.PostedFiles.Count() < 6 && fuScreenshots.PostedFiles.Count() > 4)
                                     {
                                         string filename = Path.GetFileName(fuScreenshots.PostedFiles[4].FileName);
@@ -566,10 +566,6 @@ namespace ChangeManagementSystem
 
                     }
                 }
-
-
-
-
                 else
                 {
                     Session["CMSuccess"] = "Failure";
