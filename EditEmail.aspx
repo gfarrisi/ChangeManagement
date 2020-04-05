@@ -115,7 +115,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js" integrity="sha256-uC1JMW5e1U5D28+mXFxzTz4SSMCywqhxQIodqLECnfU=" crossorigin="anonymous"></script>
     <script type="text/javascript">
         function getData(t) {
-            
+            console.log(t)
             var row = t.parentElement.parentElement.rowIndex;
             
             var subject = document.querySelectorAll('tr')[row].cells[2].innerHTML;

@@ -57,87 +57,85 @@ namespace ChangeManagementSystem
 
                     foreach (Question question in requestType.requestQuestions)
                     {
-                        if (question.Question_ID < 92)
+
+                        string question_text = question.Question_Text;
+                        string question_control = question.Question_Control;
+                        int question_id = question.Question_ID;
+                        List<string> question_options = question.Question_Options;
+                        idArray.Add(question_id);
+
+                        System.Web.UI.HtmlControls.HtmlGenericControl rowDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+                        rowDiv.ID = "rowDiv";
+                        rowDiv.Attributes.Add("class", "row mt-3 mb-3");
+                        panelCM.Controls.Add(rowDiv);
+
+
+                        System.Web.UI.HtmlControls.HtmlGenericControl colDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+                        colDiv.ID = "colDiv";
+                        colDiv.Attributes.Add("class", "col-lg-6");
+                        rowDiv.Controls.Add(colDiv);
+
+
+                        Label lblText = new Label();
+                        lblText.Text = question_text;
+                        lblText.CssClass = "form-text";
+                        colDiv.Controls.Add(lblText);
+
+
+                        System.Web.UI.HtmlControls.HtmlGenericControl col6Div = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+                        col6Div.ID = "col6Div";
+                        col6Div.Attributes.Add("class", "col-lg-6");
+                        rowDiv.Controls.Add(col6Div);
+
+                        if (question_control == "RadioButton")
                         {
-                            string question_text = question.Question_Text;
-                            string question_control = question.Question_Control;
-                            int question_id = question.Question_ID;
-                            List<string> question_options = question.Question_Options;
-                            idArray.Add(question_id);
 
-                            System.Web.UI.HtmlControls.HtmlGenericControl rowDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                            rowDiv.ID = "rowDiv";
-                            rowDiv.Attributes.Add("class", "row mt-3 mb-3");
-                            panelCM.Controls.Add(rowDiv);
-
-
-                            System.Web.UI.HtmlControls.HtmlGenericControl colDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                            colDiv.ID = "colDiv";
-                            colDiv.Attributes.Add("class", "col-lg-6");
-                            rowDiv.Controls.Add(colDiv);
-
-
-                            Label lblText = new Label();
-                            lblText.Text = question_text;
-                            lblText.CssClass = "form-text";
-                            colDiv.Controls.Add(lblText);
-
-
-                            System.Web.UI.HtmlControls.HtmlGenericControl col6Div = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                            col6Div.ID = "col6Div";
-                            col6Div.Attributes.Add("class", "col-lg-6");
-                            rowDiv.Controls.Add(col6Div);
-
-                            if (question_control == "RadioButton")
+                            RadioButtonList rbList = new RadioButtonList();
+                            foreach (string option in question_options)
                             {
-
-                                RadioButtonList rbList = new RadioButtonList();
-                                foreach (string option in question_options)
-                                {
-                                    ListItem rbOption = new ListItem();
-                                    rbOption.Text = option;
-                                    rbList.Items.Add(rbOption);
-                                }
-                                rbList.CssClass = "form-check";
-                                rbList.ID = question_id.ToString();
-                                rbList.Attributes.Add("name", question_id.ToString());
-                                rbList.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-                                col6Div.Controls.Add(rbList);
-
+                                ListItem rbOption = new ListItem();
+                                rbOption.Text = option;
+                                rbList.Items.Add(rbOption);
                             }
-                            else if (question_control == "TextBox")
-                            {
-                                TextBox txtAnswer = new TextBox();
-                                txtAnswer.CssClass = "form-control";
-                                txtAnswer.ID = question_id.ToString();
-                                txtAnswer.Attributes.Add("name", txtAnswer.ClientIDMode.ToString());
-                                txtAnswer.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-                                col6Div.Controls.Add(txtAnswer);
-                            }
-                            else if (question_control == "DropDownList")
-                            {
-                                DropDownList ddlOptions = new DropDownList();
-                                ddlOptions.CssClass = "dropdown form-control";
-
-                                foreach (string option in question_options)
-                                {
-                                    ddlOptions.Items.Add(option);
-                                    col6Div.Controls.Add(ddlOptions);
-                                }
-                                ddlOptions.ID = question_id.ToString();
-                                ddlOptions.Attributes.Add("name", question_id.ToString());
-                                ddlOptions.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-                            }
-
-                            HiddenField hfQuestionID = new HiddenField();
-                            hfQuestionID.Value = question_id.ToString();
-                            hfQuestionID.ID = "hfQuestionID";
-                            hfQuestionID.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-
-                            //Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
-                            col6Div.Controls.Add(hfQuestionID);
+                            rbList.CssClass = "form-check";
+                            rbList.ID = question_id.ToString();
+                            rbList.Attributes.Add("name", question_id.ToString());
+                            rbList.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                            col6Div.Controls.Add(rbList);
 
                         }
+                        else if (question_control == "TextBox")
+                        {
+                            TextBox txtAnswer = new TextBox();
+                            txtAnswer.CssClass = "form-control";
+                            txtAnswer.ID = question_id.ToString();
+                            txtAnswer.Attributes.Add("name", txtAnswer.ClientIDMode.ToString());
+                            txtAnswer.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                            col6Div.Controls.Add(txtAnswer);
+                        }
+                        else if (question_control == "DropDownList")
+                        {
+                            DropDownList ddlOptions = new DropDownList();
+                            ddlOptions.CssClass = "dropdown form-control";
+
+                            foreach (string option in question_options)
+                            {
+                                ddlOptions.Items.Add(option);
+                                col6Div.Controls.Add(ddlOptions);
+                            }
+                            ddlOptions.ID = question_id.ToString();
+                            ddlOptions.Attributes.Add("name", question_id.ToString());
+                            ddlOptions.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                        }
+
+                        HiddenField hfQuestionID = new HiddenField();
+                        hfQuestionID.Value = question_id.ToString();
+                        hfQuestionID.ID = "hfQuestionID";
+                        hfQuestionID.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+
+                        //Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
+                        col6Div.Controls.Add(hfQuestionID);
+
                     }
                     Session["IDs"] = idArray;
 
@@ -161,87 +159,86 @@ namespace ChangeManagementSystem
 
                     foreach (Question question in requestType.requestQuestions)
                     {
-                        if (question.Question_ID < 92)
+
+                        string question_text = question.Question_Text;
+                        string question_control = question.Question_Control;
+                        int question_id = question.Question_ID;
+                        List<string> question_options = question.Question_Options;
+                        idArray.Add(question_id);
+
+                        System.Web.UI.HtmlControls.HtmlGenericControl rowDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+                        rowDiv.ID = "rowDiv" + Guid.NewGuid().ToString("N");
+                        rowDiv.Attributes.Add("class", "row mt-3 mb-3");
+                        panelCM.Controls.Add(rowDiv);
+
+
+                        System.Web.UI.HtmlControls.HtmlGenericControl colDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+                        colDiv.ID = "colDiv" + Guid.NewGuid().ToString("N");
+                        colDiv.Attributes.Add("class", "col-lg-6");
+                        rowDiv.Controls.Add(colDiv);
+
+
+                        Label lblText = new Label();
+                        lblText.Text = question_text;
+                        lblText.CssClass = "form-text";
+                        colDiv.Controls.Add(lblText);
+
+
+                        System.Web.UI.HtmlControls.HtmlGenericControl col6Div = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+                        col6Div.ID = "col6Div" + Guid.NewGuid().ToString("N");
+                        col6Div.Attributes.Add("class", "col-lg-6");
+                        rowDiv.Controls.Add(col6Div);
+
+                        if (question_control == "RadioButton")
                         {
-                            string question_text = question.Question_Text;
-                            string question_control = question.Question_Control;
-                            int question_id = question.Question_ID;
-                            List<string> question_options = question.Question_Options;
-                            idArray.Add(question_id);
 
-                            System.Web.UI.HtmlControls.HtmlGenericControl rowDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                            rowDiv.ID = "rowDiv" + Guid.NewGuid().ToString("N");
-                            rowDiv.Attributes.Add("class", "row mt-3 mb-3");
-                            panelCM.Controls.Add(rowDiv);
-
-
-                            System.Web.UI.HtmlControls.HtmlGenericControl colDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                            colDiv.ID = "colDiv" + Guid.NewGuid().ToString("N");
-                            colDiv.Attributes.Add("class", "col-lg-6");
-                            rowDiv.Controls.Add(colDiv);
-
-
-                            Label lblText = new Label();
-                            lblText.Text = question_text;
-                            lblText.CssClass = "form-text";
-                            colDiv.Controls.Add(lblText);
-
-
-                            System.Web.UI.HtmlControls.HtmlGenericControl col6Div = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                            col6Div.ID = "col6Div" + Guid.NewGuid().ToString("N");
-                            col6Div.Attributes.Add("class", "col-lg-6");
-                            rowDiv.Controls.Add(col6Div);
-
-                            if (question_control == "RadioButton")
+                            RadioButtonList rbList = new RadioButtonList();
+                            foreach (string option in question_options)
                             {
-
-                                RadioButtonList rbList = new RadioButtonList();
-                                foreach (string option in question_options)
-                                {
-                                    ListItem rbOption = new ListItem();
-                                    rbOption.Text = option;
-                                    rbList.Items.Add(rbOption);
-                                }
-                                rbList.CssClass = "form-check";
-                                rbList.ID = question_id.ToString();
-                                rbList.Attributes.Add("name", question_id.ToString());
-                                rbList.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-                                col6Div.Controls.Add(rbList);
-
+                                ListItem rbOption = new ListItem();
+                                rbOption.Text = option;
+                                rbList.Items.Add(rbOption);
                             }
-                            else if (question_control == "TextBox")
-                            {
-                                TextBox txtAnswer = new TextBox();
-                                txtAnswer.CssClass = "form-control";
-                                txtAnswer.ID = question_id.ToString();
-                                txtAnswer.Attributes.Add("name", txtAnswer.ClientIDMode.ToString());
-                                txtAnswer.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-                                col6Div.Controls.Add(txtAnswer);
-                            }
-                            else if (question_control == "DropDownList")
-                            {
-                                DropDownList ddlOptions = new DropDownList();
-                                ddlOptions.CssClass = "dropdown form-control";
-
-                                foreach (string option in question_options)
-                                {
-                                    ddlOptions.Items.Add(option);
-                                    col6Div.Controls.Add(ddlOptions);
-                                }
-                                ddlOptions.ID = question_id.ToString();
-                                ddlOptions.Attributes.Add("name", question_id.ToString());
-                                ddlOptions.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-                            }
-
-                            HiddenField hfQuestionID = new HiddenField();
-                            hfQuestionID.Value = question_id.ToString();
-                            hfQuestionID.ID = "hfQuestionID" + Guid.NewGuid().ToString("N");
-                            hfQuestionID.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-
-                            //Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
-                            col6Div.Controls.Add(hfQuestionID);
+                            rbList.CssClass = "form-check";
+                            rbList.ID = question_id.ToString();
+                            rbList.Attributes.Add("name", question_id.ToString());
+                            rbList.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                            col6Div.Controls.Add(rbList);
 
                         }
+                        else if (question_control == "TextBox")
+                        {
+                            TextBox txtAnswer = new TextBox();
+                            txtAnswer.CssClass = "form-control";
+                            txtAnswer.ID = question_id.ToString();
+                            txtAnswer.Attributes.Add("name", txtAnswer.ClientIDMode.ToString());
+                            txtAnswer.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                            col6Div.Controls.Add(txtAnswer);
+                        }
+                        else if (question_control == "DropDownList")
+                        {
+                            DropDownList ddlOptions = new DropDownList();
+                            ddlOptions.CssClass = "dropdown form-control";
+
+                            foreach (string option in question_options)
+                            {
+                                ddlOptions.Items.Add(option);
+                                col6Div.Controls.Add(ddlOptions);
+                            }
+                            ddlOptions.ID = question_id.ToString();
+                            ddlOptions.Attributes.Add("name", question_id.ToString());
+                            ddlOptions.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                        }
+
+                        HiddenField hfQuestionID = new HiddenField();
+                        hfQuestionID.Value = question_id.ToString();
+                        hfQuestionID.ID = "hfQuestionID" + Guid.NewGuid().ToString("N");
+                        hfQuestionID.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+
+                        //Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
+                        col6Div.Controls.Add(hfQuestionID);
+
+
                     }
                     Session["IDs"] = idArray;
                 }
@@ -523,7 +520,7 @@ namespace ChangeManagementSystem
             }
             catch (Exception ex)
             {
-                
+
             }
         }
 

@@ -17,3 +17,7 @@
     padding-left: 50px;
     padding-right: 50px;
 }
+
+.pointer{
+   cursor: pointer;
+}
