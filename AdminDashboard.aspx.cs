@@ -56,30 +56,9 @@ namespace ChangeManagementSystem
 
                     string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
                     lblUserName.Text = userName;
+
                     // Not assigned CMs
-
-                    objCommand.CommandType = CommandType.StoredProcedure;
-                    objCommand.CommandText = "GetCMResponsesByStatus";
-                    objCommand.Parameters.Clear();
-                    objCommand.Parameters.AddWithValue("@CMStatus", "not assigned");
-
-                    DataSet cmRequestData = objDB.GetDataSetUsingCmdObj(objCommand);
-                    DataTable dataTable = cmRequestData.Tables[0];
-
-
-                    List<QuestionResponse> responseListNotAssigned = new List<QuestionResponse>();
-
-                    if (dataTable.Rows.Count > 0)
-                    {
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
-                        {
-                            QuestionResponse questionResponse = new QuestionResponse(Convert.ToInt32(dataTable.Rows[i]["CMID"].ToString()), Convert.ToInt32(dataTable.Rows[i]["QuestionID"].ToString()), dataTable.Rows[i]["QuestionResponse"].ToString());
-                            responseListNotAssigned.Add(questionResponse);
-                        }
-                    }
-
-                    Session.Add("responseListNotAssigned", responseListNotAssigned.ToString());
-
+                    
                     objCommandDashboard.CommandType = CommandType.StoredProcedure;
                     objCommandDashboard.CommandText = "GetCMsByStatus";
 
@@ -89,27 +68,7 @@ namespace ChangeManagementSystem
                     rptNotAssigned.DataBind();
 
                     // Assigned CMs
-
-                    objCommand.Parameters.Clear();
-                    objCommand.Parameters.AddWithValue("@CMStatus", "assigned");
-
-                    cmRequestData = objDB.GetDataSetUsingCmdObj(objCommand);
-                    dataTable = cmRequestData.Tables[0];
-
-
-                    List<QuestionResponse> responseListAssigned = new List<QuestionResponse>();
-
-                    if (dataTable.Rows.Count > 0)
-                    {
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
-                        {
-                            QuestionResponse questionResponse = new QuestionResponse(int.Parse(dataTable.Rows[i]["CMID"].ToString()), int.Parse(dataTable.Rows[i]["QuestionID"].ToString()), dataTable.Rows[i]["QuestionResponse"].ToString());
-                            responseListAssigned.Add(questionResponse);
-                        }
-                    }
-
-                    Session.Add("responseListAssigned", responseListAssigned.ToString());
-
+                    
                     objCommandDashboard.Parameters.Clear();
                     objCommandDashboard.Parameters.AddWithValue("@CMStatus", "assigned");
                     dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
@@ -117,27 +76,7 @@ namespace ChangeManagementSystem
                     rptAssigned.DataBind();
 
                     // Pre-Production CMs
-
-                    objCommand.Parameters.Clear();
-                    objCommand.Parameters.AddWithValue("@CMStatus", "pre-production");
-
-                    cmRequestData = objDB.GetDataSetUsingCmdObj(objCommand);
-                    dataTable = cmRequestData.Tables[0];
-
-
-                    List<QuestionResponse> responseListPreProduction = new List<QuestionResponse>();
-
-                    if (dataTable.Rows.Count > 0)
-                    {
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
-                        {
-                            QuestionResponse questionResponse = new QuestionResponse(int.Parse(dataTable.Rows[i]["CMID"].ToString()), int.Parse(dataTable.Rows[i]["QuestionID"].ToString()), dataTable.Rows[i]["QuestionResponse"].ToString());
-                            responseListPreProduction.Add(questionResponse);
-                        }
-                    }
-
-                    Session.Add("responseListPreProduction", responseListPreProduction.ToString());
-
+                    
                     objCommandDashboard.CommandText = "GetPreProdCMs";
                     objCommandDashboard.Parameters.Clear();
                     dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
@@ -145,26 +84,6 @@ namespace ChangeManagementSystem
                     rptPreProduction.DataBind();
 
                     // Completed CMs
-
-                    objCommand.Parameters.Clear();
-                    objCommand.Parameters.AddWithValue("@CMStatus", "completed");
-
-                    cmRequestData = objDB.GetDataSetUsingCmdObj(objCommand);
-                    dataTable = cmRequestData.Tables[0];
-
-
-                    List<QuestionResponse> responseListCompleted = new List<QuestionResponse>();
-
-                    if (dataTable.Rows.Count > 0)
-                    {
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
-                        {
-                            QuestionResponse questionResponse = new QuestionResponse(int.Parse(dataTable.Rows[i]["CMID"].ToString()), int.Parse(dataTable.Rows[i]["QuestionID"].ToString()), dataTable.Rows[i]["QuestionResponse"].ToString());
-                            responseListNotAssigned.Add(questionResponse);
-                        }
-                    }
-
-                    Session.Add("responseListCompleted", responseListCompleted.ToString());
 
                     objCommandDashboard.CommandText = "GetCompletedCMs";
                     objCommandDashboard.Parameters.Clear();
@@ -361,8 +280,11 @@ namespace ChangeManagementSystem
                 {
                     status.Attributes.Add("class", "visibility-hidden");
                     statusChangeControls.Attributes.Clear();
+                    ddlCMStatus.Visible = true;
+                    lblCMStatus.Text = "Update Status";
 
                     List<string> statusList = new List<string>();
+                    statusList.Add("--Select a Status--");
                     statusList.Add("Assign to Me");
                     statusList.Add("CM Failed");
                     ddlCMStatus.DataSource = statusList;
@@ -386,8 +308,11 @@ namespace ChangeManagementSystem
                 {
                     status.Attributes.Add("class", "visibility-hidden");
                     statusChangeControls.Attributes.Clear();
+                    ddlCMStatus.Visible = true;
+                    lblCMStatus.Text = "Update Status";
 
                     List<string> statusList = new List<string>();
+                    statusList.Add("--Select a Status--");
                     statusList.Add("Change Implemented in Pre-Production");
                     statusList.Add("CM Failed");
                     ddlCMStatus.DataSource = statusList;
@@ -413,7 +338,8 @@ namespace ChangeManagementSystem
                 else
                 {
                     status.Attributes.Add("class", "visibility-hidden");
-                    ddlCMStatus.Attributes.Add("class", "visibility-hidden");
+                    statusChangeControls.Attributes.Clear();
+                    ddlCMStatus.Visible = false;
                     lblCMStatus.Text = "Pending User Testing of Changes";
                     lblCMStatus.Attributes.Clear();
                 }
@@ -438,9 +364,11 @@ namespace ChangeManagementSystem
                 {
                     status.Attributes.Add("class", "visibility-hidden");
                     statusChangeControls.Attributes.Clear();
+                    ddlCMStatus.Visible = true;
                     lblCMStatus.Text = "Update Status";
 
                     List<string> statusList = new List<string>();
+                    statusList.Add("--Select a Status--");
                     statusList.Add("Change Implemented in Production");
                     statusList.Add("CM Failed");
                     ddlCMStatus.DataSource = statusList;
@@ -504,6 +432,10 @@ namespace ChangeManagementSystem
                 objCommand.Parameters.AddWithValue("@CMStatus", "Production");
 
                 objCommandEmail.Parameters.AddWithValue("@Type", "Implemented in Prod");
+            }
+            else if (ddlCMStatus.SelectedValue == "--Select a Status--")
+            {
+                Server.Transfer("AdminDashboard.aspx");
             }
 
             objDB.DoUpdateUsingCmdObj(objCommand); // Updating CM Status
