@@ -175,12 +175,6 @@ namespace ChangeManagementSystem
             RequestTypeData requestTypeData = new RequestTypeData();
             Request requestType = requestTypeData.GetRequestTypeData(RequestID);
 
-
-            System.Web.UI.HtmlControls.HtmlGenericControl colDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-            colDiv.ID = "colDiv" + Guid.NewGuid().ToString("N");
-            colDiv.Attributes.Add("class", "col-lg-6");
-            rowDiv.Controls.Add(colDiv);
-
             spanCM.InnerHtml = requestType.RequestName;
             //to write to session
             List<int> idArray = new List<int>();
