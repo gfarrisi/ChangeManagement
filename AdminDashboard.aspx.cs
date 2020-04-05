@@ -56,30 +56,9 @@ namespace ChangeManagementSystem
 
                     string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
                     lblUserName.Text = userName;
+
                     // Not assigned CMs
-
-                    objCommand.CommandType = CommandType.StoredProcedure;
-                    objCommand.CommandText = "GetCMResponsesByStatus";
-                    objCommand.Parameters.Clear();
-                    objCommand.Parameters.AddWithValue("@CMStatus", "not assigned");
-
-                    DataSet cmRequestData = objDB.GetDataSetUsingCmdObj(objCommand);
-                    DataTable dataTable = cmRequestData.Tables[0];
-
-
-                    List<QuestionResponse> responseListNotAssigned = new List<QuestionResponse>();
-
-                    if (dataTable.Rows.Count > 0)
-                    {
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
-                        {
-                            QuestionResponse questionResponse = new QuestionResponse(Convert.ToInt32(dataTable.Rows[i]["CMID"].ToString()), Convert.ToInt32(dataTable.Rows[i]["QuestionID"].ToString()), dataTable.Rows[i]["QuestionResponse"].ToString());
-                            responseListNotAssigned.Add(questionResponse);
-                        }
-                    }
-
-                    Session.Add("responseListNotAssigned", responseListNotAssigned.ToString());
-
+                    
                     objCommandDashboard.CommandType = CommandType.StoredProcedure;
                     objCommandDashboard.CommandText = "GetCMsByStatus";
 
@@ -89,27 +68,7 @@ namespace ChangeManagementSystem
                     rptNotAssigned.DataBind();
 
                     // Assigned CMs
-
-                    objCommand.Parameters.Clear();
-                    objCommand.Parameters.AddWithValue("@CMStatus", "assigned");
-
-                    cmRequestData = objDB.GetDataSetUsingCmdObj(objCommand);
-                    dataTable = cmRequestData.Tables[0];
-
-
-                    List<QuestionResponse> responseListAssigned = new List<QuestionResponse>();
-
-                    if (dataTable.Rows.Count > 0)
-                    {
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
-                        {
-                            QuestionResponse questionResponse = new QuestionResponse(int.Parse(dataTable.Rows[i]["CMID"].ToString()), int.Parse(dataTable.Rows[i]["QuestionID"].ToString()), dataTable.Rows[i]["QuestionResponse"].ToString());
-                            responseListAssigned.Add(questionResponse);
-                        }
-                    }
-
-                    Session.Add("responseListAssigned", responseListAssigned.ToString());
-
+                    
                     objCommandDashboard.Parameters.Clear();
                     objCommandDashboard.Parameters.AddWithValue("@CMStatus", "assigned");
                     dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
@@ -117,27 +76,7 @@ namespace ChangeManagementSystem
                     rptAssigned.DataBind();
 
                     // Pre-Production CMs
-
-                    objCommand.Parameters.Clear();
-                    objCommand.Parameters.AddWithValue("@CMStatus", "pre-production");
-
-                    cmRequestData = objDB.GetDataSetUsingCmdObj(objCommand);
-                    dataTable = cmRequestData.Tables[0];
-
-
-                    List<QuestionResponse> responseListPreProduction = new List<QuestionResponse>();
-
-                    if (dataTable.Rows.Count > 0)
-                    {
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
-                        {
-                            QuestionResponse questionResponse = new QuestionResponse(int.Parse(dataTable.Rows[i]["CMID"].ToString()), int.Parse(dataTable.Rows[i]["QuestionID"].ToString()), dataTable.Rows[i]["QuestionResponse"].ToString());
-                            responseListPreProduction.Add(questionResponse);
-                        }
-                    }
-
-                    Session.Add("responseListPreProduction", responseListPreProduction.ToString());
-
+                    
                     objCommandDashboard.CommandText = "GetPreProdCMs";
                     objCommandDashboard.Parameters.Clear();
                     dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
@@ -146,33 +85,11 @@ namespace ChangeManagementSystem
 
                     // Completed CMs
 
-                    objCommand.Parameters.Clear();
-                    objCommand.Parameters.AddWithValue("@CMStatus", "completed");
-
-                    cmRequestData = objDB.GetDataSetUsingCmdObj(objCommand);
-                    dataTable = cmRequestData.Tables[0];
-
-
-                    List<QuestionResponse> responseListCompleted = new List<QuestionResponse>();
-
-                    if (dataTable.Rows.Count > 0)
-                    {
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
-                        {
-                            QuestionResponse questionResponse = new QuestionResponse(int.Parse(dataTable.Rows[i]["CMID"].ToString()), int.Parse(dataTable.Rows[i]["QuestionID"].ToString()), dataTable.Rows[i]["QuestionResponse"].ToString());
-                            responseListNotAssigned.Add(questionResponse);
-                        }
-                    }
-
-                    Session.Add("responseListCompleted", responseListCompleted.ToString());
-
                     objCommandDashboard.CommandText = "GetCompletedCMs";
                     objCommandDashboard.Parameters.Clear();
                     dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
                     rptCompleted.DataSource = dashboardData;
                     rptCompleted.DataBind();
-
-
                 }
                 else
                 {
@@ -184,7 +101,9 @@ namespace ChangeManagementSystem
                     }
                     Session["SessionId"] = System.Guid.NewGuid().ToString();
                     ViewState["ViewStateId"] = Session["SessionId"].ToString();
-                    if (hiddenCMClicked.Value != null && IsPageRefresh == false)
+
+                    if (hiddenCMClicked.Value != "" && IsPageRefresh == false)
+
                     {
                         Page.MaintainScrollPositionOnPostBack = true;
                         objDB = new DBConnect();
@@ -197,7 +116,21 @@ namespace ChangeManagementSystem
                         DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
                         rptCMStatus.DataSource = dataSet;
                         rptCMStatus.DataBind();
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#exampleModalLong').modal('show');", true);
+
+                        // only assign false if attachment link was clicked
+                        if (downloadFile.Value == "true")
+                        {
+                            isModalOpen.Value = "false";
+                        }
+
+                        if (isModalOpen.Value == "true")
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#exampleModalLong').modal('show');", true);
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
+                        }
 
                         rptModalHeader.DataSource = dataSet;
                         rptModalHeader.DataBind();
@@ -241,6 +174,12 @@ namespace ChangeManagementSystem
                             pnlComments.Visible = false;
                             pnlNoComments.Visible = true;
                         }
+
+                        Session["hiddenCMClickedS"] = hiddenCMClicked.Value; //stores CMID for cm to pdf page
+                    }
+                    else
+                    {
+                        Response.Redirect(Request.RawUrl);
                     }
                 }
             }
@@ -332,15 +271,25 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
-                lblCMStatus.Visible = false;
-                ddlCMStatus.Visible = true;
+                if (((HiddenField)e.Item.FindControl("selectedCMUserID")).Value == Session["UserID"].ToString())
+                {
+                    status.Attributes.Add("class", "visibility-hidden");
+                    statusChangeControls.Attributes.Add("class", "visibility-hidden");
+                }
+                else
+                {
+                    status.Attributes.Add("class", "visibility-hidden");
+                    statusChangeControls.Attributes.Clear();
+                    ddlCMStatus.Visible = true;
+                    lblCMStatus.Text = "Update Status";
 
-                List<string> statusList = new List<string>();
-                statusList.Add("Assign to Me");
-                statusList.Add("CM Failed");
-                ddlCMStatus.DataSource = statusList;
-                ddlCMStatus.DataBind();
-
+                    List<string> statusList = new List<string>();
+                    statusList.Add("--Select a Status--");
+                    statusList.Add("Assign to Me");
+                    statusList.Add("CM Failed");
+                    ddlCMStatus.DataSource = statusList;
+                    ddlCMStatus.DataBind();
+                }
 
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Assigned")
@@ -350,14 +299,25 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
-                lblCMStatus.Visible = false;
-                ddlCMStatus.Visible = true;
+                if (((HiddenField)e.Item.FindControl("selectedCMUserID")).Value == Session["UserID"].ToString())
+                {
+                    status.Attributes.Add("class", "visibility-hidden");
+                    statusChangeControls.Attributes.Add("class", "visibility-hidden");
+                }
+                else
+                {
+                    status.Attributes.Add("class", "visibility-hidden");
+                    statusChangeControls.Attributes.Clear();
+                    ddlCMStatus.Visible = true;
+                    lblCMStatus.Text = "Update Status";
 
-                List<string> statusList = new List<string>();
-                statusList.Add("Change Implemented in Pre-Production");
-                statusList.Add("CM Failed");
-                ddlCMStatus.DataSource = statusList;
-                ddlCMStatus.DataBind();
+                    List<string> statusList = new List<string>();
+                    statusList.Add("--Select a Status--");
+                    statusList.Add("Change Implemented in Pre-Production");
+                    statusList.Add("CM Failed");
+                    ddlCMStatus.DataSource = statusList;
+                    ddlCMStatus.DataBind();
+                }
 
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production Needs Testing")
@@ -367,37 +327,64 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
-                ddlCMStatus.Visible = false;
-                lblCMStatus.Text = "Pending User Testing of Changes";
-                lblCMStatus.Visible = true;
+                if (((HiddenField)e.Item.FindControl("selectedCMUserID")).Value == Session["UserID"].ToString())
+                {
+                    statusChangeControls.Attributes.Add("class", "visibility-hidden");
+
+                    status.Attributes.Clear();
+                    preprod.Attributes.Clear();
+                    preprodTested.Attributes.Add("class", "visibility-hidden");
+                }
+                else
+                {
+                    status.Attributes.Add("class", "visibility-hidden");
+                    statusChangeControls.Attributes.Clear();
+                    ddlCMStatus.Visible = false;
+                    lblCMStatus.Text = "Pending User Testing of Changes";
+                    lblCMStatus.Attributes.Clear();
+                }
+
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production")
             {
-                ddlCMStatus.Visible = true;
-                lblCMStatus.Text = "Update Status";
-                lblCMStatus.Visible = true;
-
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 75%");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
-                List<string> statusList = new List<string>();
-                statusList.Add("Change Implemented in Production");
-                statusList.Add("CM Failed");
-                ddlCMStatus.DataSource = statusList;
-                ddlCMStatus.DataBind();
+                if (((HiddenField)e.Item.FindControl("selectedCMUserID")).Value == Session["UserID"].ToString())
+                {
+                    statusChangeControls.Attributes.Add("class", "visibility-hidden");
+
+                    status.Attributes.Clear();
+                    preprodTested.Attributes.Clear();
+                    preprod.Attributes.Add("class", "visibility-hidden");
+                }
+                else
+                {
+                    status.Attributes.Add("class", "visibility-hidden");
+                    statusChangeControls.Attributes.Clear();
+                    ddlCMStatus.Visible = true;
+                    lblCMStatus.Text = "Update Status";
+
+                    List<string> statusList = new List<string>();
+                    statusList.Add("--Select a Status--");
+                    statusList.Add("Change Implemented in Production");
+                    statusList.Add("CM Failed");
+                    ddlCMStatus.DataSource = statusList;
+                    ddlCMStatus.DataBind();
+                }
 
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Completed")
             {
-                ddlCMStatus.Visible = false;
-                lblCMStatus.Visible = false;
-
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 100%");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "100");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+
+                statusChangeControls.Attributes.Add("class", "visibility-hidden");
+                status.Attributes.Add("class", "visibility-hidden");
 
             }
 
@@ -446,6 +433,10 @@ namespace ChangeManagementSystem
 
                 objCommandEmail.Parameters.AddWithValue("@Type", "Implemented in Prod");
             }
+            else if (ddlCMStatus.SelectedValue == "--Select a Status--")
+            {
+                Server.Transfer("AdminDashboard.aspx");
+            }
 
             objDB.DoUpdateUsingCmdObj(objCommand); // Updating CM Status
 
@@ -482,7 +473,7 @@ namespace ChangeManagementSystem
             if (Validation.ValidateForm(txtNewComment.Text) && IsPageRefresh == false)
             {
                 DateTime dt = DateTime.Now;
-                string CMID = hiddenCMClicked.Value;             
+                string CMID = hiddenCMClicked.Value;
                 //insert new comment into cm
                 DBConnect ObjDb = new DBConnect();
                 SqlCommand objCommand = new SqlCommand();
@@ -565,5 +556,190 @@ namespace ChangeManagementSystem
             rptCompleted.DataSource = dashboardData;
             rptCompleted.DataBind();
         }
+
+        protected void btnLink1_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(3, 16);
+            isModalOpen.Value = "false";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
+        }
+
+        protected void btnLink2_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(4, 17);
+            isModalOpen.Value = "false";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
+        }
+
+        protected void btnLink3_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(5, 18);
+            isModalOpen.Value = "false";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
+        }
+
+        protected void btnLink4_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(6, 19);
+            isModalOpen.Value = "false";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
+        }
+
+        protected void btnLink5_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(7, 20);
+            isModalOpen.Value = "false";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
+        }
+
+        protected void DownloadAttachment(int imgCol, int nameCol)
+        {
+            objDB = new DBConnect();
+            objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+
+            int CMID = Convert.ToInt32(hiddenCMClicked.Value);
+            objCommand.CommandText = "GetCMByID";
+            objCommand.Parameters.AddWithValue("@CMID", CMID);
+            DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            //get data
+            DataTable dt = dataSet.Tables[0];
+            byte[] imgByte = (byte[])dt.Rows[0][imgCol];
+            string imgName = (string)dt.Rows[0][nameCol];
+
+            if ((imgByte != null) && (imgName != null))
+            {
+                // turn byte into downloaded file
+                System.IO.File.WriteAllBytes(@"W:\CIS4396-S08\tug94028\" + imgName, imgByte);
+
+                attachmentModal(imgName);
+            }
+            else
+            {
+                string name = "noname";
+                attachmentModal(name);
+            }
+        }
+
+        protected void rptScreenshots_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            objDB = new DBConnect();
+            objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+
+            int CMID = Convert.ToInt32(Session["hiddenCMClickedS"]);
+            objCommand.CommandText = "GetCMByID";
+            objCommand.Parameters.AddWithValue("@CMID", CMID);
+            DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            //get data
+            DataTable dt = dataSet.Tables[0];
+
+            // get aspx control on page for the link
+            LinkButton l2 = (LinkButton)e.Item.FindControl("btnLink2");
+            LinkButton l3 = (LinkButton)e.Item.FindControl("btnLink3");
+            LinkButton l4 = (LinkButton)e.Item.FindControl("btnLink4");
+            LinkButton l5 = (LinkButton)e.Item.FindControl("btnLink5");
+
+            if (dt.Rows[0][7] != DBNull.Value)
+            {
+                l5.Visible = true;
+                l4.Visible = true;
+                l3.Visible = true;
+                l2.Visible = true;
+            }
+            else if (dt.Rows[0][6] != DBNull.Value)
+            {
+                l4.Visible = true;
+                l3.Visible = true;
+                l2.Visible = true;
+            }
+            else if (dt.Rows[0][5] != DBNull.Value)
+            {
+                l3.Visible = true;
+                l2.Visible = true;
+            }
+            else if (dt.Rows[0][4] != DBNull.Value)
+            {
+                l2.Visible = true;
+            }
+        }
+
+
+        protected void btnSubmitTesting_Click(object sender, EventArgs e)
+        {
+            objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+
+            if (chkPreProd.Checked == true)
+            {
+                objCommand.CommandText = "UpdateCMStatus";
+
+                objCommand.Parameters.Clear();
+                objCommand.Parameters.AddWithValue("@CMID", hiddenCMClicked.Value);
+                objCommand.Parameters.AddWithValue("@CMStatus", "Pre-Production");
+
+                objDB.DoUpdateUsingCmdObj(objCommand);
+
+                objCommand.Parameters.Clear();
+                objCommand.CommandText = "GetCMAndAdminAndTypeByID";
+                objCommand.Parameters.AddWithValue("@CMID", hiddenCMClicked.Value);
+                DataSet cmData = objDB.GetDataSetUsingCmdObj(objCommand);
+                DataTable cmTable = cmData.Tables[0];
+
+                SqlCommand objCommandEmail = new SqlCommand();
+                objCommandEmail.CommandType = CommandType.StoredProcedure;
+                objCommandEmail.CommandText = "GetEmailByType";
+                objCommandEmail.Parameters.AddWithValue("@Type", "Confirmed Testing");
+                DataSet emailData = objDB.GetDataSetUsingCmdObj(objCommandEmail);
+                DataTable emailTable = emailData.Tables[0];
+
+                Email objEmail = new Email();
+                String strTO = "tug52322@temple.edu"; //  cmTable.Rows[0]["Email"].ToString(); 
+                String strFROM = "noreply@temple.edu";
+                String strSubject = "CM #{" + hiddenCMClicked.Value + "}: " + emailTable.Rows[0]["Subject"].ToString();
+                String strMessage = emailTable.Rows[0]["Body"].ToString();
+
+                try
+                {
+                    objEmail.SendMail(strTO, strFROM, strSubject, strMessage);
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+                Server.Transfer("UserDashboard.aspx");
+            }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminDashboard.aspx");
+        }
+
+        protected void attachmentModal(string name)
+        {
+            if (name != "noname")
+            {
+                Label1.InnerText = name + " has successfully downloaded!";
+            }
+            else
+            {
+                Label1.InnerText = "The attachment has failed to download. Please try again.";
+            }
+
+            //isModalOpen.Value = "false";
+            //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
+
+        }
     }
+        
 }

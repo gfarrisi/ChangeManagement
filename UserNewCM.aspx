@@ -5,7 +5,7 @@
         <a class="navbar-brand " href="UserDashboard.aspx">
             <img src="T.png" alt="" width="40">
         </a>
-        <a class="navbar-brand" href="UserDashboard.aspx" >CRM Recruit: Change Management</a>
+        <a class="navbar-brand" href="UserDashboard.aspx">CRM Recruit: Change Management</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,7 +46,7 @@
 
                 <h1 class="text-center mb-5"><span id="spanCM" runat="server"></span></h1>
                 <div style="text-align: center">
-                    <asp:Label runat="server" ID="lblErrorMessage" Visible="false" Text="*Please submit a response for all required fields!" Font-Size="Large" ForeColor="Red"></asp:Label>
+                    <asp:Label runat="server" ID="lblErrorMessage" Visible="false" Text="Please submit a response for all required fields!" Font-Size="Large" ForeColor="Red"></asp:Label>
                 </div>
                 <div style="margin: 0 auto; max-width: 600px;">
                     <div class="row mt-3 mb-3">
@@ -76,9 +76,14 @@
                             <div class="col-lg-6">
                                 <asp:Label ID="lblUpload" runat="server" Text="Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots. (Maximum of 5)" CssClass="form-text"></asp:Label>
                             </div>
+
                             <div class="col-lg-6">
-                                <asp:FileUpload ID="fuScreenshots" CssClass="form-control-file" runat="server" ClientIDMode="Static"></asp:FileUpload>
+                                <asp:FileUpload ID="fuScreenshots" CssClass="form-control-file" runat="server" ClientIDMode="Static" AllowMultiple="true"/>
+                                <asp:Label ID="lblScreenshotsError" runat="server" Visible="false" Font-Size="Large" ForeColor="Red">You are only permitted to submit files with a .pdf, .png, .jpg, .xls, .xlsx, .doc, .docx, or .csv file extension!</asp:Label>
                             </div>
+
+
+
                         </div>
                         <div class="row mt-3 mb-3">
                             <div class="col-lg-6">

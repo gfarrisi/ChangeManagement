@@ -35,18 +35,10 @@
         <asp:ScriptManager ID="scriptman" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
         <div class="container mt-5" style="height: 100%;">
             <h2 id="requestHistory">Your Request History</h2>
-            <div class="card mb-4 w-50" id="searchBar">
-                <div class="input-group">
-                    <asp:TextBox ID="txtSearch" CssClass="form-control" runat="server" placeholder="Search for..."></asp:TextBox>
-                    <span class="input-group-btn">
-                        <asp:Button CssClass="btn btn-dark" ID="btnSearch" Text="Search" runat="server" OnClick="btnSearch_Click" />
-                    </span>
-                </div>
-            </div>
-            <div style="overflow-y: scroll; height: 50%;">
+           
                 <div class="gv">
                     <asp:HiddenField runat="server" ID="hf" ClientIDMode="Static" />
-                    <asp:GridView ID="gvUserRequests" runat="server" CssClass="table" AutoGenerateColumns="False" AllowSorting="True" BorderColor="#CCCCCC" OnSorting="OnSorting" PageSize="10" AllowCustomPaging="False" AllowPaging="True" OnPageIndexChanging="gvUserRequests_PageIndexChanging">
+                    <asp:GridView ID="gvUserRequests" runat="server" CssClass="datatable" AutoGenerateColumns="False" BorderColor="#CCCCCC" AllowPaging="false" OnRowDataBound="gvUserRequests_RowDataBound">
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
                         <Columns>
                             <asp:BoundField DataField="CMID" ItemStyle-CssClass="thead-dark" HeaderText="CM ID" ReadOnly="true" SortExpression="CMID">
@@ -86,7 +78,7 @@
             </div>
 
             <button onclick="exportTableToCSV('Requests.csv')" class="btn btnDownload mt-4">Export Table to CSV File</button>
-        </div>
+
         <br />
         <br />
         <br />
@@ -208,7 +200,7 @@
                                     <br />
                                 </div>
                                 <br />
-                                <asp:Repeater ID="rptScreenshots" runat="server">
+                                <asp:Repeater ID="rptScreenshots" runat="server" OnItemDataBound="rptScreenshots_ItemDataBound">
                                     <ItemTemplate>
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -223,16 +215,15 @@
                                                 <p><b>Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots</b></p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p>
-                                                    <a href="">File 1https://drive.google.com/open?id=1gomIbt8yJA2pn0xY06-
-                                                    PxS5AZFHYmP2k
-                                                    File 2https://drive.google.com/open?id=1hV2JPhOHB47aEy7clxsPuWOiDbad0Ze
-                                                    File 3https://drive.google.com/open?id=1L--
-                                                    Dnd6dLVQGhCP3hbkZ5Rs-z0iwJUwm
-                                                    File 4https://drive.google.com/open?
-                                                    id=16nZJaBWjqmG5642crodKkUYnHYhfJE2U
-                                                    </a>
-                                                </p>
+                                                <asp:LinkButton runat="server" ID="btnLink1" OnClick="btnLink1_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment1Name") %></asp:LinkButton>
+                                                <br />
+                                                <asp:LinkButton runat="server" ID="btnLink2" Visible="false" OnClick="btnLink2_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment2Name") %></asp:LinkButton>
+                                                <br />
+                                                <asp:LinkButton runat="server" ID="btnLink3" Visible="false" OnClick="btnLink3_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment3Name") %></asp:LinkButton>
+                                                <br />
+                                                <asp:LinkButton runat="server" ID="btnLink4" Visible="false" OnClick="btnLink4_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment4Name") %></asp:LinkButton>
+                                                <br />
+                                                <asp:LinkButton runat="server" ID="btnLink5" Visible="false" OnClick="btnLink5_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment5Name") %></asp:LinkButton>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -346,6 +337,29 @@
                 </div>
             </div>
         </div>
+
+         <!-- Modal data-toggle="modal" data-target="#warningModal"-->
+        <div class="modal fade" id="mdlCMAttachment" tabindex="-1" role="dialog" aria-labelledby="mdlCMAttachment" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="mdlCMAttachmentLabel">Attachment Download</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-lg-12">
+                            <label id="Label1" style="line-height: 50px;" runat="server">The attachment has been downloaded!</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btnAttachment" CssClass="btn btn-secondary" BorderStyle="None" OnClick="btnAttachment_Click" Text="Close" runat="server" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
     </form>
     <script>
         function RecordClickedCM(t) {
@@ -386,7 +400,10 @@
         }
 
         $(document).ready(function () {
-            $(".dropdown-toggle").dropdown();
+            $('.datatable').DataTable({
+                "scrollY": "800px",
+                "scrollCollapse": true
+            });
         });
     </script>
 

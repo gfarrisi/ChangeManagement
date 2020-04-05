@@ -22,24 +22,6 @@ namespace ChangeManagementSystem {
         protected global::System.Web.UI.WebControls.Label lblUserName;
         
         /// <summary>
-        /// txtSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearch;
-        
-        /// <summary>
-        /// btnSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
-        
-        /// <summary>
         /// hf control.
         /// </summary>
         /// <remarks>
@@ -85,6 +67,15 @@ namespace ChangeManagementSystem {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblAccountType;
         
         /// <summary>
+        /// lblCollege control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCollege;
+        
+        /// <summary>
         /// lblError control.
         /// </summary>
         /// <remarks>
@@ -110,6 +101,15 @@ namespace ChangeManagementSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlType;
+        
+        /// <summary>
+        /// ddlCollege control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCollege;
         
         /// <summary>
         /// btnManual control.
@@ -175,13 +175,13 @@ namespace ChangeManagementSystem {
         protected global::System.Web.UI.WebControls.Label lblEmail;
         
         /// <summary>
-        /// lblCollege control.
+        /// lblCollege2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCollege;
+        protected global::System.Web.UI.WebControls.Label lblCollege2;
         
         /// <summary>
         /// lblError2 control.
@@ -238,13 +238,13 @@ namespace ChangeManagementSystem {
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
-        /// txtCollege control.
+        /// ddlCollege2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCollege;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCollege2;
         
         /// <summary>
         /// btnAdd2 control.

@@ -18,6 +18,7 @@ namespace ChangeManagementSystem
 {
     public partial class ViewAllRequests : System.Web.UI.Page
     {
+        DBConnect objDB;
         SqlCommand objCommand = new SqlCommand();
         DBConnect db = new DBConnect();
         DataSet ds = new DataSet();
@@ -33,6 +34,25 @@ namespace ChangeManagementSystem
             {
 
                 if (!IsPostBack)
+                {
+                    ViewState["ViewStateId"] = System.Guid.NewGuid().ToString();
+                    Session["SessionId"] = ViewState["ViewStateId"].ToString();
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetUserByID";
+                    objCommand.Parameters.Clear();
+                    objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+                    DataSet userData = db.GetDataSetUsingCmdObj(objCommand);
+                    DataTable dt = userData.Tables[0];
+                    string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
+                    lblUserName.Text = userName;
+
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetAllCMsAdminView";
+                    objCommand.Parameters.Clear();
+                    this.BindGrid();
+                }
+                else
                 {
                     ViewState["ViewStateId"] = System.Guid.NewGuid().ToString();
                     Session["SessionId"] = ViewState["ViewStateId"].ToString();
@@ -85,11 +105,6 @@ namespace ChangeManagementSystem
 
             return isAllowed;
         }
-        private string SortDirection
-        {
-            get { return ViewState["SortDirection"] != null ? ViewState["SortDirection"].ToString() : "ASC"; }
-            set { ViewState["SortDirection"] = value; }
-        }
 
         private void BindGrid(string sortExpression = null)
         {
@@ -107,77 +122,15 @@ namespace ChangeManagementSystem
                     {
                         sda.SelectCommand = cmd;
                         sda.Fill(dt);
-                        if (sortExpression != null)
-                        {
-                            DataView dv = dt.AsDataView();
-                            this.SortDirection = this.SortDirection == "ASC" ? "DESC" : "ASC";
+ 
+                        gvAllRequests.DataSource = dt;
 
-                            dv.Sort = sortExpression + " " + this.SortDirection;
-                            gvAllRequests.DataSource = dv;
-                        }
-                        else
-                        {
-                            gvAllRequests.DataSource = dt;
-                        }
                         gvAllRequests.DataBind();
                     }
                 }
             }
         }
-        protected void OnSorting(object sender, GridViewSortEventArgs e)
-        {
-            this.BindGrid(e.SortExpression);
-        }
-
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            DBConnect db2 = new DBConnect();
-            SqlCommand objCommand2 = new SqlCommand();
-
-            if (txtSearch.Text == "")
-            {
-                objCommand2.CommandType = CommandType.StoredProcedure;
-                objCommand2.CommandText = "GetAllCMsAdminView";
-
-                DataSet cmData = db2.GetDataSetUsingCmdObj(objCommand2);
-                DataTable dataTable = cmData.Tables[0];
-
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    string ID = row["CMID"].ToString();
-                    string user = row["UserID"].ToString();
-                    string admin = row["AdminID"].ToString();
-                    string Name = row["CMProjectName"].ToString();
-                    string question = row["Question/Comments"].ToString();
-                    string type = row["RequestTypeName"].ToString();
-                    string college = row["College"].ToString();
-                    string status = row["CMStatus"].ToString();
-                    string date = row["LastUpdateDate"].ToString();
-
-                    ArrayList listDB = new ArrayList();
-                    listDB.Add(new allRequests(ID, user, admin, college, type, status, date));
-                    gvAllRequests.DataSource = dataTable;
-                    gvAllRequests.DataBind();
-                }
-            }
-            else
-            {
-                string search = txtSearch.Text;
-                objCommand2.Parameters.Clear();
-                objCommand2.CommandType = CommandType.StoredProcedure;
-                objCommand2.CommandText = "SearchAllCMsAdminView";
-                SqlParameter inputParameter = new SqlParameter("@Search", search);
-                inputParameter.Direction = ParameterDirection.Input;
-                inputParameter.SqlDbType = SqlDbType.VarChar;
-                inputParameter.Size = 50;
-                objCommand2.Parameters.Add(inputParameter);
-
-                DataSet searchSet = db2.GetDataSetUsingCmdObj(objCommand2);
-                gvAllRequests.DataSource = searchSet;
-                gvAllRequests.DataBind();
-            }
-        }
-
+       
         protected void rptCMStatus_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Not Assigned")
@@ -388,6 +341,7 @@ namespace ChangeManagementSystem
             {
                 Page.MaintainScrollPositionOnPostBack = true;
                 int CMID = Int32.Parse(name);
+                Session["hiddenCM"] = CMID;
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "GetCMByID";
                 objCommand.Parameters.Clear();
@@ -450,19 +404,130 @@ namespace ChangeManagementSystem
             }
         }
 
-        protected void gvAllRequests_RowDataBound(object sender, GridViewRowEventArgs e)
+
+        protected void btnLink1_Click(object sender, EventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
+            DownloadAttachment(3, 16);
+        }
+
+        protected void btnLink2_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(4, 17);
+        }
+
+        protected void btnLink3_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(5, 18);
+        }
+
+        protected void btnLink4_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(6, 19);
+        }
+
+        protected void btnLink5_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(7, 20);
+        }
+
+        protected void DownloadAttachment(int imgCol, int nameCol)
+        {
+            objDB = new DBConnect();
+            objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+
+            int CMID = Convert.ToInt32(Session["hiddenCM"]);
+            objCommand.CommandText = "GetCMByID";
+            objCommand.Parameters.AddWithValue("@CMID", CMID);
+            DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            //get data
+            DataTable dt = dataSet.Tables[0];
+            byte[] imgByte = (byte[])dt.Rows[0][imgCol];
+            string imgName = (string)dt.Rows[0][nameCol];
+
+            if ((imgByte != null) && (imgName != null))
             {
-                if (e.Row.RowIndex == 0)
-                    e.Row.Style.Add("height", "50px");
+                // turn byte into downloaded file
+                System.IO.File.WriteAllBytes(@"W:\CIS4396-S08\tug94028\" + imgName, imgByte);
+
+                attachmentModal(imgName);
+            }
+            else
+            {
+                string name = "noname";
+                attachmentModal(name);
             }
         }
 
-        protected void gvAllRequests_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void rptScreenshots_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            gvAllRequests.PageIndex = e.NewPageIndex;
-            this.BindGrid();
+            objDB = new DBConnect();
+            objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+
+            int CMID = Convert.ToInt32(Session["hiddenCM"]);
+            objCommand.CommandText = "GetCMByID";
+            objCommand.Parameters.AddWithValue("@CMID", CMID);
+            DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            //get data
+            DataTable dt = dataSet.Tables[0];
+
+            LinkButton l2 = (LinkButton)e.Item.FindControl("btnLink2");
+            LinkButton l3 = (LinkButton)e.Item.FindControl("btnLink3");
+            LinkButton l4 = (LinkButton)e.Item.FindControl("btnLink4");
+            LinkButton l5 = (LinkButton)e.Item.FindControl("btnLink5");
+
+            if (dt.Rows[0][7] != DBNull.Value)
+            {
+                l5.Visible = true;
+                l4.Visible = true;
+                l3.Visible = true;
+                l2.Visible = true;
+            }
+            else if (dt.Rows[0][6] != DBNull.Value)
+            {
+                l4.Visible = true;
+                l3.Visible = true;
+                l2.Visible = true;
+            }
+            else if (dt.Rows[0][5] != DBNull.Value)
+            {
+                l3.Visible = true;
+                l2.Visible = true;
+            }
+            else if (dt.Rows[0][4] != DBNull.Value)
+            {
+                l2.Visible = true;
+            }
+        }
+
+        protected void btnAttachment_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ViewAllRequests.aspx");
+        }
+
+        protected void attachmentModal(string name)
+        {
+            if (name != "noname")
+            {
+                Label1.InnerText = name + " has successfully downloaded!";
+            }
+            else
+            {
+                Label1.InnerText = "The attachment has failed to download. Please try again.";
+            }
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
+        }
+
+        protected void gvAllRequests_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.TableSection = TableRowSection.TableHeader;
+            }
         }
     }
 }

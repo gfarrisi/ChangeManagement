@@ -26,8 +26,9 @@ namespace ChangeManagementSystem.Secure
             {
                 /*The SSO Sign-on page will not appear while running locally. This is only used for development.*/
 
-               //employeeNumber = "915368285"; //use to test user account locally
+                //employeeNumber = "915368285"; //use to test user account locally
                 employeeNumber = "915351047"; //use to test admin account locally
+
             }
             else
             {
@@ -38,7 +39,7 @@ namespace ChangeManagementSystem.Secure
             /*Use employee number to get user information from web services and then redirect*/
             GetUserInformation(employeeNumber);
             //}
-                                
+
         }
 
 
@@ -102,7 +103,7 @@ namespace ChangeManagementSystem.Secure
                 }
 
                 /*Successful Login - Allowed to be redirected to Home.aspx*/
-               Response.Redirect("Home.aspx");
+                Response.Redirect("Home.aspx");
             }
             else
             {

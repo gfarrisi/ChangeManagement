@@ -88,6 +88,20 @@ namespace ChangeManagementSystem
             }
             else
             {
+                // set name on navbar
+                objDB = new DBConnect();
+                objCommand = new SqlCommand();
+
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "GetUserByID";
+                objCommand.Parameters.Clear();
+                objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+                DataSet userData = objDB.GetDataSetUsingCmdObj(objCommand);
+                DataTable dt = userData.Tables[0];
+
+                string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
+                lblUserName.Text = userName;
 
                 objDB = new DBConnect();
                 objCommand = new SqlCommand();
@@ -97,9 +111,9 @@ namespace ChangeManagementSystem
                 objCommand.CommandText = "GetCMByID";
                 objCommand.Parameters.AddWithValue("@CMID", CMID);
                 DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+
                 rptCMStatus.DataSource = dataSet;
                 rptCMStatus.DataBind();
-
 
                 rptModalHeader.DataSource = dataSet;
                 rptModalHeader.DataBind();
@@ -223,6 +237,123 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
             }
+        }
+
+        protected void btnLink1_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(3, 16);
+        }
+
+        protected void btnLink2_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(4, 17);
+        }
+
+        protected void btnLink3_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(5, 18);
+        }
+
+        protected void btnLink4_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(6, 19);
+        }
+
+        protected void btnLink5_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(7, 20); 
+        }
+
+        protected void DownloadAttachment(int imgCol, int nameCol)
+        {
+            objDB = new DBConnect();
+            objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+
+            int CMID = Convert.ToInt32(Session["hiddenCMClickedS"]);
+            objCommand.CommandText = "GetCMByID";
+            objCommand.Parameters.AddWithValue("@CMID", CMID);
+            DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            //get data
+            DataTable dt = dataSet.Tables[0];
+            byte[] imgByte = (byte[])dt.Rows[0][imgCol];
+            string imgName = (string)dt.Rows[0][nameCol];
+
+            if ((imgByte != null) && (imgName != null))
+            {
+                // turn byte into downloaded file
+                System.IO.File.WriteAllBytes(@"W:\CIS4396-S08\tug94028\" + imgName, imgByte);
+
+                submissionModal(imgName);
+            }
+            else
+            {
+                string name = "noname";
+                submissionModal(name);
+            }
+        }
+
+        protected void rptScreenshots_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            objDB = new DBConnect();
+            objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+
+            int CMID = Convert.ToInt32(Session["hiddenCMClickedS"]);
+            objCommand.CommandText = "GetCMByID";
+            objCommand.Parameters.AddWithValue("@CMID", CMID);
+            DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            //get data
+            DataTable dt = dataSet.Tables[0];
+
+            LinkButton l2 = (LinkButton)e.Item.FindControl("btnLink2");
+            LinkButton l3 = (LinkButton)e.Item.FindControl("btnLink3");
+            LinkButton l4 = (LinkButton)e.Item.FindControl("btnLink4");
+            LinkButton l5 = (LinkButton)e.Item.FindControl("btnLink5");
+
+            if (dt.Rows[0][7] != DBNull.Value)
+            {
+                l5.Visible = true;
+                l4.Visible = true;
+                l3.Visible = true;
+                l2.Visible = true;
+            }
+            else if (dt.Rows[0][6] != DBNull.Value)
+            {
+                l4.Visible = true;
+                l3.Visible = true;
+                l2.Visible = true;
+            }
+            else if (dt.Rows[0][5] != DBNull.Value)
+            {
+                l3.Visible = true;
+                l2.Visible = true;
+            }
+            else if (dt.Rows[0][4] != DBNull.Value)
+            {
+                l2.Visible = true;
+            }
+        }
+
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DownloadAsPDFPage.aspx");
+        }
+
+        protected void submissionModal(string name)
+        {
+            if (name != "noname")
+            {
+                Label1.InnerText = name + " has successfully downloaded!";
+            }
+            else
+            {
+                Label1.InnerText = "The attachment has failed to download. Please try again.";
+            }
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
         }
     }
 }

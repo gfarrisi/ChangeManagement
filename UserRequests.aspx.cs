@@ -70,6 +70,44 @@ namespace ChangeManagementSystem
                         gvUserRequests.DataBind();
                     }
                 }
+                else
+                {
+                    // need the entire block so that data table functions (like search and pagination) don't disappear
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetUserByID";
+                    objCommand.Parameters.Clear();
+                    objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+                    DataSet userData = objDB.GetDataSetUsingCmdObj(objCommand);
+                    DataTable dt = userData.Tables[0];
+                    string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
+                    lblUserName.Text = userName;
+
+                    ViewState["ViewStateId"] = System.Guid.NewGuid().ToString();
+                    Session["SessionId"] = ViewState["ViewStateId"].ToString();
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetAllCMsByUser";
+                    objCommand.Parameters.Clear();
+                    objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+                    DataSet cmData = db.GetDataSetUsingCmdObj(objCommand);
+                    DataTable dataTable = cmData.Tables[0];
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        string ID = row["CMID"].ToString();
+                        string user = row["UserID"].ToString();
+                        string admin = row["AdminID"].ToString();
+                        string Name = row["CMProjectName"].ToString();
+                        string question = row["Question/Comments"].ToString();
+                        string type = row["RequestTypeName"].ToString();
+                        string college = row["College"].ToString();
+                        string status = row["CMStatus"].ToString();
+                        string date = row["LastUpdateDate"].ToString();
+                        ArrayList listDB = new ArrayList();
+                        listDB.Add(new allRequests(ID, user, admin, college, type, status, date));
+                        gvUserRequests.DataSource = dataTable;
+                        gvUserRequests.DataBind();
+                    }
+                }
             }
         }
 
@@ -105,95 +143,7 @@ namespace ChangeManagementSystem
             return isAllowed;
         }
 
-        private string SortDirection
-        {
-            get { return ViewState["SortDirection"] != null ? ViewState["SortDirection"].ToString() : "ASC"; }
-            set { ViewState["SortDirection"] = value; }
-        }
-
-        protected void OnSorting(object sender, GridViewSortEventArgs e)
-        {
-            this.BindGrid(e.SortExpression);
-        }
-
-        private void BindGrid(string sortExpression = null)
-        {
-            DBConnect db = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
-            using (SqlCommand cmd = new SqlCommand())
-            {
-
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "GetAllCMsByUser";
-                cmd.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
-                using (SqlDataAdapter sda = new SqlDataAdapter())
-                {
-
-                    cmd.Connection = db.GetConnection();
-                    using (DataTable dt = new DataTable())
-                    {
-                        sda.SelectCommand = cmd;
-                        sda.Fill(dt);
-                        if (sortExpression != null)
-                        {
-                            DataView dv = dt.AsDataView();
-                            this.SortDirection = this.SortDirection == "ASC" ? "DESC" : "ASC";
-
-                            dv.Sort = sortExpression + " " + this.SortDirection;
-                            gvUserRequests.DataSource = dv;
-                        }
-                        else
-                        {
-                            gvUserRequests.DataSource = dt;
-                        }
-                        gvUserRequests.DataBind();
-                    }
-                }
-            }
-        }
-
-         protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            SqlCommand dbCommand = new SqlCommand();
-            DBConnect db = new DBConnect();
-            DataSet ds = new DataSet();
-            if (txtSearch.Text == "")
-            {
-                objCommand.Parameters.Clear();
-                objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "GetAllCMsByUser";
-                objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
-
-                DataSet cmData = db.GetDataSetUsingCmdObj(objCommand);
-                DataTable dataTable = cmData.Tables[0];
-                gvUserRequests.DataSource = dataTable;
-                gvUserRequests.DataBind();
-            }
-            else
-            {
-                string search = txtSearch.Text;
-                objCommand.Parameters.Clear();
-                objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "UserRequestSearch";
-                SqlParameter inputParameter = new SqlParameter("@Search", search);
-                SqlParameter inputParameter2 = new SqlParameter("@UserID", Session["UserID"].ToString());
-
-                inputParameter.Direction = ParameterDirection.Input;
-                inputParameter.SqlDbType = SqlDbType.VarChar;
-                inputParameter.Size = 50;
-                objCommand.Parameters.Add(inputParameter);
-                objCommand.Parameters.Add(inputParameter2);
-
-                DataSet searchSet = db.GetDataSetUsingCmdObj(objCommand);
-                gvUserRequests.DataSource = searchSet;
-                gvUserRequests.DataBind();
-            }
-        }
-
-        protected void gvUserRequests_Sorting(object sender, GridViewSortEventArgs e)
-        {
-
-        }
+       
 
         protected void rptCMStatus_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
@@ -392,9 +342,11 @@ namespace ChangeManagementSystem
             ViewState["ViewStateId"] = Session["SessionId"].ToString();
             if (hf.Value != null && IsPageRefresh == false)
             {
-                Page.MaintainScrollPositionOnPostBack = true;
 
                 int CMID = Int32.Parse(name);
+
+                Session["hiddenCM"] = CMID;
+
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "GetCMByID";
                 objCommand.Parameters.Clear();
@@ -449,10 +401,129 @@ namespace ChangeManagementSystem
             }
         }
 
-        protected void gvUserRequests_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void btnLink1_Click(object sender, EventArgs e)
         {
-            gvUserRequests.PageIndex = e.NewPageIndex;
-            this.BindGrid();
+            DownloadAttachment(3, 16);
+        }
+
+        protected void btnLink2_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(4, 17);
+        }
+
+        protected void btnLink3_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(5, 18);
+        }
+
+        protected void btnLink4_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(6, 19);
+        }
+
+        protected void btnLink5_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(7, 20);
+        }
+
+        protected void DownloadAttachment(int imgCol, int nameCol)
+        {
+            objDB = new DBConnect();
+            objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+
+            int CMID = Convert.ToInt32(Session["hiddenCM"]);
+            objCommand.CommandText = "GetCMByID";
+            objCommand.Parameters.AddWithValue("@CMID", CMID);
+            DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            //get data
+            DataTable dt = dataSet.Tables[0];
+            byte[] imgByte = (byte[])dt.Rows[0][imgCol];
+            string imgName = (string)dt.Rows[0][nameCol];
+
+            if ((imgByte != null) && (imgName != null))
+            {
+                // turn byte into downloaded file
+                System.IO.File.WriteAllBytes(@"W:\CIS4396-S08\tug94028\" + imgName, imgByte);
+
+                attachmentModal(imgName);
+            }
+            else
+            {
+                string name = "noname";
+                attachmentModal(name);
+            }
+        }
+
+        protected void rptScreenshots_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            objDB = new DBConnect();
+            objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+
+            int CMID = Convert.ToInt32(Session["hiddenCM"]);
+            objCommand.CommandText = "GetCMByID";
+            objCommand.Parameters.AddWithValue("@CMID", CMID);
+            DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            //get data
+            DataTable dt = dataSet.Tables[0];
+
+            LinkButton l2 = (LinkButton)e.Item.FindControl("btnLink2");
+            LinkButton l3 = (LinkButton)e.Item.FindControl("btnLink3");
+            LinkButton l4 = (LinkButton)e.Item.FindControl("btnLink4");
+            LinkButton l5 = (LinkButton)e.Item.FindControl("btnLink5");
+
+            if (dt.Rows[0][7] != DBNull.Value)
+            {
+                l5.Visible = true;
+                l4.Visible = true;
+                l3.Visible = true;
+                l2.Visible = true;
+            }
+            else if (dt.Rows[0][6] != DBNull.Value)
+            {
+                l4.Visible = true;
+                l3.Visible = true;
+                l2.Visible = true;
+            }
+            else if (dt.Rows[0][5] != DBNull.Value)
+            {
+                l3.Visible = true;
+                l2.Visible = true;
+            }
+            else if (dt.Rows[0][4] != DBNull.Value)
+            {
+                l2.Visible = true;
+            }
+        }
+
+        protected void btnAttachment_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("UserRequests.aspx");
+        }
+
+        protected void attachmentModal(string name)
+        {
+            if (name != "noname")
+            {
+                Label1.InnerText = name + " has successfully downloaded!";
+            }
+            else
+            {
+                Label1.InnerText = "The attachment has failed to download. Please try again.";
+            }
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
+        }
+
+        protected void gvUserRequests_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.TableSection = TableRowSection.TableHeader;
+            }
         }
     }
 }
