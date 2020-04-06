@@ -50,11 +50,7 @@
                                     <%# Eval("AdminFirstName") + " " + Eval("AdminLastName")%>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField ItemStyle-CssClass="thead-dark" HeaderText="Submitted By:" SortExpression="LastName">
-                                <ItemTemplate>
-                                    <%# Eval("FirstName") + " " + Eval("LastName")%>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+                   
 
                             <asp:BoundField DataField="RequestTypeName" HeaderText="Type" ReadOnly="true" SortExpression="RequestTypeName" />
                             <asp:BoundField DataField="CMStatus" HeaderText="Status" ReadOnly="true" SortExpression="CMStatus" />
