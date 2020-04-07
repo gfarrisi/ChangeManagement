@@ -62,6 +62,43 @@ namespace ChangeManagementSystem
                     }
                     this.BindGrid();
                 }
+                else // allows pagination, search bar, and fixed header to reappear after clicking "Add New User"
+                {
+                    lblError2.Attributes.Add("class", "visibility-hidden");
+                    lblError.Text = "";
+                    lblError2.Text = "";
+                    btnManual.Visible = false;
+                    ViewState["ViewStateId"] = System.Guid.NewGuid().ToString();
+                    Session["SessionId"] = ViewState["ViewStateId"].ToString();
+                    DBConnect db = new DBConnect();
+                    SqlCommand objCommand = new SqlCommand();
+
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetUserByID";
+                    objCommand.Parameters.Clear();
+                    objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+
+                    DataSet userData = db.GetDataSetUsingCmdObj(objCommand);
+                    DataTable dt = userData.Tables[0];
+                    string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
+                    lblUserName.Text = userName;
+
+
+                    WebService.College[] colleges = WebService.Webservice.getAllColleges();
+                    int len = colleges.Length;
+                    ddlCollege.Items.Add("CRM");
+                    ddlCollege.Items.Add("UG Admissions");
+                    ddlCollege.Items.Add("Graduate School");
+                    ddlCollege2.Items.Add("CRM");
+                    ddlCollege2.Items.Add("UG Admissions");
+                    ddlCollege2.Items.Add("Graduate School");
+                    for (int i = 0; i < len; i++)
+                    {
+                        ddlCollege.Items.Add(colleges[i].collegeName.ToString().Trim());
+                        ddlCollege2.Items.Add(colleges[i].collegeName.ToString().Trim());
+                    }
+                    this.BindGrid();
+                }
             }
 
         }
