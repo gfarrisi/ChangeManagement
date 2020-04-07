@@ -263,6 +263,7 @@
     <Content Include="packages\Newtonsoft.Json.12.0.3\.signature.p7s" />
     <Content Include="packages\Newtonsoft.Json.12.0.3\LICENSE.md" />
     <Content Include="packages\Newtonsoft.Json.12.0.3\Newtonsoft.Json.12.0.3.nupkg" />
+    <Content Include="bin\ChangeManagementSystem.dll.config" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
