@@ -53,7 +53,7 @@
                                 <ItemStyle CssClass="font-weight-bold" />
                             </asp:BoundField>
                             <asp:BoundField DataField="CMProjectName" ItemStyle-CssClass="thead-dark" HeaderText="CM Project Name" SortExpression="CMProjectName" />
-                            <asp:TemplateField ItemStyle-CssClass="thead-dark" SortExpression="LastName" HeaderText="User">
+                            <asp:TemplateField ItemStyle-CssClass="thead-dark" SortExpression="LastName" HeaderText="Submitted By">
                                 <ItemTemplate>
                                     <%# Eval("FirstName") + " " + Eval("LastName")%>
                                 </ItemTemplate>
