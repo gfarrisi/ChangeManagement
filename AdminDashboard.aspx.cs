@@ -261,6 +261,7 @@ namespace ChangeManagementSystem
 
         protected void rptCMStatus_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
+            
             if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Not Assigned")
             {
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 0%");
@@ -383,136 +384,6 @@ namespace ChangeManagementSystem
                 statusChangeControls.Attributes.Add("class", "visibility-hidden");
                 status.Attributes.Add("class", "visibility-hidden");
 
-            }
-
-
-        }
-
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-            objDB = new DBConnect();
-
-            objCommand = new SqlCommand();
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "UpdateCMStatus";
-            objCommand.Parameters.Clear();
-            objCommand.Parameters.AddWithValue("@CMID", hiddenCMClicked.Value);
-
-            SqlCommand objCommandEmail = new SqlCommand();
-            objCommandEmail.CommandType = CommandType.StoredProcedure;
-            objCommandEmail.CommandText = "GetEmailByType";
-
-            if (ddlCMStatus.SelectedValue == "CM Failed")
-            {
-                objCommand.Parameters.AddWithValue("@CMStatus", "Failed");
-
-                objCommandEmail.Parameters.AddWithValue("@Type", "CM has failed");
-            }
-            else if (ddlCMStatus.SelectedValue == "Assign to Me")
-            {
-                objCommand.CommandText = "UpdateCMStatusAndAdmin";
-                objCommand.Parameters.Clear();
-                objCommand.Parameters.AddWithValue("@CMID", hiddenCMClicked.Value);
-                objCommand.Parameters.AddWithValue("@CMStatus", "Assigned");
-                objCommand.Parameters.AddWithValue("@AdminID", Session["UserID"].ToString());
-
-                objCommandEmail.Parameters.AddWithValue("@Type", "Moved to Assigned");
-            }
-            else if (ddlCMStatus.SelectedValue == "Change Implemented in Pre-Production")
-            {
-                objCommand.Parameters.AddWithValue("@CMStatus", "Pre-Production Needs Testing");
-
-                objCommandEmail.Parameters.AddWithValue("@Type", "Implemented in Pre-Prod");
-            }
-            else if (ddlCMStatus.SelectedValue == "Change Implemented in Production")
-            {
-                objCommand.Parameters.AddWithValue("@CMStatus", "Production");
-
-                objCommandEmail.Parameters.AddWithValue("@Type", "Implemented in Prod");
-            }
-            else if (ddlCMStatus.SelectedValue == "--Select a Status--")
-            {
-                Server.Transfer("AdminDashboard.aspx");
-            }
-
-            objDB.DoUpdateUsingCmdObj(objCommand); // Updating CM Status
-
-            objCommand.Parameters.Clear();
-            objCommand.CommandText = "GetCMAndUserAndTypeByID";
-            objCommand.Parameters.AddWithValue("@CMID", hiddenCMClicked.Value);
-            DataSet cmData = objDB.GetDataSetUsingCmdObj(objCommand);
-            DataTable cmTable = cmData.Tables[0];
-
-            DataSet emailData = objDB.GetDataSetUsingCmdObj(objCommandEmail);
-            DataTable emailTable = emailData.Tables[0];
-
-            Email objEmail = new Email();
-            String strTO = "tug52322@temple.edu"; //cmTable.Rows[0]["Email"].ToString();
-            String strFROM = "noreply@temple.edu";
-            String strSubject = "CM #{" + hiddenCMClicked.Value + "}: " + emailTable.Rows[0]["Subject"].ToString();
-            String strMessage = emailTable.Rows[0]["Body"].ToString();
-
-            try
-            {
-                objEmail.SendMail(strTO, strFROM, strSubject, strMessage);
-                //  lblDisplay.Text = "The email was sent.";
-            }
-            catch (Exception ex)
-            {
-                //lblDisplay.Text = "The email wasn't sent because one of the required fields was missing.";
-            }
-
-            Server.Transfer("AdminDashboard.aspx");
-        }
-        protected void btnNewComment_Click(object sender, EventArgs e)
-        {
-            //validate comment text
-            if (Validation.ValidateForm(txtNewComment.Text) && IsPageRefresh == false)
-            {
-                DateTime dt = DateTime.Now;
-                string CMID = hiddenCMClicked.Value;
-                //insert new comment into cm
-                DBConnect ObjDb = new DBConnect();
-                SqlCommand objCommand = new SqlCommand();
-                objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "InsertComment";
-                objCommand.Parameters.AddWithValue("@CommentText", txtNewComment.Text);
-                objCommand.Parameters.AddWithValue("@LastUpdateDate", dt.ToString());
-                objCommand.Parameters.AddWithValue("@CommenterID", Session["UserID"].ToString());
-                objCommand.Parameters.AddWithValue("@CMID", CMID);
-
-                int response = objDB.DoUpdateUsingCmdObj(objCommand);
-                if (response > 0)
-                {
-                    //Response.Write("<script>alert('Comment entered!');</script>");
-                    txtNewComment.Text = "";
-                    objCommand.CommandType = CommandType.StoredProcedure;
-                    objCommand.CommandText = "GetComments";
-                    objCommand.Parameters.Clear();
-                    objCommand.Parameters.AddWithValue("@CMID", CMID);
-
-
-                    DataSet cmRequestData = objDB.GetDataSetUsingCmdObj(objCommand);
-                    DataTable dataTable = cmRequestData.Tables[0];
-
-                    if (dataTable.Rows.Count > 0)
-                    {
-                        pnlNoComments.Visible = false;
-                        pnlComments.Visible = true;
-                        rptComments.DataSource = dataTable;
-                        rptComments.DataBind();
-                    }
-                    else
-                    {
-                        pnlComments.Visible = false;
-                        pnlNoComments.Visible = true;
-                    }
-
-                }
-                else
-                {
-                    Response.Write("<script>alert('Comment not entered');</script>");
-                }
             }
 
         }
@@ -668,7 +539,6 @@ namespace ChangeManagementSystem
             }
         }
 
-
         protected void btnSubmitTesting_Click(object sender, EventArgs e)
         {
             objCommand = new SqlCommand();
@@ -736,6 +606,139 @@ namespace ChangeManagementSystem
             //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
 
+        }
+
+        protected void ddlCMStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            hiddenStatusSelected.Value = ddlCMStatus.SelectedValue;
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            objDB = new DBConnect();
+
+            objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "UpdateCMStatus";
+            objCommand.Parameters.Clear();
+            objCommand.Parameters.AddWithValue("@CMID", hiddenCMClicked.Value);
+
+            SqlCommand objCommandEmail = new SqlCommand();
+            objCommandEmail.CommandType = CommandType.StoredProcedure;
+            objCommandEmail.CommandText = "GetEmailByType";
+
+            if (hiddenStatusSelected.Value == "CM Failed")
+            {
+                objCommand.Parameters.AddWithValue("@CMStatus", "Failed");
+
+                objCommandEmail.Parameters.AddWithValue("@Type", "CM has failed");
+            }
+            else if (hiddenStatusSelected.Value == "Assign to Me")
+            {
+                objCommand.CommandText = "UpdateCMStatusAndAdmin";
+                objCommand.Parameters.Clear();
+                objCommand.Parameters.AddWithValue("@CMID", hiddenCMClicked.Value);
+                objCommand.Parameters.AddWithValue("@CMStatus", "Assigned");
+                objCommand.Parameters.AddWithValue("@AdminID", Session["UserID"].ToString());
+
+                objCommandEmail.Parameters.AddWithValue("@Type", "Moved to Assigned");
+            }
+            else if (hiddenStatusSelected.Value == "Change Implemented in Pre-Production")
+            {
+                objCommand.Parameters.AddWithValue("@CMStatus", "Pre-Production Needs Testing");
+
+                objCommandEmail.Parameters.AddWithValue("@Type", "Implemented in Pre-Prod");
+            }
+            else if (hiddenStatusSelected.Value == "Change Implemented in Production")
+            {
+                objCommand.Parameters.AddWithValue("@CMStatus", "Completed");
+
+                objCommandEmail.Parameters.AddWithValue("@Type", "Implemented in Prod");
+            }
+            else if (hiddenStatusSelected.Value == "--Select a Status--")
+            {
+                Server.Transfer("AdminDashboard.aspx");
+            }
+
+            objDB.DoUpdateUsingCmdObj(objCommand); // Updating CM Status
+
+            objCommand.Parameters.Clear();
+            objCommand.CommandText = "GetCMAndUserAndTypeByID";
+            objCommand.Parameters.AddWithValue("@CMID", hiddenCMClicked.Value);
+            DataSet cmData = objDB.GetDataSetUsingCmdObj(objCommand);
+            DataTable cmTable = cmData.Tables[0];
+
+            DataSet emailData = objDB.GetDataSetUsingCmdObj(objCommandEmail);
+            DataTable emailTable = emailData.Tables[0];
+
+            Email objEmail = new Email();
+            String strTO = "tug52322@temple.edu"; //cmTable.Rows[0]["Email"].ToString();
+            String strFROM = "noreply@temple.edu";
+            String strSubject = "CM #{" + hiddenCMClicked.Value + "}: " + emailTable.Rows[0]["Subject"].ToString();
+            String strMessage = emailTable.Rows[0]["Body"].ToString();
+
+            try
+            {
+                objEmail.SendMail(strTO, strFROM, strSubject, strMessage);
+                //  lblDisplay.Text = "The email was sent.";
+            }
+            catch (Exception ex)
+            {
+                //lblDisplay.Text = "The email wasn't sent because one of the required fields was missing.";
+            }
+
+            Server.Transfer("AdminDashboard.aspx");
+        }
+        protected void btnNewComment_Click(object sender, EventArgs e)
+        {
+            //validate comment text
+            if (Validation.ValidateForm(txtNewComment.Text) && IsPageRefresh == false)
+            {
+                DateTime dt = DateTime.Now;
+                string CMID = hiddenCMClicked.Value;
+                //insert new comment into cm
+                DBConnect ObjDb = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "InsertComment";
+                objCommand.Parameters.AddWithValue("@CommentText", txtNewComment.Text);
+                objCommand.Parameters.AddWithValue("@LastUpdateDate", dt.ToString());
+                objCommand.Parameters.AddWithValue("@CommenterID", Session["UserID"].ToString());
+                objCommand.Parameters.AddWithValue("@CMID", CMID);
+
+                int response = objDB.DoUpdateUsingCmdObj(objCommand);
+                if (response > 0)
+                {
+                    //Response.Write("<script>alert('Comment entered!');</script>");
+                    txtNewComment.Text = "";
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetComments";
+                    objCommand.Parameters.Clear();
+                    objCommand.Parameters.AddWithValue("@CMID", CMID);
+
+
+                    DataSet cmRequestData = objDB.GetDataSetUsingCmdObj(objCommand);
+                    DataTable dataTable = cmRequestData.Tables[0];
+
+                    if (dataTable.Rows.Count > 0)
+                    {
+                        pnlNoComments.Visible = false;
+                        pnlComments.Visible = true;
+                        rptComments.DataSource = dataTable;
+                        rptComments.DataBind();
+                    }
+                    else
+                    {
+                        pnlComments.Visible = false;
+                        pnlNoComments.Visible = true;
+                    }
+
+                }
+                else
+                {
+                    Response.Write("<script>alert('Comment not entered');</script>");
+                }
+            }
         }
     }
         

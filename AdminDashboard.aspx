@@ -248,7 +248,7 @@
                                                     </div>
                                                     <div id="statusChangeControls" runat="server">
                                                         <asp:Label ID="lblCMStatus" runat="server" CssClass="font-weight-bold">Update Status</asp:Label>
-                                                        <asp:DropDownList class="browser-default custom-select" ID="ddlCMStatus" runat="server"></asp:DropDownList>
+                                                        <asp:DropDownList class="browser-default custom-select" ID="ddlCMStatus" AutoPostBack="true" OnSelectedIndexChanged="ddlCMStatus_SelectedIndexChanged" runat="server"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                             </div>
@@ -472,6 +472,7 @@
         <asp:HiddenField ClientIDMode="Static" ID="hiddenCMClicked" runat="server" />
         <asp:HiddenField ClientIDMode="Static" ID="isModalOpen" runat="server" />
         <asp:HiddenField ClientIDMode="Static" ID="downloadFile" runat="server" />
+        <asp:HiddenField ClientIDMode="Static" ID="hiddenStatusSelected" runat="server" />
   
         <!-- Modal data-toggle="modal" data-target="#warningModal"-->
         <div class="modal fade"data-toggle="modal" id="mdlCMAttachment" tabindex="-1" role="dialog" aria-labelledby="mdlCMAttachmentLabel" aria-hidden="true">
@@ -521,6 +522,8 @@
             document.getElementById("hiddenCMClicked").value = CMID;
             document.getElementById("isModalOpen").value = "true";
             document.getElementById("btnCMClicked").click();
+
+            document.getElementById("hiddenStatusSelected").value = "--Select a Status--";
         }
 
         function DownloadAttachment() {
@@ -534,6 +537,7 @@
         function closeModal() {
             document.getElementById("isModalOpen").value = "false";
         }
+        
     </script>
 </asp:Content>
 
