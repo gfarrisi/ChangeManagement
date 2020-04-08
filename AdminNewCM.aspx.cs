@@ -123,7 +123,7 @@ namespace ChangeManagementSystem
                         txtAnswer.ClientIDMode = System.Web.UI.ClientIDMode.Static;
                         col6Div.Controls.Add(txtAnswer);
                     }
-                    else if (question_control == "DropDownList")
+                    else if (question_control == "Dropdown")
                     {
                         DropDownList ddlOptions = new DropDownList();
                         ddlOptions.CssClass = "dropdown form-control";
@@ -236,7 +236,7 @@ namespace ChangeManagementSystem
                         txtAnswer.ClientIDMode = System.Web.UI.ClientIDMode.Static;
                         col6Div.Controls.Add(txtAnswer);
                     }
-                    else if (question_control == "DropDownList")
+                    else if (question_control == "Dropdown")
                     {
                         DropDownList ddlOptions = new DropDownList();
                         ddlOptions.CssClass = "dropdown form-control";
