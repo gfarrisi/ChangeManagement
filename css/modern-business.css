@@ -152,6 +152,11 @@ table {
     color: #fff;
     background-color: #899197;
 }
+.btn-secondary-assigned{
+    background-color: #A41E35;
+
+    color:#FFF;
+}
 
 .x-icon{   
     color: #899197;

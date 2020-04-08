@@ -58,8 +58,7 @@
                                     <%# Eval("FirstName") + " " + Eval("LastName")%>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" />
-                            <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName" />
+                          
                             <asp:BoundField DataField="College" HeaderText="College" SortExpression="College" />
                             <asp:BoundField DataField="RequestTypeName" HeaderText="Type" SortExpression="RequestTypeName" />
                             <asp:BoundField DataField="CMStatus" HeaderText="Status" SortExpression="CMStatus" />

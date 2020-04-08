@@ -229,23 +229,20 @@ namespace ChangeManagementSystem
         {
             if (((HiddenField)e.Item.FindControl("hiddenAdminID")).Value == Session["UserID"].ToString())
             {
-                ((HtmlControl)e.Item.FindControl("btnCM")).Attributes.Add("style", "box-shadow: 0 0 10px .5px #8C2132;");
+                ((HtmlControl)e.Item.FindControl("btnCM")).Attributes.Add("style", "box-shadow: 0 0 10px 2.5px; color:white; background-color:#A41E35;");
             }
         }
 
         protected void rptNotAssigned_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            if (((HiddenField)e.Item.FindControl("hiddenAdminID")).Value == Session["UserID"].ToString())
-            {
-                ((HtmlControl)e.Item.FindControl("btnCM")).Attributes.Add("style", "box-shadow: 0 0 10px 2.5px #8C2132;");
-            }
+            
         }
 
         protected void rptPreProduction_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (((HiddenField)e.Item.FindControl("hiddenAdminID")).Value == Session["UserID"].ToString())
             {
-                ((HtmlControl)e.Item.FindControl("btnCM")).Attributes.Add("style", "box-shadow: 0 0 10px 2.5px #8C2132;");
+                ((HtmlControl)e.Item.FindControl("btnCM")).Attributes.Add("style", "box-shadow: 0 0 10px 2.5px; color:white; background-color:#A41E35;");
             }
         }
 
@@ -253,7 +250,7 @@ namespace ChangeManagementSystem
         {
             if (((HiddenField)e.Item.FindControl("hiddenAdminID")).Value == Session["UserID"].ToString())
             {
-                ((HtmlControl)e.Item.FindControl("btnCM")).Attributes.Add("style", "box-shadow: 0 0 10px 2.5px #8C2132;");
+                ((HtmlControl)e.Item.FindControl("btnCM")).Attributes.Add("style", "box-shadow: 0 0 10px 2.5px; color:white; background-color:#A41E35;");
             }
         }
 

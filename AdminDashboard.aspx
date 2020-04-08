@@ -54,7 +54,8 @@
                             <div class="col-lg-1 mb-1"></div>
                             <div class="col-lg-5 mb-1"></div>
                             <div class="col-lg-2 mb-1">
-                                <button class="btn btn-secondary" style="box-shadow: 0 0 10px 2.5px #8C2132; cursor: auto;">Assigned to me</button>
+                               <h5><span class="label label-default mb-3 rounded" style="color:white; background-color:#A41E35; padding:12px">Assigned to me</span></h5> 
+                              <%--  <button class="btn btn-secondary" style="box-shadow: 0 0 10px 2.5px #8C2132; cursor: auto;">Assigned to me</button>--%>
                             </div>
                         </div>
                     </div>
