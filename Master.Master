@@ -31,18 +31,20 @@
     <link href="css/modern-business.css" rel="stylesheet">
 
 
-    <!-- Javascript -->
-    <script src="js/NewRequestType.js"></script>
+  
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" type="text/javascript" ></script>
   
  
     <%-- for datatables on viewallusers.aspx page --%>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/b-1.6.1/fh-3.1.6/r-2.2.3/sc-2.0.1/sp-1.0.1/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/b-1.6.1/fh-3.1.6/r-2.2.3/sc-2.0.1/sp-1.0.1/datatables.min.js"></script>
+  <!-- Javascript -->
+    <script src="js/NewRequestType.js"></script>
+
 </head>
 <body>
 
