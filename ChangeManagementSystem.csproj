@@ -111,6 +111,9 @@
     <Content Include="obj\Debug\ChangeManagementSystem.dll" />
     <Content Include="obj\Debug\ChangeManagementSystem.pdb" />
     <Content Include="obj\Debug\TempPE\.gitignore" />
+    <Content Include="obj\Debug\TempPE\Web References.WS_LDAP_Search.Reference.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Web References.WS_Programs_And_Degrees.Reference.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Web References.WS_Student_Search.Reference.cs.dll" />
     <Content Include="packages\Iron.Assets.Rendering.Windows.17.0.0\lib\net40\IronPdf.Assets.Rendering.Windows.dll" />
     <Content Include="packages\IronPdf.2020.1.0\lib\net40\IronPdf.dll" />
     <Content Include="packages\IronPdf.2020.1.0\lib\net40\IronPdf.xml" />
@@ -291,13 +294,6 @@
     <Content Include="EditEmail.aspx" />
     <Content Include="UserSelectRequestType.aspx" />
     <Content Include="UserNewCM.aspx" />
-    <Content Include="Web.config" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDashboard.aspx.cs">
