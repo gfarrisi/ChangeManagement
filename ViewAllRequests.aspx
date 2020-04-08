@@ -53,16 +53,20 @@
                                 <ItemStyle CssClass="font-weight-bold" />
                             </asp:BoundField>
                             <asp:BoundField DataField="CMProjectName" ItemStyle-CssClass="thead-dark" HeaderText="CM Project Name" SortExpression="CMProjectName" />
-                            <asp:TemplateField ItemStyle-CssClass="thead-dark" SortExpression="LastName" HeaderText="User">
+                            <asp:TemplateField ItemStyle-CssClass="thead-dark" HeaderText="Submitted By">
                                 <ItemTemplate>
                                     <%# Eval("FirstName") + " " + Eval("LastName")%>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                          
-                            <asp:BoundField DataField="College" HeaderText="College" SortExpression="College" />
-                            <asp:BoundField DataField="RequestTypeName" HeaderText="Type" SortExpression="RequestTypeName" />
-                            <asp:BoundField DataField="CMStatus" HeaderText="Status" SortExpression="CMStatus" />
-                            <asp:BoundField DataField="LastUpdateDate" HeaderText="Last Updated Date" DataFormatString="{0:MM/dd/yyyy}" SortExpression="LastUpdateDate" />
+                           <asp:TemplateField ItemStyle-CssClass="thead-dark" HeaderText="Assigned To">
+                                <ItemTemplate>
+                                    <%# Eval("AdminFirstName") + " " + Eval("AdminLastName")%>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="College" HeaderText="College" />
+                            <asp:BoundField DataField="RequestTypeName" HeaderText="Type" />
+                            <asp:BoundField DataField="CMStatus" HeaderText="Status" />
+                            <asp:BoundField DataField="LastUpdateDate" HeaderText="Last Updated Date" DataFormatString="{0:MM/dd/yyyy}"/>
                             <asp:TemplateField HeaderText="View Request" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <asp:LinkButton CssClass="btn" BorderStyle="None" ID="btnCheck" runat="server" OnClick="btnCheck_Click"><i class='far fa-eye'></i></asp:LinkButton>

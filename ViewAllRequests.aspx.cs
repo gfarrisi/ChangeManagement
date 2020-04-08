@@ -45,6 +45,7 @@ namespace ChangeManagementSystem
                     DataSet userData = db.GetDataSetUsingCmdObj(objCommand);
                     DataTable dt = userData.Tables[0];
                     string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
+                    
                     lblUserName.Text = userName;
 
                     objCommand.CommandType = CommandType.StoredProcedure;
@@ -449,7 +450,7 @@ namespace ChangeManagementSystem
             if ((imgByte != null) && (imgName != null))
             {
                 // turn byte into downloaded file
-                System.IO.File.WriteAllBytes(@"W:\CIS4396-S08\tug94028\" + imgName, imgByte);
+                System.IO.File.WriteAllBytes(Environment.ExpandEnvironmentVariables(@"%USERPROFILE%\") + imgName, imgByte);
 
                 attachmentModal(imgName);
             }
