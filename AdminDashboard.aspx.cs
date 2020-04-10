@@ -1,4 +1,4 @@
-﻿using IronPdf;
+﻿
 using ChangeManagementSystem.Utilities;
 using System;
 using System.Data;
@@ -13,6 +13,9 @@ using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
 using System.Net;
 using System.IO;
+using System.Windows;
+using System.Net.Mail;
+using System.Windows.Forms;
 
 namespace ChangeManagementSystem
 {
@@ -484,9 +487,14 @@ namespace ChangeManagementSystem
             if ((imgByte != null) && (imgName != null))
             {
                 // turn byte into downloaded file
-                System.IO.File.WriteAllBytes(Environment.ExpandEnvironmentVariables(@"%USERPROFILE%\") + imgName, imgByte);
 
-                attachmentModal(imgName);
+               // System.IO.File.WriteAllBytes(Environment.ExpandEnvironmentVariables(@"%USERPROFILE%\Downloads") + imgName, imgByte);
+                SaveFileDialog file = new SaveFileDialog();
+                
+                file.FileName = imgName;
+                file.ShowDialog();
+                File.WriteAllBytes(file.FileName, imgByte);
+
             }
             else
             {
