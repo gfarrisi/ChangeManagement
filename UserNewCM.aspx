@@ -74,7 +74,7 @@
                         </div>
                         <div class="row mt-3 mb-3">
                             <div class="col-lg-6">
-                                <asp:Label ID="lblUpload" runat="server" Text="Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots. (Maximum of 5)" CssClass="form-text"></asp:Label>
+                                <asp:Label ID="lblUpload" runat="server" Text="Please upload up to 5 applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots. <br>Permitted files: .pdf, .png, .jpg, .xls, .xlsx, .doc, .docx, or .csv" CssClass="form-text"></asp:Label>
                             </div>
 
                             <div class="col-lg-6">
