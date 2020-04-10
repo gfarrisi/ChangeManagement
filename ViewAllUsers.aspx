@@ -47,14 +47,14 @@
             <h2 id="requestHistory">User Settings</h2>       
                 <div class="gv">
                     <asp:HiddenField runat="server" ID="hf" ClientIDMode="Static" />
-                    <asp:GridView ID="gvAllUsers" runat="server" CellPadding="3" ForeColor="Black" AutoGenerateColumns="False" AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical" OnSorting="OnSorting" CssClass="datatable" OnRowDataBound="gvAllUsers_RowDataBound">
+                    <asp:GridView ID="gvAllUsers" runat="server" CellPadding="3" ForeColor="Black" AutoGenerateColumns="False" AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical" CssClass="datatable" OnRowDataBound="gvAllUsers_RowDataBound">
                         <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="UserID" HeaderText="TU ID" ReadOnly="true" SortExpression="UserID" />
-                            <asp:BoundField DataField="FirstName" HeaderText="First Name" ReadOnly="true" SortExpression="FirstName" />
-                            <asp:BoundField DataField="LastName" HeaderText="Last Name" ReadOnly="true" SortExpression="LastName" />
-                            <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" SortExpression="College" />
-                            <asp:BoundField DataField="UserType" HeaderText="User Type" ReadOnly="true" SortExpression="UserType" />
+                            <asp:BoundField DataField="UserID" HeaderText="TU ID" ReadOnly="true" />
+                            <asp:BoundField DataField="FirstName" HeaderText="First Name" ReadOnly="true" />
+                            <asp:BoundField DataField="LastName" HeaderText="Last Name" ReadOnly="true" />
+                            <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" />
+                            <asp:BoundField DataField="UserType" HeaderText="User Type" ReadOnly="true" />
                             <asp:TemplateField HeaderText="Deactivate User" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <asp:HiddenField ID="hdnfldVariable" Value='<%# Eval("UserID") %>' runat="server" />

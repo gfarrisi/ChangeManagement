@@ -27,7 +27,9 @@ namespace ChangeManagementSystem.Secure
                 /*The SSO Sign-on page will not appear while running locally. This is only used for development.*/
 
                 employeeNumber = "915368285"; //use to test user account locally
-               // employeeNumber = "915351047"; //use to test admin account locally
+
+                //employeeNumber = "915351047"; //use to test admin account locally
+
 
             }
             else
