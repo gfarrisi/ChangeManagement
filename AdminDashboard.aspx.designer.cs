@@ -328,13 +328,13 @@ namespace ChangeManagementSystem {
         protected global::System.Web.UI.WebControls.HiddenField downloadFile;
         
         /// <summary>
-        /// hiddenStatusSelected control.
+        /// hiddenCMSaving control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenStatusSelected;
+        protected global::System.Web.UI.WebControls.HiddenField hiddenCMSaving;
         
         /// <summary>
         /// Label1 control.
