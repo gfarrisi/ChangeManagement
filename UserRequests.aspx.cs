@@ -142,9 +142,7 @@ namespace ChangeManagementSystem
 
             return isAllowed;
         }
-
-       
-
+        
         protected void rptCMStatus_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Not Assigned")
@@ -297,30 +295,6 @@ namespace ChangeManagementSystem
         protected void btnDownloadAsPDF_Click(object sender, EventArgs e)
         {
             Response.Redirect("DownloadAsPDFPage.aspx");
-            //WebRequest request;
-            //WebResponse reponse;
-            //StreamReader reader;
-            //StreamWriter writer;
-            //string strHTML;
-
-            //string cmName = "CMRequest"; // will be dynamic later, need to figure out how to retrieve the specific name
-            //IronPdf.HtmlToPdf Renderer = new IronPdf.HtmlToPdf();
-
-            //request = WebRequest.Create("http://localhost:55877/AdminDashboard.aspx");
-            //reponse = request.GetResponse();
-            //reader = new StreamReader(reponse.GetResponseStream());
-            //strHTML = reader.ReadToEnd();
-
-            //var PDF = Renderer.RenderHtmlAsPdf(strHTML);
-
-            //Response.Clear();
-            //Response.ContentType = "application/pdf";
-            //Response.AddHeader("Content-Disposition", "attachment; filename=" + cmName + ".pdf");
-            //Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            //Response.BinaryWrite(PDF.BinaryData);
-
-            //Response.End();
-            //Response.Flush();
         }
 
         protected void btnCheck_Click(object sender, EventArgs e)
@@ -445,9 +419,17 @@ namespace ChangeManagementSystem
             if ((imgByte != null) && (imgName != null))
             {
                 // turn byte into downloaded file
-                System.IO.File.WriteAllBytes(Environment.ExpandEnvironmentVariables(@"%USERPROFILE%\") + imgName, imgByte);
-
-                attachmentModal(imgName);
+                //System.IO.File.WriteAllBytes(Environment.ExpandEnvironmentVariables(@"%USERPROFILE%\") + imgName, imgByte);
+                Response.Clear();
+                Response.Buffer = true;
+                Response.Charset = "";
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                Response.ContentType = "application/octet-stream";
+                Response.AppendHeader("Content-Disposition", @"inline; filename=" + imgName);
+                Response.BinaryWrite(imgByte);
+                Response.Flush();
+                Response.End();
+                //attachmentModal(imgName);
             }
             else
             {

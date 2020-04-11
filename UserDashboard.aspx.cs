@@ -9,7 +9,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using IronPdf;
 using System.Net;
 using System.IO;
 
@@ -646,7 +645,16 @@ namespace ChangeManagementSystem
             if ((imgByte != null) && (imgName != null))
             {
                 // turn byte into downloaded file
-                System.IO.File.WriteAllBytes(Environment.ExpandEnvironmentVariables(@"%USERPROFILE%\") + imgName, imgByte);
+                //System.IO.File.WriteAllBytes(Environment.ExpandEnvironmentVariables(@"%USERPROFILE%\Downloads") + imgName, imgByte);
+                Response.Clear();
+                Response.Buffer = true;
+                Response.Charset = "";
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                Response.ContentType = "application/octet-stream";
+                Response.AppendHeader("Content-Disposition", @"inline; filename=" + imgName);
+                Response.BinaryWrite(imgByte);
+                Response.Flush();
+                Response.End();
 
                 attachmentModal(imgName);
             }

@@ -41,20 +41,18 @@
                     <asp:GridView ID="gvUserRequests" runat="server" CssClass="datatable" AutoGenerateColumns="False" BorderColor="#CCCCCC" AllowPaging="false" OnRowDataBound="gvUserRequests_RowDataBound">
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="CMID" ItemStyle-CssClass="thead-dark" HeaderText="CM ID" ReadOnly="true" SortExpression="CMID">
+                            <asp:BoundField DataField="CMID" ItemStyle-CssClass="thead-dark" HeaderText="CM ID" ReadOnly="true">
                                 <ItemStyle CssClass="font-weight-bold" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="CMProjectName" ItemStyle-CssClass="thead-dark" HeaderText="CM Project Name" ReadOnly="true" SortExpression="CMProjectName" />
-                            <asp:TemplateField ItemStyle-CssClass="thead-dark" HeaderText="Assigned Admin" SortExpression="AdminLastName">
+                            <asp:BoundField DataField="CMProjectName" ItemStyle-CssClass="thead-dark" HeaderText="CM Project Name" ReadOnly="true" />
+                            <asp:TemplateField ItemStyle-CssClass="thead-dark" HeaderText="Assigned Admin">
                                 <ItemTemplate>
                                     <%# Eval("AdminFirstName") + " " + Eval("AdminLastName")%>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                   
-
-                            <asp:BoundField DataField="RequestTypeName" HeaderText="Type" ReadOnly="true" SortExpression="RequestTypeName" />
-                            <asp:BoundField DataField="CMStatus" HeaderText="Status" ReadOnly="true" SortExpression="CMStatus" />
-                            <asp:BoundField DataField="LastUpdateDate" HeaderText="Last Updated Date" ReadOnly="true" DataFormatString="{0:MM/dd/yyyy}" SortExpression="LastUpdateDate" />
+                            <asp:BoundField DataField="RequestTypeName" HeaderText="Type" ReadOnly="true" />
+                            <asp:BoundField DataField="CMStatus" HeaderText="Status" ReadOnly="true" />
+                            <asp:BoundField DataField="LastUpdateDate" HeaderText="Last Updated Date" ReadOnly="true" DataFormatString="{0:MM/dd/yyyy}" />
                             <asp:TemplateField HeaderText="View Request" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <asp:LinkButton CssClass="btn" BorderStyle="None" ID="btnCheck" runat="server" OnClick="btnCheck_Click"><i class='far fa-eye'></i></asp:LinkButton>
