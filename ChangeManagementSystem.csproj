@@ -96,7 +96,6 @@
     <Content Include="AdminSelectRequestType.aspx" />
     <Content Include="AdminNewCM.aspx" />
     <Content Include="NewRequestType.aspx" />
-    <Content Include="obj\Debug\ChangeManagementSystem.csproj.FileListAbsolute.txt" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\csc.exe" />
