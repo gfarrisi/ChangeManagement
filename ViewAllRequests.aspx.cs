@@ -213,7 +213,8 @@ namespace ChangeManagementSystem
             if (Validation.ValidateForm(txtNewComment.Text) && IsPageRefresh == false)
             {
                 DateTime dt = DateTime.Now;
-                string CMID = hf.Value;
+                string CMID = Session["hiddenCM"].ToString();
+
                 Session.Add("UserID", Session["UserID"].ToString());
                 //insert new comment into cm
                 DBConnect ObjDb = new DBConnect();
@@ -257,6 +258,9 @@ namespace ChangeManagementSystem
                     Response.Write("<script>alert('Comment not entered');</script>");
                 }
             }
+
+            // displays modal after postback
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#exampleModalLong').modal('show');", true);
         }
 
         protected void btnDownloadAsPDF_Click(object sender, EventArgs e)
@@ -269,7 +273,7 @@ namespace ChangeManagementSystem
             objCommand.CommandText = "UpdateCMStatus";
 
             objCommand.Parameters.Clear();
-            objCommand.Parameters.AddWithValue("@CMID", hf.Value);
+            objCommand.Parameters.AddWithValue("@CMID", Session["hiddenCM"].ToString());
 
             if (ddlCMStatus.SelectedValue == "CM Failed")
             {
