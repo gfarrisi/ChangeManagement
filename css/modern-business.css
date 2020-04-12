@@ -91,6 +91,13 @@ table {
     color: white;
     margin-bottom: 6%;
 }
+    .btnDownload:hover {
+        margin-left: 65%;
+        margin-top: 1%;
+        background-color: #A41E35;
+        color: white;
+        margin-bottom: 6%;
+    }
 
 .btnAdd {
     margin-left: 2%;
@@ -99,6 +106,13 @@ table {
     color: white;
     margin-bottom: 6%;
 }
+    .btnAdd:hover {
+        margin-left: 2%;
+        margin-top: 1%;
+        background-color: #A41E35;
+        color: white;
+        margin-bottom: 6%;
+    }
 
 .gv{
     /*margin-left: auto;
@@ -129,7 +143,8 @@ table {
 }
 
 #requestHistory {
-    margin-top: 3%; 
+    margin-top: 4%;
+    margin-bottom: 3%;
     text-align: center;
 }
 
