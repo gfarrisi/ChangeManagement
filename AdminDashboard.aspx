@@ -248,7 +248,7 @@
                                                     </div>
                                                     <div id="statusChangeControls" runat="server">
                                                         <asp:Label ID="lblCMStatus" runat="server" CssClass="font-weight-bold">Update Status</asp:Label>
-                                                        <asp:DropDownList class="browser-default custom-select" ID="ddlCMStatus" AutoPostBack="true" OnSelectedIndexChanged="ddlCMStatus_SelectedIndexChanged" runat="server"></asp:DropDownList>
+                                                        <asp:DropDownList class="browser-default custom-select" ID="ddlCMStatus" runat="server"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                             </div>
@@ -442,7 +442,7 @@
                     <div class="modal-footer mt-5">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose" onclick="closeModal()">Close</button>
                         <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" style="background-color:#8C2132" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
-                        <asp:Button runat="server" class="btn btn-primary" ID="btnSave" Text="Save changes" OnClick="btnSave_Click"></asp:Button>
+                        <asp:Button runat="server" class="btn btn-primary" ID="btnSave" Text="Save changes" OnClientClick="return cmSaved()" OnClick="btnSave_Click"></asp:Button>
                     </div>
                 </div>
 
@@ -472,7 +472,7 @@
         <asp:HiddenField ClientIDMode="Static" ID="hiddenCMClicked" runat="server" />
         <asp:HiddenField ClientIDMode="Static" ID="isModalOpen" runat="server" />
         <asp:HiddenField ClientIDMode="Static" ID="downloadFile" runat="server" />
-        <asp:HiddenField ClientIDMode="Static" ID="hiddenStatusSelected" runat="server" />
+        <asp:HiddenField ClientIDMode="Static" ID="hiddenCMSaving" runat="server" />
   
         <!-- Modal data-toggle="modal" data-target="#warningModal"-->
         <div class="modal fade"data-toggle="modal" id="mdlCMAttachment" tabindex="-1" role="dialog" aria-labelledby="mdlCMAttachmentLabel" aria-hidden="true">
@@ -522,8 +522,6 @@
             document.getElementById("hiddenCMClicked").value = CMID;
             document.getElementById("isModalOpen").value = "true";
             document.getElementById("btnCMClicked").click();
-
-            document.getElementById("hiddenStatusSelected").value = "--Select a Status--";
         }
 
         function DownloadAttachment() {
@@ -536,6 +534,11 @@
 
         function closeModal() {
             document.getElementById("isModalOpen").value = "false";
+        }
+
+        function cmSaved() {
+            document.getElementById("hiddenCMSaving").value = "true";
+            return true;
         }
         
     </script>
