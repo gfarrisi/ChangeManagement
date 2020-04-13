@@ -213,7 +213,7 @@ namespace ChangeManagementSystem
             if (Validation.ValidateForm(txtNewComment.Text) && IsPageRefresh == false)
             {
                 DateTime dt = DateTime.Now;
-                string CMID = hf.Value;
+                string CMID = Session["hiddenCM"].ToString();
                 Session.Add("UserID", Session["UserID"].ToString());
                 //insert new comment into cm
                 DBConnect ObjDb = new DBConnect();
@@ -257,6 +257,8 @@ namespace ChangeManagementSystem
                     Response.Write("<script>alert('Comment not entered');</script>");
                 }
             }
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#exampleModalLong').modal('show');", true);
         }
 
         protected void btnDownloadAsPDF_Click(object sender, EventArgs e)
@@ -266,35 +268,79 @@ namespace ChangeManagementSystem
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            objCommand.CommandText = "UpdateCMStatus";
+            objDB = new DBConnect();
 
+            objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "UpdateCMStatus";
             objCommand.Parameters.Clear();
-            objCommand.Parameters.AddWithValue("@CMID", hf.Value);
+            objCommand.Parameters.AddWithValue("@CMID", Session["hiddenCM"].ToString());
+
+            SqlCommand objCommandEmail = new SqlCommand();
+            objCommandEmail.CommandType = CommandType.StoredProcedure;
+            objCommandEmail.CommandText = "GetEmailByType";
 
             if (ddlCMStatus.SelectedValue == "CM Failed")
             {
                 objCommand.Parameters.AddWithValue("@CMStatus", "Failed");
+
+                objCommandEmail.Parameters.AddWithValue("@Type", "CM has failed");
             }
             else if (ddlCMStatus.SelectedValue == "Assign to Me")
             {
                 objCommand.CommandText = "UpdateCMStatusAndAdmin";
+                objCommand.Parameters.Clear();
+                objCommand.Parameters.AddWithValue("@CMID", Session["hiddenCM"].ToString());
                 objCommand.Parameters.AddWithValue("@CMStatus", "Assigned");
                 objCommand.Parameters.AddWithValue("@AdminID", Session["UserID"].ToString());
+
+                objCommandEmail.Parameters.AddWithValue("@Type", "Moved to Assigned");
             }
             else if (ddlCMStatus.SelectedValue == "Change Implemented in Pre-Production")
             {
                 objCommand.Parameters.AddWithValue("@CMStatus", "Pre-Production Needs Testing");
+
+                objCommandEmail.Parameters.AddWithValue("@Type", "Implemented in Pre-Prod");
             }
             else if (ddlCMStatus.SelectedValue == "Change Implemented in Production")
             {
                 objCommand.Parameters.AddWithValue("@CMStatus", "Production");
+
+                objCommandEmail.Parameters.AddWithValue("@Type", "Implemented in Prod");
+            }
+            else if (ddlCMStatus.SelectedValue == "--Select a Status--")
+            {
+                Server.Transfer("AdminDashboard.aspx");
             }
 
-            db.DoUpdateUsingCmdObj(objCommand);
-            Server.Transfer("AdminDashboard.aspx");
-            // Need to open confirmation modal after performing update and reload dashboard
+            objDB.DoUpdateUsingCmdObj(objCommand); // Updating CM Status
 
-            // Conditions will eventually need to trigger emails
+            objCommand.Parameters.Clear();
+            objCommand.CommandText = "GetCMAndUserAndTypeByID";
+            objCommand.Parameters.AddWithValue("@CMID", Session["hiddenCM"].ToString());
+            DataSet cmData = objDB.GetDataSetUsingCmdObj(objCommand);
+            DataTable cmTable = cmData.Tables[0];
+
+            DataSet emailData = objDB.GetDataSetUsingCmdObj(objCommandEmail);
+            DataTable emailTable = emailData.Tables[0];
+
+            Email objEmail = new Email();
+            String strTO = "tug52322@temple.edu"; //cmTable.Rows[0]["Email"].ToString();
+            String strFROM = "noreply@temple.edu";
+            String strSubject = "CM #{" + Session["hiddenCM"].ToString() + "}: " + emailTable.Rows[0]["Subject"].ToString();
+            String strMessage = emailTable.Rows[0]["Body"].ToString();
+
+            try
+            {
+                objEmail.SendMail(strTO, strFROM, strSubject, strMessage);
+                //  lblDisplay.Text = "The email was sent.";
+            }
+            catch (Exception ex)
+            {
+                //lblDisplay.Text = "The email wasn't sent because one of the required fields was missing.";
+            }
+
+            Server.Transfer("AdminDashboard.aspx");
         }
 
         protected void btnCheck_Click(object sender, EventArgs e)
