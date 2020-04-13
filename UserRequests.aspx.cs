@@ -213,7 +213,7 @@ namespace ChangeManagementSystem
             {
                 DateTime dt = DateTime.Now;
 
-                string CMID = hf.Value;              
+                string CMID = Session["hiddenCM"].ToString();
 
                 //insert new comment into cm
                 DBConnect ObjDb = new DBConnect();
@@ -257,6 +257,9 @@ namespace ChangeManagementSystem
                     Response.Write("<script>alert('Comment not entered');</script>");
                 }
             }
+
+            // display form again
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#exampleModalLong').modal('show');", true);
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -314,8 +317,9 @@ namespace ChangeManagementSystem
             }
             Session["SessionId"] = System.Guid.NewGuid().ToString();
             ViewState["ViewStateId"] = Session["SessionId"].ToString();
-            if (hf.Value != null && IsPageRefresh == false)
+            if (name != null && IsPageRefresh == false)
             {
+                Page.MaintainScrollPositionOnPostBack = true;
 
                 int CMID = Int32.Parse(name);
 
