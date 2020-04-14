@@ -120,8 +120,23 @@
                                             <div class="col-lg-3 mb-2"></div>
                                             <div class="col-lg-6">
                                                 <div class="status-check">
-                                                    <asp:Label ID="lblCMStatus" runat="server">Update Status</asp:Label>
-                                                    <asp:DropDownList class="browser-default custom-select" ID="ddlCMStatus" runat="server"></asp:DropDownList>
+                                                    <div id="status" runat="server">
+                                                        <div id="preprodTested" runat="server">
+                                                            <asp:Label ID="lblAwaitingAdmin" runat="server" CssClass="font-weight-bold">Awaiting Move to Production</asp:Label>
+                                                        </div>
+                                                        <div id="preprod" runat="server">
+                                                            <asp:Label ID="lblPreProdTesting" runat="server" CssClass="font-weight-bold">User Testing Required in Pre-Prod</asp:Label><br />
+                                                            <br />
+                                                            <asp:CheckBox class="checkbox" ID="chkPreProd" runat="server"></asp:CheckBox>
+                                                            <asp:Label ID="lblTestingConfirmed" runat="server">I have tested and approved pre-prod changes. Move to production</asp:Label><br />
+                                                            <br />
+                                                            <asp:Button ID="btnSubmitTesting" runat="server" CssClass="btn btn-primary" Text="Submit" OnClick="btnSubmitTesting_Click" />
+                                                        </div>
+                                                    </div>
+                                                    <div id="statusChangeControls" runat="server">
+                                                        <asp:Label ID="lblCMStatus" runat="server" CssClass="font-weight-bold">Update Status</asp:Label>
+                                                        <asp:DropDownList class="browser-default custom-select" ID="ddlCMStatus" runat="server"></asp:DropDownList>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -341,6 +356,8 @@
             </div>
         </div>
 
+        <asp:HiddenField ClientIDMode="Static" ID="hiddenCMSaving" runat="server" />
+
           <!-- Modal data-toggle="modal" data-target="#warningModal"-->
         <div class="modal fade" id="mdlCMAttachment" tabindex="-1" role="dialog" aria-labelledby="mdlCMAttachment" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -444,6 +461,11 @@
                 "scrollCollapse": true
             });
         });  
+
+        function cmSaved() {
+            document.getElementById("hiddenCMSaving").value = "true";
+            return true;
+        }
     </script>
 </asp:Content>
 

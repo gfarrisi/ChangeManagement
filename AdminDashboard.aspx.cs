@@ -601,7 +601,7 @@ namespace ChangeManagementSystem
 
                 }
 
-                Server.Transfer("UserDashboard.aspx");
+                Server.Transfer("AdminDashboard.aspx");
             }
         }
 
