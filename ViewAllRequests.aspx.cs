@@ -137,7 +137,7 @@ namespace ChangeManagementSystem
             if (hiddenCMSaving.Value != "true")
             {
 
-              if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Assigned")
+              if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Not Assigned")
               {
                   ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 0%");
                   ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "0");
@@ -260,6 +260,17 @@ namespace ChangeManagementSystem
                   ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                   ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
+                  statusChangeControls.Attributes.Add("class", "visibility-hidden");
+                  status.Attributes.Add("class", "visibility-hidden");
+                  btnSave.Visible = false;
+              }
+              else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Failed")
+              {
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 0%");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "0");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                    
                   statusChangeControls.Attributes.Add("class", "visibility-hidden");
                   status.Attributes.Add("class", "visibility-hidden");
                   btnSave.Visible = false;
