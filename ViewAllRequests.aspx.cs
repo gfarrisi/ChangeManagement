@@ -263,13 +263,13 @@ namespace ChangeManagementSystem
                   statusChangeControls.Attributes.Add("class", "visibility-hidden");
                   status.Attributes.Add("class", "visibility-hidden");
                   btnSave.Visible = false;
-
-                  hiddenCMSaving.Value = "false";
-
               }
 
             }
-            
+            else 
+            {
+                hiddenCMSaving.Value = "false";
+            }
         
         }
 
