@@ -272,6 +272,7 @@ namespace ChangeManagementSystem
                     ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "0");
                     ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                     ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                    btnSave.Visible = true;
 
                     if (((HiddenField)e.Item.FindControl("selectedCMUserID")).Value == Session["UserID"].ToString())
                     {
@@ -300,6 +301,7 @@ namespace ChangeManagementSystem
                     ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "25");
                     ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                     ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                    btnSave.Visible = true;
 
                     if (((HiddenField)e.Item.FindControl("selectedCMUserID")).Value == Session["UserID"].ToString())
                     {
@@ -328,6 +330,7 @@ namespace ChangeManagementSystem
                     ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
                     ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                     ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                    btnSave.Visible = true;
 
                     if (((HiddenField)e.Item.FindControl("selectedCMUserID")).Value == Session["UserID"].ToString())
                     {
@@ -353,6 +356,7 @@ namespace ChangeManagementSystem
                     ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
                     ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                     ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                    btnSave.Visible = true;
 
                     if (((HiddenField)e.Item.FindControl("selectedCMUserID")).Value == Session["UserID"].ToString())
                     {
@@ -387,7 +391,7 @@ namespace ChangeManagementSystem
 
                     statusChangeControls.Attributes.Add("class", "visibility-hidden");
                     status.Attributes.Add("class", "visibility-hidden");
-
+                    btnSave.Visible = false;
                 }
             }
             else

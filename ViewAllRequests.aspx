@@ -110,6 +110,7 @@
                                             <ItemTemplate>
                                                 <h4 runat="server"><%# "Status: " + DataBinder.Eval(Container.DataItem, "CMStatus") %></h4>
                                                 <asp:HiddenField ID="hiddenCMStatus" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMStatus") %>' />
+                                                <asp:HiddenField ID="selectedCMUserID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "UserID") %>' />
                                                 <div class="progress">
                                                     <div runat="server" id="progressBar" class="progress-bar bg-success" role="progressbar"></div>
                                                 </div>
@@ -138,6 +139,7 @@
                                                         <asp:DropDownList class="browser-default custom-select" ID="ddlCMStatus" runat="server"></asp:DropDownList>
                                                     </div>
                                                 </div>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
