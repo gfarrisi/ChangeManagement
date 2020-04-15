@@ -69,7 +69,7 @@
                                 <asp:Label ID="lblDesc" runat="server" Text="Detailed description of change" CssClass="form-text"></asp:Label>
                             </div>
                             <div class="col-lg-6">
-                                <asp:TextBox ID="txtDescResponse" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox TextMode="MultiLine" Rows="4" ID="txtDescResponse" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row mt-3 mb-3">
@@ -98,7 +98,7 @@
                                 <asp:Label ID="lblQuesCom" runat="server" Text="Questions/Comments" CssClass="form-text"></asp:Label>
                             </div>
                             <div class="col-lg-6">
-                                <asp:TextBox ID="txtQuesCom" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox TextMode="MultiLine" Rows="4" ID="txtQuesCom" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
 
