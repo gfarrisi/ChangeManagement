@@ -45,17 +45,14 @@
                 <div class="pull-right pt-5 pb-4" style="background-color: rgba(0,0,0,.03);">
                     <div class="pl-5 ml-5">
                         <div class="row1">
-                            <div class="col-lg-1 mb-1">
+                            <div class="col-lg-.5 mb-1">
                                 <a href="ViewAllRequests.aspx" class="btn btn-dark">View All</a>
                             </div>
                             <div class="col-lg-3 mb-1">
                                 <a href="AdminSelectRequestType.aspx" class="btn btn-dark">New Request</a>
                             </div>
-                            <div class="col-lg-1 mb-1"></div>
                             <div class="col-lg-5 mb-1"></div>
-                            <div class="col-lg-2 mb-1">
-                               <h5><span class="label label-default mb-3 rounded" style="color:white; background-color:#A41E35; padding:12px">Assigned to me</span></h5> 
-                              <%--  <button class="btn btn-secondary" style="box-shadow: 0 0 10px 2.5px #8C2132; cursor: auto;">Assigned to me</button>--%>
+                               <h5><span class="label label-default mb-3 rounded" style="color:white; background-color:#A41E35; padding:12px">*Assigned to me</span></h5>
                             </div>
                         </div>
                     </div>

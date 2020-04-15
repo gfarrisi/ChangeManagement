@@ -362,7 +362,6 @@
             </div>
         </div>
     </form>
-    </form>
     <script>
         function RecordClickedCM(t) {
             var row = t.parentElement.parentElement.rowIndex;

@@ -358,6 +358,8 @@
             </div>
         </div>
 
+        <asp:HiddenField ClientIDMode="Static" ID="hiddenCMSaving" runat="server" />
+
           <!-- Modal data-toggle="modal" data-target="#warningModal"-->
         <div class="modal fade" id="mdlCMAttachment" tabindex="-1" role="dialog" aria-labelledby="mdlCMAttachment" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -461,6 +463,11 @@
                 "scrollCollapse": true
             });
         });  
+
+        function cmSaved() {
+            document.getElementById("hiddenCMSaving").value = "true";
+            return true;
+        }
     </script>
 </asp:Content>
 
