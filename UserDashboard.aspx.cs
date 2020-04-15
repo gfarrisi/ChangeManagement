@@ -554,7 +554,6 @@ namespace ChangeManagementSystem
             if ((imgByte != null) && (imgName != null))
             {
                 // turn byte into downloaded file
-
                 //System.IO.File.WriteAllBytes(Environment.ExpandEnvironmentVariables(@"%USERPROFILE%\Downloads") + imgName, imgByte);
                 Response.Clear();
                 Response.Buffer = true;
@@ -566,6 +565,7 @@ namespace ChangeManagementSystem
                 Response.BinaryWrite(imgByte);
                 Response.Flush();
                 Response.End();
+
 
                 attachmentModal(imgName);
 

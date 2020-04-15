@@ -122,7 +122,9 @@ function addOptionsToSession() {
 
     
 }
-
+function validate() {
+    console.log("validate")
+}
 
 //$(document).on('click', '#iconWrapper', function () {
 //    alert("clcked")
