@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -18,7 +19,6 @@ namespace ChangeManagementSystem
 
         public int questionOrder;
 
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (isAuthenticated() == false)
@@ -28,8 +28,10 @@ namespace ChangeManagementSystem
             }
             else if (isAuthenticated() == true)
             {
+
                 if (!IsPostBack)
                 {
+                    Session["DeletedItem"] = false;
                     //added to check if page load was triggered by refresh
                     ViewState["ViewStateId"] = System.Guid.NewGuid().ToString();
                     Session["SessionId"] = ViewState["ViewStateId"].ToString();
@@ -53,6 +55,12 @@ namespace ChangeManagementSystem
 
                     questionOrder = 1;
                 }
+                else
+                {
+
+                }
+
+
             }
 
         }
@@ -135,7 +143,7 @@ namespace ChangeManagementSystem
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "InsertNewRequestType";
                 objCommand.Parameters.Clear();
-                objCommand.Parameters.AddWithValue("@RequestTypeID", requestTypeID); 
+                objCommand.Parameters.AddWithValue("@RequestTypeID", requestTypeID);
                 objCommand.Parameters.AddWithValue("@RequestTypeName", requestTypeName);
                 objCommand.Parameters.AddWithValue("@QuestionText", question.Question_Text);
                 objCommand.Parameters.AddWithValue("@QuestionControl", question.Question_Control);
@@ -151,7 +159,7 @@ namespace ChangeManagementSystem
                     Response.Redirect("AdminDashboard.aspx");
                 }
                 Response.Write("<script>alert('" + resultID + "');</script>");
-                
+
 
             }
 
@@ -161,11 +169,76 @@ namespace ChangeManagementSystem
 
         protected void btnAdd_ServerClick(object sender, EventArgs e)
         {
-            //do check to see if page load
-            addQuestion();
-            createForm();
-            addButton();
+            HttpCookie deletedItemCookie = Request.Cookies["DeletedItem"];
+            HttpCookie editedItemCookie = Request.Cookies["EditedItem"];
+            if (deletedItemCookie != null)
+            {
+                Boolean isDeteled = Convert.ToBoolean(deletedItemCookie.Value);
+                // Response.Write("<script>alert('Request type Constraint is created and now available to users.');</script>");
+
+                if (isDeteled == true)
+                {
+                    //remove old cookie and reset to false
+                    HttpContext.Current.Response.Cookies.Remove("DeletedItem");
+                    deletedItemCookie.Expires = DateTime.Now.AddDays(-10);
+                    deletedItemCookie.Value = null;
+                    HttpContext.Current.Response.Cookies.Set(deletedItemCookie);
+
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    HttpCookie reqCookies = Request.Cookies["newRequestObj"];
+                    List<Question> request = new List<Question>();
+                    if (reqCookies != null)
+                    {
+                        HttpCookie serializedNewRequest = HttpContext.Current.Request.Cookies["newRequestObj"];
+                        request = js.Deserialize<List<Question>>(Server.UrlDecode(serializedNewRequest.Value));
+                        var serializedResult = js.Serialize(request);
+                        Session["request"] = serializedResult;
+                        createForm();
+                    }
+
+
+                }
+            }
+            else if (editedItemCookie != null)
+            {
+                Boolean isEdited = Convert.ToBoolean(editedItemCookie.Value);
+                if (isEdited == true)
+                {
+                    //remove old cookie and reset to false
+                    HttpContext.Current.Response.Cookies.Remove("EditedItem");
+                    editedItemCookie.Expires = DateTime.Now.AddDays(-10);
+                    editedItemCookie.Value = null;
+                    HttpContext.Current.Response.Cookies.Set(editedItemCookie);
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    HttpCookie reqCookies = Request.Cookies["newRequestObj"];
+                    List<Question> request = new List<Question>();
+                    if (reqCookies != null)
+                    {
+                        HttpCookie serializedNewRequest = HttpContext.Current.Request.Cookies["newRequestObj"];
+                        request = js.Deserialize<List<Question>>(Server.UrlDecode(serializedNewRequest.Value));
+                        var serializedResult = js.Serialize(request);
+                        Session["request"] = serializedResult;
+                        addQuestion();
+                        createForm();
+                    }
+
+                }
+            }
+            else
+            {
+                //validate                
+                addQuestion();
+                createForm();
+                addButton();
+            }
+
+
         }
+        public void validateModal()
+        {
+            string controlText = txtControl.Text;
+        }
+
         public void addButton()
         {
             Button iconWrapper = new Button();
@@ -188,10 +261,11 @@ namespace ChangeManagementSystem
                 //get serialized js request and convert it into list of questions            
                 string serializedRequest = Session["request"] == null ? null : Session["request"].ToString();
                 List<Question> request = js.Deserialize<List<Question>>(serializedRequest);
-                // Response.Write("<script>alert('" + request + "');</script>");
+                Response.Write("<script>console.log('request," + request + "');</script>");
 
                 string controlType = Request["control-type"];
-                string controlText = Request["control-text"];
+                //string controlText = Request["control-text"];
+                string controlText = txtControl.Text;
                 List<string> options = new List<string>();
                 if (controlType != "TextBox")
                 {
@@ -225,7 +299,8 @@ namespace ChangeManagementSystem
                 List<Question> requestFirst = new List<Question>();
 
                 string controlType = Request["control-type"];
-                string controlText = Request["control-text"];
+               // string controlText = Request["control-text"];
+                  string controlText = txtControl.Text;// Request["control-text"];
                 List<string> options = new List<string>();
                 if (controlType != "TextBox")
                 {
@@ -268,7 +343,13 @@ namespace ChangeManagementSystem
                 string serializedRequest = Session["request"] == null ? null : Session["request"].ToString();
                 List<Question> request = js.Deserialize<List<Question>>(serializedRequest);
 
+                newRequestType_container.Controls.Clear();
+                newRequestType_container.Dispose();
 
+                foreach (IDisposable control in newRequestType_container.Controls)
+                {
+                    control.Dispose();
+                }
                 // int questionID = Convert.ToInt32(Session["QuestionID"].ToString());
 
                 foreach (Question question in request)
@@ -279,12 +360,12 @@ namespace ChangeManagementSystem
                     List<string> question_options = question.Question_Options;
 
                     System.Web.UI.HtmlControls.HtmlGenericControl rowDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                    rowDiv.ID = "rowDiv";
+                    rowDiv.ID = "rowDiv__" + question_id;
                     rowDiv.Attributes.Add("class", "row mt-3 mb-3");
                     newRequestType_container.Controls.Add(rowDiv);
 
                     System.Web.UI.HtmlControls.HtmlGenericControl firstCol6Div = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                    firstCol6Div.ID = "firstCol6Div";
+                    firstCol6Div.ID = "firstCol6Div__" + question_id;
                     firstCol6Div.Attributes.Add("class", "col-lg-5 ml-3");
                     rowDiv.Controls.Add(firstCol6Div);
 
@@ -295,7 +376,7 @@ namespace ChangeManagementSystem
 
 
                     System.Web.UI.HtmlControls.HtmlGenericControl secondCol6Div = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-                    secondCol6Div.ID = "secondCol6Div";
+                    secondCol6Div.ID = "secondCol6Div__" + question_id;
                     secondCol6Div.Attributes.Add("class", "col-lg-5");
                     rowDiv.Controls.Add(secondCol6Div);
 
@@ -331,7 +412,7 @@ namespace ChangeManagementSystem
                     newRequestTypeDiv.ID = "newRequestTypeDiv__" + question_id;
 
                     System.Web.UI.HtmlControls.HtmlGenericControl editIcon = new System.Web.UI.HtmlControls.HtmlGenericControl("i");
-                    editIcon.ID = "_" + question_id.ToString();
+                    editIcon.ID = "edit_" + question_id.ToString();
                     editIcon.Attributes.Add("class", "far fa-edit mt-1 pointer");
                     //iconWrapper.Controls.Add(editIcon);
                     newRequestTypeDiv.Controls.Add(editIcon);
@@ -344,11 +425,11 @@ namespace ChangeManagementSystem
                     deleteBtnDiv.ID = "deleteBtnDiv__" + question_id;
 
                     System.Web.UI.HtmlControls.HtmlGenericControl deleteIcon = new System.Web.UI.HtmlControls.HtmlGenericControl("i");
-                    deleteIcon.ID = "_" + question_id.ToString();
+                    deleteIcon.ID = "delete_" + question_id.ToString();
                     deleteIcon.Attributes.Add("class", "fa fa-times x-icon mt-1 pointer");
                     //iconWrapper.Controls.Add(editIcon);
                     deleteBtnDiv.Controls.Add(deleteIcon);
-                    deleteBtnDiv.Attributes.Add("onclick", "delete(this.id);");
+                    deleteBtnDiv.Attributes.Add("onclick", "deleteQuestion(this.id);");
 
                     rowDiv.Controls.Add(deleteBtnDiv);
                 }

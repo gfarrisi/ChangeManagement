@@ -41,8 +41,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH1" runat="server">
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true">
+        </asp:ScriptManager>
         <br />
-                
+
         <div class="mt-5">
             <div class="row mt-5">
                 <div class="col-3"></div>
@@ -119,11 +121,11 @@
             <div class="row">
                 <div class="col-lg-5"></div>
                 <div class="col-lg-7">
-                    
+
                     <asp:Button BackColor="#9D2235" ForeColor="#ffffff" CssClass="btn btn-secondary mt-5 ml-3" BorderStyle="None" ID="btnSubmit" runat="server" Text="Create new request type" OnClick="btnSubmit_Click" />
                 </div>
             </div>
-            
+
         </div>
         <!-- Modal -->
         <div class="modal fade" id="mdlAddQuestion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -138,23 +140,27 @@
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Control Type:</label><br />
+                            <label for="recipient-name" class="col-form-label">Control Type:</label>
+                            <br />
+                            <label class="col-form-label hide">* Please select a control type</label>
+                            <br />
                             <select id="control-type" class="form-control" name="control-type" onchange="chgControlType()">
-                                <option value="N/A">- Select control type -</option>
                                 <option value="Dropdown">Dropdown</option>
                                 <option value="RadioButton">Radio Button</option>
                                 <option value="TextBox">TextBox</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Control Text/Question:</label>
-                            <input type="text" class="form-control" id="control-text" name="control-text" >
+                            <label for="message-text" class="col-form-label">Control Text/Question:</label><br />
+                            <label class="hide">* Please enter a control name</label>
+                             <asp:TextBox ID="txtControl" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                        <%--    <input type="text" class="form-control" id="control-text" name="control-text">--%>
                         </div>
                         <div id="option-container" class="d-none form-group">
                             <label for="message-text" class="col-form-label">Options:</label>
                             <div id="options">
                                 <div id="Option 1">
-                                    <input type="text" class="form-control mb-2" style="width: 95%; display: inline;" id="control-option" onchange="addOptionsToSession()" placeholder="Option 1" >
+                                    <input type="text" class="form-control mb-2" style="width: 95%; display: inline;" id="control-option" onchange="addOptionsToSession()" placeholder="Option 1">
                                     <i id="1"></i>
                                 </div>
                             </div>
@@ -175,10 +181,11 @@
     </form>
 
     <script>
+
         $(document).ready(function () {
             $(".dropdown-toggle").dropdown();
-        });
 
+        });
 
         function edit(renderedID) {
             //alert("clicked");
@@ -187,14 +194,25 @@
             var questionID = id[1];
             // console.log(questionID)
 
-            console.log("outside loop",questionID)
+            console.log("outside loop", questionID)
             // Get saved data from sessionStorage
             var requestSessionValue = '<%=Session["request"]%>'
             const requestObj = JSON.parse(requestSessionValue);
-
-
+            let newRequestObj = requestObj.filter(item => (item.Question_ID !== parseInt(questionID, 10)))
+            console.log("new request obj", newRequestObj)
+            // all custom jQuery will go here
+            if ($.cookie('token') == null) {
+                var json = JSON.stringify(newRequestObj);
+                console.log(json);
+                $.cookie('newRequestObj', json);
+            } else {
+                var json = JSON.stringify(newRequestObj);
+                console.log(json);
+                $.cookie('newRequestObj', json);
+            }
+            $.cookie('EditedItem', true);
             requestObj.forEach(function (obj) {
-                
+
                 if (obj.Question_ID == questionID) {
 
                     $("#control-text").val(obj.Question_Text);
@@ -213,6 +231,8 @@
                         optionContainer.classList.remove("d-block");
                         optionContainer.classList.add("d-none");
                     }
+
+
                     $('#mdlAddQuestion').modal('show')
                 }
                 else {
@@ -222,8 +242,51 @@
 
         }
 
+        function deleteQuestion(renderedID) {
+            //alert("clicked");
+            console.log(renderedID)
+            let id = renderedID.split("__")
+            let questionID = id[1];
+            // console.log(questionid)
+
+            console.log("outside loop", questionID)
+            // get saved data from sessionstorage
+            let requestSessionValue = '<%=Session["request"]%>'
+
+            const requestObj = JSON.parse(requestSessionValue);
+
+            let newRequestObj = requestObj.filter(item => (item.Question_ID !== parseInt(questionID, 10)))
+            console.log("new request obj", newRequestObj)
+            // all custom jQuery will go here
+            if ($.cookie('token') == null) {
+                var json = JSON.stringify(newRequestObj);
+                console.log(json);
+                $.cookie('newRequestObj', json);
+            } else {
+                var json = JSON.stringify(newRequestObj);
+                console.log(json);
+                $.cookie('newRequestObj', json);
+            }
+
+            // $.cookie('newRequestObj', JSON.stringify(newRequestObj));
+
+            var requestCookie = JSON.parse($.cookie("newRequestObj"));
+            console.log(requestCookie);
+
+
+
+            $.cookie('DeletedItem', true);
+
+            var cookie = $.cookie("DeletedItem");
+            console.log(cookie);
+
+            location.reload();
+
+        }
+
 
 
     </script>
+
 
 </asp:Content>
