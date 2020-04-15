@@ -78,16 +78,17 @@
                                 <asp:Label ID="lblDesc" runat="server" Text="Detailed description of change" CssClass="form-text"></asp:Label>
                             </div>
                             <div class="col-lg-6">
-                                <asp:TextBox ID="txtDescResponse" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox TextMode="MultiLine" Rows="4" ID="txtDescResponse" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row mt-3 mb-3">
                             <div class="col-lg-6">
-                                <asp:Label ID="lblUpload" runat="server" Text="Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots. (Maximum of 5)" CssClass="form-text"></asp:Label>
+                                <asp:Label ID="lblUpload" runat="server" Text="Please upload up to 5 applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots. <br>
+                                    Permitted files: .pdf, .png, .jpg, .xls, .xlsx, .doc, .docx, or .csv" CssClass="form-text"></asp:Label>
                             </div>
                             <div class="col-lg-6">
                                 <asp:FileUpload ID="fuScreenshots" AllowMultiple="true" CssClass="form-control-file" runat="server" ClientIDMode="Static"></asp:FileUpload>
-                              <asp:Label ID="lblScreenshotsError" runat="server" Visible="false" Font-Size="Large" ForeColor="Red">You are only permitted to submit files with a .pdf, .png, .jpg, .xls, .xlsx, .doc, .docx, or .csv file extension!</asp:Label>
+                                <asp:Label ID="lblScreenshotsError" runat="server" Visible="false" Font-Size="Large" ForeColor="Red">You are only permitted to submit files with a .pdf, .png, .jpg, .xls, .xlsx, .doc, .docx, or .csv file extension!</asp:Label>
                             </div>
                         </div>
                         <div class="row mt-3 mb-3">
@@ -103,7 +104,7 @@
                                 <asp:Label ID="lblQuesCom" runat="server" Text="Questions/Comments" CssClass="form-text"></asp:Label>
                             </div>
                             <div class="col-lg-6">
-                                <asp:TextBox ID="txtQuesCom" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox TextMode="MultiLine" Rows="4" ID="txtQuesCom" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
 
@@ -133,7 +134,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="col-lg-12">
-                            <label id="Label1" style="line-height: 50px;" runat="server">Thank you for submitting your CM!<br />
+                            <label id="Label1" style="line-height: 50px;" runat="server">
+                                Thank you for submitting your CM!<br />
                                 Please check your email or dashboard for updates!</label>
                         </div>
                     </div>
@@ -148,23 +150,22 @@
 
     <script>
 
-     $(document).ready(function () {
-        $('#fuScreenshots').change(function () {
-            var files = $(this)[0].files;
-            if (files.length > 5) {
-                alert("You cannot select more than 5 attachments!");
-                $('#fuScreenshots').val(null);
-                
-            }
-            else
-            {
-                //alert("success");
-            }
-        });
+        $(document).ready(function () {
+            $('#fuScreenshots').change(function () {
+                var files = $(this)[0].files;
+                if (files.length > 5) {
+                    alert("You cannot select more than 5 attachments!");
+                    $('#fuScreenshots').val(null);
+
+                }
+                else {
+                    //alert("success");
+                }
+            });
         });
 
         $(document).ready(function () {
             $(".dropdown-toggle").dropdown();
         });
-        </script>
+    </script>
 </asp:Content>

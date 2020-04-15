@@ -69,12 +69,12 @@
                                 <asp:Label ID="lblDesc" runat="server" Text="Detailed description of change" CssClass="form-text"></asp:Label>
                             </div>
                             <div class="col-lg-6">
-                                <asp:TextBox ID="txtDescResponse" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox TextMode="MultiLine" Rows="4" ID="txtDescResponse" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row mt-3 mb-3">
                             <div class="col-lg-6">
-                                <asp:Label ID="lblUpload" runat="server" Text="Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots. (Maximum of 5)" CssClass="form-text"></asp:Label>
+                                <asp:Label ID="lblUpload" runat="server" Text="Please upload up to 5 applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots. <br>Permitted files: .pdf, .png, .jpg, .xls, .xlsx, .doc, .docx, or .csv" CssClass="form-text"></asp:Label>
                             </div>
 
                             <div class="col-lg-6">
@@ -98,7 +98,7 @@
                                 <asp:Label ID="lblQuesCom" runat="server" Text="Questions/Comments" CssClass="form-text"></asp:Label>
                             </div>
                             <div class="col-lg-6">
-                                <asp:TextBox ID="txtQuesCom" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox TextMode="MultiLine" Rows="4" ID="txtQuesCom" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
 

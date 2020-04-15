@@ -41,20 +41,18 @@
                     <asp:GridView ID="gvUserRequests" runat="server" CssClass="datatable" AutoGenerateColumns="False" BorderColor="#CCCCCC" AllowPaging="false" OnRowDataBound="gvUserRequests_RowDataBound">
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="CMID" ItemStyle-CssClass="thead-dark" HeaderText="CM ID" ReadOnly="true" SortExpression="CMID">
+                            <asp:BoundField DataField="CMID" ItemStyle-CssClass="thead-dark" HeaderText="CM ID" ReadOnly="true">
                                 <ItemStyle CssClass="font-weight-bold" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="CMProjectName" ItemStyle-CssClass="thead-dark" HeaderText="CM Project Name" ReadOnly="true" SortExpression="CMProjectName" />
-                            <asp:TemplateField ItemStyle-CssClass="thead-dark" HeaderText="Assigned Admin" SortExpression="AdminLastName">
+                            <asp:BoundField DataField="CMProjectName" ItemStyle-CssClass="thead-dark" HeaderText="CM Project Name" ReadOnly="true" />
+                            <asp:TemplateField ItemStyle-CssClass="thead-dark" HeaderText="Assigned Admin">
                                 <ItemTemplate>
                                     <%# Eval("AdminFirstName") + " " + Eval("AdminLastName")%>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                   
-
-                            <asp:BoundField DataField="RequestTypeName" HeaderText="Type" ReadOnly="true" SortExpression="RequestTypeName" />
-                            <asp:BoundField DataField="CMStatus" HeaderText="Status" ReadOnly="true" SortExpression="CMStatus" />
-                            <asp:BoundField DataField="LastUpdateDate" HeaderText="Last Updated Date" ReadOnly="true" DataFormatString="{0:MM/dd/yyyy}" SortExpression="LastUpdateDate" />
+                            <asp:BoundField DataField="RequestTypeName" HeaderText="Type" ReadOnly="true" />
+                            <asp:BoundField DataField="CMStatus" HeaderText="Status" ReadOnly="true" />
+                            <asp:BoundField DataField="LastUpdateDate" HeaderText="Last Updated Date" ReadOnly="true" DataFormatString="{0:MM/dd/yyyy}" />
                             <asp:TemplateField HeaderText="View Request" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <asp:LinkButton CssClass="btn" BorderStyle="None" ID="btnCheck" runat="server" OnClick="btnCheck_Click"><i class='far fa-eye'></i></asp:LinkButton>
@@ -112,9 +110,18 @@
                                         <div class="row">
                                             <div class="col-lg-3 mb-2"></div>
                                             <div class="col-lg-6">
-                                                <div class="status-check">
-                                                    <asp:Label ID="lblCMStatus" runat="server">Update Status</asp:Label>
-                                                    <asp:DropDownList class="browser-default custom-select" ID="ddlCMStatus" runat="server"></asp:DropDownList>
+                                                <div class="status-check" id="status" runat="server">
+                                                    <div id="preprodTested" runat="server">
+                                                        <asp:Label ID="lblAwaitingAdmin" runat="server" CssClass="font-weight-bold">Awaiting Move to Production</asp:Label>
+                                                    </div>
+                                                    <div id="preprod" runat="server">
+                                                        <asp:Label ID="lblPreProdTesting" runat="server" CssClass="font-weight-bold">User Testing Required in Pre-Prod</asp:Label><br />
+                                                        <br />
+                                                        <asp:CheckBox class="checkbox" ID="chkPreProd" runat="server"></asp:CheckBox>
+                                                        <asp:Label ID="lblTestingConfirmed" runat="server">I have tested and approved pre-prod changes. Move to production</asp:Label><br />
+                                                        <br />
+                                                        <asp:Button ID="btnSubmitTesting" runat="server" CssClass="btn btn-primary" Text="Submit" OnClick="btnSubmitTesting_Click" />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -308,8 +315,7 @@
                     </div>
                     <div class="modal-footer mt-5">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
-                        <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" style="background-color:#8C2132" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
-                        <asp:Button runat="server" class="btn btn-primary" ID="btnSave" Text="Save changes" OnClick="btnSave_Click"></asp:Button>
+                        <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" style="background-color:#8C2132" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />                       
                     </div>
                 </div>
 
@@ -355,7 +361,6 @@
                 </div>
             </div>
         </div>
-    </form>
     </form>
     <script>
         function RecordClickedCM(t) {

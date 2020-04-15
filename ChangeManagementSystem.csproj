@@ -44,12 +44,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IronPdf, Version=2020.0.1.24570, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
-      <HintPath>packages\IronPdf.2020.1.0\lib\net40\IronPdf.dll</HintPath>
-    </Reference>
-    <Reference Include="IronPdf.Assets.Rendering.Windows, Version=17.0.0.0, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
-      <HintPath>packages\Iron.Assets.Rendering.Windows.17.0.0\lib\net40\IronPdf.Assets.Rendering.Windows.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -58,6 +52,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -82,13 +77,7 @@
     <Content Include="AdminDashboard.aspx" />
     <Content Include="bin\ChangeManagementSystem.dll" />
     <Content Include="bin\ChangeManagementSystem.pdb" />
-    <Content Include="bin\IronPdf.Assets.Rendering.Windows.dll" />
-    <Content Include="bin\IronPdf.dll" />
-    <Content Include="bin\IronPdf.xml" />
-    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
-    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <Content Include="bin\Newtonsoft.Json.dll" />
-    <Content Include="bin\Newtonsoft.Json.xml" />
     <Content Include="cancel.jpg" />
     <Content Include="CM.aspx" />
     <Content Include="css\cm-request.css" />
@@ -107,19 +96,6 @@
     <Content Include="AdminSelectRequestType.aspx" />
     <Content Include="AdminNewCM.aspx" />
     <Content Include="NewRequestType.aspx" />
-    <Content Include="obj\Debug\ChangeManagementSystem.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\ChangeManagementSystem.dll" />
-    <Content Include="obj\Debug\ChangeManagementSystem.pdb" />
-    <Content Include="obj\Debug\TempPE\.gitignore" />
-    <Content Include="obj\Debug\TempPE\Web References.WS_LDAP_Search.Reference.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Web References.WS_Programs_And_Degrees.Reference.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Web References.WS_Student_Search.Reference.cs.dll" />
-    <Content Include="packages\Iron.Assets.Rendering.Windows.17.0.0\lib\net40\IronPdf.Assets.Rendering.Windows.dll" />
-    <Content Include="packages\IronPdf.2020.1.0\lib\net40\IronPdf.dll" />
-    <Content Include="packages\IronPdf.2020.1.0\lib\net40\IronPdf.xml" />
-    <Content Include="packages\IronPdf.2020.1.0\lib\netstandard2.0\IronPdf.dll" />
-    <Content Include="packages\IronPdf.2020.1.0\lib\netstandard2.0\IronPdf.xml" />
-    <Content Include="packages\IronPdf.2020.1.0\readme.txt" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\csc.exe" />
@@ -222,14 +198,11 @@
     <Content Include="vendor\jquery\jquery.slim.min.js" />
     <Content Include="ViewAllRequests.aspx" />
     <Content Include="ViewAllUsers.aspx" />
-    <Content Include="obj\Debug\ChangeManagementSystem.csproj.CopyComplete" />
-    <Content Include="obj\Debug\ChangeManagementSystem.csproj.CoreCompileInputs.cache" />
-    <Content Include="obj\Debug\ChangeManagementSystem.csprojAssemblyReference.cache" />
-    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <Content Include="packages\Iron.Assets.Rendering.Windows.17.0.0\.signature.p7s" />
-    <Content Include="packages\Iron.Assets.Rendering.Windows.17.0.0\Iron.Assets.Rendering.Windows.17.0.0.nupkg" />
-    <Content Include="packages\IronPdf.2020.1.0\.signature.p7s" />
-    <Content Include="packages\IronPdf.2020.1.0\IronPdf.2020.1.0.nupkg" />
+    <Content Include="packages\Newtonsoft.Json.12.0.3\.signature.p7s" />
+    <Content Include="packages\Newtonsoft.Json.12.0.3\LICENSE.md" />
+    <Content Include="packages\Newtonsoft.Json.12.0.3\Newtonsoft.Json.12.0.3.nupkg" />
+    <Content Include="bin\ChangeManagementSystem.dll.config" />
+    <None Include="packages.config" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\.signature.p7s" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.Extensions.props" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" />
@@ -264,10 +237,6 @@
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\vbc.exe.config" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\vbc.rsp" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\VBCSCompiler.exe.config" />
-    <Content Include="packages\Newtonsoft.Json.12.0.3\.signature.p7s" />
-    <Content Include="packages\Newtonsoft.Json.12.0.3\LICENSE.md" />
-    <Content Include="packages\Newtonsoft.Json.12.0.3\Newtonsoft.Json.12.0.3.nupkg" />
-    <Content Include="bin\ChangeManagementSystem.dll.config" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -295,12 +264,12 @@
     <Content Include="EditEmail.aspx" />
     <Content Include="UserSelectRequestType.aspx" />
     <Content Include="UserNewCM.aspx" />
-    <Content Include="Web.config" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
+    <Content Include="web.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
     </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -353,9 +322,6 @@
     <Compile Include="AdminNewCM.aspx.designer.cs">
       <DependentUpon>AdminNewCM.aspx</DependentUpon>
     </Compile>
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -496,7 +462,6 @@
     <Content Include="vendor\jquery\jquery.slim.min.map" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
-    <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web References\WS_LDAP_Search\ldap_search.wsdl" />
     <Content Include="Web References\WS_LDAP_Search\Reference.map">
@@ -549,6 +514,9 @@
       <CachedSettingsPropName>ChangeManagementSystem_WS_Student_Search_WS_Student</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="System\Windows\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -564,7 +532,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55830/</IISUrl>
+          <IISUrl>http://localhost:55828/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

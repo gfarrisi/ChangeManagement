@@ -131,17 +131,6 @@ namespace ChangeManagementSystem
             return isAllowed;
         }
 
-        private string SortDirection
-        {
-            get { return ViewState["SortDirection"] != null ? ViewState["SortDirection"].ToString() : "ASC"; }
-            set { ViewState["SortDirection"] = value; }
-        }
-
-        protected void OnSorting(object sender, GridViewSortEventArgs e)
-        {
-            this.BindGrid(e.SortExpression);
-        }
-
         private void BindGrid(string sortExpression = null)
         {
             DBConnect db = new DBConnect();
@@ -162,9 +151,6 @@ namespace ChangeManagementSystem
                         if (sortExpression != null)
                         {
                             DataView dv = dt.AsDataView();
-                            this.SortDirection = this.SortDirection == "ASC" ? "DESC" : "ASC";
-
-                            dv.Sort = sortExpression + " " + this.SortDirection;
                             gvAllUsers.DataSource = dv;
                         }
                         else
@@ -176,12 +162,6 @@ namespace ChangeManagementSystem
                 }
             }
         }
-
-        protected void btnNewUser_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("NewUser.aspx");
-        }
-
       
         protected void btnDeactivate_Click(object sender, EventArgs e)
         {

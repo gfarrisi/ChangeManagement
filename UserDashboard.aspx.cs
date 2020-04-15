@@ -9,7 +9,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using IronPdf;
 using System.Net;
 using System.IO;
 
@@ -57,30 +56,7 @@ namespace ChangeManagementSystem
 
 
                     // Not assigned CMs
-
-                    objCommand.CommandType = CommandType.StoredProcedure;
-                    objCommand.CommandText = "GetCMResponsesByUserByStatus";
-                    objCommand.Parameters.Clear();
-                    objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
-                    objCommand.Parameters.AddWithValue("@CMStatus", "not assigned");
-
-                    DataSet cmRequestData = objDB.GetDataSetUsingCmdObj(objCommand);
-                    DataTable dataTable = cmRequestData.Tables[0];
-
-
-                    List<QuestionResponse> responseListNotAssigned = new List<QuestionResponse>();
-
-                    if (dataTable.Rows.Count > 0)
-                    {
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
-                        {
-                            QuestionResponse questionResponse = new QuestionResponse(Convert.ToInt32(dataTable.Rows[i]["CMID"].ToString()), Convert.ToInt32(dataTable.Rows[i]["QuestionID"].ToString()), dataTable.Rows[i]["QuestionResponse"].ToString());
-                            responseListNotAssigned.Add(questionResponse);
-                        }
-                    }
-
-                    Session.Add("responseListNotAssigned", responseListNotAssigned.ToString());
-
+                    
                     objCommandDashboard.CommandType = CommandType.StoredProcedure;
                     objCommandDashboard.CommandText = "GetCMsByUserByStatus";
                     objCommandDashboard.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
@@ -91,28 +67,7 @@ namespace ChangeManagementSystem
                     rptNotAssigned.DataBind();
 
                     // Assigned CMs
-
-                    objCommand.Parameters.Clear();
-                    objCommand.Parameters.AddWithValue("@CMStatus", "assigned");
-                    objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
-
-                    cmRequestData = objDB.GetDataSetUsingCmdObj(objCommand);
-                    dataTable = cmRequestData.Tables[0];
-
-
-                    List<QuestionResponse> responseListAssigned = new List<QuestionResponse>();
-
-                    if (dataTable.Rows.Count > 0)
-                    {
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
-                        {
-                            QuestionResponse questionResponse = new QuestionResponse(int.Parse(dataTable.Rows[i]["CMID"].ToString()), int.Parse(dataTable.Rows[i]["QuestionID"].ToString()), dataTable.Rows[i]["QuestionResponse"].ToString());
-                            responseListAssigned.Add(questionResponse);
-                        }
-                    }
-
-                    Session.Add("responseListAssigned", responseListAssigned.ToString());
-
+                    
                     objCommandDashboard.Parameters.Clear();
                     objCommandDashboard.Parameters.AddWithValue("@CMStatus", "assigned");
                     objCommandDashboard.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
@@ -121,28 +76,7 @@ namespace ChangeManagementSystem
                     rptAssigned.DataBind();
 
                     // Pre-Production CMs
-
-                    objCommand.Parameters.Clear();
-                    objCommand.Parameters.AddWithValue("@CMStatus", "pre-production");
-                    objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
-
-                    cmRequestData = objDB.GetDataSetUsingCmdObj(objCommand);
-                    dataTable = cmRequestData.Tables[0];
-
-
-                    List<QuestionResponse> responseListPreProduction = new List<QuestionResponse>();
-
-                    if (dataTable.Rows.Count > 0)
-                    {
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
-                        {
-                            QuestionResponse questionResponse = new QuestionResponse(int.Parse(dataTable.Rows[i]["CMID"].ToString()), int.Parse(dataTable.Rows[i]["QuestionID"].ToString()), dataTable.Rows[i]["QuestionResponse"].ToString());
-                            responseListPreProduction.Add(questionResponse);
-                        }
-                    }
-
-                    Session.Add("responseListPreProduction", responseListPreProduction.ToString());
-
+                    
                     objCommandDashboard.CommandText = "GetPreProdCMsByUser";
                     objCommandDashboard.Parameters.Clear();
                     objCommandDashboard.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
@@ -152,28 +86,7 @@ namespace ChangeManagementSystem
                     rptPreProduction.DataBind();
 
                     // Completed CMs
-
-                    objCommand.Parameters.Clear();
-                    objCommand.Parameters.AddWithValue("@CMStatus", "completed");
-                    objCommand.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
-
-                    cmRequestData = objDB.GetDataSetUsingCmdObj(objCommand);
-                    dataTable = cmRequestData.Tables[0];
-
-
-                    List<QuestionResponse> responseListCompleted = new List<QuestionResponse>();
-
-                    if (dataTable.Rows.Count > 0)
-                    {
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
-                        {
-                            QuestionResponse questionResponse = new QuestionResponse(int.Parse(dataTable.Rows[i]["CMID"].ToString()), int.Parse(dataTable.Rows[i]["QuestionID"].ToString()), dataTable.Rows[i]["QuestionResponse"].ToString());
-                            responseListNotAssigned.Add(questionResponse);
-                        }
-                    }
-
-                    Session.Add("responseListCompleted", responseListCompleted.ToString());
-
+                    
                     objCommandDashboard.CommandText = "GetCompletedCMsByUser";
                     objCommandDashboard.Parameters.Clear();
                     objCommandDashboard.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
@@ -389,11 +302,6 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
                 status.Attributes.Add("class", "visibility-hidden");
-                //lblPreProdTesting.Visible = false;
-                //chkPreProd.Visible = false;
-                //lblTestingConfirmed.Visible = false;
-                //btnSubmitTesting.Visible = false;
-                //lblAwaitingAdmin.Visible = false;
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Assigned")
             {
@@ -646,9 +554,21 @@ namespace ChangeManagementSystem
             if ((imgByte != null) && (imgName != null))
             {
                 // turn byte into downloaded file
-                System.IO.File.WriteAllBytes(Environment.ExpandEnvironmentVariables(@"%USERPROFILE%\Downloads\") + imgName, imgByte);
+                //System.IO.File.WriteAllBytes(Environment.ExpandEnvironmentVariables(@"%USERPROFILE%\Downloads") + imgName, imgByte);
+                Response.Clear();
+                Response.Buffer = true;
+                Response.Charset = "";
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                Response.ContentType = "application/octet-stream";
+
+                Response.AppendHeader("Content-Disposition", @"inline; filename=" + imgName);
+                Response.BinaryWrite(imgByte);
+                Response.Flush();
+                Response.End();
+
 
                 attachmentModal(imgName);
+
             }
             else
             {

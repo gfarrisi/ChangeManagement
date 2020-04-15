@@ -36,7 +36,7 @@
                 <div class="pull-right pt-5 pb-4" style="background-color: rgba(0,0,0,.03);">
                     <div class="pl-5 ml-5">
                         <div class="row1">
-                            <div class="col-lg-1 mb-1">
+                            <div class="col-lg-.5 mb-1">
                                 <a href="UserRequests.aspx" class="btn btn-dark">View All</a>
                             </div>
                             <div class="col-lg-3 mb-1">
@@ -422,7 +422,6 @@
                     <div class="modal-footer mt-5">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose" onclick="closeModal()">Close</button>
                         <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" Style="background-color: #8C2132" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
-                        <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal" data-toggle="modal" data-target="#mdlSavedChanges">Save changes</button>
                     </div>
                 </div>
 
