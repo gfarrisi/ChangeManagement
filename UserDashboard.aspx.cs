@@ -388,11 +388,6 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
                 status.Attributes.Add("class", "visibility-hidden");
-                //lblPreProdTesting.Visible = false;
-                //chkPreProd.Visible = false;
-                //lblTestingConfirmed.Visible = false;
-                //btnSubmitTesting.Visible = false;
-                //lblAwaitingAdmin.Visible = false;
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Assigned")
             {
