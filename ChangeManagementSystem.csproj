@@ -180,7 +180,6 @@
     <Content Include="Secure\Logout.aspx" />
     <Content Include="T.png" />
     <Content Include="testFiles\HtmlPage1.html" />
-    <Content Include="TextFile1.txt" />
     <Content Include="UserDashboard.aspx" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.min.css" />
@@ -532,7 +531,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55828/</IISUrl>
+          <IISUrl>http://localhost:55848/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
