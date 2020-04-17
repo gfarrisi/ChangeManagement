@@ -225,17 +225,51 @@ namespace ChangeManagementSystem
             }
             else
             {
-                //validate                
-                addQuestion();
-                createForm();
-                addButton();
+                //validate   
+                if (validateModal())
+                {
+                    lblControlTextError.Visible = false;
+                    lblControlTypeError.Visible = false;
+                    clearModal.Value = "true";
+                    addQuestion();
+                    createForm();
+                    addButton();
+                }
+
             }
 
 
         }
-        public void validateModal()
+        public Boolean validateModal()
         {
-            string controlText = txtControl.Text;
+            string controlText = Request["control-text"];
+            string controlType = Request["control-type"];
+            // string controlText = txtControl.Text;
+            if (controlText == "" || (controlType == "" || controlType == "--"))
+            {
+                if (controlText == "")
+                {
+                    lblControlTextError.Visible = true;
+                }
+                else
+                {
+                    lblControlTextError.Visible = false;
+                }
+
+                if (controlType == "" || controlType == "--")
+                {
+                    lblControlTypeError.Visible = true;
+                }
+                else
+                {
+                    lblControlTypeError.Visible = false;
+                }
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlAddQuestion').modal('show');", true);
+                clearModal.Value = "false";
+                return false;
+
+            }
+            return true;
         }
 
         public void addButton()
@@ -263,8 +297,8 @@ namespace ChangeManagementSystem
                 Response.Write("<script>console.log('request," + request + "');</script>");
 
                 string controlType = Request["control-type"];
-                //string controlText = Request["control-text"];
-                string controlText = txtControl.Text;
+                string controlText = Request["control-text"];
+                // string controlText = txtControl.Text;
                 List<string> options = new List<string>();
                 if (controlType != "TextBox")
                 {
@@ -298,8 +332,8 @@ namespace ChangeManagementSystem
                 List<Question> requestFirst = new List<Question>();
 
                 string controlType = Request["control-type"];
-               // string controlText = Request["control-text"];
-                  string controlText = txtControl.Text;// Request["control-text"];
+                string controlText = Request["control-text"];
+                // string controlText = txtControl.Text;// Request["control-text"];
                 List<string> options = new List<string>();
                 if (controlType != "TextBox")
                 {

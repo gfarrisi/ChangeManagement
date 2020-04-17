@@ -125,8 +125,8 @@
                     <asp:Button BackColor="#9D2235" ForeColor="#ffffff" CssClass="btn btn-secondary mt-5 ml-3" BorderStyle="None" ID="btnSubmit" runat="server" Text="Create new request type" OnClick="btnSubmit_Click" />
                 </div>
             </div>
-
         </div>
+          <asp:HiddenField ClientIDMode="Static" ID="clearModal" runat="server" />
         <!-- Modal -->
         <div class="modal fade" id="mdlAddQuestion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -142,9 +142,11 @@
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Control Type:</label>
                             <br />
-                            <label class="col-form-label hide">* Please select a control type</label>
+                             <asp:Label ID="lblControlTypeError" runat="server" Text="* Please select a control type" Visible="false" ForeColor="DarkRed" CssClass="col-form-label"></asp:Label>
+                        <%--    <label class="col-form-label hide" >* Please select a control type</label>--%>
                             <br />
                             <select id="control-type" class="form-control" name="control-type" onchange="chgControlType()">
+                                <option value="--">--</option>
                                 <option value="Dropdown">Dropdown</option>
                                 <option value="RadioButton">Radio Button</option>
                                 <option value="TextBox">TextBox</option>
@@ -152,9 +154,10 @@
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Control Text/Question:</label><br />
-                            <label class="hide">* Please enter a control name</label>
-                             <asp:TextBox ID="txtControl" runat="server" Text="" CssClass="form-control"></asp:TextBox>
-                        <%--    <input type="text" class="form-control" id="control-text" name="control-text">--%>
+                             <asp:Label ID="lblControlTextError" runat="server" Text="* Please enter a control name" Visible="false" ForeColor="DarkRed" CssClass="col-form-label"></asp:Label>
+                            <%--<label class="hide">* Please enter a control name</label>--%>
+                           <%--  <asp:TextBox ID="txtControl" runat="server" Text="" CssClass="form-control"></asp:TextBox>--%>
+                            <input type="text" class="form-control" id="control-text" name="control-text">
                         </div>
                         <div id="option-container" class="d-none form-group">
                             <label for="message-text" class="col-form-label">Options:</label>
@@ -172,7 +175,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeModal()">Close</button>
                         <button type="submit" class="btn btn-primary" id="btnAdd" runat="server" onserverclick="btnAdd_ServerClick">Add</button>
                     </div>
                 </div>
@@ -231,9 +234,8 @@
                         optionContainer.classList.remove("d-block");
                         optionContainer.classList.add("d-none");
                     }
-
-
                     $('#mdlAddQuestion').modal('show')
+                      //document.getElementById("isModalOpen").value = "true";
                 }
                 else {
                     console.log("not correct id ", obj.Question_ID)
@@ -283,7 +285,10 @@
             location.reload();
 
         }
-
+        
+        function closeModal() {
+            document.getElementById("clearModal").value = "true";
+        }
 
 
     </script>

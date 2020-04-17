@@ -180,7 +180,6 @@
     <Content Include="Secure\Logout.aspx" />
     <Content Include="T.png" />
     <Content Include="testFiles\HtmlPage1.html" />
-    <Content Include="TextFile1.txt" />
     <Content Include="UserDashboard.aspx" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.min.css" />
@@ -264,12 +263,12 @@
     <Content Include="EditEmail.aspx" />
     <Content Include="UserSelectRequestType.aspx" />
     <Content Include="UserNewCM.aspx" />
-    <Content Include="web.config" />
-    <None Include="web.Debug.config">
-      <DependentUpon>web.config</DependentUpon>
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
     </None>
-    <None Include="web.Release.config">
-      <DependentUpon>web.config</DependentUpon>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
