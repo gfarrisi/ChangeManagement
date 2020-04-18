@@ -126,7 +126,7 @@
                 </div>
             </div>
         </div>
-          <asp:HiddenField ClientIDMode="Static" ID="clearModal" runat="server" />
+          <asp:HiddenField ClientIDMode="Static" ID="hfClearModal" Value="true" runat="server" />
         <!-- Modal -->
         <div class="modal fade" id="mdlAddQuestion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -141,7 +141,7 @@
 
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Control Type:</label>
-                            <br />
+                            <br />                              
                              <asp:Label ID="lblControlTypeError" runat="server" Text="* Please select a control type" Visible="false" ForeColor="DarkRed" CssClass="col-form-label"></asp:Label>
                         <%--    <label class="col-form-label hide" >* Please select a control type</label>--%>
                             <br />
@@ -154,7 +154,7 @@
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Control Text/Question:</label><br />
-                             <asp:Label ID="lblControlTextError" runat="server" Text="* Please enter a control name" Visible="false" ForeColor="DarkRed" CssClass="col-form-label"></asp:Label>
+                             <asp:Label ID="lblControlTextError" runat="server" Text="* Please enter a control text/question" Visible="false" ForeColor="DarkRed" CssClass="col-form-label"></asp:Label>
                             <%--<label class="hide">* Please enter a control name</label>--%>
                            <%--  <asp:TextBox ID="txtControl" runat="server" Text="" CssClass="form-control"></asp:TextBox>--%>
                             <input type="text" class="form-control" id="control-text" name="control-text">
@@ -287,7 +287,7 @@
         }
         
         function closeModal() {
-            document.getElementById("clearModal").value = "true";
+            document.getElementById("hfClearModal").value = "true";
         }
 
 

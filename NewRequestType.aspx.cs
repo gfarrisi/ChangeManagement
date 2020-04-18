@@ -228,9 +228,9 @@ namespace ChangeManagementSystem
                 //validate   
                 if (validateModal())
                 {
-                    lblControlTextError.Visible = false;
+                    lblControlTextError.Visible = false;                   
                     lblControlTypeError.Visible = false;
-                    clearModal.Value = "true";
+                    hfClearModal.Value = "true";
                     addQuestion();
                     createForm();
                     addButton();
@@ -250,22 +250,24 @@ namespace ChangeManagementSystem
                 if (controlText == "")
                 {
                     lblControlTextError.Visible = true;
+                    lblControlTextError.Text = "* Please enter a control text/question";
                 }
                 else
                 {
-                    lblControlTextError.Visible = false;
+                    lblControlTextError.Visible = false;                  
                 }
 
                 if (controlType == "" || controlType == "--")
                 {
                     lblControlTypeError.Visible = true;
+                    lblControlTypeError.Text = "* Please select a control type";
                 }
                 else
                 {
                     lblControlTypeError.Visible = false;
                 }
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlAddQuestion').modal('show');", true);
-                clearModal.Value = "false";
+                hfClearModal.Value = "false";
                 return false;
 
             }

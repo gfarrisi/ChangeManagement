@@ -14,16 +14,24 @@ function chgControlType() {
 }
 var optionNumber = 2;
 
-function clearModal() {
-    if (document.getElementById("clearModal").value == "false") {
+function clearModal() {    
+    if (document.getElementById("hfClearModal").value == "false") {
+        console.log("save value")
         var controlText = $("#control-text").val();
         var controlType = $("#control-type").val();
+        console.log("text", controlText)
+        console.log("type", controlType)
         $("#control-text").val(controlText);
         $("#control-type").val(controlType);
     }
     else {
+        console.log("do not save value")
+        console.log(document.getElementById('<%= lblControlTextError.ClientID %>').value)
+        console.log(document.getElementById('<%= lblControlTypeError.ClientID %>').value)
+        document.getElementById("lblControlTextError").value = "";
+        document.getElementById("lblControlTypeError").value = "";
         $("#control-text").val("");
-        $("#control-type").val("--");
+        $("#control-type").val("--"); 
 
         $.cookie('optioncookie', null);
 
