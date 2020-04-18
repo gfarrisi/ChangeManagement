@@ -11,6 +11,13 @@ namespace ChangeManagementSystem.Secure
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session.Clear();
+            Session.Abandon();
+            
+        }
+
+        protected void btnLogoutSSO_Click(object sender, EventArgs e)
+        {
             string url = HttpContext.Current.Request.Url.AbsoluteUri;
             if (url.Contains("pre-stem"))
             {
@@ -18,7 +25,7 @@ namespace ChangeManagementSystem.Secure
                 Session.Abandon();
                 Response.Cookies.Clear();
                 Response.Redirect("https://pre-stem.temple.edu/Shibboleth.sso/Logout?return=https://np-fim.temple.edu/idp/profile/Logout");
-               
+
             }
             else if (url.Contains("np-stem"))
             {
@@ -27,7 +34,6 @@ namespace ChangeManagementSystem.Secure
                 Response.Cookies.Clear();
                 Response.Redirect("https://np-stem.temple.edu/Shibboleth.sso/Logout?return=https://np-fim.temple.edu/idp/profile/Logout");
             }
-          
         }
     }
 }
