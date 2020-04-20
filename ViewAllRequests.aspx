@@ -110,6 +110,7 @@
                                             <ItemTemplate>
                                                 <h4 runat="server"><%# "Status: " + DataBinder.Eval(Container.DataItem, "CMStatus") %></h4>
                                                 <asp:HiddenField ID="hiddenCMStatus" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "CMStatus") %>' />
+                                                <asp:HiddenField ID="selectedCMUserID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "UserID") %>' />
                                                 <div class="progress">
                                                     <div runat="server" id="progressBar" class="progress-bar bg-success" role="progressbar"></div>
                                                 </div>
@@ -138,6 +139,7 @@
                                                         <asp:DropDownList class="browser-default custom-select" ID="ddlCMStatus" runat="server"></asp:DropDownList>
                                                     </div>
                                                 </div>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -327,14 +329,12 @@
 
                             </div>
                         </div>
-                    </div>
                     <div class="modal-footer mt-5">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
                         <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" style="background-color:#8C2132" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
                         <asp:Button runat="server" class="btn btn-primary" ID="btnSave" Text="Save changes" OnClick="btnSave_Click"></asp:Button>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="modal fade" id="mdlSavedChanges" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

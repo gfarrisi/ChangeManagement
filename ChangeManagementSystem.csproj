@@ -263,13 +263,6 @@
     <Content Include="EditEmail.aspx" />
     <Content Include="UserSelectRequestType.aspx" />
     <Content Include="UserNewCM.aspx" />
-    <Content Include="Web.config" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDashboard.aspx.cs">
@@ -531,7 +524,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55828/</IISUrl>
+          <IISUrl>http://localhost:55848/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

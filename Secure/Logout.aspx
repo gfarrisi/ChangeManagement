@@ -38,7 +38,8 @@
             </div>
         </nav>
     </div>
-    <div class="container">
+    <form runat="server">
+    <div class="container" runat="server">
         <div id="content" class="starter-template">
             <div class="col-md-2 col-lg-2"></div>
             <div class="col-sm-12 col-md-8 col-lg-8">
@@ -46,12 +47,19 @@
                 <hr />
                 <p>Status of Local Logout: Logout completed successfully.</p>
                 <ul>
-                    <li>You <b>MUST</b> close your browser to complete the logout process.</li>
+                    <li>You <b>MUST</b> close your browser to complete the local logout process.</li>
+                    <br />
+                    <br />
+                    <b>OR:</b>
+                    <br />
+                    <br />
+                    <asp:Button runat="server" Text="Click here to log out of all Temple SSO Applications" id="btnLogoutSSO" OnClick="btnLogoutSSO_Click"/>
                 </ul>
             </div>
             <div class="col-md-2 col-lg-2"></div>
         </div>
     </div>
+        </form>
 </body>
 
 </html>

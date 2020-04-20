@@ -136,134 +136,152 @@ namespace ChangeManagementSystem
         {
             if (hiddenCMSaving.Value != "true")
             {
-                if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Not Assigned")
-                {
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 0%");
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "0");
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
-                    if (((HiddenField)e.Item.FindControl("selectedCMUserID")).Value == Session["UserID"].ToString())
-                    {
-                        status.Attributes.Add("class", "visibility-hidden");
-                        statusChangeControls.Attributes.Add("class", "visibility-hidden");
-                    }
-                    else
-                    {
-                        status.Attributes.Add("class", "visibility-hidden");
-                        statusChangeControls.Attributes.Clear();
-                        ddlCMStatus.Visible = true;
-                        lblCMStatus.Text = "Update Status";
+              if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Not Assigned")
+              {
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 0%");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "0");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                  btnSave.Visible = true;
 
-                        List<string> statusList = new List<string>();
-                        statusList.Add("--Select a Status--");
-                        statusList.Add("Assign to Me");
-                        statusList.Add("CM Failed");
-                        ddlCMStatus.DataSource = statusList;
-                        ddlCMStatus.DataBind();
-                    }
+                  if (((HiddenField)e.Item.FindControl("selectedCMUserID")).Value == Session["UserID"].ToString())
+                  {
+                      status.Attributes.Add("class", "visibility-hidden");
+                      statusChangeControls.Attributes.Add("class", "visibility-hidden");
+                  }
+                  else
+                  {
+                      status.Attributes.Add("class", "visibility-hidden");
+                      statusChangeControls.Attributes.Clear();
+                      ddlCMStatus.Visible = true;
+                      lblCMStatus.Text = "Update Status";
 
-                }
-                else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Assigned")
-                {
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 25%");
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "25");
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                      List<string> statusList = new List<string>();
+                      statusList.Add("--Select a Status--");
+                      statusList.Add("Assign to Me");
+                      statusList.Add("CM Failed");
+                      ddlCMStatus.DataSource = statusList;
+                      ddlCMStatus.DataBind();
+                  }
 
-                    if (((HiddenField)e.Item.FindControl("selectedCMUserID")).Value == Session["UserID"].ToString())
-                    {
-                        status.Attributes.Add("class", "visibility-hidden");
-                        statusChangeControls.Attributes.Add("class", "visibility-hidden");
-                    }
-                    else
-                    {
-                        status.Attributes.Add("class", "visibility-hidden");
-                        statusChangeControls.Attributes.Clear();
-                        ddlCMStatus.Visible = true;
-                        lblCMStatus.Text = "Update Status";
+              }
+              else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Assigned")
+              {
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 25%");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "25");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                  btnSave.Visible = true;
 
-                        List<string> statusList = new List<string>();
-                        statusList.Add("--Select a Status--");
-                        statusList.Add("Change Implemented in Pre-Production");
-                        statusList.Add("CM Failed");
-                        ddlCMStatus.DataSource = statusList;
-                        ddlCMStatus.DataBind();
-                    }
+                  if (((HiddenField)e.Item.FindControl("selectedCMUserID")).Value == Session["UserID"].ToString())
+                  {
+                      status.Attributes.Add("class", "visibility-hidden");
+                      statusChangeControls.Attributes.Add("class", "visibility-hidden");
+                  }
+                  else
+                  {
+                      status.Attributes.Add("class", "visibility-hidden");
+                      statusChangeControls.Attributes.Clear();
+                      ddlCMStatus.Visible = true;
+                      lblCMStatus.Text = "Update Status";
 
-                }
-                else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production Needs Testing")
-                {
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 75%");
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                      List<string> statusList = new List<string>();
+                      statusList.Add("--Select a Status--");
+                      statusList.Add("Change Implemented in Pre-Production");
+                      statusList.Add("CM Failed");
+                      ddlCMStatus.DataSource = statusList;
+                      ddlCMStatus.DataBind();
+                  }
 
-                    if (((HiddenField)e.Item.FindControl("selectedCMUserID")).Value == Session["UserID"].ToString())
-                    {
-                        statusChangeControls.Attributes.Add("class", "visibility-hidden");
+              }
+              else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production Needs Testing")
+              {
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 75%");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                  btnSave.Visible = true;
 
-                        status.Attributes.Clear();
-                        preprod.Attributes.Clear();
-                        preprodTested.Attributes.Add("class", "visibility-hidden");
-                    }
-                    else
-                    {
-                        status.Attributes.Add("class", "visibility-hidden");
-                        statusChangeControls.Attributes.Clear();
-                        ddlCMStatus.Visible = false;
-                        lblCMStatus.Text = "Pending User Testing of Changes";
-                        lblCMStatus.Attributes.Clear();
-                    }
+                  if (((HiddenField)e.Item.FindControl("selectedCMUserID")).Value == Session["UserID"].ToString())
+                  {
+                      statusChangeControls.Attributes.Add("class", "visibility-hidden");
 
-                }
-                else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production")
-                {
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 75%");
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                      status.Attributes.Clear();
+                      preprod.Attributes.Clear();
+                      preprodTested.Attributes.Add("class", "visibility-hidden");
+                  }
+                  else
+                  {
+                      status.Attributes.Add("class", "visibility-hidden");
+                      statusChangeControls.Attributes.Clear();
+                      ddlCMStatus.Visible = false;
+                      lblCMStatus.Text = "Pending User Testing of Changes";
+                      lblCMStatus.Attributes.Clear();
+                  }
 
-                    if (((HiddenField)e.Item.FindControl("selectedCMUserID")).Value == Session["UserID"].ToString())
-                    {
-                        statusChangeControls.Attributes.Add("class", "visibility-hidden");
+              }
+              else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Pre-Production")
+              {
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 75%");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                  btnSave.Visible = true;
 
-                        status.Attributes.Clear();
-                        preprodTested.Attributes.Clear();
-                        preprod.Attributes.Add("class", "visibility-hidden");
-                    }
-                    else
-                    {
-                        status.Attributes.Add("class", "visibility-hidden");
-                        statusChangeControls.Attributes.Clear();
-                        ddlCMStatus.Visible = true;
-                        lblCMStatus.Text = "Update Status";
+                  if (((HiddenField)e.Item.FindControl("selectedCMUserID")).Value == Session["UserID"].ToString())
+                  {
+                      statusChangeControls.Attributes.Add("class", "visibility-hidden");
 
-                        List<string> statusList = new List<string>();
-                        statusList.Add("--Select a Status--");
-                        statusList.Add("Change Implemented in Production");
-                        statusList.Add("CM Failed");
-                        ddlCMStatus.DataSource = statusList;
-                        ddlCMStatus.DataBind();
-                    }
+                      status.Attributes.Clear();
+                      preprodTested.Attributes.Clear();
+                      preprod.Attributes.Add("class", "visibility-hidden");
+                  }
+                  else
+                  {
+                      status.Attributes.Add("class", "visibility-hidden");
+                      statusChangeControls.Attributes.Clear();
+                      ddlCMStatus.Visible = true;
+                      lblCMStatus.Text = "Update Status";
 
-                }
-                else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Completed")
-                {
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 100%");
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "100");
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
-                    ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                      List<string> statusList = new List<string>();
+                      statusList.Add("--Select a Status--");
+                      statusList.Add("Change Implemented in Production");
+                      statusList.Add("CM Failed");
+                      ddlCMStatus.DataSource = statusList;
+                      ddlCMStatus.DataBind();
+                  }
 
-                    statusChangeControls.Attributes.Add("class", "visibility-hidden");
-                    status.Attributes.Add("class", "visibility-hidden");
+              }
+              else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Completed")
+              {
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 100%");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "100");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
 
-                }
+                  statusChangeControls.Attributes.Add("class", "visibility-hidden");
+                  status.Attributes.Add("class", "visibility-hidden");
+                  btnSave.Visible = false;
+              }
+              else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Failed")
+              {
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 0%");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "0");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
+                  ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                    
+                  statusChangeControls.Attributes.Add("class", "visibility-hidden");
+                  status.Attributes.Add("class", "visibility-hidden");
+                  btnSave.Visible = false;
+              }
+
             }
-            else
+            else 
             {
                 hiddenCMSaving.Value = "false";
             }
+        
         }
 
         protected void btnNewComment_Click(object sender, EventArgs e)
@@ -363,7 +381,7 @@ namespace ChangeManagementSystem
             }
             else if (ddlCMStatus.SelectedValue == "Change Implemented in Production")
             {
-                objCommand.Parameters.AddWithValue("@CMStatus", "Production");
+                objCommand.Parameters.AddWithValue("@CMStatus", "Completed");
 
                 objCommandEmail.Parameters.AddWithValue("@Type", "Implemented in Prod");
             }
