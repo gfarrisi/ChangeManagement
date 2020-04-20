@@ -504,7 +504,7 @@ namespace ChangeManagementSystem
                 DataTable emailTable = emailData.Tables[0];
 
                 Email objEmail = new Email();
-                String strTO = "tug52322@temple.edu"; // cmTable.Rows[0]["Email"].ToString(); 
+                String strTO = cmTable.Rows[0]["Email"].ToString(); 
                 String strFROM = "noreply@temple.edu";
                 String strSubject = "CM #{" + Session["hiddenCM"].ToString() + "}: " + emailTable.Rows[0]["Subject"].ToString();
                 String strMessage = emailTable.Rows[0]["Body"].ToString();
