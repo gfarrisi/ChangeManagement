@@ -98,72 +98,80 @@ namespace ChangeManagementSystem
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
-            Response.Write("<script>alert('Request type Constraint is created and now available to users.');</script>");
-            //add validation!!
-
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            string serializedRequest = Session["request"] == null ? null : Session["request"].ToString();
-            List<Question> request = js.Deserialize<List<Question>>(serializedRequest);
-
-
-            DBConnect db = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
-
-            objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "GetLastTypeID";
-            objCommand.Parameters.Clear();
-
-            DataSet userData = db.GetDataSetUsingCmdObj(objCommand);
-            DataTable dt = userData.Tables[0];
-            int requestTypeID = Convert.ToInt32(dt.Rows[0]["CurrentRequestID"].ToString()) + 1;
-
-            string requestTypeName = txtRequestName.Text;
-
-            foreach (Question question in request)
+            if (txtRequestName.Text == "")
             {
-                string options = "";
-                //link options if exist by comma seperate list
-                for (int i = 0; i < question.Question_Options.Count; i++)
-                {
-                    if (i == (question.Question_Options.Count - 1))
-                    {
-                        options += question.Question_Options[i];
-                    }
-                    else
-                    {
-                        options += question.Question_Options[i] + ",";
-                    }
+                //error
+                lblRequestTypeNameError.Visible = true;
+            }
+            else
+            {
+                lblRequestTypeNameError.Visible = false;
 
-                }
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string serializedRequest = Session["request"] == null ? null : Session["request"].ToString();
+                List<Question> request = js.Deserialize<List<Question>>(serializedRequest);
 
 
-                db = new DBConnect();
-                objCommand = new SqlCommand();
+                DBConnect db = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
                 objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "InsertNewRequestType";
+                objCommand.CommandText = "GetLastTypeID";
                 objCommand.Parameters.Clear();
-                objCommand.Parameters.AddWithValue("@RequestTypeID", requestTypeID);
-                objCommand.Parameters.AddWithValue("@RequestTypeName", requestTypeName);
-                objCommand.Parameters.AddWithValue("@QuestionText", question.Question_Text);
-                objCommand.Parameters.AddWithValue("@QuestionControl", question.Question_Control);
-                objCommand.Parameters.AddWithValue("@QuestionOptions", options);
-                db.GetConnection().Open();
-                //int resultID = db.DoUpdateUsingCmdObj(objCommand);
-                // userData = db.GetDataSetUsingCmdObj(objCommand);
-                int resultID = Convert.ToInt32(db.ExecuteScalarFunction(objCommand));
-                if (resultID == 0)
+
+                DataSet userData = db.GetDataSetUsingCmdObj(objCommand);
+                DataTable dt = userData.Tables[0];
+                int requestTypeID = Convert.ToInt32(dt.Rows[0]["CurrentRequestID"].ToString()) + 1;
+
+                string requestTypeName = txtRequestName.Text;
+
+                foreach (Question question in request)
                 {
-                    Response.Write("<script>alert('suncess!');</script>");
-                    db.CloseConnection();
-                    Response.Redirect("AdminDashboard.aspx");
+                    string options = "";
+                    //link options if exist by comma seperate list
+                    for (int i = 0; i < question.Question_Options.Count; i++)
+                    {
+                        if (i == (question.Question_Options.Count - 1))
+                        {
+                            options += question.Question_Options[i];
+                        }
+                        else
+                        {
+                            options += question.Question_Options[i] + ",";
+                        }
+
+                    }
+
+
+                    db = new DBConnect();
+                    objCommand = new SqlCommand();
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "InsertNewRequestType";
+                    objCommand.Parameters.Clear();
+                    objCommand.Parameters.AddWithValue("@RequestTypeID", requestTypeID);
+                    objCommand.Parameters.AddWithValue("@RequestTypeName", requestTypeName);
+                    objCommand.Parameters.AddWithValue("@QuestionText", question.Question_Text);
+                    objCommand.Parameters.AddWithValue("@QuestionControl", question.Question_Control);
+                    objCommand.Parameters.AddWithValue("@QuestionOptions", options);
+                    db.GetConnection().Open();
+                    //int resultID = db.DoUpdateUsingCmdObj(objCommand);
+                    // userData = db.GetDataSetUsingCmdObj(objCommand);
+                    int resultID = Convert.ToInt32(db.ExecuteScalarFunction(objCommand));
+                    if (resultID == 0)
+                    {
+                        db.CloseConnection();
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMSubmssion').modal('show');", true);
+
+                    }
+
                 }
-                Response.Write("<script>alert('" + resultID + "');</script>");
-
-
             }
 
         }
-
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminDashboard.aspx");
+        }
 
 
         protected void btnAdd_ServerClick(object sender, EventArgs e)
@@ -225,18 +233,55 @@ namespace ChangeManagementSystem
             }
             else
             {
-                //validate                
-                addQuestion();
-                createForm();
-                addButton();
+                //validate   
+               // if (validateModal())
+                //{
+                    //lblControlTextError.Visible = false;                   
+                    //lblControlTypeError.Visible = false;
+                    hfClearModal.Value = "true";
+                    addQuestion();
+                    createForm();
+                    addButton();
+               // }
+
             }
 
 
         }
-        public void validateModal()
-        {
-            string controlText = txtControl.Text;
-        }
+        //public Boolean validateModal()
+        //{
+        //    string controlText = Request["control-text"];
+        //    string controlType = Request["control-type"];
+        //    // string controlText = txtControl.Text;
+        //    if (controlText == "" || (controlType == "" || controlType == "--"))
+        //    {
+        //        if (controlText == "")
+        //        {
+        //            lblControlTextError.Visible = true;
+        //            lblControlTextError.Text = "* Please enter a control text/question";
+        //        }
+        //        else
+        //        {
+        //            lblControlTextError.Visible = false;                  
+        //        }
+
+        //        if (controlType == "" || controlType == "--")
+        //        {
+        //            lblControlTypeError.Visible = true;
+        //            lblControlTypeError.Text = "* Please select a control type";
+        //        }
+        //        else
+        //        {
+        //            lblControlTypeError.Visible = false;
+        //        }
+        //        hfClearModal.Value = "false";
+        //        ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlAddQuestion').modal('show');", true);
+              
+        //        return false;
+
+        //    }
+        //    return true;
+        //}
 
         public void addButton()
         {
@@ -263,8 +308,8 @@ namespace ChangeManagementSystem
                 Response.Write("<script>console.log('request," + request + "');</script>");
 
                 string controlType = Request["control-type"];
-                //string controlText = Request["control-text"];
-                string controlText = txtControl.Text;
+                string controlText = Request["control-text"];
+                // string controlText = txtControl.Text;
                 List<string> options = new List<string>();
                 if (controlType != "TextBox")
                 {
@@ -298,8 +343,8 @@ namespace ChangeManagementSystem
                 List<Question> requestFirst = new List<Question>();
 
                 string controlType = Request["control-type"];
-               // string controlText = Request["control-text"];
-                  string controlText = txtControl.Text;// Request["control-text"];
+                string controlText = Request["control-text"];
+                // string controlText = txtControl.Text;// Request["control-text"];
                 List<string> options = new List<string>();
                 if (controlType != "TextBox")
                 {

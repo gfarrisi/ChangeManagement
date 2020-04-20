@@ -1,8 +1,8 @@
 ﻿
 function chgControlType() {
 
-    var optionContainer = document.getElementById("option-container");     
-    var controlType = document.getElementById("control-type").value;   
+    var optionContainer = document.getElementById("option-container");
+    var controlType = document.getElementById("control-type").value;
     if (controlType == "Dropdown" || controlType == "RadioButton") {
         optionContainer.classList.add("d-block");
         optionContainer.classList.remove("d-none");
@@ -14,19 +14,35 @@ function chgControlType() {
 }
 var optionNumber = 2;
 
-function clearModal() {
-    $("#control-text").val("");
-    $("#control-type").val("- Select control type -");
+function clearModal() {    
+    //if (document.getElementById("hfClearModal").value == "false") {
+    //    console.log("save value")
+    //    var controlText = $("#control-text").val();
+    //    var controlType = $("#control-type").val();
+    //    console.log("text", controlText)
+    //    console.log("type", controlType)
+    //    $("#control-text").val(controlText);
+    //    $("#control-type").val(controlType);
+    //}
+    //else {
+        console.log("do not save value")
+     
+        //document.getElementById("lblControlTextError").value = "";
+        //document.getElementById("lblControlTypeError").value = "";
+        $("#control-text").val("");
+        $("#control-type").val("--"); 
 
-    $.cookie('optioncookie', null);
+        $.cookie('optioncookie', null);
 
-    var optionContainer = document.getElementById("option-container");     
-    optionContainer.classList.remove("d-block");
-    optionContainer.classList.add("d-none");
+        var optionContainer = document.getElementById("option-container");
+        optionContainer.classList.remove("d-block");
+        optionContainer.classList.add("d-none");
+    //}
+
 }
 
-function addOption() {  
-   
+function addOption() {
+
     var optionDiv = document.getElementById("options");
 
     var optionPlaceholder = "Option " + optionNumber;
@@ -43,18 +59,18 @@ function addOption() {
     input.id = optionNumber;
     input.required = true;
     input.addEventListener("change", addOptionsToSession);
-    div.appendChild(input); 
-   
+    div.appendChild(input);
+
 
     var iconDelete = document.createElement('i');
     iconDelete.classList.add("fa");
     iconDelete.classList.add("fa-times");
     iconDelete.classList.add("x-icon");
     iconDelete.setAttribute('aria-hidden', 'true');
-    iconDelete.id = optionNumber;       
+    iconDelete.id = optionNumber;
     //iconDelete.addEventListener("click", removeOption(iconDelete.id));
     iconDelete.onclick = removeOption;
-    div.appendChild(iconDelete);   
+    div.appendChild(iconDelete);
 
     optionDiv.appendChild(div);
 
@@ -76,22 +92,22 @@ function resetOptionNumber() {
 
     var optionDiv = document.getElementById("options");
     var optionDiv = document.getElementById('options').getElementsByTagName('div');
-   
+
     for (i = 0; i < optionDiv.length; i++) {
-        
-        var optionPlaceholder = "Option " + (i+1);
-        var childDiv = optionDiv[i];  
-        var input = document.getElementById(childDiv.id).firstElementChild;  
+
+        var optionPlaceholder = "Option " + (i + 1);
+        var childDiv = optionDiv[i];
+        var input = document.getElementById(childDiv.id).firstElementChild;
         var icon = document.getElementById(childDiv.id).lastElementChild;
-        input.placeholder = optionPlaceholder;        
+        input.placeholder = optionPlaceholder;
         icon.id = i + 1;
         childDiv.id = optionPlaceholder;
     }
-          
+
 }
 
 function addOptionsToSession() {
-   // alert("Added!");
+    // alert("Added!");
     var optionDiv = document.getElementById("options");
     var optionDiv = document.getElementById('options').getElementsByTagName('div');
 
@@ -101,8 +117,8 @@ function addOptionsToSession() {
 
         var optionPlaceholder = "Option " + (i + 1);
         var childDiv = optionDiv[i];
-        var input = document.getElementById(childDiv.id).firstElementChild;       
-        var inputText = input.value;   
+        var input = document.getElementById(childDiv.id).firstElementChild;
+        var inputText = input.value;
         options.push(inputText);
     }
     $(document).ready(function () {
@@ -120,17 +136,5 @@ function addOptionsToSession() {
         console.log(cookie);
     });
 
-    
+
 }
-function validate() {
-    console.log("validate")
-}
-
-//$(document).on('click', '#iconWrapper', function () {
-//    alert("clcked")
-//})
-
-
-//document.getElementById("btnAdd").addEventListener("click", addOptionsToSession);
-
-
