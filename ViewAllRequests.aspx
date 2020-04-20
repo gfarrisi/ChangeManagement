@@ -43,44 +43,44 @@
         <asp:ScriptManager ID="scriptman" runat="server" EnablePartialRendering="true"></asp:ScriptManager>
         <div class="container">
             <h2 id="requestHistory">Request History</h2>
-                
-                <div class="gv">
-                    <asp:HiddenField runat="server" ID="hf" ClientIDMode="Static" />
-                    <asp:GridView ID="gvAllRequests" runat="server" CellPadding="3" CssClass="datatable" AutoGenerateColumns="False" AllowPaging="false" BorderColor="#CCCCCC" OnRowDataBound="gvAllRequests_RowDataBound">
-                        <HeaderStyle BackColor="#333333" ForeColor="White" />
-                        <Columns>
-                            <asp:BoundField DataField="CMID" ItemStyle-CssClass="thead-dark" HeaderText="CMID" SortExpression="CMID">
-                                <ItemStyle CssClass="font-weight-bold" />
-                            </asp:BoundField>
-                            <asp:BoundField DataField="CMProjectName" ItemStyle-CssClass="thead-dark" HeaderText="CM Project Name" SortExpression="CMProjectName" />
-                            <asp:TemplateField ItemStyle-CssClass="thead-dark" HeaderText="Submitted By">
-                                <ItemTemplate>
-                                    <%# Eval("FirstName") + " " + Eval("LastName")%>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                           <asp:TemplateField ItemStyle-CssClass="thead-dark" HeaderText="Assigned To">
-                                <ItemTemplate>
-                                    <%# Eval("AdminFirstName") + " " + Eval("AdminLastName")%>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:BoundField DataField="College" HeaderText="College" />
-                            <asp:BoundField DataField="RequestTypeName" HeaderText="Type" />
-                            <asp:BoundField DataField="CMStatus" HeaderText="Status" />
-                            <asp:BoundField DataField="LastUpdateDate" HeaderText="Last Updated Date" DataFormatString="{0:MM/dd/yyyy}"/>
-                            <asp:TemplateField HeaderText="View Request" ItemStyle-HorizontalAlign="Center">
-                                <ItemTemplate>
-                                    <asp:LinkButton CssClass="btn" BorderStyle="None" ID="btnCheck" runat="server" OnClick="btnCheck_Click"><i class='far fa-eye'></i></asp:LinkButton>
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                            </asp:TemplateField>
-                        </Columns>   
-                    </asp:GridView>
-                </div>
-        
-                <div class="container mt-4">
-                    <button onclick="exportTableToCSV('Requests.csv')" class="btn btnDownload mt-1">Export Table to .CSV File</button>
-                </div>
-         </div> 
+
+            <div class="gv">
+                <asp:HiddenField runat="server" ID="hf" ClientIDMode="Static" />
+                <asp:GridView ID="gvAllRequests" runat="server" CellPadding="3" CssClass="datatable" AutoGenerateColumns="False" AllowPaging="false" BorderColor="#CCCCCC" OnRowDataBound="gvAllRequests_RowDataBound">
+                    <HeaderStyle BackColor="#333333" ForeColor="White" />
+                    <Columns>
+                        <asp:BoundField DataField="CMID" ItemStyle-CssClass="thead-dark" HeaderText="CMID" SortExpression="CMID">
+                            <ItemStyle CssClass="font-weight-bold" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="CMProjectName" ItemStyle-CssClass="thead-dark" HeaderText="CM Project Name" SortExpression="CMProjectName" />
+                        <asp:TemplateField ItemStyle-CssClass="thead-dark" HeaderText="Submitted By">
+                            <ItemTemplate>
+                                <%# Eval("FirstName") + " " + Eval("LastName")%>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField ItemStyle-CssClass="thead-dark" HeaderText="Assigned To">
+                            <ItemTemplate>
+                                <%# Eval("AdminFirstName") + " " + Eval("AdminLastName")%>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="College" HeaderText="College" />
+                        <asp:BoundField DataField="RequestTypeName" HeaderText="Type" />
+                        <asp:BoundField DataField="CMStatus" HeaderText="Status" />
+                        <asp:BoundField DataField="LastUpdateDate" HeaderText="Last Updated Date" DataFormatString="{0:MM/dd/yyyy}" />
+                        <asp:TemplateField HeaderText="View Request" ItemStyle-HorizontalAlign="Center">
+                            <ItemTemplate>
+                                <asp:LinkButton CssClass="btn" BorderStyle="None" ID="btnCheck" runat="server" OnClick="btnCheck_Click"><i class='far fa-eye'></i></asp:LinkButton>
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </div>
+
+            <div class="container mt-4">
+                <button onclick="exportTableToCSV('Requests.csv')" class="btn btnDownload mt-1">Export Table to .CSV File</button>
+            </div>
+        </div>
         <br />
         <br />
         <br />
@@ -140,12 +140,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <br />
                         <div class="row">
                             <div class="col-lg-12 form-data">
@@ -329,56 +329,57 @@
 
                             </div>
                         </div>
-                    <div class="modal-footer mt-5">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
-                        <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" style="background-color:#8C2132" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
-                        <asp:Button runat="server" class="btn btn-primary" ID="btnSave" Text="Save changes" OnClick="btnSave_Click"></asp:Button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="mdlSavedChanges" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Changes Saved</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        CM #302 has been marked as failed. User notified.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <asp:HiddenField ClientIDMode="Static" ID="hiddenCMSaving" runat="server" />
-
-          <!-- Modal data-toggle="modal" data-target="#warningModal"-->
-        <div class="modal fade" id="mdlCMAttachment" tabindex="-1" role="dialog" aria-labelledby="mdlCMAttachment" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="mdlCMAttachmentLabel">Attachment Download</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-lg-12">
-                            <label id="Label1" style="line-height: 50px;" runat="server">The attachment has been downloaded!</label>
+                        <div class="modal-footer mt-5">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
+                            <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" Style="background-color: #8C2132" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
+                            <asp:Button runat="server" class="btn btn-primary" ID="btnSave" Text="Save changes" OnClick="btnSave_Click"></asp:Button>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <asp:Button ID="btnAttachment" CssClass="btn btn-secondary" BorderStyle="None" OnClick="btnAttachment_Click" Text="Close" runat="server" />
-                    </div>
                 </div>
             </div>
-        </div>
+            <div class="modal fade" id="mdlSavedChanges" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Changes Saved</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            CM #302 has been marked as failed. User notified.
+                        </div>
+
+                        <div class="modal-footer mt-5">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <asp:HiddenField ClientIDMode="Static" ID="hiddenCMSaving" runat="server" />
+
+                <!-- Modal data-toggle="modal" data-target="#warningModal"-->
+                <div class="modal fade" id="mdlCMAttachment" tabindex="-1" role="dialog" aria-labelledby="mdlCMAttachment" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="mdlCMAttachmentLabel">Attachment Download</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="col-lg-12">
+                                    <label id="Label1" style="line-height: 50px;" runat="server">The attachment has been downloaded!</label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <asp:Button ID="btnAttachment" CssClass="btn btn-secondary" BorderStyle="None" OnClick="btnAttachment_Click" Text="Close" runat="server" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
     </form>
     <style>
         .datatable tr td {
@@ -455,12 +456,12 @@
             downloadLink.click();
         }
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.datatable').DataTable({
                 "scrollY": "800px",
                 "scrollCollapse": true
             });
-        });  
+        });
 
         function cmSaved() {
             document.getElementById("hiddenCMSaving").value = "true";
