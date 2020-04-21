@@ -255,7 +255,7 @@
                             </div>
                         </div>
                         <br />
-                        <div class="row">
+                        <div class="row ml-3">
                             <div class="col-lg-12 form-data">
                                 <asp:Repeater ID="rptRequestInfo" runat="server">
                                     <ItemTemplate>

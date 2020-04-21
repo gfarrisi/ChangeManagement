@@ -145,9 +145,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                       
                         <br />
-                        <div class="row">
+                        <div class="row ml-3">
                             <div class="col-lg-12 form-data">
                                 <asp:Repeater ID="rptRequestInfo" runat="server">
                                     <ItemTemplate>
@@ -274,6 +274,7 @@
                                 <hr />
                             </div>
                         </div>
+
                         <div class="row mb-7">
                             <div class="col-lg-1 mb-7"></div>
                             <div class="col-lg-11 mb-7" style="height: 50%; padding-left: 0;">
@@ -315,6 +316,7 @@
                                         </asp:UpdatePanel>
                                         <%--</asp:Panel>--%>
                                     </div>
+                                     </div>
                                     <div class="card-footer">
                                         <div class="control-group form-group">
                                             <div class="controls">

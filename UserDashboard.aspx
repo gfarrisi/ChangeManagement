@@ -238,12 +238,12 @@
                             </div>
                         </div>
                         <br />
-                        <div class="row">
+                        <div class="row ml-3">
                             <div class="col-lg-12 form-data">
                                 <asp:Repeater ID="rptRequestInfo" runat="server">
                                     <ItemTemplate>
                                         <div class="row" runat="server">
-                                            <h4 runat="server" class="pl-2"><%# "Request Type: " + DataBinder.Eval(Container.DataItem, "RequestTypeName") %></h4>
+                                            <h4 runat="server" ><%# "Request Type: " + DataBinder.Eval(Container.DataItem, "RequestTypeName") %></h4>
                                             <br />
                                         </div>
                                         <br />
@@ -307,7 +307,7 @@
                                 </asp:Repeater>
                                 <br />
                                 <div class="row">
-                                    <h4 class="pl-2">Screenshots & Submission</h4>
+                                    <h4>Screenshots & Submission</h4>
                                     <br />
                                 </div>
                                 <br />
