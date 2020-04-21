@@ -403,7 +403,8 @@
         $(document).ready(function () {
             $('.datatable').DataTable({
                 "scrollY": "800px",
-                "scrollCollapse": true
+                "scrollCollapse": true,
+                "lengthMenu": [[10, 20, 50, 100, -1], [10, 20, 50, 100, "View All"]]
             });
         });
     </script>
