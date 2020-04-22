@@ -100,7 +100,7 @@
                                 <asp:Label ID="lblCollege" runat="server" style="line-height: 50px;">College</asp:Label>
                             </div>
                             <div class="col-lg-9">
-                                <asp:Label ID="lblError" CssClass="col-lg-9" runat="server" Text=""></asp:Label>
+                                <asp:Label ID="lblError" CssClass="col-lg-9" runat="server" style="color: red;" Text=""></asp:Label>
                                 <asp:TextBox ID="txtID" CssClass="form-control" runat="server"></asp:TextBox>
                                 <br />
                                 <asp:DropDownList ID="ddlType" CssClass="form-control" runat="server">
@@ -148,7 +148,7 @@
                                 <asp:Label ID="lblCollege2" runat="server" style="line-height: 60px;">College</asp:Label>
                             </div>
                             <div class="col-lg-9">
-                                <asp:Label ID="lblError2" CssClass="col-lg-9" runat="server" Text=""></asp:Label>
+                                <asp:Label ID="lblError2" CssClass="col-lg-9" runat="server" style="color: red;" Text=""></asp:Label>
                                 <asp:TextBox ID="txtID2" CssClass="form-control" runat="server"></asp:TextBox>
                                 <br />
                                 <asp:DropDownList ID="ddlType2" CssClass="form-control" runat="server">
