@@ -307,6 +307,7 @@ namespace ChangeManagementSystem
                     {
                         status.Attributes.Add("class", "visibility-hidden");
                         statusChangeControls.Attributes.Add("class", "visibility-hidden");
+                        btnSave.Visible = false;
                     }
                     else
                     {
@@ -339,6 +340,7 @@ namespace ChangeManagementSystem
                         status.Attributes.Clear();
                         preprod.Attributes.Clear();
                         preprodTested.Attributes.Add("class", "visibility-hidden");
+                        btnSave.Visible = false;
                     }
                     else
                     {
@@ -365,6 +367,7 @@ namespace ChangeManagementSystem
                         status.Attributes.Clear();
                         preprodTested.Attributes.Clear();
                         preprod.Attributes.Add("class", "visibility-hidden");
+                        btnSave.Visible = false;
                     }
                     else
                     {
