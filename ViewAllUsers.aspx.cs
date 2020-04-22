@@ -45,21 +45,7 @@ namespace ChangeManagementSystem
                     DataTable dt = userData.Tables[0];
                     string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
                     lblUserName.Text = userName;
-
-
-                    WebService.College[] colleges = WebService.Webservice.getAllColleges();
-                    int len = colleges.Length;
-                    ddlCollege.Items.Add("CRM");
-                    ddlCollege.Items.Add("UG Admissions");
-                    ddlCollege.Items.Add("Graduate School");
-                    ddlCollege2.Items.Add("CRM");
-                    ddlCollege2.Items.Add("UG Admissions");
-                    ddlCollege2.Items.Add("Graduate School");
-                    for (int i = 0; i < len; i++)
-                    {
-                        ddlCollege.Items.Add(colleges[i].collegeName.ToString().Trim());
-                        ddlCollege2.Items.Add(colleges[i].collegeName.ToString().Trim());
-                    }
+                    
                     this.BindGrid();
                 }
                 else // allows pagination, search bar, and fixed header to reappear after clicking "Add New User"
@@ -82,26 +68,25 @@ namespace ChangeManagementSystem
                     DataTable dt = userData.Tables[0];
                     string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
                     lblUserName.Text = userName;
-
-
-                    WebService.College[] colleges = WebService.Webservice.getAllColleges();
-                    int len = colleges.Length;
-                    ddlCollege.Items.Add("CRM");
-                    ddlCollege.Items.Add("UG Admissions");
-                    ddlCollege.Items.Add("Graduate School");
-                    ddlCollege2.Items.Add("CRM");
-                    ddlCollege2.Items.Add("UG Admissions");
-                    ddlCollege2.Items.Add("Graduate School");
-                    for (int i = 0; i < len; i++)
-                    {
-                        ddlCollege.Items.Add(colleges[i].collegeName.ToString().Trim());
-                        ddlCollege2.Items.Add(colleges[i].collegeName.ToString().Trim());
-                    }
+                    
                     this.BindGrid();
                 }
+                WebService.College[] colleges = WebService.Webservice.getAllColleges();
+                int len = colleges.Length;
+                ddlCollege.Items.Add("CRM");
+                ddlCollege.Items.Add("UG Admissions");
+                ddlCollege.Items.Add("Graduate School");
+                ddlCollege2.Items.Add("CRM");
+                ddlCollege2.Items.Add("UG Admissions");
+                ddlCollege2.Items.Add("Graduate School");
+                for (int i = 0; i < len; i++)
+                {
+                    ddlCollege.Items.Add(colleges[i].collegeName.ToString().Trim());
+                    ddlCollege2.Items.Add(colleges[i].collegeName.ToString().Trim());
+                }
             }
-
         }
+
         protected Boolean isAuthenticated()
         {
             Boolean isAllowed = false;
@@ -202,7 +187,7 @@ namespace ChangeManagementSystem
                 if (Temple_Information != null)// if pulls some info
                 {
                     /*Populating the Session Object with the user's information*/
-                    Session["TU_ID"] = Temple_Information.templeEduID;
+                    Session["NewUser_ID"] = Temple_Information.templeEduID;
                     Session["First_Name"] = Temple_Information.givenName;
                     Session["Last_Name"] = Temple_Information.sn;
                     Session["Email"] = Temple_Information.mail;

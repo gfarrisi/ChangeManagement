@@ -50,7 +50,7 @@
                     <asp:GridView ID="gvAllUsers" runat="server" CellPadding="3" ForeColor="Black" AutoGenerateColumns="False" AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical" CssClass="datatable" OnRowDataBound="gvAllUsers_RowDataBound">
                         <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="UserID" HeaderText="TU ID" ReadOnly="true" />
+                            <asp:BoundField DataField="UserID" HeaderText="TUID" ReadOnly="true" />
                             <asp:BoundField DataField="FirstName" HeaderText="First Name" ReadOnly="true" />
                             <asp:BoundField DataField="LastName" HeaderText="Last Name" ReadOnly="true" />
                             <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" />
