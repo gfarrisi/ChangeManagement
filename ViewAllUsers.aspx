@@ -44,9 +44,13 @@
     <form runat="server">
         <br />
         <div class="container">
-            <h2 id="requestHistory">User Settings</h2>       
+            <h2 id="requestHistory">User Settings</h2>  
+            <div class="float-right pb-2">
+                        <asp:Button ID="btnOpenModal" CssClass="btn btnAdd" runat="server" Text="Add New User" OnClick="btnOpenModal_Click" />
+                    </div>
                 <div class="gv">
                     <asp:HiddenField runat="server" ID="hf" ClientIDMode="Static" />
+                    
                     <asp:GridView ID="gvAllUsers" runat="server" CellPadding="3" ForeColor="Black" AutoGenerateColumns="False" AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical" CssClass="datatable" OnRowDataBound="gvAllUsers_RowDataBound">
                         <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
                         <Columns>
@@ -73,9 +77,9 @@
                     </asp:GridView>
                 </div>
             </div>
-            <div class="container mt-4">
+            <div class="align-right">
                 <button type="button" onclick="exportTableToCSV('Users.csv')" class="btn btnDownload">Download All Users as CSV</button>
-                <asp:Button ID="btnOpenModal" CssClass="btn btnAdd" runat="server" Text="Add New User" OnClick="btnOpenModal_Click" />
+                
             </div>
  
         <!-- Modal -->
