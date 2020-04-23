@@ -56,17 +56,11 @@
                             <asp:BoundField DataField="Sent" HeaderText="Sent To" ReadOnly="true" />
                             <asp:BoundField DataField="Subject" HeaderText="Subject" ReadOnly="true" />
                             <asp:BoundField DataField="Body" HeaderText="Body" ReadOnly="true" />
-                            <asp:TemplateField HeaderText="Edit Message" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
+                            <asp:TemplateField HeaderText="Edit Email" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
                                 <ItemTemplate>
                                     <a class="viewRequest" onclick="getData(this)" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer"><i class='far fa-edit'></i></a>
                                 </ItemTemplate>
                             </asp:TemplateField>
-
-
-<%--                            <asp:HiddenField runat="server" ID="SendA" Value=""></asp:HiddenField>
-                            <script type="text/javascript">
-                                document.getElementById("<%=SendA.Email%>").value="1";
-                            </script>--%>
                         </Columns>
                         <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
@@ -81,7 +75,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Edit Message</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Edit Email</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -101,7 +95,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <asp:Button ID="btnEdit" class="btn btn-primary" runat="server" Text="Edit Email" OnClick="btnEdit_Click" OnClientClick="abc()" />
+                                <asp:Button ID="btnEdit" class="btn btn-primary" runat="server" Text="Save" OnClick="btnEdit_Click" OnClientClick="abc()" />
                             </div>
                         </div>
                     </div>
