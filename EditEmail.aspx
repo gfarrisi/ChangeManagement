@@ -56,17 +56,11 @@
                             <asp:BoundField DataField="Sent" HeaderText="Sent To" ReadOnly="true" />
                             <asp:BoundField DataField="Subject" HeaderText="Subject" ReadOnly="true" />
                             <asp:BoundField DataField="Body" HeaderText="Body" ReadOnly="true" />
-                            <asp:TemplateField HeaderText="Edit Message" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
+                            <asp:TemplateField HeaderText="Edit Email" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
                                 <ItemTemplate>
                                     <a class="viewRequest" onclick="getData(this)" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer"><i class='far fa-edit'></i></a>
                                 </ItemTemplate>
                             </asp:TemplateField>
-
-
-<%--                            <asp:HiddenField runat="server" ID="SendA" Value=""></asp:HiddenField>
-                            <script type="text/javascript">
-                                document.getElementById("<%=SendA.Email%>").value="1";
-                            </script>--%>
                         </Columns>
                         <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                         <HeaderStyle BackColor="#333333" ForeColor="White" />
