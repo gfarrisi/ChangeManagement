@@ -196,7 +196,7 @@ namespace ChangeManagementSystem
                     int check = checkDisabled(TUID);
                     if (check == 1) //if info already in DB alert them
                     {
-                        lblError.Text = "An account already exists with this ID";
+                        lblError.Text = "*An account already exists with this ID";
                         txtID.Text = "";
                         ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#exampleModal').modal('show')", true);
                     }
@@ -249,7 +249,7 @@ namespace ChangeManagementSystem
                 }
                 else// if no info pulled, enter manually
                 {
-                    lblError.Text = "Error: Enter account manually or try again";
+                    lblError.Text = "*No account found with ID";
                     txtID.Text = "";
                     ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#exampleModal').modal('show')", true);
                     btnManual.Visible = true;
@@ -259,7 +259,7 @@ namespace ChangeManagementSystem
             else
             {
                 //Error: Couldn't retrieve employeeNumber from request header
-                lblError.Text = "Please enter a TUID";
+                lblError.Text = "*Please enter a TUID";
                 txtID.Text = "";
                 ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#exampleModal').modal('show')", true);
             }
@@ -319,7 +319,7 @@ namespace ChangeManagementSystem
             if (!Validation.ValidateTUID(TUID))
             {
                 lblError2.Attributes.Remove("visibility-hidden");
-                lblError2.Text = "*Make sure you are using a valid, 9 digit TUID";
+                lblError2.Text = "*Make sure you are using a 9 digit TUID";
                 ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#manualModal').modal('show')", true);
             }
             else if (!Validation.ValidateTempleEmail(userEmail))
