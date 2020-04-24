@@ -81,7 +81,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                               
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Subject:</label><br />
                                         <label for="recipient-name" class="col-form-label">Subject can not be edited</label>
@@ -89,9 +89,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="message-text" class="col-form-label">Body:</label>
-                                        <asp:TextBox ID="txtBody" class="form-control" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtBody" CssClass="form-control" runat="server"></asp:TextBox>
                                     </div>
-                                </form>
+                              
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
