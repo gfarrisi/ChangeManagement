@@ -80,12 +80,12 @@
                             </div>
                         </div>
                         <br />
-                        <div class="row">
+                        <div class="row ml-3">
                             <div class="col-lg-12 form-data">
                                 <asp:Repeater ID="rptRequestInfo" runat="server">
                                     <ItemTemplate>
                                         <div class="row" runat="server">
-                                            <h4 runat="server"><%# "Request Type: " + DataBinder.Eval(Container.DataItem, "RequestTypeID") %></h4>
+                                            <h4 runat="server"><%# "Request Type: " + DataBinder.Eval(Container.DataItem, "RequestTypeName") %></h4>
                                             <br />
                                         </div>
                                         <br />
