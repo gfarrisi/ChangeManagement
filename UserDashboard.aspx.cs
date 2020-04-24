@@ -436,7 +436,7 @@ namespace ChangeManagementSystem
                 Email objEmail = new Email();
                 String strTO = cmTable.Rows[0]["Email"].ToString(); 
                 String strFROM = "noreply@temple.edu";
-                String strSubject = "CM #{" + hiddenCMClicked.Value + "}: " + emailTable.Rows[0]["Subject"].ToString();
+                String strSubject = "CM #" + hiddenCMClicked.Value + ": " + emailTable.Rows[0]["Subject"].ToString();
                 String strMessage = emailTable.Rows[0]["Body"].ToString();
 
                 try
