@@ -178,143 +178,144 @@
                                                 <p runat="server"><%# DataBinder.Eval(Container.DataItem, "College")%></p>
                                             </div>
                                         </div>
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                                <asp:Repeater ID="rptAdminName" runat="server">
-                                    <ItemTemplate>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <p><b>Assigned To:</b></p>
+                                      </ItemTemplate>
+                                  </asp:Repeater>
+                                    <asp:Repeater ID="rptAdminName" runat="server">
+                                        <ItemTemplate>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <p><b>Assigned To:</b></p>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <p runat="server"><%# DataBinder.Eval(Container.DataItem, "FirstName") + " " + DataBinder.Eval(Container.DataItem, "LastName")  %></p>
+                                                </div>
                                             </div>
-                                            <div class="col-lg-6">
-                                                <p runat="server"><%# DataBinder.Eval(Container.DataItem, "FirstName") + " " + DataBinder.Eval(Container.DataItem, "LastName")  %></p>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <p><b>Workflow/Process Name:</b></p>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <p runat="server"><%# DataBinder.Eval(Container.DataItem, "CMProjectName")%></p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <p><b>Workflow/Process Name:</b></p>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                    <asp:Repeater ID="rptResponse" runat="server">
+                                        <ItemTemplate>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <p><b><%# DataBinder.Eval(Container.DataItem, "QuestionText")%></b></p>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <p><%# DataBinder.Eval(Container.DataItem, "QuestionResponse")%></p>
+                                                </div>
                                             </div>
-                                            <div class="col-lg-6">
-                                                <p runat="server"><%# DataBinder.Eval(Container.DataItem, "CMProjectName")%></p>
-                                            </div>
-                                        </div>
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                                <asp:Repeater ID="rptResponse" runat="server">
-                                    <ItemTemplate>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <p><b><%# DataBinder.Eval(Container.DataItem, "QuestionText")%></b></p>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <p><%# DataBinder.Eval(Container.DataItem, "QuestionResponse")%></p>
-                                            </div>
-                                        </div>
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                                <br />
-                                <div class="row">
-                                    <h4>Screenshots & Submission</h4>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
                                     <br />
-                                </div>
-                                <br />
-                                <asp:Repeater ID="rptScreenshots" runat="server" OnItemDataBound="rptScreenshots_ItemDataBound">
-                                    <ItemTemplate>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <p><b>Detailed Description of Change</b></p>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <p><%# DataBinder.Eval(Container.DataItem, "DetailDescription")%></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <p><b>Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots</b></p>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <asp:LinkButton runat="server" ID="btnLink1" OnClick="btnLink1_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment1Name") %></asp:LinkButton>
-                                                <br />
-                                                <asp:LinkButton runat="server" ID="btnLink2" OnClick="btnLink2_Click" Visible="false"><%# DataBinder.Eval(Container.DataItem, "Attachment2Name") %></asp:LinkButton>
-                                                <br />
-                                                <asp:LinkButton runat="server" ID="btnLink3" OnClick="btnLink3_Click" Visible="false"><%# DataBinder.Eval(Container.DataItem, "Attachment3Name") %></asp:LinkButton>
-                                                <br />
-                                                <asp:LinkButton runat="server" ID="btnLink4" OnClick="btnLink4_Click" Visible="false"><%# DataBinder.Eval(Container.DataItem, "Attachment4Name") %></asp:LinkButton>
-                                                <br />
-                                                <asp:LinkButton runat="server" ID="btnLink5" OnClick="btnLink5_Click" Visible="false"><%# DataBinder.Eval(Container.DataItem, "Attachment5Name") %></asp:LinkButton>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <p><b>Desired Date for Move</b></p>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <p><%# DataBinder.Eval(Container.DataItem, "DesiredDate")%></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <p><b>Questions/Comments</b></p>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <p><%# DataBinder.Eval(Container.DataItem, "Question/Comments")%></p>
-                                            </div>
-                                        </div>
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                                <div class="row">
-                                    <div class="col-lg-9">
-                                    </div>
-                                    <div class="col-lg-3">
+                                    <div class="row">
+                                        <h4>Screenshots & Submission</h4>
                                         <br />
                                     </div>
-                                </div>
-                                <hr />
-                            </div>
-                        </div>
+                                    <br />
+                                    <asp:Repeater ID="rptScreenshots" runat="server" OnItemDataBound="rptScreenshots_ItemDataBound">
+                                        <ItemTemplate>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <p><b>Detailed Description of Change</b></p>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <p><%# DataBinder.Eval(Container.DataItem, "DetailDescription")%></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <p><b>Please upload all applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots</b></p>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <asp:LinkButton runat="server" ID="btnLink1" OnClick="btnLink1_Click"><%# DataBinder.Eval(Container.DataItem, "Attachment1Name") %></asp:LinkButton>
+                                                    <br />
+                                                    <asp:LinkButton runat="server" ID="btnLink2" OnClick="btnLink2_Click" Visible="false"><%# DataBinder.Eval(Container.DataItem, "Attachment2Name") %></asp:LinkButton>
+                                                    <br />
+                                                    <asp:LinkButton runat="server" ID="btnLink3" OnClick="btnLink3_Click" Visible="false"><%# DataBinder.Eval(Container.DataItem, "Attachment3Name") %></asp:LinkButton>
+                                                    <br />
+                                                    <asp:LinkButton runat="server" ID="btnLink4" OnClick="btnLink4_Click" Visible="false"><%# DataBinder.Eval(Container.DataItem, "Attachment4Name") %></asp:LinkButton>
+                                                    <br />
+                                                    <asp:LinkButton runat="server" ID="btnLink5" OnClick="btnLink5_Click" Visible="false"><%# DataBinder.Eval(Container.DataItem, "Attachment5Name") %></asp:LinkButton>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <p><b>Desired Date for Move</b></p>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <p><%# DataBinder.Eval(Container.DataItem, "DesiredDate")%></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <p><b>Questions/Comments</b></p>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <p><%# DataBinder.Eval(Container.DataItem, "Question/Comments")%></p>
+                                                </div>
 
-                        <div class="row mb-7">
-                            <div class="col-lg-1 mb-7"></div>
-                            <div class="col-lg-11 mb-7" style="height: 50%; padding-left: 0;">
-                                <h4 class="mb-3 ml-1 mt-3">Comments</h4>
-                                <div class="card ">
-                                    <div class="card-body" style="height: 20rem; overflow-y: scroll;">
-                                        <asp:Panel ID="pnlNoComments" runat="server">
-                                            <p class="pt-3 pb-5">
-                                                There are no existing comments
-                                            </p>
-                                        </asp:Panel>
-                                        <%--<asp:Panel ID="pnlComments" runat="server">--%>
-                                        <asp:UpdatePanel ID="pnlComments" style="width: 100%" runat="server">
-                                            <ContentTemplate>
-                                                <%--<asp:Timer ID="tmComments" OnTick="tmComments_Tick" runat="server" Interval="3000" />--%>
-                                                <asp:Repeater ID="rptComments" runat="server">
-                                                    <ItemTemplate>
-                                                        <%--<asp:Label ID="Label6" runat="server" ForeColor="#FF5581" Font-Size="Large" Font-Bold="true" Text="Restaurant Info"></asp:Label>--%>
-                                                        <%--<asp:HiddenField ID="hfRestaurantID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "Restaurant_ID") %>' />--%>
-                                                        <p class="card-text">
-                                                            <asp:Label ID="lbCommentName" CssClass="" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "UserType") + ": " + DataBinder.Eval(Container.DataItem, "FirstName") + " " + DataBinder.Eval(Container.DataItem, "LastName") %>'></asp:Label>
-                                                            <br />
-                                                            <span class="comment-time">
-                                                                <asp:Label ID="lbCommentTime" runat="server" Font-Italic="true" CssClass="" Text='<%# DataBinder.Eval(Container.DataItem, "LastUpdateDate") %>'></asp:Label>
-                                                            </span>
-                                                            <br />
-                                                            <span class="comment-text">
-                                                                <asp:Label ID="lbCommentText" runat="server" Font-Italic="true" CssClass="" Text='<%# DataBinder.Eval(Container.DataItem, "CommentText") %>'></asp:Label>
-                                                            </span>
-                                                        </p>
-                                                        <hr />
-                                                    </ItemTemplate>
-                                                </asp:Repeater>
-
-                                            </ContentTemplate>
-                                            <Triggers>
-                                                <asp:AsyncPostBackTrigger ControlID="rptComments" EventName="ItemDataBound" />
-                                            </Triggers>
-                                        </asp:UpdatePanel>
-                                        <%--</asp:Panel>--%>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                    <div class="row">
+                                        <div class="col-lg-9">
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <br />
+                                        </div>
                                     </div>
-                                     </div>
+                                    <hr />
+                                </div>
+                            </div>
+
+                            <div class="row mb-7">
+                                <div class="col-lg-1 mb-7"></div>
+                                <div class="col-lg-11 mb-7" style="height: 50%; padding-left: 0;">
+                                    <h4 class="mb-3 ml-1 mt-3">Comments</h4>
+                                    <div class="card ">
+                                        <div class="card-body" style="height: 20rem; overflow-y: scroll;">
+                                            <asp:Panel ID="pnlNoComments" runat="server">
+                                                <p class="pt-3 pb-5">
+                                                    There are no existing comments
+                                                </p>
+                                            </asp:Panel>
+                                            <%--<asp:Panel ID="pnlComments" runat="server">--%>
+                                            <asp:UpdatePanel ID="pnlComments" style="width: 100%" runat="server">
+                                                <ContentTemplate>
+                                                    <%--<asp:Timer ID="tmComments" OnTick="tmComments_Tick" runat="server" Interval="3000" />--%>
+                                                    <asp:Repeater ID="rptComments" runat="server">
+                                                        <ItemTemplate>
+                                                            <%--<asp:Label ID="Label6" runat="server" ForeColor="#FF5581" Font-Size="Large" Font-Bold="true" Text="Restaurant Info"></asp:Label>--%>
+                                                            <%--<asp:HiddenField ID="hfRestaurantID" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "Restaurant_ID") %>' />--%>
+                                                            <p class="card-text">
+                                                                <asp:Label ID="lbCommentName" CssClass="" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "UserType") + ": " + DataBinder.Eval(Container.DataItem, "FirstName") + " " + DataBinder.Eval(Container.DataItem, "LastName") %>'></asp:Label>
+                                                                <br />
+                                                                <span class="comment-time">
+                                                                    <asp:Label ID="lbCommentTime" runat="server" Font-Italic="true" CssClass="" Text='<%# DataBinder.Eval(Container.DataItem, "LastUpdateDate") %>'></asp:Label>
+                                                                </span>
+                                                                <br />
+                                                                <span class="comment-text">
+                                                                    <asp:Label ID="lbCommentText" runat="server" Font-Italic="true" CssClass="" Text='<%# DataBinder.Eval(Container.DataItem, "CommentText") %>'></asp:Label>
+                                                                </span>
+                                                            </p>
+                                                            <hr />
+                                                        </ItemTemplate>
+                                                    </asp:Repeater>
+
+                                                </ContentTemplate>
+                                                <Triggers>
+                                                    <asp:AsyncPostBackTrigger ControlID="rptComments" EventName="ItemDataBound" />
+                                                </Triggers>
+                                            </asp:UpdatePanel>
+                                            <%--</asp:Panel>--%>
+                                        </div>
+                                    </div>
                                     <div class="card-footer">
                                         <div class="control-group form-group">
                                             <div class="controls">
@@ -328,58 +329,61 @@
                                 </div>
 
                             </div>
-                        </div>
-                        <div class="modal-footer mt-5">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
-                            <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" Style="background-color: #8C2132" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
-                            <asp:Button runat="server" class="btn btn-primary" ID="btnSave" Text="Save changes" OnClick="btnSave_Click"></asp:Button>
-                        </div>
+                       
+
+                    </div>
+                    <div class="modal-footer mt-5">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnClose">Close</button>
+                        <asp:Button runat="server" ID="btnDownloadAsPDF" CssClass="btn btn-secondary" Style="background-color: #8C2132" Text="Download As PDF" CausesValidation="false" OnClick="btnDownloadAsPDF_Click" />
+                        <asp:Button runat="server" class="btn btn-primary" ID="btnSave" Text="Save changes" OnClick="btnSave_Click"></asp:Button>
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="mdlSavedChanges" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Changes Saved</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            CM #302 has been marked as failed. User notified.
-                        </div>
+        </div>
+        <div class="modal fade" id="mdlSavedChanges" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Changes Saved</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        CM #302 has been marked as failed. User notified.
+                    </div>
 
-                        <div class="modal-footer mt-5">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
+                    <div class="modal-footer mt-5">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
+            </div>
+        </div>
 
 
-                <asp:HiddenField ClientIDMode="Static" ID="hiddenCMSaving" runat="server" />
+        <asp:HiddenField ClientIDMode="Static" ID="hiddenCMSaving" runat="server" />
 
-                <!-- Modal data-toggle="modal" data-target="#warningModal"-->
-                <div class="modal fade" id="mdlCMAttachment" tabindex="-1" role="dialog" aria-labelledby="mdlCMAttachment" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="mdlCMAttachmentLabel">Attachment Download</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="col-lg-12">
-                                    <label id="Label1" style="line-height: 50px;" runat="server">The attachment has been downloaded!</label>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <asp:Button ID="btnAttachment" CssClass="btn btn-secondary" BorderStyle="None" OnClick="btnAttachment_Click" Text="Close" runat="server" />
-                            </div>
+        <!-- Modal data-toggle="modal" data-target="#warningModal"-->
+        <div class="modal fade" id="mdlCMAttachment" tabindex="-1" role="dialog" aria-labelledby="mdlCMAttachment" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="mdlCMAttachmentLabel">Attachment Download</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-lg-12">
+                            <label id="Label1" style="line-height: 50px;" runat="server">The attachment has been downloaded!</label>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btnAttachment" CssClass="btn btn-secondary" BorderStyle="None" OnClick="btnAttachment_Click" Text="Close" runat="server" />
+                    </div>
                 </div>
+            </div>
+        </div>
     </form>
     <style>
         .datatable tr td {

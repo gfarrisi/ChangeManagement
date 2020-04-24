@@ -22,6 +22,15 @@ namespace ChangeManagementSystem {
         protected global::System.Web.UI.WebControls.Label lblUserName;
         
         /// <summary>
+        /// btnOpenModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnOpenModal;
+        
+        /// <summary>
         /// hf control.
         /// </summary>
         /// <remarks>
@@ -38,15 +47,6 @@ namespace ChangeManagementSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvAllUsers;
-        
-        /// <summary>
-        /// btnOpenModal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOpenModal;
         
         /// <summary>
         /// lblAccessNet control.

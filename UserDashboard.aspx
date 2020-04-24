@@ -342,7 +342,7 @@
                                                 <p><b>Desired Date for Move</b></p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p><%# DataBinder.Eval(Container.DataItem, "DesiredDate")%></p>
+                                                <p><%# DataBinder.Eval(Container.DataItem, "DesiredDate", "{0:MM/dd/yyyy}")%></p>
                                             </div>
                                         </div>
                                         <div class="row">

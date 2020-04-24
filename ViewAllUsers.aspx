@@ -44,13 +44,17 @@
     <form runat="server">
         <br />
         <div class="container">
-            <h2 id="requestHistory">User Settings</h2>       
+            <h2 id="requestHistory">User Settings</h2>  
+            <div class="float-right pb-2">
+                        <asp:Button ID="btnOpenModal" CssClass="btn btnAdd" runat="server" Text="Add New User" OnClick="btnOpenModal_Click" />
+                    </div>
                 <div class="gv">
                     <asp:HiddenField runat="server" ID="hf" ClientIDMode="Static" />
+                    
                     <asp:GridView ID="gvAllUsers" runat="server" CellPadding="3" ForeColor="Black" AutoGenerateColumns="False" AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" GridLines="Vertical" CssClass="datatable" OnRowDataBound="gvAllUsers_RowDataBound">
                         <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="UserID" HeaderText="TU ID" ReadOnly="true" />
+                            <asp:BoundField DataField="UserID" HeaderText="TUID" ReadOnly="true" />
                             <asp:BoundField DataField="FirstName" HeaderText="First Name" ReadOnly="true" />
                             <asp:BoundField DataField="LastName" HeaderText="Last Name" ReadOnly="true" />
                             <asp:BoundField DataField="College" HeaderText="College" ReadOnly="true" />
@@ -73,9 +77,9 @@
                     </asp:GridView>
                 </div>
             </div>
-            <div class="container mt-4">
+            <div class="align-right">
                 <button type="button" onclick="exportTableToCSV('Users.csv')" class="btn btnDownload">Download All Users as CSV</button>
-                <asp:Button ID="btnOpenModal" CssClass="btn btnAdd" runat="server" Text="Add New User" OnClick="btnOpenModal_Click" />
+                
             </div>
  
         <!-- Modal -->
@@ -100,7 +104,7 @@
                                 <asp:Label ID="lblCollege" runat="server" style="line-height: 50px;">College</asp:Label>
                             </div>
                             <div class="col-lg-9">
-                                <asp:Label ID="lblError" CssClass="col-lg-9" runat="server" Text=""></asp:Label>
+                                <asp:Label ID="lblError" CssClass="col-lg-9" runat="server" style="color: red;" Text=""></asp:Label>
                                 <asp:TextBox ID="txtID" CssClass="form-control" runat="server"></asp:TextBox>
                                 <br />
                                 <asp:DropDownList ID="ddlType" CssClass="form-control" runat="server">
@@ -148,7 +152,7 @@
                                 <asp:Label ID="lblCollege2" runat="server" style="line-height: 60px;">College</asp:Label>
                             </div>
                             <div class="col-lg-9">
-                                <asp:Label ID="lblError2" CssClass="col-lg-9" runat="server" Text=""></asp:Label>
+                                <asp:Label ID="lblError2" CssClass="col-lg-9" runat="server" style="color: red;" Text=""></asp:Label>
                                 <asp:TextBox ID="txtID2" CssClass="form-control" runat="server"></asp:TextBox>
                                 <br />
                                 <asp:DropDownList ID="ddlType2" CssClass="form-control" runat="server">
