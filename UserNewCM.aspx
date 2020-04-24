@@ -44,14 +44,17 @@
             <div class="col-3"></div>
             <div class="col-6 pt-5 pb-5" style="background-color: rgba(0,0,0,.03); box-shadow: 0 0 12px 1.5px #808080;">
 
-                <h1 class="text-center mb-5"><span id="spanCM" runat="server"></span></h1>
+                <h1 class="text-center"><span id="spanCM" runat="server"></span></h1>
+                   <div style="text-align: center" class="mb-5">
+                    <asp:Label ID="Label2" runat="server" Text="All fields required *" CssClass="form-text"></asp:Label>
+                </div>
                 <div style="text-align: center">
                     <asp:Label runat="server" ID="lblErrorMessage" Visible="false" Text="Please submit a response for all required fields!" Font-Size="Large" ForeColor="Red"></asp:Label>
                 </div>
                 <div style="margin: 0 auto; max-width: 600px;">
                     <div class="row mt-3 mb-3">
                         <div class="col-lg-6">
-                            <asp:Label ID="lblCMname" runat="server" Text="CM Name" CssClass="form-text h4 mb-4"></asp:Label>
+                            <asp:Label ID="lblCMname" runat="server" Text="CM Name *" CssClass="form-text h4 mb-4"></asp:Label>
                         </div>
 
                         <div class="col-lg-6">
@@ -66,7 +69,7 @@
                         <asp:Label ID="lblHeading" runat="server" Text="Screenshots & Submission" CssClass="form-text h4"></asp:Label>
                         <div class="row mt-3 mb-3">
                             <div class="col-lg-6">
-                                <asp:Label ID="lblDesc" runat="server" Text="Detailed description of change" CssClass="form-text"></asp:Label>
+                                <asp:Label ID="lblDesc" runat="server" Text="Detailed description of change *" CssClass="form-text"></asp:Label>
                             </div>
                             <div class="col-lg-6">
                                 <asp:TextBox TextMode="MultiLine" Rows="4" ID="txtDescResponse" CssClass="form-control" runat="server"></asp:TextBox>
@@ -74,7 +77,7 @@
                         </div>
                         <div class="row mt-3 mb-3">
                             <div class="col-lg-6">
-                                <asp:Label ID="lblUpload" runat="server" Text="Please upload up to 5 applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots. <br>Permitted files: .pdf, .png, .jpg, .xls, .xlsx, .doc, .docx, or .csv" CssClass="form-text"></asp:Label>
+                                <asp:Label ID="lblUpload" runat="server" Text="Please upload up to 5 applicable screenshots with all changes NOTED (circled or with arrows pointing to the change) on all screenshots. <br>Permitted files: .pdf, .png, .jpg, .xls, .xlsx, .doc, .docx, or .csv *" CssClass="form-text"></asp:Label>
                             </div>
 
                             <div class="col-lg-6">
@@ -87,7 +90,7 @@
                         </div>
                         <div class="row mt-3 mb-3">
                             <div class="col-lg-6">
-                                <asp:Label ID="lblDesiredDate" runat="server" Text="Desired date of completion" CssClass="form-text"></asp:Label>
+                                <asp:Label ID="lblDesiredDate" runat="server" Text="Desired date of completion *" CssClass="form-text"></asp:Label>
                             </div>
                             <div class="col-lg-6">
                                 <asp:TextBox ID="txtDesiredDate" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
@@ -95,10 +98,10 @@
                         </div>
                         <div class="row mt-3 mb-3">
                             <div class="col-lg-6">
-                                <asp:Label ID="lblQuesCom" runat="server" Text="Questions/Comments" CssClass="form-text"></asp:Label>
+                                <asp:Label ID="lblQuesCom" runat="server" Text="Questions/Comments *" CssClass="form-text"></asp:Label>
                             </div>
                             <div class="col-lg-6">
-                                <asp:TextBox TextMode="MultiLine" Rows="4" ID="txtQuesCom" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox TextMode="MultiLine" Rows="4" ID="txtQuesCom *" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
 

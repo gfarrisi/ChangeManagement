@@ -76,7 +76,7 @@ namespace ChangeManagementSystem
 
 
                 Label lblText = new Label();
-                lblText.Text = question_text;
+                lblText.Text = question_text + " *";
                 lblText.CssClass = "form-text";
                 colDiv.Controls.Add(lblText);
 
@@ -202,7 +202,7 @@ namespace ChangeManagementSystem
 
 
                 Label lblText = new Label();
-                lblText.Text = question_text;
+                lblText.Text = question_text + " *";
                 lblText.CssClass = "form-text";
                 colDiv.Controls.Add(lblText);
 
