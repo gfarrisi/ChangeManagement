@@ -137,6 +137,17 @@ namespace ChangeManagementSystem
                     ddlOptions.Attributes.Add("name", question_id.ToString());
                     ddlOptions.ClientIDMode = System.Web.UI.ClientIDMode.Static;
                 }
+                else if (question_control == "Calendar")
+                {
+                    TextBox txtAnswer = new TextBox();
+                    txtAnswer.CssClass = "form-control";
+                    txtAnswer.ID = question_id.ToString();
+
+                    txtAnswer.Attributes.Add("name", txtAnswer.ClientIDMode.ToString());
+                    txtAnswer.TextMode = TextBoxMode.Date;
+                    txtAnswer.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                    col6Div.Controls.Add(txtAnswer);
+                }
 
                 HiddenField hfQuestionID = new HiddenField();
                 hfQuestionID.Value = question_id.ToString();
@@ -153,7 +164,6 @@ namespace ChangeManagementSystem
 
         private void generateForm(Boolean isValid)
         {
-
             Session["CMSuccess"] = "Failure";
             DBConnect objDB = new DBConnect();
             SqlCommand objCommand = new SqlCommand();
@@ -250,6 +260,17 @@ namespace ChangeManagementSystem
                     ddlOptions.Attributes.Add("name", question_id.ToString());
                     ddlOptions.ClientIDMode = System.Web.UI.ClientIDMode.Static;
                 }
+                else if (question_control == "Calendar")
+                {
+                    TextBox txtAnswer = new TextBox();
+                    txtAnswer.CssClass = "form-control";
+                    txtAnswer.ID = question_id.ToString();
+
+                    txtAnswer.Attributes.Add("name", txtAnswer.ClientIDMode.ToString());
+                    txtAnswer.TextMode = TextBoxMode.Date;
+                    txtAnswer.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                    col6Div.Controls.Add(txtAnswer);
+                }
 
                 HiddenField hfQuestionID = new HiddenField();
                 hfQuestionID.Value = question_id.ToString();
@@ -258,7 +279,6 @@ namespace ChangeManagementSystem
 
                 //Response.Write("<script>alert('" + hfQuestionID.Value + "');</script>");
                 col6Div.Controls.Add(hfQuestionID);
-
 
             }
             Session["IDs"] = idArray;
@@ -315,33 +335,57 @@ namespace ChangeManagementSystem
                 foreach (int id in questionIDs)
                 {
                     string questID = id.ToString();
+
                     string response = Request["ctl00$CPH1$" + questID];
                     //Response.Write("<script>alert('" + response + "');</script>");
 
-                    //create question object w/o cmid
-                    QuestionResponse questionResponse = new QuestionResponse(id, response);
-                    //add to quiestion response list
-                    questionResponseList.Add(questionResponse);
+                    DateTime dDate;
+                    if (DateTime.TryParse(response, out dDate))
+                    {
+                        QuestionResponse questionResponse = new QuestionResponse(id, String.Format("{0:MM/dd/yyyy}", dDate));
+                        //add to quiestion response list
+                        questionResponseList.Add(questionResponse);
+                    }
+                    else
+                    {
+                        //create question object w/o cmid
+                        QuestionResponse questionResponse = new QuestionResponse(id, response);
+                        //add to quiestion response list
+                        questionResponseList.Add(questionResponse);
+                    }
+
                 }
 
                 bool valid = true;
-
-                for (int i = 0; i < questionResponseList.Count; i++)
+                try
                 {
-                    String strResponse = questionResponseList[i].Response.ToString();
-
-                    if (!Validation.ValidateForm(strResponse))
+                    for (int i = 0; i < questionResponseList.Count; i++)
                     {
-                        valid = false;
+                        String strResponse = questionResponseList[i].Response.ToString();
+                        if (strResponse == null)
+                        {
+                            strResponse = "";
+                        }
+                        if (!Validation.ValidateForm(strResponse))
+                        {
+                            valid = false;
 
-                    }
+                        }
 
-                    if (valid == false)
-                    {
-                        lblErrorMessage.Visible = true;
+                        if (valid == false)
+                        {
+                            lblErrorMessage.Visible = true;
 
+                        }
                     }
                 }
+                catch
+                {
+                    // Response.Write("<script>alert('" +" VALIDATION FAILED" + "');</script>");
+                    valid = false;
+                    lblErrorMessage.Visible = true;
+                }
+
 
                 if (valid)
                 {
@@ -530,7 +574,7 @@ namespace ChangeManagementSystem
                                 }
                                 catch
                                 {
-                                    Response.Write("<script>alert('Error');</script>");
+                                    Response.Write("<script>alert('Database Error');</script>");
                                 }
 
                             }
@@ -550,8 +594,9 @@ namespace ChangeManagementSystem
 
             else
             {
-                Session["CMSuccess"] = "Failure";
                 lblErrorMessage.Visible = true;
+                Session["CMSuccess"] = "Failure";
+
             }
         }
 

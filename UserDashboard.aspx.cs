@@ -104,7 +104,6 @@ namespace ChangeManagementSystem
                     {
                         IsPageRefresh = true;
                     }
-
                     Session["SessionId"] = System.Guid.NewGuid().ToString();
                     ViewState["ViewStateId"] = Session["SessionId"].ToString();
                     if (hiddenCMClicked.Value != "" && IsPageRefresh == false)

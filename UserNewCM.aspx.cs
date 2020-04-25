@@ -39,8 +39,6 @@ namespace ChangeManagementSystem
 
                 }
 
-
-
             }
             else
             {
@@ -52,9 +50,11 @@ namespace ChangeManagementSystem
             RequestTypeData requestTypeData = new RequestTypeData();
             Request requestType = requestTypeData.GetRequestTypeData(Convert.ToInt32(ViewState["requestNum"]));
 
+            spanCM.InnerHtml = requestType.RequestName;
             //to write to session
             //List<int> idArray = new List<int>();
-
+            //try
+            //{
             foreach (Question question in requestType.requestQuestions)
             {
                 string question_text = question.Question_Text;
@@ -126,6 +126,17 @@ namespace ChangeManagementSystem
                     ddlOptions.Attributes.Add("name", question_id.ToString());
                     ddlOptions.ClientIDMode = System.Web.UI.ClientIDMode.Static;
                 }
+                else if (question_control == "Calendar")
+                {
+                    TextBox txtAnswer = new TextBox();
+                    txtAnswer.CssClass = "form-control";
+                    txtAnswer.ID = question_id.ToString();
+
+                    txtAnswer.Attributes.Add("name", txtAnswer.ClientIDMode.ToString());
+                    txtAnswer.TextMode = TextBoxMode.Date;
+                    txtAnswer.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                    col6Div.Controls.Add(txtAnswer);
+                }
 
                 HiddenField hfQuestionID = new HiddenField();
                 hfQuestionID.Value = question_id.ToString();
@@ -138,17 +149,21 @@ namespace ChangeManagementSystem
 
             }
             Session["IDs"] = idArray;
+            //}
+            //catch
+            //{
+            //    lblErrorMessage.Visible = true;
+            //}
+
+
 
 
         }
         private void generateForm(Boolean isValid)
         {
-
             //pass in boolean, determine which error to display
             //validSubmission or //BlankEntry
-            // Boolean isBlank = false;
-            // Boolean isValidSubmission = false;
-
+            Session["CMSuccess"] = "Failure";
             DBConnect objDB = new DBConnect();
             SqlCommand objCommand = new SqlCommand();
 
@@ -163,24 +178,17 @@ namespace ChangeManagementSystem
             string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
             lblUserName.Text = userName;
 
-
             int RequestID = Convert.ToInt32(Session["SelectedRequestType"].ToString());
 
             ViewState["requestNum"] = RequestID;
-
 
             RequestTypeData requestTypeData = new RequestTypeData();
             Request requestType = requestTypeData.GetRequestTypeData(RequestID);
 
             spanCM.InnerHtml = requestType.RequestName;
 
-            Label lblHeading = new Label();
-            lblHeading.Text = requestType.RequestName;
-            lblHeading.CssClass = "form-text h4";
-            panelCM.Controls.Add(lblHeading);
-
             //to write to session
-            // List<int> idArray = new List<int>();
+            List<int> idArray = new List<int>();
 
             foreach (Question question in requestType.requestQuestions)
             {
@@ -230,7 +238,6 @@ namespace ChangeManagementSystem
                 }
                 else if (question_control == "TextBox")
                 {
-
                     TextBox txtAnswer = new TextBox();
                     txtAnswer.CssClass = "form-control";
                     txtAnswer.ID = question_id.ToString();
@@ -251,6 +258,17 @@ namespace ChangeManagementSystem
                     ddlOptions.ID = question_id.ToString();
                     ddlOptions.Attributes.Add("name", question_id.ToString());
                     ddlOptions.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                }
+                else if (question_control == "Calendar")
+                {
+                    TextBox txtAnswer = new TextBox();
+                    txtAnswer.CssClass = "form-control";
+                    txtAnswer.ID = question_id.ToString();
+
+                    txtAnswer.Attributes.Add("name", txtAnswer.ClientIDMode.ToString());
+                    txtAnswer.TextMode = TextBoxMode.Date;
+                    txtAnswer.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                    col6Div.Controls.Add(txtAnswer);
                 }
 
                 HiddenField hfQuestionID = new HiddenField();
@@ -321,29 +339,47 @@ namespace ChangeManagementSystem
                     string response = Request["ctl00$CPH1$" + questID];
                     //Response.Write("<script>alert('" + response + "');</script>");
 
-                    //create question object w/o cmid
-                    QuestionResponse questionResponse = new QuestionResponse(id, response);
-                    //add to quiestion response list
-                    questionResponseList.Add(questionResponse);
+                    DateTime dDate;
+                    if (DateTime.TryParse(response, out dDate))
+                    {
+                        QuestionResponse questionResponse = new QuestionResponse(id, String.Format("{0:MM/dd/yyyy}", dDate));
+                        //add to quiestion response list
+                        questionResponseList.Add(questionResponse);
+                    }
+                    else
+                    {
+                        //create question object w/o cmid
+                        QuestionResponse questionResponse = new QuestionResponse(id, response);
+                        //add to quiestion response list
+                        questionResponseList.Add(questionResponse);
+                    }
                 }
 
                 bool valid = true;
 
-
-                for (int i = 0; i < questionResponseList.Count; i++)
+                try
                 {
-                    String strResponse = questionResponseList[i].Response.ToString();
-
-                    if (!Validation.ValidateForm(strResponse))
+                    for (int i = 0; i < questionResponseList.Count; i++)
                     {
-                        valid = false;
-                    }
+                        String strResponse = questionResponseList[i].Response.ToString();
 
-                    if (valid == false)
-                    {
-                        lblErrorMessage.Visible = true;
+                        if (!Validation.ValidateForm(strResponse))
+                        {
+                            valid = false;
+                        }
 
+                        if (valid == false)
+                        {
+                            lblErrorMessage.Visible = true;
+
+                        }
                     }
+                }
+                catch
+                {
+                    // Response.Write("<script>alert('" +" VALIDATION FAILED" + "');</script>");
+                    valid = false;
+                    lblErrorMessage.Visible = true;
                 }
 
                 if (valid)
