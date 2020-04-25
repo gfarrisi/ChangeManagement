@@ -340,6 +340,8 @@ namespace ChangeManagementSystem
 
         protected void btnDownloadAsPDF_Click(object sender, EventArgs e)
         {
+            Session["pdfCM"] = Session["hiddenCM"].ToString();
+
             Response.Redirect("DownloadAsPDFPage.aspx");
         }
 

@@ -26,14 +26,14 @@ namespace ChangeManagementSystem
         {
             if (IsPostBack)
             {
-                if (Session["hiddenCMClickedS"].ToString() != null)
+                if (Session["pdfCM"].ToString() != null)
                 {
 
                     objDB = new DBConnect();
                     objCommand = new SqlCommand();
                     objCommand.CommandType = CommandType.StoredProcedure;
 
-                    int CMID = Convert.ToInt32(Session["hiddenCMClickedS"]);
+                    int CMID = Convert.ToInt32(Session["pdfCM"]);
                     objCommand.CommandText = "GetCMByID";
                     objCommand.Parameters.AddWithValue("@CMID", CMID);
                     DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
@@ -107,7 +107,7 @@ namespace ChangeManagementSystem
                 objCommand = new SqlCommand();
                 objCommand.CommandType = CommandType.StoredProcedure;
 
-                int CMID = Convert.ToInt32(Session["hiddenCMClickedS"]);
+                int CMID = Convert.ToInt32(Session["pdfCM"]);
                 objCommand.CommandText = "GetCMByID";
                 objCommand.Parameters.AddWithValue("@CMID", CMID);
                 DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
@@ -270,7 +270,7 @@ namespace ChangeManagementSystem
             objCommand = new SqlCommand();
             objCommand.CommandType = CommandType.StoredProcedure;
 
-            int CMID = Convert.ToInt32(Session["hiddenCMClickedS"]);
+            int CMID = Convert.ToInt32(Session["pdfCM"]);
             objCommand.CommandText = "GetCMByID";
             objCommand.Parameters.AddWithValue("@CMID", CMID);
             DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
@@ -300,7 +300,7 @@ namespace ChangeManagementSystem
             objCommand = new SqlCommand();
             objCommand.CommandType = CommandType.StoredProcedure;
 
-            int CMID = Convert.ToInt32(Session["hiddenCMClickedS"]);
+            int CMID = Convert.ToInt32(Session["pdfCM"]);
             objCommand.CommandText = "GetCMByID";
             objCommand.Parameters.AddWithValue("@CMID", CMID);
             DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
