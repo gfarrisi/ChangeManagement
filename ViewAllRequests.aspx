@@ -143,45 +143,43 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
-
-                        </div>
-                            <br />
-                            <div class="row ml-3">
-                                <div class="col-lg-12 form-data">
-                                    <asp:Repeater ID="rptRequestInfo" runat="server">
-                                        <ItemTemplate>
-                                            <div class="row" runat="server">
-                                                <h4 runat="server"><%# "Request Type: " + DataBinder.Eval(Container.DataItem, "RequestTypeID") %></h4>
-                                                <br />
-                                            </div>
+                            </div>
+                        <br />
+                        <div class="row ml-3">
+                            <div class="col-lg-12 form-data">
+                                <asp:Repeater ID="rptRequestInfo" runat="server">
+                                    <ItemTemplate>
+                                        <div class="row" runat="server">
+                                            <h4 runat="server"><%# "Request Type: " + DataBinder.Eval(Container.DataItem, "RequestTypeName") %></h4>
                                             <br />
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <p><b>Name:</b></p>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <p runat="server"><%# DataBinder.Eval(Container.DataItem, "FirstName") + " " + DataBinder.Eval(Container.DataItem, "LastName")  %></p>
-                                                </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p><b>Name:</b></p>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <p><b>Email address:</b></p>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <p runat="server"><%# DataBinder.Eval(Container.DataItem, "Email")%></p>
-                                                </div>
+                                            <div class="col-lg-6">
+                                                <p runat="server"><%# DataBinder.Eval(Container.DataItem, "FirstName") + " " + DataBinder.Eval(Container.DataItem, "LastName")  %></p>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <p><b>College:</b></p>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <p runat="server"><%# DataBinder.Eval(Container.DataItem, "College")%></p>
-                                                </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p><b>Email address:</b></p>
                                             </div>
-                                        </ItemTemplate>
-                                    </asp:Repeater>
+                                            <div class="col-lg-6">
+                                                <p runat="server"><%# DataBinder.Eval(Container.DataItem, "Email")%></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <p><b>College:</b></p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p runat="server"><%# DataBinder.Eval(Container.DataItem, "College")%></p>
+                                            </div>
+                                        </div>
+                                      </ItemTemplate>
+                                  </asp:Repeater>
                                     <asp:Repeater ID="rptAdminName" runat="server">
                                         <ItemTemplate>
                                             <div class="row">

@@ -575,6 +575,13 @@ namespace ChangeManagementSystem
         public void sendEmail()
         {
             DBConnect objDB = new DBConnect();
+            SqlCommand objCommandCMID = new SqlCommand();
+            objCommandCMID.CommandType = CommandType.StoredProcedure;
+            objCommandCMID.CommandText = "GetLastCMID";
+            DataSet cmData = objDB.GetDataSetUsingCmdObj(objCommandCMID);
+            DataTable cmTable = cmData.Tables[0];
+            string CMID = cmTable.Rows[0]["CMID"].ToString();
+
             SqlCommand objCommandEmail = new SqlCommand();
             objCommandEmail.CommandType = CommandType.StoredProcedure;
             objCommandEmail.CommandText = "GetEmailByType";
@@ -586,7 +593,7 @@ namespace ChangeManagementSystem
             Email objEmail = new Email();
             String strTO = "crm@temple.edu";
             String strFROM = "noreply@temple.edu";
-            String strSubject = emailTable.Rows[0]["Subject"].ToString();
+            String strSubject = "CM #" + CMID + ": " + emailTable.Rows[0]["Subject"].ToString();
             String strMessage = emailTable.Rows[0]["Body"].ToString();
 
             try

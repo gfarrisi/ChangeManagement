@@ -201,7 +201,7 @@ namespace ChangeManagementSystem
                   ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
                   ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                   ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
-                  btnSave.Visible = true;
+                  btnSave.Visible = false;
 
                   if (((HiddenField)e.Item.FindControl("selectedCMUserID")).Value == Session["UserID"].ToString())
                   {
@@ -404,7 +404,7 @@ namespace ChangeManagementSystem
             Email objEmail = new Email();
             String strTO = cmTable.Rows[0]["Email"].ToString();
             String strFROM = "noreply@temple.edu";
-            String strSubject = "CM #{" + Session["hiddenCM"].ToString() + "}: " + emailTable.Rows[0]["Subject"].ToString();
+            String strSubject = "CM #" + Session["hiddenCM"].ToString() + ": " + emailTable.Rows[0]["Subject"].ToString();
             String strMessage = emailTable.Rows[0]["Body"].ToString();
 
             try
@@ -457,12 +457,12 @@ namespace ChangeManagementSystem
                 rptScreenshots.DataSource = dataSet;
                 rptScreenshots.DataBind();
 
-                objCommand.CommandText = "GetCMAndUserByID";
+                objCommand.CommandText = "GetCMAndUserAndTypeByID";
                 dataSet = db.GetDataSetUsingCmdObj(objCommand);
                 rptRequestInfo.DataSource = dataSet;
                 rptRequestInfo.DataBind();
 
-                objCommand.CommandText = "GetCMAndAdminByID";
+                objCommand.CommandText = "GetCMAndAdminAndTypeByID";
                 dataSet = db.GetDataSetUsingCmdObj(objCommand);
                 rptAdminName.DataSource = dataSet;
                 rptAdminName.DataBind();
@@ -668,7 +668,7 @@ namespace ChangeManagementSystem
                 Email objEmail = new Email();
                 String strTO = cmTable.Rows[0]["Email"].ToString(); 
                 String strFROM = "noreply@temple.edu";
-                String strSubject = "CM #{" + Session["hiddenCM"].ToString() + "}: " + emailTable.Rows[0]["Subject"].ToString();
+                String strSubject = "CM #" + Session["hiddenCM"].ToString() + ": " + emailTable.Rows[0]["Subject"].ToString();
                 String strMessage = emailTable.Rows[0]["Body"].ToString();
 
                 try
