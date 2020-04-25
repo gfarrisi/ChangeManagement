@@ -53,7 +53,7 @@
                     <b>OR:</b>
                     <br />
                     <br />
-                    <asp:Button runat="server" Text="Click here to log out of all Temple SSO Applications" id="btnLogoutSSO" OnClick="btnLogoutSSO_Click"/>
+                
                 </ul>
             </div>
             <div class="col-md-2 col-lg-2"></div>

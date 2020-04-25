@@ -101,7 +101,7 @@
                                 <asp:Label ID="lblQuesCom" runat="server" Text="Questions/Comments *" CssClass="form-text"></asp:Label>
                             </div>
                             <div class="col-lg-6">
-                                <asp:TextBox TextMode="MultiLine" Rows="4" ID="txtQuesCom *" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox TextMode="MultiLine" Rows="4" ID="txtQuesCom" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
 
