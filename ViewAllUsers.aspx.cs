@@ -208,6 +208,12 @@ namespace ChangeManagementSystem
                         objCommand.Parameters.AddWithValue("@UserID", TUID);
                         string theDate = DateTime.Now.ToString();
                         objCommand.Parameters.AddWithValue("@Date", theDate);
+                        string type = ddlType.SelectedValue.ToString();
+                        objCommand.Parameters.AddWithValue("@UserType", type);
+                        objCommand.Parameters.AddWithValue("@FirstName", Session["First_Name"].ToString());
+                        objCommand.Parameters.AddWithValue("@LastName", Session["Last_Name"].ToString());
+                        objCommand.Parameters.AddWithValue("@Email", Session["Email"].ToString());
+                        objCommand.Parameters.AddWithValue("@College", Session["School"].ToString());
 
                         db.GetDataSetUsingCmdObj(objCommand);
 
@@ -269,7 +275,7 @@ namespace ChangeManagementSystem
         public int checkDisabled(string TUID)
         {
             objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "GetUserByID";
+            objCommand.CommandText = "CheckForUserID";
             objCommand.Parameters.Clear();
             objCommand.Parameters.AddWithValue("@UserID", TUID);
 
