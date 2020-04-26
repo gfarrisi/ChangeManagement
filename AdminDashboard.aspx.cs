@@ -406,6 +406,8 @@ namespace ChangeManagementSystem
 
         protected void btnDownloadAsPDF_Click(object sender, EventArgs e)
         {
+            Session["pdfCM"] = Session["hiddenCMClickedS"].ToString();
+
             Response.Redirect("DownloadAsPDFPage.aspx");
         }
 
