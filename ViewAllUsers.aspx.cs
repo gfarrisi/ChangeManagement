@@ -154,7 +154,7 @@ namespace ChangeManagementSystem
             DBConnect db = new DBConnect();
             objCommand.CommandType = CommandType.StoredProcedure;
 
-            int UserID = Convert.ToInt32(hf.Value);
+            string UserID = hf.Value.ToString();
             objCommand.Parameters.AddWithValue("@UserID", UserID);
             string theDate = DateTime.Now.ToString();
             objCommand.Parameters.AddWithValue("@Date", theDate);
