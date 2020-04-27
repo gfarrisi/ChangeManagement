@@ -453,7 +453,9 @@ namespace ChangeManagementSystem
 
         protected void btnDownloadAsPDF_Click(object sender, EventArgs e)
         {
-            Response.Redirect("DownloadAsPDFPage.aspx");
+            Session["pdfCM"] = Session["hiddenCMClickedS"].ToString();
+
+            Response.Redirect("UserPDF.aspx");
         }
 
         protected void RefreshTimer_Tick(object sender, EventArgs e)

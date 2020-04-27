@@ -184,6 +184,7 @@
     <Content Include="T.png" />
     <Content Include="testFiles\HtmlPage1.html" />
     <Content Include="UserDashboard.aspx" />
+    <Content Include="UserPDF.aspx" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="vendor\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="vendor\bootstrap\css\bootstrap-reboot.css" />
@@ -266,13 +267,6 @@
     <Content Include="EditEmail.aspx" />
     <Content Include="UserSelectRequestType.aspx" />
     <Content Include="UserNewCM.aspx" />
-    <Content Include="Web.config" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDashboard.aspx.cs">
@@ -385,6 +379,13 @@
     </Compile>
     <Compile Include="UserDashboard.aspx.designer.cs">
       <DependentUpon>UserDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserPDF.aspx.cs">
+      <DependentUpon>UserPDF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserPDF.aspx.designer.cs">
+      <DependentUpon>UserPDF.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Connection.cs" />
     <Compile Include="Utilities\Email.cs" />

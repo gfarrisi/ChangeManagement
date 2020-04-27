@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -12,10 +10,11 @@ using System.Net;
 using System.IO;
 using System.Data.SqlClient;
 using System.Web.UI.HtmlControls;
+using System;
 
 namespace ChangeManagementSystem
 {
-    public partial class DownloadAsPDFPage : System.Web.UI.Page
+    public partial class UserPDF : System.Web.UI.Page
     {
         DBConnect objDB;
         SqlCommand objCommand;
@@ -239,70 +238,6 @@ namespace ChangeManagementSystem
             }
         }
 
-        protected void btnLink1_Click(object sender, EventArgs e)
-        {
-            DownloadAttachment(3, 16);
-        }
-
-        protected void btnLink2_Click(object sender, EventArgs e)
-        {
-            DownloadAttachment(4, 17);
-        }
-
-        protected void btnLink3_Click(object sender, EventArgs e)
-        {
-            DownloadAttachment(5, 18);
-        }
-
-        protected void btnLink4_Click(object sender, EventArgs e)
-        {
-            DownloadAttachment(6, 19);
-        }
-
-        protected void btnLink5_Click(object sender, EventArgs e)
-        {
-            DownloadAttachment(7, 20); 
-        }
-
-        protected void DownloadAttachment(int imgCol, int nameCol)
-        {
-            objDB = new DBConnect();
-            objCommand = new SqlCommand();
-            objCommand.CommandType = CommandType.StoredProcedure;
-
-            int CMID = Convert.ToInt32(Session["pdfCM"]);
-            objCommand.CommandText = "GetCMByID";
-            objCommand.Parameters.AddWithValue("@CMID", CMID);
-            DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
-
-            //get data
-            DataTable dt = dataSet.Tables[0];
-            byte[] imgByte = (byte[])dt.Rows[0][imgCol];
-            string imgName = (string)dt.Rows[0][nameCol];
-
-            if ((imgByte != null) && (imgName != null))
-            {
-                // turn byte into downloaded file
-
-                // System.IO.File.WriteAllBytes(Environment.ExpandEnvironmentVariables(@"%USERPROFILE%\Downloads") + imgName, imgByte);
-                Response.Clear();
-                Response.Buffer = true;
-                Response.Charset = "";
-                Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                Response.ContentType = "application/octet-stream";
-                Response.AppendHeader("Content-Disposition", @"inline; filename=" + imgName);
-                Response.BinaryWrite(imgByte);
-                Response.Flush();
-                Response.End();
-                //attachmentModal(imgName);
-            }
-            else
-            {
-                string name = "noname";
-                attachmentModal(name);
-            }
-        }
-
         protected void rptScreenshots_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             objDB = new DBConnect();
@@ -346,23 +281,34 @@ namespace ChangeManagementSystem
             }
         }
 
-        protected void btnClose_Click(object sender, EventArgs e)
+        protected void btnLink1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("DownloadAsPDFPage.aspx");
+            DownloadAttachment(3, 16);
         }
 
-        protected void submissionModal(string name)
+        protected void btnLink2_Click(object sender, EventArgs e)
         {
-            if (name != "noname")
-            {
-                Label1.InnerText = name + " has successfully downloaded!";
-            }
-            else
-            {
-                Label1.InnerText = "The attachment has failed to download. Please try again.";
-            }
+            DownloadAttachment(4, 17);
+        }
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
+        protected void btnLink3_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(5, 18);
+        }
+
+        protected void btnLink4_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(6, 19);
+        }
+
+        protected void btnLink5_Click(object sender, EventArgs e)
+        {
+            DownloadAttachment(7, 20);
+        }
+
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("UserPDF.aspx");
         }
 
         protected void attachmentModal(string name)
@@ -379,7 +325,46 @@ namespace ChangeManagementSystem
             //isModalOpen.Value = "false";
             //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
+        }
 
+        protected void DownloadAttachment(int imgCol, int nameCol)
+        {
+            objDB = new DBConnect();
+            objCommand = new SqlCommand();
+            objCommand.CommandType = CommandType.StoredProcedure;
+
+            int CMID = Convert.ToInt32(Session["pdfCM"]);
+            objCommand.CommandText = "GetCMByID";
+            objCommand.Parameters.AddWithValue("@CMID", CMID);
+            DataSet dataSet = objDB.GetDataSetUsingCmdObj(objCommand);
+
+            //get data
+            DataTable dt = dataSet.Tables[0];
+            byte[] imgByte = (byte[])dt.Rows[0][imgCol];
+            string imgName = (string)dt.Rows[0][nameCol];
+
+            if ((imgByte != null) && (imgName != null))
+            {
+                // turn byte into downloaded file
+
+                // System.IO.File.WriteAllBytes(Environment.ExpandEnvironmentVariables(@"%USERPROFILE%\Downloads") + imgName, imgByte);
+                Response.Clear();
+                Response.Buffer = true;
+                Response.Charset = "";
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                Response.ContentType = "application/octet-stream";
+                Response.AppendHeader("Content-Disposition", @"inline; filename=" + imgName);
+                Response.BinaryWrite(imgByte);
+                Response.Flush();
+                Response.End();
+                //attachmentModal(imgName);
+            }
+            else
+            {
+                string name = "noname";
+                attachmentModal(name);
+            }
         }
     }
 }
