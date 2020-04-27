@@ -97,7 +97,7 @@
                             <!-- Panels for normal modal and expanded enter info modal -->
                             <div class="col-lg-3">
                                 <br />
-                                <label id="lblAccessNet" style="line-height: 50px;" runat="server">TU ID</label>
+                                <label id="lblAccessNet" style="line-height: 50px;" runat="server">TUID</label>
                                 <br />
                                 <label id="lblAccountType" style="line-height: 50px;" runat="server">Account Type</label>
                                 <br />
@@ -139,7 +139,7 @@
                         <div class="form-group form-row">
                             <div class="col-lg-3">
                                 <br />
-                                <label id="lblAccessNet2" style="line-height: 50px;" runat="server">TU ID</label>
+                                <label id="lblAccessNet2" style="line-height: 50px;" runat="server">TUID</label>
                                 <br />
                                 <label id="lblAccountType2" style="line-height: 50px;" runat="server">Account Type</label>
                                 <br />
