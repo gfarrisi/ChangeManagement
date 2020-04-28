@@ -48,7 +48,6 @@ namespace ChangeManagementSystem
                     objCommand = new SqlCommand();
                     objCommandDashboard = new SqlCommand();
 
-
                     objCommand.CommandType = CommandType.StoredProcedure;
                     objCommand.CommandText = "GetUserByID";
                     objCommand.Parameters.Clear();
@@ -66,6 +65,7 @@ namespace ChangeManagementSystem
                     objCommandDashboard.CommandText = "GetCMsByStatus";
 
                     objCommandDashboard.Parameters.AddWithValue("@CMStatus", "not assigned");
+                    dashboardData = null;
                     dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
                     rptNotAssigned.DataSource = dashboardData;
                     rptNotAssigned.DataBind();
@@ -74,6 +74,7 @@ namespace ChangeManagementSystem
                     
                     objCommandDashboard.Parameters.Clear();
                     objCommandDashboard.Parameters.AddWithValue("@CMStatus", "assigned");
+                    dashboardData = null;
                     dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
                     rptAssigned.DataSource = dashboardData;
                     rptAssigned.DataBind();
@@ -82,6 +83,7 @@ namespace ChangeManagementSystem
                     
                     objCommandDashboard.CommandText = "GetPreProdCMs";
                     objCommandDashboard.Parameters.Clear();
+                    dashboardData = null;
                     dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
                     rptPreProduction.DataSource = dashboardData;
                     rptPreProduction.DataBind();
@@ -90,6 +92,7 @@ namespace ChangeManagementSystem
 
                     objCommandDashboard.CommandText = "GetCompletedCMs";
                     objCommandDashboard.Parameters.Clear();
+                    dashboardData = null;
                     dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
                     rptCompleted.DataSource = dashboardData;
                     rptCompleted.DataBind();
@@ -238,7 +241,10 @@ namespace ChangeManagementSystem
 
         protected void rptNotAssigned_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            
+            if (((HiddenField)e.Item.FindControl("hiddenAdminID")).Value == Session["UserID"].ToString())
+            {
+                ((HtmlControl)e.Item.FindControl("btnCM")).Attributes.Add("style", "box-shadow: 0 0 10px 2.5px #8C2132;");
+            }
         }
 
         protected void rptPreProduction_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -413,35 +419,41 @@ namespace ChangeManagementSystem
 
         protected void RefreshTimer_Tick(object sender, EventArgs e)
         {
-            Response.Redirect(Request.RawUrl);
-            //objDB = new DBConnect();
-            //objCommandDashboard = new SqlCommand();
+            //  Response.Redirect(Request.RawUrl);
+  
+            objDB = new DBConnect();
+            objCommandDashboard = new SqlCommand();
 
-            //objCommandDashboard.CommandType = CommandType.StoredProcedure;
-            //objCommandDashboard.CommandText = "GetCMsByStatus";
+            objCommandDashboard.CommandType = CommandType.StoredProcedure;
+            objCommandDashboard.CommandText = "GetCMsByStatus";
 
-            //objCommandDashboard.Parameters.AddWithValue("@CMStatus", "not assigned");
-            //dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
-            //rptNotAssigned.DataSource = dashboardData;
-            //rptNotAssigned.DataBind();
+            objCommandDashboard.Parameters.Clear();
+            objCommandDashboard.Parameters.AddWithValue("@CMStatus", "not assigned");
+            dashboardData = null;
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptNotAssigned.DataSource = dashboardData;
+            rptNotAssigned.DataBind();
 
-            //objCommandDashboard.Parameters.Clear();
-            //objCommandDashboard.Parameters.AddWithValue("@CMStatus", "assigned");
-            //dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
-            //rptAssigned.DataSource = dashboardData;
-            //rptAssigned.DataBind();
+            objCommandDashboard.Parameters.Clear();
+            objCommandDashboard.Parameters.AddWithValue("@CMStatus", "assigned");
+            dashboardData = null;
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptAssigned.DataSource = dashboardData;
+            rptAssigned.DataBind();
 
-            //objCommandDashboard.CommandText = "GetPreProdCMs";
-            //objCommandDashboard.Parameters.Clear();
-            //dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
-            //rptPreProduction.DataSource = dashboardData;
-            //rptPreProduction.DataBind();
+            objCommandDashboard.Parameters.Clear();
+            objCommandDashboard.CommandText = "GetPreProdCMs";
+            dashboardData = null;
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptPreProduction.DataSource = dashboardData;
+            rptPreProduction.DataBind();
 
-            //objCommandDashboard.CommandText = "GetCompletedCMs";
-            //objCommandDashboard.Parameters.Clear();
-            //dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
-            //rptCompleted.DataSource = dashboardData;
-            //rptCompleted.DataBind();
+            objCommandDashboard.CommandText = "GetCompletedCMs";
+            objCommandDashboard.Parameters.Clear();
+            dashboardData = null;
+            dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
+            rptCompleted.DataSource = dashboardData;
+            rptCompleted.DataBind();
         }
 
         protected void btnLink1_Click(object sender, EventArgs e)

@@ -533,6 +533,7 @@
 
         function closeModal() {
             document.getElementById("isModalOpen").value = "false";
+           
         }
 
         function cmSaved() {
