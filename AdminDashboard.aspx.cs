@@ -461,7 +461,6 @@ namespace ChangeManagementSystem
             DownloadAttachment(3, 16);
             isModalOpen.Value = "false";
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
         }
 
         protected void btnLink2_Click(object sender, EventArgs e)
@@ -469,7 +468,6 @@ namespace ChangeManagementSystem
             DownloadAttachment(4, 17);
             isModalOpen.Value = "false";
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
         }
 
         protected void btnLink3_Click(object sender, EventArgs e)
@@ -477,7 +475,6 @@ namespace ChangeManagementSystem
             DownloadAttachment(5, 18);
             isModalOpen.Value = "false";
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
         }
 
         protected void btnLink4_Click(object sender, EventArgs e)
@@ -485,7 +482,7 @@ namespace ChangeManagementSystem
             DownloadAttachment(6, 19);
             isModalOpen.Value = "false";
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
+
         }
 
         protected void btnLink5_Click(object sender, EventArgs e)
@@ -493,7 +490,7 @@ namespace ChangeManagementSystem
             DownloadAttachment(7, 20);
             isModalOpen.Value = "false";
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "HidePop", "$('#exampleModalLong').modal('hide');", true);
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "$('#mdlCMAttachment').modal('show');", true);
+
         }
 
         protected void DownloadAttachment(int imgCol, int nameCol)

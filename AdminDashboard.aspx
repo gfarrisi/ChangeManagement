@@ -56,7 +56,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                
                 <div class="container-cm" style="height: 100%;">
                     <div class="row ">
                         <div class="col-lg-3 mb-1">
