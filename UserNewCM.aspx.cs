@@ -537,11 +537,11 @@ namespace ChangeManagementSystem
                             objCommand.CommandType = CommandType.StoredProcedure;
                             objCommand.CommandText = "InsertCMRequest";
                             objCommand.Parameters.AddWithValue("@CMStatus", newCmRequest.CMStatus);
-                            objCommand.Parameters.AddWithValue("@Attachment1", newCmRequest.att1);
-                            objCommand.Parameters.AddWithValue("@Attachment2", newCmRequest.att2);
-                            objCommand.Parameters.AddWithValue("@Attachment3", newCmRequest.att3);
-                            objCommand.Parameters.AddWithValue("@Attachment4", newCmRequest.att4);
-                            objCommand.Parameters.AddWithValue("@Attachment5", newCmRequest.att5);
+                            objCommand.Parameters.AddWithValue("@Attachment1", byte0);
+                            objCommand.Parameters.AddWithValue("@Attachment2", byte1);
+                            objCommand.Parameters.AddWithValue("@Attachment3", byte2);
+                            objCommand.Parameters.AddWithValue("@Attachment4", byte3);
+                            objCommand.Parameters.AddWithValue("@Attachment5", byte4);
                             objCommand.Parameters.AddWithValue("@filename1", newCmRequest.File1);
                             objCommand.Parameters.AddWithValue("@filename2", newCmRequest.File2);
                             objCommand.Parameters.AddWithValue("@filename3", newCmRequest.File3);
