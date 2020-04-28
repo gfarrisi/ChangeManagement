@@ -45,7 +45,7 @@ namespace ChangeManagementSystem
                     DataTable dt = userData.Tables[0];
                     string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
                     lblUserName.Text = userName;
-                    
+
                     this.BindGrid();
                 }
                 else // allows pagination, search bar, and fixed header to reappear after clicking "Add New User"
@@ -68,7 +68,7 @@ namespace ChangeManagementSystem
                     DataTable dt = userData.Tables[0];
                     string userName = dt.Rows[0]["FirstName"].ToString() + " " + dt.Rows[0]["LastName"].ToString();
                     lblUserName.Text = userName;
-                    
+
                     this.BindGrid();
                 }
                 WebService.College[] colleges = WebService.Webservice.getAllColleges();
@@ -147,7 +147,7 @@ namespace ChangeManagementSystem
                 }
             }
         }
-      
+
         protected void btnDeactivate_Click(object sender, EventArgs e)
         {
             objCommand.Parameters.Clear();
@@ -187,11 +187,11 @@ namespace ChangeManagementSystem
                 if (Temple_Information != null)// if pulls some info
                 {
                     /*Populating the Session Object with the user's information*/
-                    Session["NewUser_ID"] = Temple_Information.templeEduID;
-                    Session["First_Name"] = Temple_Information.givenName;
-                    Session["Last_Name"] = Temple_Information.sn;
-                    Session["Email"] = Temple_Information.mail;
-                    Session["School"] = ddlCollege.SelectedValue;
+                    //Session["NewUser_ID"] = Temple_Information.templeEduID;
+                    //Session["First_Name"] = Temple_Information.givenName;
+                    //Session["Last_Name"] = Temple_Information.sn;
+                    //Session["Email"] = Temple_Information.mail;
+                    //Session["School"] = ddlCollege.SelectedValue;
 
                     int check = checkDisabled(TUID);
                     if (check == 1) //if info already in DB alert them
@@ -210,10 +210,10 @@ namespace ChangeManagementSystem
                         objCommand.Parameters.AddWithValue("@Date", theDate);
                         string type = ddlType.SelectedValue.ToString();
                         objCommand.Parameters.AddWithValue("@UserType", type);
-                        objCommand.Parameters.AddWithValue("@FirstName", Session["First_Name"].ToString());
-                        objCommand.Parameters.AddWithValue("@LastName", Session["Last_Name"].ToString());
-                        objCommand.Parameters.AddWithValue("@Email", Session["Email"].ToString());
-                        objCommand.Parameters.AddWithValue("@College", Session["School"].ToString());
+                        objCommand.Parameters.AddWithValue("@FirstName", Temple_Information.givenName.ToString());
+                        objCommand.Parameters.AddWithValue("@LastName", Temple_Information.sn.ToString());
+                        objCommand.Parameters.AddWithValue("@Email", Temple_Information.mail);
+                        objCommand.Parameters.AddWithValue("@College", ddlCollege.SelectedValue.ToString());
 
                         db.GetDataSetUsingCmdObj(objCommand);
 
@@ -234,10 +234,10 @@ namespace ChangeManagementSystem
                         objCommand.Parameters.AddWithValue("@UserID", TUID);
                         string type = ddlType.SelectedValue.ToString();
                         objCommand.Parameters.AddWithValue("@UserType", type);
-                        objCommand.Parameters.AddWithValue("@FirstName", Session["First_Name"].ToString());
-                        objCommand.Parameters.AddWithValue("@LastName", Session["Last_Name"].ToString());
-                        objCommand.Parameters.AddWithValue("@Email", Session["Email"].ToString());
-                        objCommand.Parameters.AddWithValue("@College", Session["School"].ToString());
+                        objCommand.Parameters.AddWithValue("@FirstName", Temple_Information.givenName.ToString());
+                        objCommand.Parameters.AddWithValue("@LastName", Temple_Information.sn.ToString());
+                        objCommand.Parameters.AddWithValue("@Email", Temple_Information.mail);
+                        objCommand.Parameters.AddWithValue("@College", ddlCollege.SelectedValue.ToString());
                         string theDate = DateTime.Now.ToString();
                         objCommand.Parameters.AddWithValue("@Date", theDate);
 
@@ -342,29 +342,65 @@ namespace ChangeManagementSystem
             }
             else
             {
-                objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "AddUser";
-                objCommand.Parameters.Clear();
-                objCommand.Parameters.AddWithValue("@UserID", TUID);
-                string type = ddlType2.SelectedValue.ToString();
-                objCommand.Parameters.AddWithValue("@UserType", type);
-                objCommand.Parameters.AddWithValue("@FirstName", firstName);
-                objCommand.Parameters.AddWithValue("@LastName", lastName);
-                objCommand.Parameters.AddWithValue("@Email", userEmail);
-                objCommand.Parameters.AddWithValue("@College", college);
-                string theDate = DateTime.Now.ToString();
-                objCommand.Parameters.AddWithValue("@Date", theDate);
+                int check = checkDisabled(TUID);
+                if (check == 1) //if info already in DB alert them
+                {
+                    lblError.Text = "*An account already exists with this ID";
+                    txtID.Text = "";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Popup", "$('#exampleModal').modal('show')", true);
+                }
+                else if (check == 2) //if in but disabled, reactivate
+                {
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "ReactivateUser";
+                    objCommand.Parameters.Clear();
+                    objCommand.Parameters.AddWithValue("@UserID", TUID);
+                    string theDate = DateTime.Now.ToString();
+                    objCommand.Parameters.AddWithValue("@Date", theDate);
+                    string type = ddlType.SelectedValue.ToString();
+                    objCommand.Parameters.AddWithValue("@UserType", type);
+                    objCommand.Parameters.AddWithValue("@FirstName", firstName);
+                    objCommand.Parameters.AddWithValue("@LastName", lastName);
+                    objCommand.Parameters.AddWithValue("@Email", userEmail);
+                    objCommand.Parameters.AddWithValue("@College", college);
 
-                db.GetDataSetUsingCmdObj(objCommand);
+                    db.GetDataSetUsingCmdObj(objCommand);
 
-                objCommand.Parameters.Clear();
-                objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "GetAllUsers";
-                DataSet cmData = db.GetDataSetUsingCmdObj(objCommand);
-                DataTable dataTable = cmData.Tables[0];
+                    objCommand.Parameters.Clear();
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetAllUsers";
+                    DataSet cmData = db.GetDataSetUsingCmdObj(objCommand);
+                    DataTable dataTable = cmData.Tables[0];
 
-                gvAllUsers.DataSource = cmData;
-                gvAllUsers.DataBind();
+                    gvAllUsers.DataSource = cmData;
+                    gvAllUsers.DataBind();
+                }
+                else // else enter the user
+                {
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "AddUser";
+                    objCommand.Parameters.Clear();
+                    objCommand.Parameters.AddWithValue("@UserID", TUID);
+                    string type = ddlType2.SelectedValue.ToString();
+                    objCommand.Parameters.AddWithValue("@UserType", type);
+                    objCommand.Parameters.AddWithValue("@FirstName", firstName);
+                    objCommand.Parameters.AddWithValue("@LastName", lastName);
+                    objCommand.Parameters.AddWithValue("@Email", userEmail);
+                    objCommand.Parameters.AddWithValue("@College", college);
+                    string theDate = DateTime.Now.ToString();
+                    objCommand.Parameters.AddWithValue("@Date", theDate);
+
+                    db.GetDataSetUsingCmdObj(objCommand);
+
+                    objCommand.Parameters.Clear();
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "GetAllUsers";
+                    DataSet cmData = db.GetDataSetUsingCmdObj(objCommand);
+                    DataTable dataTable = cmData.Tables[0];
+
+                    gvAllUsers.DataSource = cmData;
+                    gvAllUsers.DataBind();
+                }
             }
             txtID2.Text = "";
         }

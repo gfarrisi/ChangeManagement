@@ -166,9 +166,7 @@
                                 <br />
                                 <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server"></asp:TextBox>
                                 <br />
-                                <asp:DropDownList ID="ddlCollege2" CssClass="form-control" runat="server">
-                                    <asp:ListItem Selected="True" Value="User"> User </asp:ListItem>
-                                    <asp:ListItem Value="Admin"> Admin </asp:ListItem>
+                                <asp:DropDownList ID="ddlCollege2" CssClass="form-control" runat="server">                                  
                                 </asp:DropDownList>
                             </div>
                         </div>
