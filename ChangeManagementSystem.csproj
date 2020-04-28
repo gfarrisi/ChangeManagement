@@ -75,12 +75,6 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="AdminDashboard.aspx" />
-    <Content Include="bin\ChangeManagementSystem.dll" />
-    <Content Include="bin\ChangeManagementSystem.pdb" />
-    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
-    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
-    <Content Include="bin\Newtonsoft.Json.dll" />
-    <Content Include="bin\Newtonsoft.Json.xml" />
     <Content Include="cancel.jpg" />
     <Content Include="CM.aspx" />
     <Content Include="css\cm-request.css" />
@@ -99,6 +93,12 @@
     <Content Include="AdminSelectRequestType.aspx" />
     <Content Include="AdminNewCM.aspx" />
     <Content Include="NewRequestType.aspx" />
+    <Content Include="obj\Release\ChangeManagementSystem.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\ChangeManagementSystem.dll" />
+    <Content Include="obj\Release\ChangeManagementSystem.pdb" />
+    <Content Include="obj\Release\TempPE\Web References.WS_LDAP_Search.Reference.cs.dll" />
+    <Content Include="obj\Release\TempPE\Web References.WS_Programs_And_Degrees.Reference.cs.dll" />
+    <Content Include="obj\Release\TempPE\Web References.WS_Student_Search.Reference.cs.dll" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\Roslyn45\csc.exe" />
@@ -204,7 +204,8 @@
     <Content Include="packages\Newtonsoft.Json.12.0.3\.signature.p7s" />
     <Content Include="packages\Newtonsoft.Json.12.0.3\LICENSE.md" />
     <Content Include="packages\Newtonsoft.Json.12.0.3\Newtonsoft.Json.12.0.3.nupkg" />
-    <Content Include="bin\ChangeManagementSystem.dll.config" />
+    <Content Include="obj\Release\ChangeManagementSystem.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Release\ChangeManagementSystem.csprojAssemblyReference.cache" />
     <None Include="packages.config" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\.signature.p7s" />
     <Content Include="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.Extensions.props" />
@@ -267,6 +268,13 @@
     <Content Include="EditEmail.aspx" />
     <Content Include="UserSelectRequestType.aspx" />
     <Content Include="UserNewCM.aspx" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDashboard.aspx.cs">
@@ -318,6 +326,12 @@
     <Compile Include="AdminNewCM.aspx.designer.cs">
       <DependentUpon>AdminNewCM.aspx</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -518,6 +532,7 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\" />
     <Folder Include="System\Windows\" />
   </ItemGroup>
   <PropertyGroup>
@@ -535,7 +550,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55848/</IISUrl>
+          <IISUrl>http://localhost:55841/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

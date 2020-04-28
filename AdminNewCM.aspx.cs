@@ -393,16 +393,9 @@ namespace ChangeManagementSystem
                     DateTime desiredDate;
                     string quesCom = txtQuesCom.Text;
                     string CMProjName = txtCMname.Text;
-                    byte[] byte0 = null;
-                    byte[] byte1 = null;
-                    byte[] byte2 = null;
-                    byte[] byte3 = null;
-                    byte[] byte4 = null;
-                    string file1 = null;
-                    string file2 = null;
-                    string file3 = null;
-                    string file4 = null;
-                    string file5 = null;
+                    bool validScreenshots = true;
+
+
 
                     if (!Validation.ValidateBottomForm(detailedDesc, txtDesiredDate.Text, quesCom, CMProjName))
                     {
@@ -415,113 +408,129 @@ namespace ChangeManagementSystem
                     else
                     {
                         desiredDate = DateTime.Parse(txtDesiredDate.Text);
-                        bool validScreenshots = true;
-                        foreach (HttpPostedFile file in fuScreenshots.PostedFiles)
+                        validScreenshots = true;
+                        for (int i = 0; i < fuScreenshots.PostedFiles.Count(); i++)
                         {
-                            if (!(Path.GetExtension(file.FileName) == ".pdf" ||
-                                    Path.GetExtension(file.FileName) == ".PDF" ||
-                                    Path.GetExtension(file.FileName) == ".PNG" ||
-                                    Path.GetExtension(file.FileName) == ".png" ||
-                                    Path.GetExtension(file.FileName) == ".JPG" ||
-                                    Path.GetExtension(file.FileName) == ".jpg" ||
-                                    Path.GetExtension(file.FileName) == ".xls" ||
-                                    Path.GetExtension(file.FileName) == ".XLS" ||
-                                    Path.GetExtension(file.FileName) == ".xlsx" ||
-                                    Path.GetExtension(file.FileName) == ".XLSX" ||
-                                    Path.GetExtension(file.FileName) == ".doc" ||
-                                    Path.GetExtension(file.FileName) == ".DOC" ||
-                                    Path.GetExtension(file.FileName) == ".docx" ||
-                                    Path.GetExtension(file.FileName) == ".DOCX" ||
-                                    Path.GetExtension(file.FileName) == ".csv" ||
-                                    Path.GetExtension(file.FileName) == ".CSV"
-                                   ))
+
+                            if (!(
+                                Path.GetExtension(fuScreenshots.PostedFiles[i].FileName) == ".pdf" ||
+                                                   Path.GetExtension(fuScreenshots.PostedFiles[i].FileName) == ".PDF" ||
+                                                   Path.GetExtension(fuScreenshots.PostedFiles[i].FileName) == ".PNG" ||
+                                                   Path.GetExtension(fuScreenshots.PostedFiles[i].FileName) == ".png" ||
+                                                   Path.GetExtension(fuScreenshots.PostedFiles[i].FileName) == ".JPG" ||
+                                                   Path.GetExtension(fuScreenshots.PostedFiles[i].FileName) == ".jpg" ||
+                                                   Path.GetExtension(fuScreenshots.PostedFiles[i].FileName) == ".xls" ||
+                                                   Path.GetExtension(fuScreenshots.PostedFiles[i].FileName) == ".XLS" ||
+                                                   Path.GetExtension(fuScreenshots.PostedFiles[i].FileName) == ".xlsx" ||
+                                                   Path.GetExtension(fuScreenshots.PostedFiles[i].FileName) == ".XLSX" ||
+                                                   Path.GetExtension(fuScreenshots.PostedFiles[i].FileName) == ".doc" ||
+                                                   Path.GetExtension(fuScreenshots.PostedFiles[i].FileName) == ".DOC" ||
+                                                   Path.GetExtension(fuScreenshots.PostedFiles[i].FileName) == ".docx" ||
+                                                   Path.GetExtension(fuScreenshots.PostedFiles[i].FileName) == ".DOCX" ||
+                                                   Path.GetExtension(fuScreenshots.PostedFiles[i].FileName) == ".csv" ||
+                                                   Path.GetExtension(fuScreenshots.PostedFiles[i].FileName) == ".CSV"
+                                                  ))
                             {
-                                validScreenshots = false;
                                 lblScreenshotsError.Visible = true;
+                                validScreenshots = false;
+
                                 fuScreenshots.Attributes.Clear();
 
 
                             }
-                            else if (validScreenshots == true)
+                            else
                             {
-                                for (int i = 0; i < fuScreenshots.PostedFiles.Count(); i++)
-                                {
-
-                                    if (i == 0)
-                                    {
-                                        string filename = Path.GetFileName(fuScreenshots.PostedFiles[0].FileName);
-                                        file1 = filename;
-                                        string contentType = fuScreenshots.PostedFiles[0].ContentType;
-                                        using (Stream fs = fuScreenshots.PostedFiles[0].InputStream)
-                                        {
-                                            using (BinaryReader br = new BinaryReader(fs))
-                                            {
-                                                byte0 = br.ReadBytes((Int32)fs.Length);
-                                                i++;
-                                            }
-                                        }
-                                    }
-                                    if (i == 1 && fuScreenshots.PostedFiles.Count() > 1)
-                                    {
-                                        string filename = Path.GetFileName(fuScreenshots.PostedFiles[1].FileName);
-                                        file2 = filename;
-                                        string contentType = fuScreenshots.PostedFiles[1].ContentType;
-                                        using (Stream fs = fuScreenshots.PostedFiles[1].InputStream)
-                                        {
-                                            using (BinaryReader br = new BinaryReader(fs))
-                                            {
-                                                byte1 = br.ReadBytes((Int32)fs.Length);
-                                                i++;
-                                            }
-                                        }
-                                    }
-                                    if (i == 2 && fuScreenshots.PostedFiles.Count() > 2)
-                                    {
-                                        string filename = Path.GetFileName(fuScreenshots.PostedFiles[2].FileName);
-                                        file3 = filename;
-                                        string contentType = fuScreenshots.PostedFiles[2].ContentType;
-                                        using (Stream fs = fuScreenshots.PostedFiles[2].InputStream)
-                                        {
-                                            using (BinaryReader br = new BinaryReader(fs))
-                                            {
-                                                byte2 = br.ReadBytes((Int32)fs.Length);
-                                                i++;
-                                            }
-                                        }
-                                    }
-                                    if (i == 3 && fuScreenshots.PostedFiles.Count() > 3)
-                                    {
-                                        string filename = Path.GetFileName(fuScreenshots.PostedFiles[3].FileName);
-                                        file4 = filename;
-                                        string contentType = fuScreenshots.PostedFiles[3].ContentType;
-                                        using (Stream fs = fuScreenshots.PostedFiles[3].InputStream)
-                                        {
-                                            using (BinaryReader br = new BinaryReader(fs))
-                                            {
-                                                byte3 = br.ReadBytes((Int32)fs.Length);
-                                                i++;
-                                            }
-                                        }
-                                    }
-                                    if (i == 4 && fuScreenshots.PostedFiles.Count() < 6 && fuScreenshots.PostedFiles.Count() > 4)
-                                    {
-                                        string filename = Path.GetFileName(fuScreenshots.PostedFiles[4].FileName);
-                                        file5 = filename;
-                                        string contentType = fuScreenshots.PostedFiles[4].ContentType;
-                                        using (Stream fs = fuScreenshots.PostedFiles[4].InputStream)
-                                        {
-                                            using (BinaryReader br = new BinaryReader(fs))
-                                            {
-                                                byte4 = br.ReadBytes((Int32)fs.Length);
-                                                i++;
-                                            }
-                                        }
-                                    }
-                                }
+                                validScreenshots = true;
                             }
                         }
                         if (validScreenshots == true)
                         {
+                            byte[] byte0 = null;
+                            byte[] byte1 = null;
+                            byte[] byte2 = null;
+                            byte[] byte3 = null;
+                            byte[] byte4 = null;
+                            string file1 = null;
+                            string file2 = null;
+                            string file3 = null;
+                            string file4 = null;
+                            string file5 = null;
+
+
+
+
+                            if (fuScreenshots.PostedFiles.Count() >= 1 && fuScreenshots.PostedFiles[0] != null)
+                            {
+                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[0].FileName);
+                                file1 = filename;
+                                string contentType = fuScreenshots.PostedFiles[0].ContentType;
+                                using (Stream fs = fuScreenshots.PostedFiles[0].InputStream)
+                                {
+                                    using (BinaryReader br = new BinaryReader(fs))
+                                    {
+                                        byte0 = br.ReadBytes((Int32)fs.Length);
+
+                                    }
+                                }
+                            }
+                            if (fuScreenshots.PostedFiles.Count() >= 2 && fuScreenshots.PostedFiles[1] != null)
+                            {
+                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[1].FileName);
+                                file2 = filename;
+                                string contentType = fuScreenshots.PostedFiles[1].ContentType;
+                                using (Stream fs = fuScreenshots.PostedFiles[1].InputStream)
+                                {
+                                    using (BinaryReader br = new BinaryReader(fs))
+                                    {
+                                        byte1 = br.ReadBytes((Int32)fs.Length);
+
+                                    }
+                                }
+                            }
+                            if (fuScreenshots.PostedFiles.Count() >= 3 && fuScreenshots.PostedFiles[2] != null)
+                            {
+                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[2].FileName);
+                                file3 = filename;
+                                string contentType = fuScreenshots.PostedFiles[2].ContentType;
+                                using (Stream fs = fuScreenshots.PostedFiles[2].InputStream)
+                                {
+                                    using (BinaryReader br = new BinaryReader(fs))
+                                    {
+                                        byte2 = br.ReadBytes((Int32)fs.Length);
+
+                                    }
+                                }
+                            }
+
+                            if (fuScreenshots.PostedFiles.Count() >= 4 && fuScreenshots.PostedFiles[3] != null)
+                            {
+                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[3].FileName);
+                                file4 = filename;
+                                string contentType = fuScreenshots.PostedFiles[3].ContentType;
+                                using (Stream fs = fuScreenshots.PostedFiles[3].InputStream)
+                                {
+                                    using (BinaryReader br = new BinaryReader(fs))
+                                    {
+                                        byte3 = br.ReadBytes((Int32)fs.Length);
+
+                                    }
+                                }
+                            }
+
+                            if (fuScreenshots.PostedFiles.Count() == 5 && fuScreenshots.PostedFiles[4] != null)
+                            {
+                                string filename = Path.GetFileName(fuScreenshots.PostedFiles[4].FileName);
+                                file5 = filename;
+                                string contentType = fuScreenshots.PostedFiles[4].ContentType;
+                                using (Stream fs = fuScreenshots.PostedFiles[4].InputStream)
+                                {
+                                    using (BinaryReader br = new BinaryReader(fs))
+                                    {
+                                        byte4 = br.ReadBytes((Int32)fs.Length);
+
+                                    }
+                                }
+                            }
                             int requestType = Convert.ToInt32(Session["SelectedRequestType"].ToString());
 
                             //create cm-request object based on list and all other fields

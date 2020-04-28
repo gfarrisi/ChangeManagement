@@ -465,9 +465,9 @@ namespace ChangeManagementSystem
 
             objCommandDashboard.CommandType = CommandType.StoredProcedure;
             objCommandDashboard.CommandText = "GetCMsByUserByStatus";
+
             objCommandDashboard.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
             objCommandDashboard.Parameters.AddWithValue("@CMStatus", "not assigned");
-
             dashboardData = objDB.GetDataSetUsingCmdObj(objCommandDashboard);
             rptNotAssigned.DataSource = dashboardData;
             rptNotAssigned.DataBind();
