@@ -151,6 +151,8 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Remove("bg-danger");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("class", "bg-success");
 
                 status.Attributes.Add("class", "visibility-hidden");
             }
@@ -160,6 +162,8 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "25");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Remove("bg-danger");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("class", "bg-success");
 
                 status.Attributes.Add("class", "visibility-hidden");
             }
@@ -170,6 +174,8 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Remove("bg-danger");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("class", "bg-success");
 
                 status.Attributes.Clear();
                 preprod.Attributes.Clear();
@@ -183,6 +189,8 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "75");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Remove("bg-danger");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("class", "bg-success");
 
                 status.Attributes.Clear();
                 preprodTested.Attributes.Clear();
@@ -194,16 +202,20 @@ namespace ChangeManagementSystem
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "100");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Remove("bg-danger");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("class", "bg-success");
 
                 status.Attributes.Add("class", "visibility-hidden");
 
             }
             else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Failed")
             {
-                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 0%");
-                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "0");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 100%");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "100");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
                 ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Remove("bg-success");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("class", "bg-danger");
 
                 status.Attributes.Add("class", "visibility-hidden");
             }
