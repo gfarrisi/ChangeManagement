@@ -198,6 +198,15 @@ namespace ChangeManagementSystem
                 status.Attributes.Add("class", "visibility-hidden");
 
             }
+            else if (((HiddenField)e.Item.FindControl("hiddenCMStatus")).Value == "Failed")
+            {
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("style", "width: 0%");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuenow", "0");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemin", "0");
+                ((HtmlControl)e.Item.FindControl("progressBar")).Attributes.Add("aria-valuemax", "100");
+
+                status.Attributes.Add("class", "visibility-hidden");
+            }
         }
 
         protected void btnNewComment_Click(object sender, EventArgs e)
